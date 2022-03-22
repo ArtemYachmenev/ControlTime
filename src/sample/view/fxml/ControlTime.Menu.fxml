@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.ClassesWorkingWithFXML.WindowMenu">
+    <children>
+        <AnchorPane layoutX="1.0" layoutY="214.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
+            <children>
+            <Button fx:id="OnButton" layoutX="334.0" layoutY="61.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="333.0" style="-fx-background-radius: 10;" text="ВКЛ/ОТКЛ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="StatisticsButton" layoutX="658.0" layoutY="205.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="315.0" style="-fx-background-radius: 10;" text="Показ статистики">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="SettingsButton" layoutX="343.0" layoutY="338.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="315.0" style="-fx-background-radius: 10;" text="Настройки">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="PersonalizationButton" layoutX="19.0" layoutY="205.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="315.0" style="-fx-background-radius: 10;" text="Персонализация работы">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+      <Label layoutX="375.0" layoutY="67.0" prefHeight="111.0" prefWidth="253.0" text="Time Contol">
+         <font>
+            <Font name="Agency FB" size="68.0" />
+         </font>
+      </Label>
+      <TitledPane animated="false" layoutX="-299.0" layoutY="-192.0" text="untitled" />
+    </children>
+</AnchorPane>
