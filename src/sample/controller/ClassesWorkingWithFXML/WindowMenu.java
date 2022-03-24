@@ -1,4 +1,4 @@
-package sample.view.ClassesWorkingWithFXML;
+package sample.controller.ClassesWorkingWithFXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;

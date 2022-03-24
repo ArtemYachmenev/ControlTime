@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.ClassesWorkingWithFXML.WindowSampleAuthorization">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowAuthorization">
    <children>
       <Label layoutX="374.0" layoutY="65.0" prefHeight="111.0" prefWidth="253.0" text="Time Contol">
          <font>
@@ -26,12 +26,17 @@
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <Button fx:id="PasswordRecovery" layoutX="238.0" layoutY="260.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Я не помню пароль">
+            <Button fx:id="PasswordRecoveryButton" layoutX="239.0" layoutY="382.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Я не помню пароль">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="CreateNewProfile" layoutX="238.0" layoutY="329.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Создать новый профиль">
+            <Button fx:id="CreateNewProfileButton" layoutX="239.0" layoutY="435.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Создать новый профиль">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="EntranceButton" layoutX="387.0" layoutY="265.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" style="-fx-background-radius: 10;" text="Вход">
                <font>
                   <Font size="20.0" />
                </font>

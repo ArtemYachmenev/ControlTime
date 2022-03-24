@@ -1,6 +1,5 @@
-package sample.view.ClassesWorkingWithFXML;
+package sample.controller.ClassesWorkingWithFXML;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -9,7 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
-public class NewProfile {
+public class WindowNewProfile {
 
     @FXML
     private ResourceBundle resources;
