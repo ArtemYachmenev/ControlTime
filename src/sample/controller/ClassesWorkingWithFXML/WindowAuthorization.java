@@ -2,6 +2,8 @@ package sample.controller.ClassesWorkingWithFXML;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.controller.Database.DatabaseHandler;
+import sample.controller.Database.User;
 
 public class WindowAuthorization {
 
@@ -37,6 +41,7 @@ public class WindowAuthorization {
 
     @FXML
     void initialize() {
+
         CreateNewProfileButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка создания нового профиля");
@@ -53,6 +58,8 @@ public class WindowAuthorization {
             stage.setScene(new Scene(root));
             stage.showAndWait();
         });
+
+
         PasswordRecoveryButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка восстановления пароля");
@@ -70,9 +77,42 @@ public class WindowAuthorization {
             stage.showAndWait();
 
         });
+
+
         EntranceButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка входа");
+            String loginText= LoginField.getText().trim();
+            String loginPassword= PssswordField.getText().trim();
+            if (!loginText.equals("") && !loginPassword.equals("")){
+            loginUser(loginText,loginPassword);
+            }
+            else
+                System.out.println("login and password is empty");
+        });
+    }
+
+    //проверка на существующего юзера
+    private void loginUser(String loginText,String loginPassword){
+        DatabaseHandler dbHandler=new DatabaseHandler();
+        User user=new User();
+        user.setName(loginText);
+        user.setPassword(loginPassword);
+        dbHandler.getUser(user);
+        ResultSet result= dbHandler.getUser(user);
+        int counter=0;
+
+            try {
+                if (!result.next()) {
+                    counter++;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+
+        if (counter>=1){
+            System.out.println("success");
             EntranceButton.getScene().getWindow().hide();
             FXMLLoader loader=new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/view/fxml/ControlTime.Menu.fxml"));
@@ -86,7 +126,8 @@ public class WindowAuthorization {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-        });
+
+        }
 
 
     }

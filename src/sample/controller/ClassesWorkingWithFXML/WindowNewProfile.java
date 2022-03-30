@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sample.controller.Database.DatabaseHandler;
+import sample.controller.Database.User;
 
 
 public class WindowNewProfile {
@@ -29,7 +31,7 @@ public class WindowNewProfile {
     private TextField PatronymicField;
 
     @FXML
-    private PasswordField PssswordField;
+    private PasswordField PasswordField;
 
     @FXML
     private Button RegisterAProfile;
@@ -42,9 +44,34 @@ public class WindowNewProfile {
 
     @FXML
     void initialize() {
+        //обработчик бд
+        DatabaseHandler dbHandler=new DatabaseHandler();
         RegisterAProfile.setOnAction(ActionEvent -> {
+
+            createNewProfile();
             System.out.println("нажата кнопка регистрации");
+
+
         });
+
+    }
+
+    // метод берет из полей текст и переносит в метод обработки текста
+    private void createNewProfile() {
+        //обработчик бд
+        DatabaseHandler dbHandler=new DatabaseHandler();
+        String  login=LoginField.getText();
+        String password=PasswordField.getText();
+        String name=NameField.getText();
+        String secondName=SecondNameField.getText();
+        String secret=SecretField.getText();
+        String answer=AnswerField.getText();
+
+        User user=new User(login,password,name,secondName, secondName,answer);
+
+
+        //получаем нового пользователя
+        dbHandler.signUpUser(user);
 
     }
 
