@@ -61,7 +61,25 @@ public class DatabaseHandler extends Configs{
         }
         return resultSet;
 
+    }
 
+
+    // медот для проверки на сущ юзера
+    public ResultSet CheckUser(User user){
+        ResultSet resultSet=null;
+        String select = "select * from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+            prSt.setString(1,user.getLogin());
+            resultSet=prSt.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
 
     }
 

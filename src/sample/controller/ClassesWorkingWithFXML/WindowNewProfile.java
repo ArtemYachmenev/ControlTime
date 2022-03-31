@@ -1,6 +1,8 @@
 package sample.controller.ClassesWorkingWithFXML;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
+import sample.view.animations.Shake;
 
 
 public class WindowNewProfile {
@@ -47,9 +50,8 @@ public class WindowNewProfile {
         //обработчик бд
         DatabaseHandler dbHandler=new DatabaseHandler();
         RegisterAProfile.setOnAction(ActionEvent -> {
-
-            createNewProfile();
             System.out.println("нажата кнопка регистрации");
+            createNewProfile();
 
 
         });
@@ -57,21 +59,55 @@ public class WindowNewProfile {
     }
 
     // метод берет из полей текст и переносит в метод обработки текста
-    private void createNewProfile() {
+    private int createNewProfile() {
         //обработчик бд
         DatabaseHandler dbHandler=new DatabaseHandler();
-        String  login=LoginField.getText();
-        String password=PasswordField.getText();
-        String name=NameField.getText();
-        String secondName=SecondNameField.getText();
-        String secret=SecretField.getText();
-        String answer=AnswerField.getText();
+        String  login=LoginField.getText().trim();
+        String password=PasswordField.getText().trim();
+        String name=NameField.getText().trim();
+        String secondName=SecondNameField.getText().trim();
+        String secret=SecretField.getText().trim();
+        String answer=AnswerField.getText().trim();
+        int count = 0;
 
-        User user=new User(login,password,name,secondName, secondName,answer);
+        //ПРОВЕРКА НА ЗАПОЛНЕННЫЕ ПОЛЯ
+        if (!login.equals("") && !password.equals("")&& !name.equals("")&& !secondName.equals("")&& !secret.equals("")&& !answer.equals("")) {
+
+            //проверка на  существующего пользователя
+
+            User CheckUser = new User();
+            CheckUser.setLogin(login);
+            ResultSet CheckResult = dbHandler.CheckUser(CheckUser);
+
+            try {
+                if (CheckResult.next()) {
+                    count++;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            if (count >= 1) {
+                //почему т строка не возвращается на место
+             //   Shake userLogAnim = new Shake(LoginField);
+              //  userLogAnim.playAnim();
+                System.out.println("логин занят");
+
+            } else {
+                System.out.println("success new profile");
+                User user = new User(login, password, name, secondName, secret, answer);
+                //получаем нового пользователя
+                dbHandler.signUpUser(user);
+            }
+        }
+        else {
+            System.out.println("поля не заполнены");
+        }
+
+        return count;
 
 
-        //получаем нового пользователя
-        dbHandler.signUpUser(user);
+
 
     }
 
