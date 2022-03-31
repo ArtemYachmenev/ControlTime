@@ -142,7 +142,7 @@ public class WindowAuthorization {
     public void openNewSceneNewProfile (String window){
         CreateNewProfileButton.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("/sample/view/fxml/ControlTime.NewProfile.fxml"));
+        loader.setLocation(getClass().getResource(window));
         try {
             loader.load();
         } catch (IOException e) {

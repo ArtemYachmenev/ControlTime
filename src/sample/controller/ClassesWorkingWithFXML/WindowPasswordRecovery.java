@@ -14,8 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
+import sample.view.animations.Shake;
 
 public class WindowPasswordRecovery {
+
 
     @FXML
     private ResourceBundle resources;
@@ -39,6 +41,7 @@ public class WindowPasswordRecovery {
                 int res=CheckLoginUser(login);
                 if (res>=1){
                     openNewSceneRecovery2("/sample/view/fxml/ControlTime.PasswordRecovery2.fxml");
+
                 }
             }
             else
@@ -46,7 +49,7 @@ public class WindowPasswordRecovery {
         });
 
 
-        };
+        }
 
 
     //проверка на существующий логин
@@ -70,12 +73,22 @@ public class WindowPasswordRecovery {
             //   Shake userLogAnim = new Shake(LoginField);
             //  userLogAnim.playAnim();
             System.out.println("логин существует");
-
+            saveLogin(login);
         } else {
             System.out.println("логина не существует");
 
         }
         return count;
+    }
+
+    //принятие логина и получение вопроса
+    public ResultSet saveLogin(String loginText){
+        WindowPasswordRecovery2 login=new WindowPasswordRecovery2();
+        DatabaseHandler dbHandler=new DatabaseHandler();
+        login.setLogin(loginText);
+        ResultSet result= dbHandler.getSecretLogin(login);
+        return result;
+
     }
 
 

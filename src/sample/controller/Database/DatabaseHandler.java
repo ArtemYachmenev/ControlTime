@@ -1,5 +1,7 @@
 package sample.controller.Database;
 
+import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery2;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,7 +66,7 @@ public class DatabaseHandler extends Configs{
     }
 
 
-    // медот для проверки на сущ юзера
+    // медод для проверки на сущ юзера
     public ResultSet CheckUser(User user){
         ResultSet resultSet=null;
         String select = "select * from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
@@ -83,6 +85,39 @@ public class DatabaseHandler extends Configs{
 
     }
 
+    // медод для получения вопроса пользователя
+    public String  getSecretLogin(WindowPasswordRecovery2 login){
+        ResultSet resultSet1=null;
+        ResultSet resultSet2=null;
+        String secret = null;
+        String answer = null;
+        String selectSecret = "select "+Const.USER_QUESTION+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
+        String selectAnswer = "select "+Const.USER_ANSWER+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
+
+        try {
+            PreparedStatement prSt1=getDbConnection().prepareStatement(selectSecret);
+            prSt1.setString(1,login.getLogin());
+            resultSet1=prSt1.executeQuery();
+            secret=resultSet1.toString();
+
+            PreparedStatement prSt2=getDbConnection().prepareStatement(selectAnswer);
+            prSt2.setString(1,login.getLogin());
+            resultSet2=prSt2.executeQuery();
+            answer=resultSet2.toString();
+            System.out.println(secret);
+            System.out.println(answer);
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return secret;
+
+
+    }
 
 
 }
