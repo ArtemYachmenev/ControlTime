@@ -34,69 +34,36 @@ public class WindowPasswordRecovery2 {
     private Button SendAReplyButton;
 
 
-    public  String login;
-    public String secret;
-    public String answer;
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public WindowPasswordRecovery2() {
-
-    }
-
-
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public String getLogin(){
-        return login;
-
-    }
-
-    public void setLogin(String login){
-        this.login=login;
-
-    }
 
 //загрузка секрета
     public void downloadSecretAndAnswer(){
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        answer= String.valueOf(recovery.saveLogin(getAnswer().toString()));
-        System.out.println(answer);
-        LabelSecret.setText(recovery.saveLogin(getLogin()).toString());
+       // answer= recovery.saveLogin(getLogin());
+       // LabelSecret.setText(recovery.saveLogin(getLogin()));
+        LabelSecret.setText(recovery.userSecret);
+      //  System.out.println(LabelSecret.getText());
+
     }
 
     @FXML
     void initialize() {
+        //тут не открывается третье окно воостановления пароля возможно из за того что старые не закрываются и не ввыдится текст
         downloadSecretAndAnswer();
         SendAReplyButton.setOnAction(ActionEvent -> {
-            String answer=AnswerFieldRecovery2.getText().trim();
             System.out.println("нажата кнопка ответа на секретный вопрос");
-               userAnswer(answer);
-
-
+            String answer=AnswerFieldRecovery2.getText().trim();
+            userAnswer(answer);
         });
 
     }
 
 
-    //сравнение введенной строки с ответом
-    public void userAnswer (String answer){
-
-        if (!answer.equals("")) {
-
+    //загрузка и сравнение введенной строки с ответом
+    public void userAnswer (String userAnswer){
+        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
+       String answer=recovery.userSecret;
+        if (userAnswer.equals(answer)) {
             openNewSceneRecovery3("/sample/view/fxml/ControlTime.PasswordRecovery3.fxml");
         }
         else {

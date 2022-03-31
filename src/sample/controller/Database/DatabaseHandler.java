@@ -86,36 +86,40 @@ public class DatabaseHandler extends Configs{
     }
 
     // медод для получения вопроса пользователя
-    public String  getSecretLogin(WindowPasswordRecovery2 login){
-        ResultSet resultSet1=null;
-        ResultSet resultSet2=null;
-        String secret = null;
-        String answer = null;
+    public ResultSet  getSecretLogin(User login){
+        getAnswer(login);
+        ResultSet resultSet=null;
         String selectSecret = "select "+Const.USER_QUESTION+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
-        String selectAnswer = "select "+Const.USER_ANSWER+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
-
         try {
-            PreparedStatement prSt1=getDbConnection().prepareStatement(selectSecret);
-            prSt1.setString(1,login.getLogin());
-            resultSet1=prSt1.executeQuery();
-            secret=resultSet1.toString();
-
-            PreparedStatement prSt2=getDbConnection().prepareStatement(selectAnswer);
-            prSt2.setString(1,login.getLogin());
-            resultSet2=prSt2.executeQuery();
-            answer=resultSet2.toString();
-            System.out.println(secret);
-            System.out.println(answer);
-
-
+            PreparedStatement prSt=getDbConnection().prepareStatement(selectSecret);
+            prSt.setString(1,login.getLogin());
+            resultSet=prSt.executeQuery();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        return secret;
+        return resultSet;
 
+    }
+
+//получение ответа на вопрос
+    public ResultSet  getAnswer(User login){
+        ResultSet resultSet=null;
+        String selectAnswer = "select "+Const.USER_ANSWER+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
+
+        try {
+
+            PreparedStatement prSt=getDbConnection().prepareStatement(selectAnswer);
+            prSt.setString(1,login.getLogin());
+            resultSet=prSt.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
 
     }
 

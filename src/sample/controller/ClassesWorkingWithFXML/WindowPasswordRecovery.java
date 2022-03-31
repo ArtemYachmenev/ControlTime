@@ -16,7 +16,12 @@ import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
 
+
+
 public class WindowPasswordRecovery {
+
+   public static String userSecret=null;
+   public static String userAnswer=null;
 
 
     @FXML
@@ -74,6 +79,7 @@ public class WindowPasswordRecovery {
             //  userLogAnim.playAnim();
             System.out.println("логин существует");
             saveLogin(login);
+            saveAnswer(login);
         } else {
             System.out.println("логина не существует");
 
@@ -82,12 +88,44 @@ public class WindowPasswordRecovery {
     }
 
     //принятие логина и получение вопроса
-    public ResultSet saveLogin(String loginText){
-        WindowPasswordRecovery2 login=new WindowPasswordRecovery2();
+    public String saveLogin(String loginText){
+        User secretUser=new User();
         DatabaseHandler dbHandler=new DatabaseHandler();
-        login.setLogin(loginText);
-        ResultSet result= dbHandler.getSecretLogin(login);
-        return result;
+        secretUser.setLogin(loginText);
+        ResultSet result= dbHandler.getSecretLogin(secretUser);
+        try {
+            if (result.next()) {
+           secretUser.setQuestion(result.getString("question"));
+                userSecret=secretUser.getQuestion();
+                System.out.println(secretUser.getQuestion());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return secretUser.getQuestion();
+
+    }
+
+    //принятие логина и получение ответа
+    public String  saveAnswer(String loginText){
+        User answerUser=new User();
+        DatabaseHandler dbHandler=new DatabaseHandler();
+        answerUser.setLogin(loginText);
+        ResultSet result= dbHandler.getAnswer(answerUser);
+        try {
+            if (result.next()) {
+                answerUser.setAnswer(result.getString("answer"));
+                userAnswer=answerUser.getAnswer();
+               System.out.println(answerUser.getAnswer());
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return answerUser.getAnswer();
 
     }
 

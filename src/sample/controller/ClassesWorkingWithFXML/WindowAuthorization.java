@@ -46,7 +46,7 @@ public class WindowAuthorization {
         CreateNewProfileButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка создания нового профиля");
-            openNewSceneNewProfile("/sample/view/fxml/ControlTime.PasswordRecovery.fxml");
+            openNewSceneNewProfile("/sample/view/fxml/ControlTime.NewProfile.fxml");
 
         });
 
