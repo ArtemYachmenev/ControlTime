@@ -1,5 +1,6 @@
 package sample.controller.Database;
 
+import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
 import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery2;
 
 import java.sql.Connection;
@@ -120,6 +121,25 @@ public class DatabaseHandler extends Configs{
             e.printStackTrace();
         }
         return resultSet;
+
+    }
+
+    // медот для получения юзера
+    public void newPass(User user){
+        ResultSet resultSet=null;
+        String select = "update "+Const.USER_TABLE+" set "+Const.USER_PASS+"= ?"+" where "+Const.USER_LOGIN+" =?";
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+            prSt.setString(1,user.getPassword());
+            prSt.setString(2,user.getLogin());
+            prSt.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

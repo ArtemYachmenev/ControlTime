@@ -103,12 +103,8 @@ public class WindowNewProfile {
         else {
             System.out.println("поля не заполнены");
         }
-
         return count;
-
-
-
-
     }
+
 
 }

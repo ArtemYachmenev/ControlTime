@@ -20,8 +20,9 @@ import sample.view.animations.Shake;
 
 public class WindowPasswordRecovery {
 
-   public static String userSecret=null;
-   public static String userAnswer=null;
+    public static String userLogin=null;
+    public static String userSecret=null;
+    public static String userAnswer=null;
 
 
     @FXML
@@ -41,6 +42,7 @@ public class WindowPasswordRecovery {
         PasswordRecoveryButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка поиска пользователя");
             String login=LoginPasswField.getText().trim();
+            userLogin=login;
             if (!login.equals("")){
                 //открытие следующего окна восстановления
                 int res=CheckLoginUser(login);
@@ -143,9 +145,11 @@ public class WindowPasswordRecovery {
         Parent root=loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
     }
+
+
 
 
     }

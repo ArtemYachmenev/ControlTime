@@ -2,6 +2,7 @@ package sample.controller.ClassesWorkingWithFXML;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,10 +40,8 @@ public class WindowPasswordRecovery2 {
 //загрузка секрета
     public void downloadSecretAndAnswer(){
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-       // answer= recovery.saveLogin(getLogin());
-       // LabelSecret.setText(recovery.saveLogin(getLogin()));
         LabelSecret.setText(recovery.userSecret);
-      //  System.out.println(LabelSecret.getText());
+
 
     }
 
@@ -58,11 +57,37 @@ public class WindowPasswordRecovery2 {
 
     }
 
+//метод сравнивающий два ответа пользователя
+    public boolean twoAnswers(String answer) {
+        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
+        return  (answer.equals(recovery.userSecret) ) ;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
+        String answer=recovery.userSecret;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        if (AnswerFieldRecovery2.getText().trim() != answer)
+            return false;
+
+        return true;
+    }
+
+
 
     //загрузка и сравнение введенной строки с ответом
     public void userAnswer (String userAnswer){
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
        String answer=recovery.userSecret;
+       int hcodeA=answer.hashCode();
+       int hcodeU=userAnswer.hashCode();
+
         if (userAnswer.equals(answer)) {
             openNewSceneRecovery3("/sample/view/fxml/ControlTime.PasswordRecovery3.fxml");
         }
@@ -71,6 +96,8 @@ public class WindowPasswordRecovery2 {
         }
 
     }
+
+
 
 
     //открытие окна восстановление пароля 3
@@ -86,7 +113,7 @@ public class WindowPasswordRecovery2 {
         Parent root=loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
     }
 

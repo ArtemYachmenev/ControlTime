@@ -117,7 +117,7 @@ public class WindowAuthorization {
         Parent root=loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
     }
 
@@ -134,7 +134,7 @@ public class WindowAuthorization {
         Parent root=loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
     }
 
@@ -151,7 +151,7 @@ public class WindowAuthorization {
         Parent root=loader.getRoot();
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
+        stage.show();
 
     }
 

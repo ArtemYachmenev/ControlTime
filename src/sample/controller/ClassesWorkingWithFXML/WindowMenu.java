@@ -51,7 +51,7 @@ public class WindowMenu {
             Parent root=loader.getRoot();
             Stage stage =new Stage();
             stage.setScene(new Scene(root));
-            stage.showAndWait();
+            stage.show();
         });
         StatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка сстатистики");
