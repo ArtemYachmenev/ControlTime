@@ -31,12 +31,17 @@ public class WindowMenu {
     private Button StatisticsButton;
 
     @FXML
+    private Button Exit;
+
+    @FXML
     void initialize() {
         OnButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка включения/выключения");
         });
         PersonalizationButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка персонализации");
+            openPers("/sample/view/fxml/ControlTime.PersonalConfig.fxml");
+
         });
         SettingsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка настроек");
@@ -54,8 +59,51 @@ public class WindowMenu {
             stage.show();
         });
         StatisticsButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка сстатистики");
+            System.out.println("нажата кнопка статистики");
         });
+
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+
+
+        });
+
+    }
+
+
+
+    //открытие окно меню
+    public void openAut (String window){
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    //открытие окна персонализации
+    public void openPers (String window){
+        PersonalizationButton.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 

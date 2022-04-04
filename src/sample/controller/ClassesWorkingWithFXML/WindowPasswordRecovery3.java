@@ -76,8 +76,6 @@ public class WindowPasswordRecovery3 {
 
 
 
-
-
     //открывает меню приложения
     public void openMenu(String window) {
         SavePasswordButton.getScene().getWindow().hide();

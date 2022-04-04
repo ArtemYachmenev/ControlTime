@@ -38,5 +38,10 @@
          </font>
       </Label>
       <TitledPane animated="false" layoutX="-299.0" layoutY="-192.0" text="untitled" />
+      <Button fx:id="Exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Выход">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
