@@ -33,10 +33,18 @@ public class WindowMenu {
     @FXML
     private Button Exit;
 
+    public static boolean OnOrOff=false;
+
     @FXML
     void initialize() {
+
+
+
         OnButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка включения/выключения");
+            klickButtonOn();
+            System.out.println(OnOrOff);
+
         });
         PersonalizationButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка персонализации");
@@ -60,6 +68,7 @@ public class WindowMenu {
         });
         StatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики");
+            openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");
         });
 
         Exit.setOnAction(ActionEvent -> {
@@ -68,6 +77,17 @@ public class WindowMenu {
 
 
         });
+
+    }
+
+    //нажатие на кнопку вкл выкл
+    public void klickButtonOn(){
+        if (OnOrOff==true){
+            OnOrOff=false;
+        }
+        else if (OnOrOff==false) {
+            OnOrOff = true;
+        }
 
     }
 
@@ -106,6 +126,25 @@ public class WindowMenu {
         stage.show();
 
     }
+
+    //открытие окно статистики
+    public void openStat (String window){
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+
 
 }
 
