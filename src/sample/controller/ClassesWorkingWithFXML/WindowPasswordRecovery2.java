@@ -34,6 +34,9 @@ public class WindowPasswordRecovery2 {
     @FXML
     private Button SendAReplyButton;
 
+    @FXML
+    private Button Exit;
+
 
 
 
@@ -41,6 +44,13 @@ public class WindowPasswordRecovery2 {
     public void downloadSecretAndAnswer(){
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
         LabelSecret.setText(recovery.userSecret);
+
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openPR("/sample/view/fxml/ControlTime.PasswordRecovery.fxml");
+
+
+        });
 
 
     }
@@ -63,32 +73,15 @@ public class WindowPasswordRecovery2 {
         return  (answer.equals(recovery.userSecret) ) ;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        String answer=recovery.userSecret;
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        if (AnswerFieldRecovery2.getText().trim() != answer)
-            return false;
-
-        return true;
-    }
 
 
 
-    //загрузка и сравнение введенной строки с ответом
+    //загрузка секрета и сравнение введенной строки с ответом
     public void userAnswer (String userAnswer){
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
        String answer=recovery.userSecret;
-       int hcodeA=answer.hashCode();
-       int hcodeU=userAnswer.hashCode();
 
-        if (userAnswer.equals(answer)) {
+        if (Objects.equals(answer,userAnswer)) {
             openNewSceneRecovery3("/sample/view/fxml/ControlTime.PasswordRecovery3.fxml");
         }
         else {
@@ -103,6 +96,23 @@ public class WindowPasswordRecovery2 {
     //открытие окна восстановление пароля 3
     public void openNewSceneRecovery3 (String window){
         SendAReplyButton.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    //открытие первого окна восст пароля
+    public void openPR (String window){
+        Exit.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

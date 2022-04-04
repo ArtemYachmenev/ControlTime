@@ -38,6 +38,9 @@ public class WindowPasswordRecovery {
     private Button PasswordRecoveryButton;
 
     @FXML
+    private Button Exit;
+
+    @FXML
     void initialize() {
         PasswordRecoveryButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка поиска пользователя");
@@ -53,6 +56,12 @@ public class WindowPasswordRecovery {
             }
             else
                 System.out.println("login is empty");
+        });
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+
+
         });
 
 
@@ -135,6 +144,23 @@ public class WindowPasswordRecovery {
     //открытие окна восстановление пароля 2
     public void openNewSceneRecovery2 (String window){
         PasswordRecoveryButton.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    //открытие окно меню
+    public void openAut (String window){
+        Exit.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

@@ -34,11 +34,21 @@ public class WindowPasswordRecovery3 {
     private Button SavePasswordButton;
 
     @FXML
+    private Button Exit;
+
+    @FXML
     void initialize() {
         SavePasswordButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка сохранения нового пароля");
             String newPass=NewPassword.getText().trim();
             changingThePassword(newPass);
+
+        });
+
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openPR2("/sample/view/fxml/ControlTime.PasswordRecovery2.fxml");
+
 
         });
 
@@ -84,5 +94,21 @@ public class WindowPasswordRecovery3 {
         stage.show();
     }
 
+    //открытие первого окна восст пароля
+    public void openPR2 (String window){
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
 }
 

@@ -1,13 +1,18 @@
 package sample.controller.ClassesWorkingWithFXML;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
@@ -46,9 +51,11 @@ public class WindowNewProfile {
     private TextField SecretField;
 
     @FXML
+    private Button Exit;
+
+    @FXML
     void initialize() {
-        //обработчик бд
-        DatabaseHandler dbHandler=new DatabaseHandler();
+
         RegisterAProfile.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка регистрации");
             createNewProfile();
@@ -56,10 +63,17 @@ public class WindowNewProfile {
 
         });
 
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+
+
+        });
+
     }
 
-    // метод берет из полей текст и переносит в метод обработки текста
-    private int createNewProfile() {
+    // метод берет из полей текст и переносит в метод обработки текста db
+    private void createNewProfile() {
         //обработчик бд
         DatabaseHandler dbHandler=new DatabaseHandler();
         String  login=LoginField.getText().trim();
@@ -103,7 +117,40 @@ public class WindowNewProfile {
         else {
             System.out.println("поля не заполнены");
         }
-        return count;
+        openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+    }
+
+
+    //открывает окно авторизации
+    public void openAut(String window) {
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    //открывает окно меню
+    public void openMenu(String window) {
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 
