@@ -54,17 +54,8 @@ public class WindowMenu {
         SettingsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка настроек");
             SettingsButton.getScene().getWindow().hide();
-            FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/fxml/ControlTime.MenuSettings.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root=loader.getRoot();
-            Stage stage =new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            openSett("/sample/view/fxml/ControlTime.Settings.fxml");
+
         });
         StatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики");
@@ -77,6 +68,10 @@ public class WindowMenu {
 
 
         });
+
+
+
+
 
     }
 
@@ -129,6 +124,23 @@ public class WindowMenu {
 
     //открытие окно статистики
     public void openStat (String window){
+        Exit.getScene().getWindow().hide();
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root=loader.getRoot();
+        Stage stage =new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    //открытие окно настроек
+    public void openSett (String window){
         Exit.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));

@@ -83,7 +83,7 @@ public class WindowShowingStatistics {
 
     //открывает статистику за день
     public void openStat24(String window) {
-        Exit.getScene().getWindow().hide();
+        RecentStatisticsButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {
@@ -99,7 +99,7 @@ public class WindowShowingStatistics {
 
     //открывает статистику за неделю
     public void openStat7(String window) {
-        Exit.getScene().getWindow().hide();
+        StatisticsForTheWeekButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {
@@ -115,7 +115,7 @@ public class WindowShowingStatistics {
 
     //открывает статистику за выбранное время
     public void openStatSelectTime(String window) {
-        Exit.getScene().getWindow().hide();
+        StatisticsForTheSelectedTimeButton.getScene().getWindow().hide();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {
