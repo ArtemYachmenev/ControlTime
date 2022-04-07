@@ -51,4 +51,6 @@ public class WindowShowingStatistics24 {
         stage.show();
     }
 
+    public static class SettingProfilePane {
+    }
 }

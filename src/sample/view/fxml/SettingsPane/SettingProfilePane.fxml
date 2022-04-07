@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="466.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneProfile">
+    <children>
+        <Button fx:id="exitButton" layoutX="219.0" layoutY="104.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="216.0" text="Выйти из профиля">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+      <Button fx:id="deleteProfile" layoutX="219.0" layoutY="284.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="216.0" text="Удалить профиль">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+    </children>
+</Pane>

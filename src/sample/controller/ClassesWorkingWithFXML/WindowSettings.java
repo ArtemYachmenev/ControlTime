@@ -78,7 +78,7 @@ public class WindowSettings {
 
 // загружается первая панель настройка цвета приложения
         try {
-            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingColorPane.fxml"));
+            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingColorPane.fxml"));
             allPane.getChildren().removeAll();
             allPane.getChildren().setAll(fxml);
         } catch (IOException e) {
@@ -94,7 +94,7 @@ public class WindowSettings {
 
         });
         messegeButton.setOnAction(actionEvent -> {
-
+            System.out.println("нажата кнопка изменения  уведомлений");
 
 
         });
@@ -126,7 +126,7 @@ public class WindowSettings {
 
 // загружается  панель настройка цвета
     public void colorPane(ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingColorPane.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingColorPane.fxml"));
         allPane.getChildren().removeAll();
         allPane.getChildren().setAll(fxml);
 
@@ -134,7 +134,7 @@ public class WindowSettings {
 
 // загружается  панель настройка сообщений
     public void openMessagePane(ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingMessagePane.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingMessagePane.fxml"));
         allPane.getChildren().removeAll();
         allPane.getChildren().setAll(fxml);
 
@@ -142,7 +142,7 @@ public class WindowSettings {
 
     // загружается  панель настройка информации сообщений
     public void infoMesPane(ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingInfoMesPane.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingInfoMesPane.fxml"));
         allPane.getChildren().removeAll();
         allPane.getChildren().setAll(fxml);
 
@@ -150,7 +150,7 @@ public class WindowSettings {
 
     // загружается  панель настройка времени работы и отдыха
     public void timerPane(ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingTimerPane.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingTimerPane.fxml"));
         allPane.getChildren().removeAll();
         allPane.getChildren().setAll(fxml);
 
@@ -158,7 +158,7 @@ public class WindowSettings {
 
     // загружается  панель настройка профиля
     public void ProfilePane(ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingProfilePane.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingProfilePane.fxml"));
         allPane.getChildren().removeAll();
         allPane.getChildren().setAll(fxml);
 
@@ -183,7 +183,9 @@ public class WindowSettings {
         }
 
 
+    public static class SettingTimerPane {
     }
+}
 
 
 

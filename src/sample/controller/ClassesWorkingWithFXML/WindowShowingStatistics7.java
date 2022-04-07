@@ -51,4 +51,12 @@ public class WindowShowingStatistics7 {
         stage.show();
     }
 
+    public static class SettingColorPane {
+    }
+
+    public static class SettingInfoMesPane {
+    }
+
+    public static class SettingMessagePane {
+    }
 }

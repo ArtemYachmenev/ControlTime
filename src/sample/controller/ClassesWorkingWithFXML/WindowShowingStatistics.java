@@ -1,6 +1,5 @@
 package sample.controller.ClassesWorkingWithFXML;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,21 +35,21 @@ public class WindowShowingStatistics {
 
         RecentStatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистика за сегодня");
-            openStat24("/sample/view/fxml/ControlTime.ShowingStatistics24.fxml");
+            openStat24("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatistics24.fxml");
 
 
         } );
 
         StatisticsForTheWeekButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики за неделю");
-            openStat7("/sample/view/fxml/ControlTime.ShowingStatistics7.fxml");
+            openStat7("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatistics7.fxml");
 
 
         });
 
         StatisticsForTheSelectedTimeButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики за выбранное времея");
-            openStatSelectTime("/sample/view/fxml/ControlTime.ShowingStatisticsSelectTime.fxml");
+            openStatSelectTime("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatisticsSelectTime.fxml");
 
 
         });
