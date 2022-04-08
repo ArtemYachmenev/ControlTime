@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
     <children>
         <Label fx:id="Restoring" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="77.0" prefHeight="111.0" prefWidth="777.0" text="Ваши настройки" textAlignment="CENTER" textOverrun="CLIP">
             <font>
@@ -27,27 +27,27 @@
             <children>
             <VBox layoutX="14.0" layoutY="14.0" prefHeight="466.0" prefWidth="308.0">
                <children>
-                  <Button fx:id="colorAppButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="77.0" prefWidth="308.0" text="Цвета приложения">
+                  <Button fx:id="colorAppButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingColorPane" prefHeight="77.0" prefWidth="308.0" text="Цвета приложения">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="messegeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="77.0" prefWidth="314.0" text="Уведомления">
+                  <Button fx:id="messegeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingMessagePane" prefHeight="77.0" prefWidth="314.0" text="Уведомления">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="infoMessegeButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="77.0" prefWidth="308.0" text="Информация в уведомлении">
+                  <Button fx:id="infoMessegeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingInfoMesPane" prefHeight="77.0" prefWidth="308.0" text="Информация в уведомлении">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="timerButton" alignment="CENTER" mnemonicParsing="false" prefHeight="77.0" prefWidth="308.0" text="Таймер работы и отдыха">
+                  <Button fx:id="timerButton" alignment="CENTER" mnemonicParsing="false" onAction="#SettingTimerPane" prefHeight="77.0" prefWidth="308.0" text="Таймер работы и отдыха">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="profileButton" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="77.0" prefWidth="308.0" text="Управление профилем">
+                  <Button fx:id="profileButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProfilePane" prefHeight="77.0" prefWidth="308.0" text="Управление профилем">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -56,7 +56,7 @@
             </VBox>
             <AnchorPane fx:id="allPane" layoutX="333.0" layoutY="14.0" prefHeight="466.0" prefWidth="654.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <StackPane prefHeight="466.0" prefWidth="654.0" />
+                  <StackPane fx:id="stackPane" prefHeight="466.0" prefWidth="654.0" />
                </children>
             </AnchorPane>
             </children>

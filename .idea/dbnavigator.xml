@@ -86,7 +86,7 @@
           <database value="XE" />
           <type value="USER_PASSWORD" />
           <user value="ct" />
-          <deprecated-pwd value="Y3Q=" />
+          <deprecated-pwd value="" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -170,7 +170,7 @@
           <database value="XE" />
           <type value="USER_PASSWORD" />
           <user value="ct" />
-          <deprecated-pwd value="Y3Q=" />
+          <deprecated-pwd value="" />
         </database>
         <properties>
           <auto-commit value="false" />
