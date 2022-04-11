@@ -12,11 +12,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 
 public class WindowPasswordRecovery3 {
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -38,6 +45,9 @@ public class WindowPasswordRecovery3 {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+
         SavePasswordButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка сохранения нового пароля");
             String newPass=NewPassword.getText().trim();

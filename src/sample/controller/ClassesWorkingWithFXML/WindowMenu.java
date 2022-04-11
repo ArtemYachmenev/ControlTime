@@ -3,14 +3,24 @@ package sample.controller.ClassesWorkingWithFXML;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.sun.prism.paint.Color;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 
 public class WindowMenu {
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -35,8 +45,14 @@ public class WindowMenu {
 
     public static boolean OnOrOff=false;
 
+
+
+
     @FXML
     void initialize() {
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+
 
 
 

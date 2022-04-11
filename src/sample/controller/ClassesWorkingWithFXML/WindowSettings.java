@@ -17,8 +17,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 
 public class WindowSettings {
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -55,6 +62,8 @@ public class WindowSettings {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
 
 // загружается первая панель настройка цвета приложения
         try {

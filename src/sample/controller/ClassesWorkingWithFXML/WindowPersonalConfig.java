@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 
 
 import java.io.IOException;
@@ -15,6 +17,12 @@ import java.util.ResourceBundle;
 
 
 public class WindowPersonalConfig {
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -56,6 +64,9 @@ public class WindowPersonalConfig {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+
         //устанавливаем сохраненные значения чекбоксов
         allTime.setSelected(all);
         timeSiteProgr.setSelected(siteProgr);

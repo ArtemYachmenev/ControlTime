@@ -8,9 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 
 public class WindowShowingStatistics24 {
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -26,6 +33,9 @@ public class WindowShowingStatistics24 {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
             openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");

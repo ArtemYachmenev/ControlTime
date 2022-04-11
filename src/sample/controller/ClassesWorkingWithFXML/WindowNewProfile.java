@@ -12,13 +12,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
 
 
 public class WindowNewProfile {
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
     @FXML
     private ResourceBundle resources;
@@ -55,6 +63,8 @@ public class WindowNewProfile {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
 
         RegisterAProfile.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка регистрации");

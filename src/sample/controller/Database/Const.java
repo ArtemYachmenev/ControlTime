@@ -23,7 +23,7 @@ public class Const {
     public static final String BACKGROUNDCOLOR_CODEUP="codeup";
     public static final String BACKGROUNDCOLOR_CODEDOWN="codedown";
     //КОНСТАНТЫ ЦВЕТА
-    public static int BACKGROUNDCOL=1;
+    public static int BACKGROUNDCOL=2;
   //  public static final String BACKGROUNDCOLUP=db.setColor().toString();
   //  public static final String BACKGROUNDCOLDOWN="codedown";
 

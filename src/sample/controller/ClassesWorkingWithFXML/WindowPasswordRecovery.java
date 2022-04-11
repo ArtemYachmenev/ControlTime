@@ -11,7 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
@@ -23,6 +25,12 @@ public class WindowPasswordRecovery {
     public static String userLogin=null;
     public static String userSecret=null;
     public static String userAnswer=null;
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
 
     @FXML
@@ -42,6 +50,9 @@ public class WindowPasswordRecovery {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+
         PasswordRecoveryButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка поиска пользователя");
             String login=LoginPasswField.getText().trim();

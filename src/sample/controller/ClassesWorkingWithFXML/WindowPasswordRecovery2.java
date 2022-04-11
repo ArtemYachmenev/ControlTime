@@ -11,9 +11,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.ChangingTheAppColor;
 
 public class WindowPasswordRecovery2 {
+
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
 
 
     @FXML
@@ -57,6 +65,9 @@ public class WindowPasswordRecovery2 {
 
     @FXML
     void initialize() {
+        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
+        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+
         //тут не открывается третье окно воостановления пароля возможно из за того что старые не закрываются и не ввыдится текст
         downloadSecretAndAnswer();
         SendAReplyButton.setOnAction(ActionEvent -> {
