@@ -1,11 +1,18 @@
 package sample.controller.ClassesWorkingWithFXML.SettingsPane;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import sample.controller.ChangingTheAppColor;
+import sample.controller.Database.DatabaseHandler;
+import sample.controller.Database.User;
+
+import static sample.controller.Database.Const.BACKGROUNDCOL;
 
 public class PaneColorSet {
 
@@ -18,37 +25,80 @@ public class PaneColorSet {
     @FXML
     private Button colorAppButton;
 
-    @FXML
-    private Button colorButton;
 
     @FXML
     private Button standartButton;
 
-    public boolean colorApp=false;
-    public boolean colorBut=false;
-    public boolean standartColor=false;
-
+    public boolean colorApp = false;
+    public boolean colorBut = false;
+    public boolean standartColor = false;
 
 
     @FXML
     void initialize() {
-colorAppButton.setOnAction(ActionEvent-> {
-    System.out.println("нажата кнопка выхода");
-    //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
+
+        colorAppButton.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка смены фона приложения");
+            //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
+setNewColor();
+
+        });
+        standartButton.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка смены фона приложения на стандартный");
+            //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
 
 
-});
-
-    }
-
-
-    //переключение на цвета приложения
-  //  public void setColor(boolean allT){
-  //      if (allT==true) {
-   //         all=true;
-   //     }
-   //     else all=false;
+        });
 
     }
+
+//получаем цвет приложения
+//    public String dowloadColor(){
+//
+//
+//    }
+
+
+    //взятие следующего цвета приложения
+    public void setNewColor() {
+        System.out.println("+++");
+        DatabaseHandler dbHandler=new DatabaseHandler();
+        //остаемся в диапазоне цветов
+        if (BACKGROUNDCOL>4){
+            BACKGROUNDCOL=1;
+        }
+//вытягиваем цвета из бд
+            ResultSet checkResultUp = dbHandler.getColorUp(BACKGROUNDCOL);
+            ResultSet checkResultDown = dbHandler.getColorDown(BACKGROUNDCOL);
+            BACKGROUNDCOL++;
+
+            try {
+                if (checkResultUp.next() && checkResultDown.next()) {
+                    ChangingTheAppColor color=new ChangingTheAppColor();
+                  //  color.changeColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
+
+                    System.out.println(checkResultUp.getString("codeup"));
+                    System.out.println(checkResultDown.getString("codedown"));
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+
+
+
+
+
+        //   ResultSet CheckResult = dbHandler.CheckUser(CheckUser);
+
+
+            //почему т строка не возвращается на место
+            //   Shake userLogAnim = new Shake(LoginField);
+            //  userLogAnim.playAnim();
+
+
+
+    }
+}
 
 

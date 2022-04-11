@@ -92,7 +92,7 @@ public class WindowPasswordRecovery3 {
         stage.show();
     }
 
-    //открытие первого окна восст пароля
+    //открытие второго окна восст пароля
     public void openPR2 (String window){
         Exit.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();

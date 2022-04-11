@@ -6,5 +6,6 @@ public class Configs {
     protected String dbUser="ct";
     protected String dbPass="ct";
     protected String dbName="userTC";
+    protected String dbBACKGROUNDCOLOR="BACKGROUNDCOLOR";
 
 }

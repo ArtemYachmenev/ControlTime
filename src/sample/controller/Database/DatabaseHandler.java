@@ -1,8 +1,5 @@
 package sample.controller.Database;
 
-import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
-import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery2;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +11,8 @@ import java.sql.ResultSet;
 public class DatabaseHandler extends Configs{
     Connection dbConnection;
 
+
+
     // подключение к бд
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connectionString ="jdbc:oracle:thin:@localhost:1521:XE";
@@ -22,6 +21,9 @@ public class DatabaseHandler extends Configs{
         return  dbConnection;
 
     }
+
+
+
     // метод вставляет текст в запрос вставки бд
     public void signUpUser( User user) {
         String insert = "insert into"+" "+Const.USER_TABLE+"("+Const.USER_LOGIN+","+Const.USER_PASS+","+Const.USER_NAME+","+Const.USER_SECONDNAME+","+Const.USER_QUESTION+","+Const.USER_ANSWER+")"+
@@ -126,7 +128,7 @@ public class DatabaseHandler extends Configs{
 
     // медот для получения юзера
     public void newPass(User user){
-        ResultSet resultSet=null;
+
         String select = "update "+Const.USER_TABLE+" set "+Const.USER_PASS+"= ?"+" where "+Const.USER_LOGIN+" =?";
         try {
             PreparedStatement prSt=getDbConnection().prepareStatement(select);
@@ -142,6 +144,55 @@ public class DatabaseHandler extends Configs{
 
 
     }
+
+    //берем новый цвет шапки
+    public ResultSet getColorUp(int number){
+        ResultSet resultSetUp=null;
+
+        String selectColorUp = "select "+Const.BACKGROUNDCOLOR_CODEUP+" from "+Const.BACKGROUNDCOLOR_TABLE+" where "+Const.BACKGROUNDCOLOR_ID+" ="+number;
+        try {
+            PreparedStatement prStUp=getDbConnection().prepareStatement(selectColorUp);
+
+            prStUp.executeQuery();
+
+            resultSetUp=prStUp.executeQuery();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultSetUp;
+    }
+
+    //берем новый цвет центра
+    public ResultSet getColorDown(int number){
+        ResultSet resultSetDown=null;
+
+        String selectColorDown = "select "+Const.BACKGROUNDCOLOR_CODEDOWN+" from "+Const.BACKGROUNDCOLOR_TABLE+" where "+Const.BACKGROUNDCOLOR_ID+" ="+number;
+        try {
+            PreparedStatement prStDown=getDbConnection().prepareStatement(selectColorDown);
+
+
+            prStDown.executeQuery();
+            resultSetDown=prStDown.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultSetDown;
+    }
+
+
+//    public ResultSet getNewColor(){
+//
+//
+//    }
 
 
 }

@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
@@ -19,6 +20,11 @@ import sample.view.animations.Shake;
 
 public class WindowAuthorization {
 
+    @FXML
+    private AnchorPane colorDown;
+
+    @FXML
+    private AnchorPane colorUp;
     @FXML
     private ResourceBundle resources;
 
@@ -39,6 +45,7 @@ public class WindowAuthorization {
 
     @FXML
     private Button EntranceButton;
+
 
     @FXML
     void initialize() {

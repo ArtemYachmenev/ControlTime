@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
+<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
     <children>
         <Label fx:id="Restoring" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="77.0" prefHeight="111.0" prefWidth="777.0" text="Ваши настройки" textAlignment="CENTER" textOverrun="CLIP">
             <font>
@@ -23,7 +23,7 @@
             </ContextMenu>
          </contextMenu>
         </Label>
-        <AnchorPane layoutY="217.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
+        <AnchorPane fx:id="colorDown" layoutY="217.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
             <children>
             <VBox layoutX="14.0" layoutY="14.0" prefHeight="466.0" prefWidth="308.0">
                <children>

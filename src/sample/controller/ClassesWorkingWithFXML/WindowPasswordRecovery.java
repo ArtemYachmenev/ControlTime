@@ -107,8 +107,9 @@ public class WindowPasswordRecovery {
         try {
             if (result.next()) {
            secretUser.setQuestion(result.getString("question"));
+                System.out.println(result.getString("question"));
                 userSecret=secretUser.getQuestion();
-                System.out.println(secretUser.getQuestion());
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
