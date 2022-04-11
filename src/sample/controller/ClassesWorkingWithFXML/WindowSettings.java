@@ -66,29 +66,6 @@ public class WindowSettings {
             e.printStackTrace();
         }
 
-
-        colorAppButton.setOnAction(actionEvent -> {
-            System.out.println("нажата кнопка изменения цвета приложения");
-
-        });
-        messegeButton.setOnAction(actionEvent -> {
-           System.out.println("нажата кнопка изменения  уведомлений");
-
-
-       });
-        infoMessegeButton.setOnAction(actionEvent -> {
-           System.out.println("нажата кнопка изменения информации уведомлений");
-        });
-        timerButton.setOnAction(actionEvent -> {
-           System.out.println("нажата кнопка изменения времени работы и отдыха");
-
-
-        });
-        profileButton.setOnAction(actionEvent -> {
-            System.out.println("нажата кнопка изменения профиля");
-
-
-        });
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
            openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
@@ -105,6 +82,7 @@ public class WindowSettings {
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingColorPane.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
+    System.out.println("нажата кнопка изменения цвета приложения");
 
     }
 
@@ -114,6 +92,7 @@ public class WindowSettings {
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingInfoMesPane.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
+    System.out.println("нажата кнопка изменения информации уведомлений");
 
     }
 
@@ -123,6 +102,7 @@ public class WindowSettings {
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingMessagePane.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
+        System.out.println("нажата кнопка изменения  уведомлений");
 
     }
 
@@ -132,6 +112,7 @@ public class WindowSettings {
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingTimerPane.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
+        System.out.println("нажата кнопка изменения времени работы и отдыха");
 
     }
 
@@ -141,6 +122,7 @@ public class WindowSettings {
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingProfilePane.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
+        System.out.println("нажата кнопка изменения профиля");
 
     }
 
