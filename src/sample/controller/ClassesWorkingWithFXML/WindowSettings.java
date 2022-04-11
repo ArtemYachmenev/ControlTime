@@ -97,7 +97,7 @@ public class WindowSettings {
         });
     }
 
-  
+
 
 // загружается  панель настройка цвета
 @FXML
