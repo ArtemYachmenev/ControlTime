@@ -31,7 +31,7 @@ public class PaneMessage {
     private CheckBox soundApp;
 
     public static boolean checkSoundApp=false;
-    public static String textsplitChoiceMes=new String("Выберите варинт вывода уведомлений");
+    public static String textsplitChoiceMes=new String("Выберите вариант вывода уведомлений");
 
     @FXML
     void initialize() {
