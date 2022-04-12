@@ -53,6 +53,7 @@ public class PaneColorSet {
             System.out.println("нажата кнопка смены фона приложения на стандартный");
             //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
             setStandartColor();
+            setNewScene("/sample/view/fxml/ControlTime.Settings.fxml");
 
 
         });
