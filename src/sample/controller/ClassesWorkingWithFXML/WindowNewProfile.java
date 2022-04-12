@@ -122,12 +122,13 @@ public class WindowNewProfile {
                 User user = new User(login, password, name, secondName, secret, answer);
                 //получаем нового пользователя
                 dbHandler.signUpUser(user);
+                openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
             }
         }
         else {
             System.out.println("поля не заполнены");
         }
-        openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+
     }
 
 

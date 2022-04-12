@@ -189,10 +189,21 @@ public class DatabaseHandler extends Configs{
     }
 
 
-//    public ResultSet getNewColor(){
-//
-//
-//    }
+//    //удаление пользователя
+    public void deleteUser(String login){
+
+        String deleteProfile = "delete from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"=?";
+        try {
+            PreparedStatement prStDelete=getDbConnection().prepareStatement(deleteProfile);
+            prStDelete.setString(1,login);
+            prStDelete.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 }

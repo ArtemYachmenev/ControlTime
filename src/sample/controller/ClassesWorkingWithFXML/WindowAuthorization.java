@@ -20,6 +20,7 @@ import sample.controller.Database.User;
 import sample.view.animations.Shake;
 
 public class WindowAuthorization {
+    public static String userLogin=null;
 
     @FXML
     private AnchorPane colorDown;
@@ -51,6 +52,8 @@ public class WindowAuthorization {
 
 
 
+
+
     @FXML
     void initialize() {
         colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
@@ -79,7 +82,11 @@ public class WindowAuthorization {
             String loginText= LoginField.getText().trim();
             String loginPassword= PssswordField.getText().trim();
             if (!loginText.equals("") && !loginPassword.equals("")){
-            loginUser(loginText,loginPassword);
+                try {
+                    loginUser(loginText,loginPassword);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
             else
                 System.out.println("login and password is empty");
@@ -87,7 +94,7 @@ public class WindowAuthorization {
     }
 
     //проверка на существующего юзера
-    private void loginUser(String loginText,String loginPassword){
+    private void loginUser(String loginText,String loginPassword) throws SQLException {
         DatabaseHandler dbHandler=new DatabaseHandler();
         User user=new User();
         user.setLogin(loginText);
@@ -106,6 +113,10 @@ public class WindowAuthorization {
 
         if (counter>=1){
             System.out.println("success");
+            //записываем в статич перем логин юзера
+            userLogin=user.getLogin();
+            System.out.println(userLogin);
+
             openNewSceneMenu("/sample/view/fxml/ControlTime.Menu.fxml");
 
         }

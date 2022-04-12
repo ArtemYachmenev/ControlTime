@@ -4,10 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 
 public class PaneMessage {
-
     @FXML
     private ResourceBundle resources;
 
@@ -15,14 +16,67 @@ public class PaneMessage {
     private URL location;
 
     @FXML
-    private CheckBox soundApp;
+    private MenuButton ChoiceMes;
 
     @FXML
-    private SplitMenuButton splitChoiceMes;
+    private MenuItem allDisplay;
+
+    @FXML
+    private MenuItem ghost;
+
+    @FXML
+    private MenuItem rightDisplay;
+
+    @FXML
+    private CheckBox soundApp;
+
+    public static boolean checkSoundApp=false;
+    public static String textsplitChoiceMes=new String("Выберите варинт вывода уведомлений");
 
     @FXML
     void initialize() {
 
+        ChoiceMes.setText(textsplitChoiceMes);
+        soundApp.setSelected(checkSoundApp);
+        soundApp.setOnAction(ActionEvent -> {
+            System.out.println("нажат чекбокс включения или отключения звука");
+            soundAppTrueOrFalse(soundApp.isSelected());
+
+        });
+
+
+        ghost.setOnAction(ActionEvent -> {
+            System.out.println("исчезающее уведомление");
+            ChoiceMes.setText(ghost.getText());
+            textsplitChoiceMes=ChoiceMes.getText();
+
+        });
+        allDisplay.setOnAction(ActionEvent -> {
+            System.out.println("уведомление на весь экран");
+            ChoiceMes.setText(allDisplay.getText());
+            textsplitChoiceMes=ChoiceMes.getText();
+
+
+        });
+        rightDisplay.setOnAction(ActionEvent -> {
+            System.out.println("уведомление справа внизу");
+            ChoiceMes.setText(rightDisplay.getText());
+            textsplitChoiceMes=ChoiceMes.getText();
+
+
+        });
+
+
+
+
+    }
+
+    //сохраняем положение чекбокса
+    private void soundAppTrueOrFalse(boolean selected) {
+        if (selected==true) {
+            checkSoundApp=true;
+        }
+        else checkSoundApp=false;
 
     }
 
