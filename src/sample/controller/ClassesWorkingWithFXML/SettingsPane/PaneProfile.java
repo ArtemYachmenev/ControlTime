@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ClassesWorkingWithFXML.WindowAuthorization;
 import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
 import sample.controller.Database.DatabaseHandler;
@@ -83,11 +84,14 @@ public class PaneProfile {
         WindowAuthorization authorization=new WindowAuthorization();
         DatabaseHandler dbHandler=new DatabaseHandler();
         WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        //присваиваем строке значение логина
-        String login=recovery.userLogin;
+        //присваиваем строке значение логина восстановления
+        String login=AllStaticData.getUserLoginRecovery();
         //если он зашел не с восстановления то присваиваем логин с авторизации
         if (login==null){
-        login=authorization.userLogin;}
+        login= AllStaticData.getUserLoginAut();}
+        //если логин до сих пор пуст то присваиваем логин с нового профиля
+        if (login==null){
+            login= AllStaticData.getUserLoginNewProfile();}
         dbHandler.deleteUser(login);
         openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
     }

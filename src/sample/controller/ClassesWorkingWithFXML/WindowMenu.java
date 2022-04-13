@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
 public class WindowMenu {
@@ -43,7 +44,7 @@ public class WindowMenu {
     @FXML
     private Button Exit;
 
-    public static boolean OnOrOff=false;
+
 
 
 
@@ -59,7 +60,7 @@ public class WindowMenu {
         OnButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка включения/выключения");
             klickButtonOn();
-            System.out.println(OnOrOff);
+            System.out.println(AllStaticData.getOnOrOffAppButtonMenu());
 
         });
         PersonalizationButton.setOnAction(ActionEvent -> {
@@ -93,11 +94,11 @@ public class WindowMenu {
 
     //нажатие на кнопку вкл выкл
     public void klickButtonOn(){
-        if (OnOrOff==true){
-            OnOrOff=false;
+        if (AllStaticData.OnOrOffAppButtonMenu==true){
+            AllStaticData.OnOrOffAppButtonMenu=false;
         }
-        else if (OnOrOff==false) {
-            OnOrOff = true;
+        else if (AllStaticData.OnOrOffAppButtonMenu==false) {
+            AllStaticData.OnOrOffAppButtonMenu = true;
         }
 
     }

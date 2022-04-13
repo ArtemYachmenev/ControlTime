@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
 
@@ -51,15 +52,6 @@ public class WindowPersonalConfig {
     @FXML
     private CheckBox timeSiteProgr;
 
-    //сохранение состояний чекбоксов
-    public static boolean all=false;
-    public static boolean siteProgr=false;
-    public static boolean messege=false;
-    public static boolean operation=false;
-    public static boolean rest=false;
-    public static boolean allSound=false;
-
-
 
 
     @FXML
@@ -68,12 +60,12 @@ public class WindowPersonalConfig {
         colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
 
         //устанавливаем сохраненные значения чекбоксов
-        allTime.setSelected(all);
-        timeSiteProgr.setSelected(siteProgr);
-        messenges.setSelected(messege);
-        operationTimer.setSelected(operation);
-        restTimer.setSelected(rest);
-        sound.setSelected(allSound);
+        allTime.setSelected(AllStaticData.getAllTimeConfig());
+        timeSiteProgr.setSelected(AllStaticData.getTimeSiteProgrConfig());
+        messenges.setSelected(AllStaticData.getMessegeConfig());
+        operationTimer.setSelected(AllStaticData.getWorkTimeConfig());
+        restTimer.setSelected(AllStaticData.getChillTimeConfig());
+        sound.setSelected(AllStaticData.getAllSoundConfig());
 
 
 
@@ -129,54 +121,54 @@ public class WindowPersonalConfig {
     //проверка на нажатый чекбокс отселживание вчего времени
     public void allTimeTrueOrFalse(boolean allT){
        if (allT==true) {
-           all=true;
+           AllStaticData.allTimeConfig=true;
        }
-       else all=false;
+       else AllStaticData.allTimeConfig=false;
 
     }
 
     //проверка на нажатый чекбокс отселживание времени работы на сайтах и прогр
     public void timeSiteProgrTrueOrFalse(boolean b){
         if (b==true) {
-            siteProgr=true;
+            AllStaticData.TimeSiteProgrConfig=true;
         }
-        else siteProgr=false;
+        else AllStaticData.TimeSiteProgrConfig=false;
 
     }
 
     //проверка на нажатый чекбокс появление сообщений
     public void messegeTrueOrFalse(boolean b){
         if (b==true) {
-            messege=true;
+            AllStaticData.messegeConfig=true;
         }
-        else messege=false;
+        else AllStaticData.messegeConfig=false;
 
     }
 
     //проверка на нажатый чекбокс таймер работы
     public void operTTrueOrFalse(boolean b){
         if (b==true) {
-            operation=true;
+            AllStaticData.workTimeConfig=true;
         }
-        else operation=false;
+        else AllStaticData.workTimeConfig=false;
 
     }
 
     //проверка на нажатый чекбокс таймер отдыха
     public void restTrueOrFalse(boolean b){
         if (b==true) {
-            rest=true;
+            AllStaticData.chillTimeConfig=true;
         }
-        else rest=false;
+        else AllStaticData.chillTimeConfig=false;
 
     }
 
     //проверка на нажатый чекбокс работа звука
     public void soundTrueOrFalse(boolean allT){
         if (allT==true) {
-            allSound=true;
+            AllStaticData.allSoundConfig=true;
         }
-        else allSound=false;
+        else AllStaticData.allSoundConfig=false;
 
     }
 

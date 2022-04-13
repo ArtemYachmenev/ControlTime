@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
 public class WindowPasswordRecovery2 {
@@ -50,8 +51,7 @@ public class WindowPasswordRecovery2 {
 
 //загрузка секрета
     public void downloadSecretAndAnswer(){
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        LabelSecret.setText(recovery.userSecret);
+        LabelSecret.setText(AllStaticData.getUserSecretRecovery());
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
@@ -79,9 +79,9 @@ public class WindowPasswordRecovery2 {
     }
 
 //метод сравнивающий два ответа пользователя
+    //не включен, работает без преопределения
     public boolean twoAnswers(String answer) {
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        return  (answer.equals(recovery.userSecret) ) ;
+        return  (answer.equals(AllStaticData.getUserSecretRecovery()) ) ;
     }
 
 
@@ -89,8 +89,7 @@ public class WindowPasswordRecovery2 {
 
     //загрузка секрета и сравнение введенной строки с ответом
     public void userAnswer (String userAnswer){
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-       String answer=recovery.userSecret;
+       String answer=AllStaticData.getUserAnswerRecovery();
 
         if (Objects.equals(answer,userAnswer)) {
             openNewSceneRecovery3("/sample/view/fxml/ControlTime.PasswordRecovery3.fxml");

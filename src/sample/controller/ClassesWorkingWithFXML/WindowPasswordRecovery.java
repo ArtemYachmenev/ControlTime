@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
@@ -22,9 +23,7 @@ import sample.view.animations.Shake;
 
 public class WindowPasswordRecovery {
 
-    public static String userLogin=null;
-    public static String userSecret=null;
-    public static String userAnswer=null;
+
 
     @FXML
     private AnchorPane colorDown;
@@ -56,7 +55,7 @@ public class WindowPasswordRecovery {
         PasswordRecoveryButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка поиска пользователя");
             String login=LoginPasswField.getText().trim();
-            userLogin=login;
+            AllStaticData.setUserLoginRecovery(login);
             if (!login.equals("")){
                 //открытие следующего окна восстановления
                 int res=CheckLoginUser(login);
@@ -119,7 +118,7 @@ public class WindowPasswordRecovery {
             if (result.next()) {
            secretUser.setQuestion(result.getString("question"));
                 System.out.println(result.getString("question"));
-                userSecret=secretUser.getQuestion();
+                AllStaticData.setUserSecretRecovery(secretUser.getQuestion());
 
             }
         } catch (SQLException throwables) {
@@ -140,7 +139,7 @@ public class WindowPasswordRecovery {
         try {
             if (result.next()) {
                 answerUser.setAnswer(result.getString("answer"));
-                userAnswer=answerUser.getAnswer();
+                AllStaticData.setUserAnswerRecovery(answerUser.getAnswer());
                System.out.println(answerUser.getAnswer());
             }
         } catch (SQLException throwables) {

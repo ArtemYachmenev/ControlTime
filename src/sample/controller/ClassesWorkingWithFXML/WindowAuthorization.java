@@ -14,13 +14,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
 
 public class WindowAuthorization {
-    public static String userLogin=null;
+
 
     @FXML
     private AnchorPane colorDown;
@@ -112,10 +113,11 @@ public class WindowAuthorization {
 
 
         if (counter>=1){
+
             System.out.println("success");
             //записываем в статич перем логин юзера
-            userLogin=user.getLogin();
-            System.out.println(userLogin);
+            AllStaticData.setUserLoginAut(user.getLogin());
+            System.out.println(AllStaticData.getUserLoginAut());
 
             openNewSceneMenu("/sample/view/fxml/ControlTime.Menu.fxml");
 

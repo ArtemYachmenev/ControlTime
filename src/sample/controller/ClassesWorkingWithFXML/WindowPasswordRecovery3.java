@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
@@ -68,8 +69,7 @@ public class WindowPasswordRecovery3 {
     //изменяет пароль
     public void changingThePassword(String pass){
 
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        String login=recovery.userLogin;
+        String login= AllStaticData.getUserLoginRecovery();
         User passUser=new User();
         DatabaseHandler dbHandler=new DatabaseHandler();
         passUser.setPassword(pass);

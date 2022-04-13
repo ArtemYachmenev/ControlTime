@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
@@ -122,6 +123,7 @@ public class WindowNewProfile {
                 User user = new User(login, password, name, secondName, secret, answer);
                 //получаем нового пользователя
                 dbHandler.signUpUser(user);
+                AllStaticData.setUserLoginNewProfile(user.getLogin());
                 openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
             }
         }
