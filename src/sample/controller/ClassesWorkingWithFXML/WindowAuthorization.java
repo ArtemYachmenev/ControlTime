@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +18,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
@@ -57,8 +63,11 @@ public class WindowAuthorization {
 
     @FXML
     void initialize() {
+
         colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
         colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+      //  вариант отслеживания открытого окна
+       // Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 
 
         CreateNewProfileButton.setOnAction(actionEvent ->
@@ -145,6 +154,14 @@ public class WindowAuthorization {
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing menu");
+                AllStaticData.setCloseMenu(true);
+
+            }
+        });
 
     }
 
@@ -162,6 +179,13 @@ public class WindowAuthorization {
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing recovery 1");
+                AllStaticData.setClosePassRecovery(true);
+            }
+        });
 
     }
 
@@ -179,7 +203,16 @@ public class WindowAuthorization {
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing new profile");
+                AllStaticData.setCloseNewProfile(true);
+
+            }
+        });
 
     }
+
 
 }

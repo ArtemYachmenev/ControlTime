@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import sample.controller.AllStaticData;
 
 public class PaneTime {
 
@@ -52,19 +53,16 @@ public class PaneTime {
     @FXML
     private MenuItem thirtyWork;
 
-    public static String textsplitChoiceMesWork=new String("Выберите таймер работы");
-    public static String textsplitChoiceMesChill=new String("Выберите таймер отдыха");
-    public static boolean checkWork=false;
-    public static boolean checkChill=false;
+
 
 
     @FXML
     void initialize() {
-        ChoiceTimerWork.setText(textsplitChoiceMesWork);
-        ChoiceTimerChill.setText(textsplitChoiceMesChill);
+        ChoiceTimerWork.setText(AllStaticData.getTextsplitChoiceMesWorkSett());
+        ChoiceTimerChill.setText(AllStaticData.getTextsplitChoiceMesChillSett());
 
-        checkTimerWork.setSelected(checkWork);
-        checkTimerChill.setSelected(checkChill);
+        checkTimerWork.setSelected(AllStaticData.getCheckWorkSett());
+        checkTimerChill.setSelected(AllStaticData.getCheckChillSett());
         checkTimerWork.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения таймера работы");
             WorkTrueOrFalse(checkTimerWork.isSelected());
@@ -78,43 +76,52 @@ public class PaneTime {
         fifteenWork.setOnAction(ActionEvent -> {
             System.out.println("15 минут работы");
             ChoiceTimerWork.setText(fifteenWork.getText());
-            textsplitChoiceMesWork=ChoiceTimerWork.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
+
         });
         thirtyWork.setOnAction(ActionEvent -> {
             System.out.println("30 минут работы");
             ChoiceTimerWork.setText(thirtyWork.getText());
-            textsplitChoiceMesWork=ChoiceTimerWork.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
         });
         fortyFiveWork.setOnAction(ActionEvent -> {
             System.out.println("45 минут работы");
             ChoiceTimerWork.setText(fortyFiveWork.getText());
-            textsplitChoiceMesWork=ChoiceTimerWork.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
         });
         hourWork.setOnAction(ActionEvent -> {
             System.out.println("час работы");
             ChoiceTimerWork.setText(hourWork.getText());
-            textsplitChoiceMesWork=ChoiceTimerWork.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
         });
         fifteenChill.setOnAction(ActionEvent -> {
             System.out.println("15 минут отдыха");
             ChoiceTimerChill.setText(fifteenChill.getText());
-            textsplitChoiceMesChill=ChoiceTimerChill.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
 
         });
         thirtyChill.setOnAction(ActionEvent -> {
             System.out.println("30 минут отдыха");
             ChoiceTimerChill.setText(thirtyChill.getText());
-            textsplitChoiceMesChill=ChoiceTimerChill.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
         });
         fortyFiveChill.setOnAction(ActionEvent -> {
             System.out.println("45 минут отдыха");
             ChoiceTimerChill.setText(fortyFiveChill.getText());
-            textsplitChoiceMesChill=ChoiceTimerChill.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
         });
         hourChill.setOnAction(ActionEvent -> {
             System.out.println("час отдыха");
             ChoiceTimerChill.setText(hourChill.getText());
-            textsplitChoiceMesChill=ChoiceTimerChill.getText();
+            //если это выбрано то сохраняем найстройку в статик
+            AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
         });
 
 
@@ -123,17 +130,20 @@ public class PaneTime {
 
     private void ChillTrueOrFalse(boolean selected) {
         if (selected==true) {
-            checkChill=true;
+            AllStaticData.setCheckChillSett(true);
         }
-        else checkChill=false;
+        else
+            AllStaticData.setCheckChillSett(false);
+
     }
 
 
     private void WorkTrueOrFalse(boolean selected) {
         if (selected==true) {
-            checkWork=true;
+            AllStaticData.setCheckWorkSett(true);
+
         }
-        else checkWork=false;
+        else AllStaticData.setCheckWorkSett(false);
     }
 
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import sample.controller.AllStaticData;
 
 public class PaneMessage {
     @FXML
@@ -30,14 +31,14 @@ public class PaneMessage {
     @FXML
     private CheckBox soundApp;
 
-    public static boolean checkSoundApp=false;
-    public static String textsplitChoiceMes=new String("Выберите вариант вывода уведомлений");
+
 
     @FXML
     void initialize() {
+//установка настроек из статических переменных
+        ChoiceMes.setText(AllStaticData.getTextSplitChoiceMesSett());
+        soundApp.setSelected(AllStaticData.getCheckSoundAppSett());
 
-        ChoiceMes.setText(textsplitChoiceMes);
-        soundApp.setSelected(checkSoundApp);
         soundApp.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения звука");
             soundAppTrueOrFalse(soundApp.isSelected());
@@ -48,20 +49,23 @@ public class PaneMessage {
         ghost.setOnAction(ActionEvent -> {
             System.out.println("исчезающее уведомление");
             ChoiceMes.setText(ghost.getText());
-            textsplitChoiceMes=ChoiceMes.getText();
+            //сохранение состояния ползунка
+            AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
 
         });
         allDisplay.setOnAction(ActionEvent -> {
             System.out.println("уведомление на весь экран");
             ChoiceMes.setText(allDisplay.getText());
-            textsplitChoiceMes=ChoiceMes.getText();
+            //сохранение состояния ползунка
+            AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
 
 
         });
         rightDisplay.setOnAction(ActionEvent -> {
             System.out.println("уведомление справа внизу");
             ChoiceMes.setText(rightDisplay.getText());
-            textsplitChoiceMes=ChoiceMes.getText();
+            //сохранение состояния ползунка
+            AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
 
 
         });
@@ -74,9 +78,9 @@ public class PaneMessage {
     //сохраняем положение чекбокса
     private void soundAppTrueOrFalse(boolean selected) {
         if (selected==true) {
-            checkSoundApp=true;
+            AllStaticData.setCheckSoundAppSett(true);
         }
-        else checkSoundApp=false;
+        else AllStaticData.setCheckSoundAppSett(false);
 
     }
 

@@ -34,9 +34,7 @@ public class PaneColorSet {
     @FXML
     private Button standartButton;
 
-    public boolean colorApp = false;
-    public boolean colorBut = false;
-    public boolean standartColor = false;
+
 
 
     @FXML
@@ -112,7 +110,7 @@ public class PaneColorSet {
     }
 
     //стандартный цвет
-    public void setStandartColor(){
+    public static void setStandartColor(){
         System.out.println("стандартный цвет");
         DatabaseHandler dbHandler=new DatabaseHandler();
         ResultSet checkResultUp = dbHandler.getColorUp(1);

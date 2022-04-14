@@ -20,11 +20,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ClassesWorkingWithFXML.WindowAuthorization;
 import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
+import sample.controller.LoginOfTheWorkingUser;
 
 import javax.swing.*;
 
@@ -81,18 +83,8 @@ public class PaneProfile {
     //удаление профиля
     private void realDeleteProfile() {
         //создаем подключение к бд и вытягиваем логин
-        WindowAuthorization authorization=new WindowAuthorization();
         DatabaseHandler dbHandler=new DatabaseHandler();
-        WindowPasswordRecovery recovery=new WindowPasswordRecovery();
-        //присваиваем строке значение логина восстановления
-        String login=AllStaticData.getUserLoginRecovery();
-        //если он зашел не с восстановления то присваиваем логин с авторизации
-        if (login==null){
-        login= AllStaticData.getUserLoginAut();}
-        //если логин до сих пор пуст то присваиваем логин с нового профиля
-        if (login==null){
-            login= AllStaticData.getUserLoginNewProfile();}
-        dbHandler.deleteUser(login);
+        dbHandler.deleteUser(LoginOfTheWorkingUser.getUserLogin());
         openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
     }
 
@@ -110,6 +102,14 @@ public class PaneProfile {
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing aut");
+                AllStaticData.setCloseAuthorization(true);
+
+            }
+        });
 
     }
 

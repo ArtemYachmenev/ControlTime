@@ -1,5 +1,6 @@
 package sample.controller.ClassesWorkingWithFXML;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
@@ -82,7 +84,7 @@ public class WindowPersonalConfig {
 
         operationTimer.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс таймера работы");
-            operTTrueOrFalse(operationTimer.isSelected());
+            operTrueOrFalse(operationTimer.isSelected());
 
 
         });
@@ -121,54 +123,55 @@ public class WindowPersonalConfig {
     //проверка на нажатый чекбокс отселживание вчего времени
     public void allTimeTrueOrFalse(boolean allT){
        if (allT==true) {
-           AllStaticData.allTimeConfig=true;
+           AllStaticData.setAllTimeConfig(true);
        }
-       else AllStaticData.allTimeConfig=false;
+       else AllStaticData.setAllTimeConfig(false);
 
     }
 
     //проверка на нажатый чекбокс отселживание времени работы на сайтах и прогр
     public void timeSiteProgrTrueOrFalse(boolean b){
         if (b==true) {
-            AllStaticData.TimeSiteProgrConfig=true;
+            AllStaticData.setTimeSiteProgrConfig(true);
         }
-        else AllStaticData.TimeSiteProgrConfig=false;
+        else AllStaticData.setTimeSiteProgrConfig(false);
 
     }
 
     //проверка на нажатый чекбокс появление сообщений
     public void messegeTrueOrFalse(boolean b){
         if (b==true) {
-            AllStaticData.messegeConfig=true;
+            AllStaticData.setMessegeConfig(true);
         }
-        else AllStaticData.messegeConfig=false;
+        else AllStaticData.setMessegeConfig(false);;
 
     }
 
     //проверка на нажатый чекбокс таймер работы
-    public void operTTrueOrFalse(boolean b){
+    public void operTrueOrFalse(boolean b){
         if (b==true) {
-            AllStaticData.workTimeConfig=true;
+            AllStaticData.setWorkTimeConfig(true);
         }
-        else AllStaticData.workTimeConfig=false;
+        else AllStaticData.setWorkTimeConfig(false);
 
     }
 
     //проверка на нажатый чекбокс таймер отдыха
     public void restTrueOrFalse(boolean b){
         if (b==true) {
-            AllStaticData.chillTimeConfig=true;
+            AllStaticData.setChillTimeConfig(true);
         }
-        else AllStaticData.chillTimeConfig=false;
+        else AllStaticData.setChillTimeConfig(false);
 
     }
 
     //проверка на нажатый чекбокс работа звука
     public void soundTrueOrFalse(boolean allT){
         if (allT==true) {
-            AllStaticData.allSoundConfig=true;
+            AllStaticData.setAllSoundConfig(true);
+
         }
-        else AllStaticData.allSoundConfig=false;
+        else AllStaticData.setAllSoundConfig(false);
 
     }
 
@@ -190,6 +193,14 @@ public class WindowPersonalConfig {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing menu");
+                AllStaticData.setCloseMenu(true);
+
+            }
+        });
     }
 }
 

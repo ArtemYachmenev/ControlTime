@@ -22,14 +22,201 @@ public class AllStaticData {
     public static boolean chillTimeConfig=false;
     public static boolean allSoundConfig=false;
 
-    //держание цветов приложения
+    //сохранение состояний чекбоксов и выдвижных предложений персональных настроек
+    public static String textChoiceInfoMesSett=new String("Вариант информации в уведомлении");
+    public static boolean checkSoundAppSett=false;
+    public static String textSplitChoiceMesSett=new String("Выберите вариант вывода уведомлений");
+    public static String textsplitChoiceMesWorkSett=new String("Выберите таймер работы");
+    public static String textsplitChoiceMesChillSett=new String("Выберите таймер отдыха");
+    public static boolean checkWorkSett=false;
+    public static boolean checkChillSett=false;
+
+
+    //держание цветов приложения не используется (возможна модификация)
     public static String colorUpApp=null;
     public static String colorDownApp=null;
 
 
-    //сохранение настроек пользователя
-    public void saveConfigsProfile(){
+    //переменные которые мониторят закрытие приложения.
+    // если они станут тру, то должно запускаться сохранение чекбоксов и при загрузке прил должно загр их состояние
+    public static boolean closeMain=false;
+    public static boolean closeAuthorization=false;
+    public static boolean closeMenu=false;
+    public static boolean closeNewProfile=false;
+    public static boolean closePassRecovery=false;
+    public static boolean closePassRecovery2=false;
+    public static boolean closePassRecovery3=false;
+    public static boolean closePersonalConfig=false;
+    public static boolean closeSettings=false;
+    public static boolean closeStatistics=false;
+    public static boolean closeStatistics7=false;
+    public static boolean closeStatistics24=false;
+    public static boolean closeStatisticsSelectTime=false;
 
+    //статик который вбирает одно закрытое окно и запускает сохранение конфига и настроек
+    public static boolean checkCloseWindow=false;
+
+
+
+    public static String getTextsplitChoiceMesWorkSett() {
+        return textsplitChoiceMesWorkSett;
+    }
+
+    public static void setTextsplitChoiceMesWorkSett(String textsplitChoiceMesWorkSett) {
+        AllStaticData.textsplitChoiceMesWorkSett = textsplitChoiceMesWorkSett;
+    }
+
+    public static String getTextsplitChoiceMesChillSett() {
+        return textsplitChoiceMesChillSett;
+    }
+
+    public static void setTextsplitChoiceMesChillSett(String textsplitChoiceMesChillSett) {
+        AllStaticData.textsplitChoiceMesChillSett = textsplitChoiceMesChillSett;
+    }
+
+    public static boolean getCheckWorkSett() {
+        return checkWorkSett;
+    }
+
+    public static void setCheckWorkSett(boolean checkWorkSett) {
+        AllStaticData.checkWorkSett = checkWorkSett;
+    }
+
+    public static boolean getCheckChillSett() {
+        return checkChillSett;
+    }
+
+    public static void setCheckChillSett(boolean checkChillSett) {
+        AllStaticData.checkChillSett = checkChillSett;
+    }
+
+    public static boolean getCheckSoundAppSett() {
+        return checkSoundAppSett;
+    }
+
+    public static void setCheckSoundAppSett(boolean checkSoundAppSett) {
+        AllStaticData.checkSoundAppSett = checkSoundAppSett;
+    }
+
+    public static String getTextSplitChoiceMesSett() {
+        return textSplitChoiceMesSett;
+    }
+
+    public static void setTextSplitChoiceMesSett(String textSplitChoiceMesSett) {
+        AllStaticData.textSplitChoiceMesSett = textSplitChoiceMesSett;
+    }
+
+    public static String getTextChoiceInfoMesSett() {
+        return textChoiceInfoMesSett;
+    }
+
+    public static void setTextChoiceInfoMesSett(String textChoiceInfoMesSett) {
+        AllStaticData.textChoiceInfoMesSett = textChoiceInfoMesSett;
+    }
+
+    public static boolean getCloseMain() {
+        return closeMain;
+    }
+
+    public static void setCloseMain(boolean closeMain) {
+        AllStaticData.closeMain = closeMain;
+    }
+
+
+    public static boolean getCloseAuthorization() {
+        return closeAuthorization;
+    }
+
+    public static void setCloseAuthorization(boolean closeAuthorization) {
+        AllStaticData.closeAuthorization = closeAuthorization;
+    }
+
+    public static boolean getCloseMenu() {
+        return closeMenu;
+    }
+
+    public static void setCloseMenu(boolean closeMenu) {
+        AllStaticData.closeMenu = closeMenu;
+    }
+
+    public static boolean getCloseNewProfile() {
+        return closeNewProfile;
+    }
+
+    public static void setCloseNewProfile(boolean closeNewProfile) {
+        AllStaticData.closeNewProfile = closeNewProfile;
+    }
+
+    public static boolean getClosePassRecovery() {
+        return closePassRecovery;
+    }
+
+    public static void setClosePassRecovery(boolean closePassRecovery) {
+        AllStaticData.closePassRecovery = closePassRecovery;
+    }
+
+    public static boolean getClosePassRecovery2() {
+        return closePassRecovery2;
+    }
+
+    public static void setClosePassRecovery2(boolean closePassRecovery2) {
+        AllStaticData.closePassRecovery2 = closePassRecovery2;
+    }
+
+    public static boolean getClosePassRecovery3() {
+        return closePassRecovery3;
+    }
+
+    public static void setClosePassRecovery3(boolean closePassRecovery3) {
+        AllStaticData.closePassRecovery3 = closePassRecovery3;
+    }
+
+    public static boolean getClosePersonalConfig() {
+        return closePersonalConfig;
+    }
+
+    public static void setClosePersonalConfig(boolean closePersonalConfig) {
+        AllStaticData.closePersonalConfig = closePersonalConfig;
+    }
+
+    public static boolean getCloseSettings() {
+        return closeSettings;
+    }
+
+    public static void setCloseSettings(boolean closeSettings) {
+        AllStaticData.closeSettings = closeSettings;
+    }
+
+    public static boolean getCloseStatistics() {
+        return closeStatistics;
+    }
+
+    public static void setCloseStatistics(boolean closeStatistics) {
+        AllStaticData.closeStatistics = closeStatistics;
+    }
+
+    public static boolean getCloseStatistics7() {
+        return closeStatistics7;
+    }
+
+    public static void setCloseStatistics7(boolean closeStatistics7) {
+        AllStaticData.closeStatistics7 = closeStatistics7;
+    }
+
+    public static boolean getCloseStatistics24() {
+        return closeStatistics24;
+    }
+
+    public static void setCloseStatistics24(boolean closeStatistics24) {
+        AllStaticData.closeStatistics24 = closeStatistics24;
+    }
+
+    public static boolean getCloseStatisticsSelectTime() {
+        return closeStatisticsSelectTime;
+    }
+
+    public static void setCloseStatisticsSelectTime(boolean closeStatisticsSelectTime) {
+        AllStaticData.closeStatisticsSelectTime = closeStatisticsSelectTime;
     }
 
     public static boolean getAllTimeConfig() {

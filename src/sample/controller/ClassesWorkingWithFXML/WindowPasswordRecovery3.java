@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
@@ -100,6 +103,14 @@ public class WindowPasswordRecovery3 {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing menu");
+                AllStaticData.setCloseMenu(true);
+
+            }
+        });
     }
 
     //открытие второго окна восст пароля
@@ -116,6 +127,14 @@ public class WindowPasswordRecovery3 {
         Stage stage =new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        //отслеживание закрытия окна
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing recovery 2");
+                AllStaticData.setClosePassRecovery2(true);
+
+            }
+        });
 
     }
 }

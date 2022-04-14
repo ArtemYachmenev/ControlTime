@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
 public class WindowSettings {
@@ -153,6 +156,14 @@ public class WindowSettings {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+            //отслеживание закрытия окна
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    System.out.println("Stage is closing menu");
+                    AllStaticData.setCloseMenu(true);
+
+                }
+            });
         }
 
 

@@ -4,6 +4,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
+
+//меняет цвет приложения
 public class ChangingTheAppColor {
     //создаем объект загрузки и сохранения цвета приложения
 DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
@@ -18,7 +20,5 @@ DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
         paneDown.styleProperty().set("-fx-background-color: "+down);
         app.saveColorApp(up,down);
     }
-
-
 
 }
