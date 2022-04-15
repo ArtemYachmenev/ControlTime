@@ -56,7 +56,7 @@ public class WindowMenu {
     @FXML
     void initialize() {
         app.DownloadColorApp();
-
+        app.downloadConfigAndSetting();
         colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
         colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
 

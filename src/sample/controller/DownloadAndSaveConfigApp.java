@@ -8,14 +8,14 @@ import java.util.ArrayList;
 //сохраняет и грузит настройки приложения
 public class DownloadAndSaveConfigApp implements Serializable {
 
-    //проверка на закрытие окон приложения не задействовано, можно потом развить
+    //проверка на закрытие окон приложения, можно потом развить
     public void checkingWindowСlosures(){
 
-        AllStaticData.checkCloseWindow=AllStaticData.closeMain||AllStaticData.closeAuthorization||AllStaticData.closeMenu
-                ||AllStaticData.closeNewProfile||AllStaticData.closePassRecovery||
-        AllStaticData.closePassRecovery2||AllStaticData.closePassRecovery3||AllStaticData.closePersonalConfig
-                ||AllStaticData.closeSettings||AllStaticData.closeStatistics||AllStaticData.closeStatistics7
-                ||AllStaticData.closeStatistics24||AllStaticData.closeStatisticsSelectTime;
+        AllStaticData.checkCloseWindow=AllStaticData.getCloseMain()||AllStaticData.getCloseAuthorization()||AllStaticData.getCloseMenu()
+                ||AllStaticData.getCloseNewProfile()||AllStaticData.getClosePassRecovery()||
+        AllStaticData.getClosePassRecovery2()||AllStaticData.getClosePassRecovery3()||AllStaticData.getClosePersonalConfig()
+                ||AllStaticData.getCloseSettings()||AllStaticData.getCloseStatistics()||AllStaticData.getCloseStatistics7()
+                ||AllStaticData.getCloseStatistics24()||AllStaticData.getCloseStatisticsSelectTime();
         if (AllStaticData.checkCloseWindow==true){
             //если окно закрылось вызываем сохранение настроек
             saveStaticData();
@@ -25,33 +25,33 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //сохраняем настройки которые лежат в статиках AllStatickData
     public void saveStaticData(){
-        try (FileOutputStream fs = new FileOutputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
             String config="config: AllStaticData.getAllTimeConfig() "+AllStaticData.getAllTimeConfig()+" AllStaticData.getTimeSiteProgrConfig() "+AllStaticData.getTimeSiteProgrConfig()+
                     " AllStaticData.getMessegeConfig() "+AllStaticData.getMessegeConfig()+" AllStaticData.getWorkTimeConfig() "+AllStaticData.getWorkTimeConfig()+
                     " AllStaticData.getChillTimeConfig() "+
-                    AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig();
-            os.writeObject(config);
-            System.out.println(config);
+                    AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig()+" .";
+            fs.write(config);
+            System.out.println("save "+config);
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (FileOutputStream fs = new FileOutputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+             {
             //пишет в начале иероглифы
             String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+AllStaticData.getTextSplitChoiceMesSett()+" AllStaticData.getCheckSoundAppSett() "+
                     AllStaticData.getCheckSoundAppSett()+" AllStaticData.getTextChoiceInfoMesSett() "+
                     AllStaticData.getTextChoiceInfoMesSett()+" AllStaticData.getTextsplitChoiceMesWorkSett() "
                     +AllStaticData.getTextsplitChoiceMesWorkSett()+" AllStaticData.getCheckWorkSett() "+
                     AllStaticData.getCheckWorkSett()+" AllStaticData.getTextsplitChoiceMesChillSett() "+AllStaticData.getTextsplitChoiceMesChillSett()
-                    +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett();
-            os.writeObject(setting);
-            System.out.println(setting);
+                    +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett()+" .";
+            fs.write(setting);
+            System.out.println("save "+setting);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -59,27 +59,31 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //загружаем цвета конфиг и настройки пользователя
     public void downloadConfigAndSetting(){
-        String colorUp=null;
-        String colorDown=null;
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        String config=null;
+        String setting=null;
+        try (BufferedReader fis = new BufferedReader(new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            colorUp = (String) ois.readObject();
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+            {
+            config = fis.readLine();
+            System.out.println("download "+config);
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedReader fis = new BufferedReader(new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            colorDown = (String) ois.readObject();
-
-        } catch (IOException | ClassNotFoundException e) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+             {
+            setting =  fis.readLine();
+            System.out.println("download "+setting);
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        //загруженные цвета устанавливаем в цвет приложения
+        //загруженные цвета устанавливаем в конфиги и настройки
+        SubstitutingSettingsAndConfigurations configurations=new SubstitutingSettingsAndConfigurations();
+        configurations.setConstConfigApp(config, setting);
+
 
 
     }
@@ -87,21 +91,21 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //сохраняем цвета приложения
     public void saveColorApp(String up, String down){
-        try (FileOutputStream fs = new FileOutputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedWriter fs = new BufferedWriter (new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveUp_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //пишет в начале иероглифы
-            os.writeObject(up);
+            fs.write(up);
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (FileOutputStream fs = new FileOutputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveDown_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+              {
             //пишет в начале иероглифы
-            os.writeObject(down);
+            fs.write(down);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -112,22 +116,22 @@ public class DownloadAndSaveConfigApp implements Serializable {
         ChangingTheAppColor color=new ChangingTheAppColor();
         String colorUp=null;
         String colorDown=null;
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveUp_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            colorUp = (String) ois.readObject();
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+             {
+            colorUp = fis.readLine();
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
                 "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveDown_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt");
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            colorDown = (String) ois.readObject();
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+              {
+            colorDown =  fis.readLine();
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         //загруженные цвета устанавливаем в цвет приложения

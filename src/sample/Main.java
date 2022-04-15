@@ -19,6 +19,7 @@ public class Main extends Application {
         //загружаем цвет стандартный цвет приложения
         app.downloadStandartColorApp();
 
+
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");
         primaryStage.setScene(new Scene(root, 1000, 700));
@@ -35,9 +36,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
+        DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
         launch(args);
-        app.saveStaticData();
+        app.checkingWindowСlosures();
+
 
     }
 }

@@ -74,7 +74,6 @@ public class WindowPersonalConfig {
         allTime.setOnAction(ActionEvent -> {
                     System.out.println("нажат чекбокс отслеживания всего времени");
                     allTimeTrueOrFalse(allTime.isSelected());
-
                 });
         messenges.setOnAction(ActionEvent -> {
             System.out.println("нажата чекбокс вывода уведомлений");
@@ -198,7 +197,6 @@ public class WindowPersonalConfig {
             public void handle(WindowEvent we) {
                 System.out.println("Stage is closing menu");
                 AllStaticData.setCloseMenu(true);
-
             }
         });
     }
