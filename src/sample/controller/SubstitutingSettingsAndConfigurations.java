@@ -82,9 +82,9 @@ public class SubstitutingSettingsAndConfigurations {
             int firstIndexConfig = confApp.indexOf("AllStaticData");
             int lastIndexConfig = confApp.indexOf(" ", firstIndexConfig);
             int indexMeaningStart = lastIndexConfig + 1;
-            System.out.println(confApp.charAt(indexMeaningStart));
+         //   System.out.println(confApp.charAt(indexMeaningStart));
             int indexConfigMeaningEnd = confApp.indexOf(" ", indexMeaningStart);
-            System.out.println(confApp.charAt(indexConfigMeaningEnd));
+         //   System.out.println(confApp.charAt(indexConfigMeaningEnd));
             //вырезаем состояние из строки
             String ConfigMeaning
                     = String.valueOf(confApp.substring(indexMeaningStart, indexConfigMeaningEnd));
@@ -93,7 +93,7 @@ public class SubstitutingSettingsAndConfigurations {
             // conf.set(i,Boolean.valueOf(ConfigMeaning));
 
 
-            System.out.println(ConfigMeaning);
+          //  System.out.println(ConfigMeaning);
 
             if (i == 0) {
                 AllStaticData.setAllTimeConfig(Boolean.valueOf(ConfigMeaning));
@@ -110,48 +110,49 @@ public class SubstitutingSettingsAndConfigurations {
             }
 
             confApp = confApp.substring(indexConfigMeaningEnd + 1, confApp.length());
-            System.out.println(confApp);
+       //     System.out.println(confApp);
 
         }
 
 
         //цикл изъятия состояний настроек конфига
         for (int i = 0; i < 7; i++) {
-            //извлекаем данные из конфига для статиков
             int firstIndexSett = settApp.indexOf("AllStaticData");
             int lastIndexSett = settApp.indexOf(" ", firstIndexSett);
             int indexMeaningStart = lastIndexSett + 1;
             System.out.println(settApp.charAt(indexMeaningStart));
-            int indexConfigMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
-            System.out.println(settApp.charAt(indexConfigMeaningEnd));
-            //вырезаем состояние из строки
+            int indexSettMeaningEnd;
             String SettMeaning
-                    = String.valueOf(settApp.substring(indexMeaningStart, indexConfigMeaningEnd));
-            //может в будущем найдешь как изменять значения в массивах
-//b[i]=Boolean.valueOf(ConfigMeaning);
-            // conf.set(i,Boolean.valueOf(ConfigMeaning));
-
-
-            System.out.println(SettMeaning);
-
-            if (i == 0) {
-                AllStaticData.setTextSplitChoiceMesSett(SettMeaning);
-            } else if (i == 1) {
-                AllStaticData.setCheckSoundAppSett(Boolean.valueOf(SettMeaning));
-            } else if (i == 2) {
-                AllStaticData.setTextChoiceInfoMesSett(SettMeaning);
-            } else if (i == 3) {
-                AllStaticData.setTextsplitChoiceMesWorkSett(SettMeaning);
-            } else if (i == 4) {
-                AllStaticData.setTextsplitChoiceMesChillSett(SettMeaning);
-            } else if (i == 5) {
-                AllStaticData.setAllSoundConfig(Boolean.valueOf(SettMeaning));
-            } else if (i==6){
-                AllStaticData.setCheckChillSett(Boolean.valueOf(SettMeaning));
+                    =null;
+            if (i<5) {
+                 indexSettMeaningEnd = settApp.indexOf(" A", indexMeaningStart);
+                System.out.println(settApp.charAt(indexSettMeaningEnd));
+                 SettMeaning
+                        = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
+                System.out.println(SettMeaning);
+                if (i == 0) {
+                    AllStaticData.setTextSplitChoiceMesSett(SettMeaning);
+                } else if (i == 1) {
+                    AllStaticData.setCheckSoundAppSett(Boolean.valueOf(SettMeaning));
+                } else if (i == 2) {
+                    AllStaticData.setTextChoiceInfoMesSett(SettMeaning);
+                } else if (i == 3) {
+                    AllStaticData.setTextsplitChoiceMesWorkSett(SettMeaning);
+                } else if (i == 4) {
+                    AllStaticData.setCheckWorkSett(Boolean.valueOf(SettMeaning));
+                } else if (i == 5) {
+                    AllStaticData.setTextsplitChoiceMesChillSett(SettMeaning);
+                }
             }
+            indexSettMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
+            System.out.println(settApp.charAt(indexSettMeaningEnd));
+            SettMeaning
+                    = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
+            System.out.println(SettMeaning);
+                AllStaticData.setCheckChillSett(Boolean.valueOf(SettMeaning));
 
-            confApp = confApp.substring(indexConfigMeaningEnd + 1, confApp.length());
-            System.out.println(confApp);
+            settApp = settApp.substring(indexSettMeaningEnd + 1, settApp.length());
+            System.out.println(settApp);
 
         }
 
