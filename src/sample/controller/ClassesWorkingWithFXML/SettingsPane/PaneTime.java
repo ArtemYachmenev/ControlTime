@@ -70,7 +70,7 @@ public class PaneTime {
         });
         checkTimerChill.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения таймера отдыха");
-            ChillTrueOrFalse(checkTimerWork.isSelected());
+            ChillTrueOrFalse(checkTimerChill.isSelected());
 
         });
         fifteenWork.setOnAction(ActionEvent -> {

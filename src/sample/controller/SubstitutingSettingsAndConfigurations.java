@@ -123,7 +123,7 @@ public class SubstitutingSettingsAndConfigurations {
             System.out.println(settApp.charAt(indexMeaningStart));
             int indexSettMeaningEnd;
             String SettMeaning;
-
+//такой поиск если в конце уже
             if (i==6){
                 indexSettMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
                 System.out.println(settApp.charAt(indexSettMeaningEnd));
@@ -134,7 +134,7 @@ public class SubstitutingSettingsAndConfigurations {
 
 break;
             }
-
+//такой поиск сначала и перед концом
                  indexSettMeaningEnd = (settApp.indexOf(" A", indexMeaningStart));
                 System.out.println(settApp.charAt(indexSettMeaningEnd));
                  SettMeaning
