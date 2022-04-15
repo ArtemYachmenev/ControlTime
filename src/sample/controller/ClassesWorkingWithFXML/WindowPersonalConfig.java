@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
+import sample.controller.DownloadAndSaveConfigApp;
 
 
 import java.io.IOException;
@@ -197,6 +198,8 @@ public class WindowPersonalConfig {
             public void handle(WindowEvent we) {
                 System.out.println("Stage is closing menu");
                 AllStaticData.setCloseMenu(true);
+
+
             }
         });
     }

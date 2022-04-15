@@ -114,7 +114,7 @@ public class SubstitutingSettingsAndConfigurations {
 
         }
 
-
+        String sett=settApp;
         //цикл изъятия состояний настроек конфига
         for (int i = 0; i < 7; i++) {
             int firstIndexSett = settApp.indexOf("AllStaticData");
@@ -122,10 +122,20 @@ public class SubstitutingSettingsAndConfigurations {
             int indexMeaningStart = lastIndexSett + 1;
             System.out.println(settApp.charAt(indexMeaningStart));
             int indexSettMeaningEnd;
-            String SettMeaning
-                    =null;
-            if (i<5) {
-                 indexSettMeaningEnd = settApp.indexOf(" A", indexMeaningStart);
+            String SettMeaning;
+
+            if (i==6){
+                indexSettMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
+                System.out.println(settApp.charAt(indexSettMeaningEnd));
+                SettMeaning
+                        = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
+                System.out.println(SettMeaning);
+                AllStaticData.setCheckChillSett(Boolean.valueOf(SettMeaning));
+
+break;
+            }
+
+                 indexSettMeaningEnd = (settApp.indexOf(" A", indexMeaningStart));
                 System.out.println(settApp.charAt(indexSettMeaningEnd));
                  SettMeaning
                         = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
@@ -143,18 +153,45 @@ public class SubstitutingSettingsAndConfigurations {
                 } else if (i == 5) {
                     AllStaticData.setTextsplitChoiceMesChillSett(SettMeaning);
                 }
-            }
-            indexSettMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
-            System.out.println(settApp.charAt(indexSettMeaningEnd));
-            SettMeaning
-                    = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
-            System.out.println(SettMeaning);
-                AllStaticData.setCheckChillSett(Boolean.valueOf(SettMeaning));
+
 
             settApp = settApp.substring(indexSettMeaningEnd + 1, settApp.length());
             System.out.println(settApp);
+
 
         }
 
     }
 }
+
+//                 if (i<5) {
+//                 indexSettMeaningEnd = (settApp.indexOf("A", indexMeaningStart))-1;
+//                System.out.println(settApp.charAt(indexSettMeaningEnd));
+//                 SettMeaning
+//                        = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
+//                System.out.println(SettMeaning);
+//                if (i == 0) {
+//                    AllStaticData.setTextSplitChoiceMesSett(SettMeaning);
+//                } else if (i == 1) {
+//                    AllStaticData.setCheckSoundAppSett(Boolean.valueOf(SettMeaning));
+//                } else if (i == 2) {
+//                    AllStaticData.setTextChoiceInfoMesSett(SettMeaning);
+//                } else if (i == 3) {
+//                    AllStaticData.setTextsplitChoiceMesWorkSett(SettMeaning);
+//                } else if (i == 4) {
+//                    AllStaticData.setCheckWorkSett(Boolean.valueOf(SettMeaning));
+//                } else if (i == 5) {
+//                    AllStaticData.setTextsplitChoiceMesChillSett(SettMeaning);
+//                }
+//                settApp = settApp.substring(indexSettMeaningEnd + 1, settApp.length());
+//
+//            }
+//            indexSettMeaningEnd = settApp.indexOf(" ", indexMeaningStart);
+//            System.out.println(settApp.charAt(indexSettMeaningEnd));
+//            SettMeaning
+//                    = String.valueOf(settApp.substring(indexMeaningStart, indexSettMeaningEnd));
+//            System.out.println(SettMeaning);
+//                AllStaticData.setCheckChillSett(Boolean.valueOf(SettMeaning));
+//
+//            settApp = settApp.substring(indexSettMeaningEnd + 1, settApp.length());
+//            System.out.println(settApp);
