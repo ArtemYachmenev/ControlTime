@@ -21,6 +21,7 @@ public class CheckingForANewUser {
             System.out.println("у профиля уже сформирована директория");
         }
         else{
+            CreatingADirectory.setDir();
             PaneColorSet.setStandartColor();
             AllStaticData.getApp().saveStaticDataForANewUser();
             AllStaticData.getApp().downloadConfigAndSetting();
