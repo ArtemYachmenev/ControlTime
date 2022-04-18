@@ -36,8 +36,6 @@ public class PaneColorSet {
     private Button standartButton;
 
 
-
-
     @FXML
     void initialize() {
 
@@ -85,56 +83,76 @@ public class PaneColorSet {
     //взятие следующего цвета приложения
     public void setNewColor() {
         System.out.println("смена цвета");
-        DatabaseHandler dbHandler=new DatabaseHandler();
+        DatabaseHandler dbHandler = new DatabaseHandler();
         //остаемся в диапазоне цветов
-        if (BACKGROUNDCOL>4){
-            BACKGROUNDCOL=1;
+        if (BACKGROUNDCOL > 4) {
+            BACKGROUNDCOL = 1;
         }
 //вытягиваем цвета из бд
-            ResultSet checkResultUp = dbHandler.getColorUp(BACKGROUNDCOL);
-            ResultSet checkResultDown = dbHandler.getColorDown(BACKGROUNDCOL);
-            BACKGROUNDCOL++;
+        ResultSet checkResultUp = dbHandler.getColorUp(BACKGROUNDCOL);
+        ResultSet checkResultDown = dbHandler.getColorDown(BACKGROUNDCOL);
+        BACKGROUNDCOL++;
 
-            try {
-                if (checkResultUp.next() && checkResultDown.next()) {
-                    ChangingTheAppColor color=new ChangingTheAppColor();
-                    //смена цвета
-                    color.changeColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
-                    //сохранение цвета
-                    AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
-
-
-                    System.out.println(checkResultUp.getString("codeup"));
-                    System.out.println(checkResultDown.getString("codedown"));
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-
-    }
-
-    //стандартный цвет
-    public static void setStandartColor(){
-        System.out.println("стандартный цвет");
-        DatabaseHandler dbHandler=new DatabaseHandler();
-        ResultSet checkResultUp = dbHandler.getColorUp(1);
-        ResultSet checkResultDown = dbHandler.getColorDown(1);
         try {
-        if (checkResultUp.next() && checkResultDown.next()) {
-            ChangingTheAppColor color=new ChangingTheAppColor();
-            //смена цвета
-            color.changeColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
-            //сохранение цвета
-            AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
-            System.out.println(checkResultUp.getString("codeup"));
-            System.out.println(checkResultDown.getString("codedown"));
-        }
+            if (checkResultUp.next() && checkResultDown.next()) {
+                ChangingTheAppColor color = new ChangingTheAppColor();
+                //смена цвета
+                color.changeColorApp(checkResultUp.getString("codeup"), checkResultDown.getString("codedown"));
+                //сохранение цвета
+                AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"), checkResultDown.getString("codedown"));
+
+
+                System.out.println(checkResultUp.getString("codeup"));
+                System.out.println(checkResultDown.getString("codedown"));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
 
+    }
+
+    //стандартный цвет
+    public static void setStandartColor() {
+        System.out.println("стандартный цвет");
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        ResultSet checkResultUp = dbHandler.getColorUp(1);
+        ResultSet checkResultDown = dbHandler.getColorDown(1);
+        try {
+            if (checkResultUp.next() && checkResultDown.next()) {
+                ChangingTheAppColor color = new ChangingTheAppColor();
+                //смена цвета
+                color.changeColorApp(checkResultUp.getString("codeup"), checkResultDown.getString("codedown"));
+                //сохранение цвета
+                AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"), checkResultDown.getString("codedown"));
+                System.out.println(checkResultUp.getString("codeup"));
+                System.out.println(checkResultDown.getString("codedown"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
+
+    //стандартный цвет для окна авторизации
+    public static void setStandartColorAut() {
+        System.out.println("стандартный цвет");
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        ResultSet checkResultUp = dbHandler.getColorUp(1);
+        ResultSet checkResultDown = dbHandler.getColorDown(1);
+        try {
+            if (checkResultUp.next() && checkResultDown.next()) {
+                ChangingTheAppColor color = new ChangingTheAppColor();
+                //смена цвета
+                color.changeColorApp(checkResultUp.getString("codeup"), checkResultDown.getString("codedown"));
+                //сохранение цвета
+                System.out.println(checkResultUp.getString("codeup"));
+                System.out.println(checkResultDown.getString("codedown"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 

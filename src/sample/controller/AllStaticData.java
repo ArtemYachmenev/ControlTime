@@ -1,6 +1,12 @@
 package sample.controller;
 
+import javafx.scene.layout.AnchorPane;
+
 public class AllStaticData {
+
+    public static AnchorPane paneUp=new AnchorPane();
+    public static AnchorPane paneDown=new AnchorPane();
+
 
 
     // логин пользователя который опряделяется в LoginOfTheWorkingUser
@@ -66,6 +72,22 @@ public class AllStaticData {
 
     //статик который вбирает одно закрытое окно и запускает сохранение конфига и настроек
     public static boolean checkCloseWindow=false;
+
+    public static AnchorPane getPaneUp() {
+        return paneUp;
+    }
+
+    public static void setPaneUp(AnchorPane paneUp) {
+        AllStaticData.paneUp = paneUp;
+    }
+
+    public static AnchorPane getPaneDown() {
+        return paneDown;
+    }
+
+    public static void setPaneDown(AnchorPane paneDown) {
+        AllStaticData.paneDown = paneDown;
+    }
 
     public static String getLogin() {
         return login;

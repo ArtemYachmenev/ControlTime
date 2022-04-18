@@ -59,8 +59,8 @@ public class WindowPersonalConfig {
 
     @FXML
     void initialize() {
-        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+        colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
+        colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         //устанавливаем сохраненные значения чекбоксов
         allTime.setSelected(AllStaticData.getAllTimeConfig());

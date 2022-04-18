@@ -68,8 +68,8 @@ public class WindowPasswordRecovery2 {
 
     @FXML
     void initialize() {
-        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+        colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
+        colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         //тут не открывается третье окно воостановления пароля возможно из за того что старые не закрываются и не ввыдится текст
         downloadSecretAndAnswer();

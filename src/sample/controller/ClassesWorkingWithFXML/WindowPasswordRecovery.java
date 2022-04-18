@@ -52,8 +52,8 @@ public class WindowPasswordRecovery {
 
     @FXML
     void initialize() {
-        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+        colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
+        colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         PasswordRecoveryButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка поиска пользователя");

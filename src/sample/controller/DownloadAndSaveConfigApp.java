@@ -90,6 +90,41 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     }
 
+    //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
+    public void saveStaticDataForANewUser(){
+
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingADirectory.dirProfile +
+                "\\saveConfig_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
+            //сохранение статиков конфига
+            String config="config: AllStaticData.getAllTimeConfig() "+false+" AllStaticData.getTimeSiteProgrConfig() "+false+
+                    " AllStaticData.getMessegeConfig() "+false+" AllStaticData.getWorkTimeConfig() "+false+
+                    " AllStaticData.getChillTimeConfig() "+
+                    false+" AllStaticData.getAllSoundConfig() "+false+" .";
+            fs.write(config);
+            System.out.println("save "+config);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingADirectory.dirProfile+"\\saveSetting_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            //сохранение настроек пользователя
+            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+"Вариант вывода уведомлений"+" AllStaticData.getCheckSoundAppSett() "+
+                    false+" AllStaticData.getTextChoiceInfoMesSett() "+
+                    "Вариант информации в уведомлении"+" AllStaticData.getTextsplitChoiceMesWorkSett() "
+                    +"Таймер работы"+" AllStaticData.getCheckWorkSett() "+
+                    false+" AllStaticData.getTextsplitChoiceMesChillSett() "+"Таймер перерыва"
+                    +" AllStaticData.getCheckChillSett() "+ false+" .";
+            fs.write(setting);
+            System.out.println("save "+setting);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
     //сохраняем цвета приложения
     public void saveColorApp(String up, String down){

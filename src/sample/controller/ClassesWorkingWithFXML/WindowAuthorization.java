@@ -22,6 +22,7 @@ import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
+import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.view.animations.Shake;
@@ -63,9 +64,8 @@ public class WindowAuthorization {
 
     @FXML
     void initialize() {
-
-        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+//ставим стандартный цвет для окна авторизации без сохранения
+        PaneColorSet.setStandartColorAut();
       //  вариант отслеживания открытого окна
        // Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
 

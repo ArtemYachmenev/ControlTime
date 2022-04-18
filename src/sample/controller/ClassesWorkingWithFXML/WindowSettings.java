@@ -65,8 +65,8 @@ public class WindowSettings {
 
     @FXML
     void initialize() {
-        colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-        colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
+        colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
+        colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
 // загружается первая панель настройка цвета приложения
         try {
