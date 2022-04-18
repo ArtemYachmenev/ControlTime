@@ -8,6 +8,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import sample.controller.AllStaticData;
+import sample.controller.DownloadAndSaveConfigApp;
 
 public class PaneMessage {
     @FXML
@@ -42,7 +43,8 @@ public class PaneMessage {
         soundApp.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения звука");
             soundAppTrueOrFalse(soundApp.isSelected());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
 
 
@@ -51,14 +53,16 @@ public class PaneMessage {
             ChoiceMes.setText(ghost.getText());
             //сохранение состояния ползунка
             AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         allDisplay.setOnAction(ActionEvent -> {
             System.out.println("уведомление на весь экран");
             ChoiceMes.setText(allDisplay.getText());
             //сохранение состояния ползунка
             AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
 
         });
         rightDisplay.setOnAction(ActionEvent -> {
@@ -66,7 +70,8 @@ public class PaneMessage {
             ChoiceMes.setText(rightDisplay.getText());
             //сохранение состояния ползунка
             AllStaticData.setTextSplitChoiceMesSett(ChoiceMes.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
 
         });
 

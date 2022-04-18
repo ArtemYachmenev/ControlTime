@@ -1,10 +1,20 @@
 package sample.controller;
 
 public class AllStaticData {
+
+    //переменная для вызова сохранения
+    public static   DownloadAndSaveConfigApp  app=new DownloadAndSaveConfigApp();
+
     //используется для запомиания логина в авторизации
     public static String userLoginAut=null;
 
+    public static DownloadAndSaveConfigApp getApp() {
+        return app;
+    }
 
+    public static void setApp(DownloadAndSaveConfigApp app) {
+        AllStaticData.app = app;
+    }
 
     //используется для запоминания имени секрета и ответа в восставновлении 1
     public static String userLoginRecovery=null;

@@ -12,12 +12,12 @@ import sample.controller.DownloadAndSaveConfigApp;
 
 
 public class Main extends Application {
-     public static DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         //загружаем цвет стандартный цвет приложения
-        app.downloadStandartColorApp();
+        AllStaticData.getApp().downloadStandartColorApp();
 
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));

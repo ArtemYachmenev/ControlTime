@@ -8,6 +8,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import sample.controller.AllStaticData;
+import sample.controller.DownloadAndSaveConfigApp;
 
 public class PaneTime {
 
@@ -66,11 +67,15 @@ public class PaneTime {
         checkTimerWork.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения таймера работы");
             WorkTrueOrFalse(checkTimerWork.isSelected());
+            //сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
 
         });
         checkTimerChill.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс включения или отключения таймера отдыха");
             ChillTrueOrFalse(checkTimerChill.isSelected());
+            //сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
 
         });
         fifteenWork.setOnAction(ActionEvent -> {
@@ -78,50 +83,64 @@ public class PaneTime {
             ChoiceTimerWork.setText(fifteenWork.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         thirtyWork.setOnAction(ActionEvent -> {
             System.out.println("30 минут работы");
             ChoiceTimerWork.setText(thirtyWork.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
+            //сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         fortyFiveWork.setOnAction(ActionEvent -> {
             System.out.println("45 минут работы");
             ChoiceTimerWork.setText(fortyFiveWork.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         hourWork.setOnAction(ActionEvent -> {
             System.out.println("час работы");
             ChoiceTimerWork.setText(hourWork.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesWorkSett(ChoiceTimerWork.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         fifteenChill.setOnAction(ActionEvent -> {
             System.out.println("15 минут отдыха");
             ChoiceTimerChill.setText(fifteenChill.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         thirtyChill.setOnAction(ActionEvent -> {
             System.out.println("30 минут отдыха");
             ChoiceTimerChill.setText(thirtyChill.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         fortyFiveChill.setOnAction(ActionEvent -> {
             System.out.println("45 минут отдыха");
             ChoiceTimerChill.setText(fortyFiveChill.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         hourChill.setOnAction(ActionEvent -> {
             System.out.println("час отдыха");
             ChoiceTimerChill.setText(hourChill.getText());
             //если это выбрано то сохраняем найстройку в статик
             AllStaticData.setTextsplitChoiceMesChillSett(ChoiceTimerChill.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
 
 

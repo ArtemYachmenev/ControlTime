@@ -8,6 +8,7 @@ import java.util.ArrayList;
 //сохраняет и грузит настройки приложения
 public class DownloadAndSaveConfigApp implements Serializable {
 
+
     //проверка на закрытие окон приложения, можно потом развить
     public void checkingWindowСlosures(){
 

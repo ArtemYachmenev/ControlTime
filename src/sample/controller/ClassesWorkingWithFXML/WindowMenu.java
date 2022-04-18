@@ -17,7 +17,6 @@ import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 
-import static sample.Main.app;
 
 public class WindowMenu {
 
@@ -55,8 +54,8 @@ public class WindowMenu {
 
     @FXML
     void initialize() {
-        app.DownloadColorApp();
-        app.downloadConfigAndSetting();
+        AllStaticData.getApp().DownloadColorApp();
+        AllStaticData.getApp().downloadConfigAndSetting();
         colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
         colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
 

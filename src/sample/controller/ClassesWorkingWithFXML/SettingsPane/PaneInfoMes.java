@@ -7,6 +7,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import sample.controller.AllStaticData;
+import sample.controller.DownloadAndSaveConfigApp;
 
 public class PaneInfoMes {
 
@@ -37,7 +38,8 @@ public class PaneInfoMes {
             ChoiceInfoMes.setText(allTime.getText());
             //сохранение состояния ползунка
             AllStaticData.setTextChoiceInfoMesSett(ChoiceInfoMes.getText());
-
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
         });
         timeProgOrSite.setOnAction(ActionEvent -> {
             //меняем описание меню
@@ -45,6 +47,8 @@ public class PaneInfoMes {
             ChoiceInfoMes.setText(timeProgOrSite.getText());
             //сохранение состояния ползунка
             AllStaticData.setTextChoiceInfoMesSett(ChoiceInfoMes.getText());
+//сразу сохраняем изменения настроек
+            AllStaticData.getApp().saveStaticData();
 
         });
 

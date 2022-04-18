@@ -75,37 +75,44 @@ public class WindowPersonalConfig {
         allTime.setOnAction(ActionEvent -> {
                     System.out.println("нажат чекбокс отслеживания всего времени");
                     allTimeTrueOrFalse(allTime.isSelected());
+            //сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
                 });
         messenges.setOnAction(ActionEvent -> {
             System.out.println("нажата чекбокс вывода уведомлений");
             messegeTrueOrFalse(messenges.isSelected());
-
+//сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
         });
 
         operationTimer.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс таймера работы");
             operTrueOrFalse(operationTimer.isSelected());
-
+//сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
 
         });
 
         restTimer.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс таймера отдыха");
             restTrueOrFalse(restTimer.isSelected());
-
+//сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
 
         });
 
         sound.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс работы музыки");
             soundTrueOrFalse(sound.isSelected());
-
+//сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
         });
 
         timeSiteProgr.setOnAction(ActionEvent -> {
             System.out.println("нажат чекбокс работы сайтов, программ");
             timeSiteProgrTrueOrFalse(timeSiteProgr.isSelected());
-
+//сразу сохраняем изменения конфига
+            AllStaticData.getApp().saveStaticData();
 
         });
 
