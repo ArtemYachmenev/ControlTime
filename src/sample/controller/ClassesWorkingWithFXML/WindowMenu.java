@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
+import sample.controller.CreatingADirectory;
 
 
 public class WindowMenu {
@@ -54,11 +55,14 @@ public class WindowMenu {
 
     @FXML
     void initialize() {
+        //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
+        CreatingADirectory.setDir();
+        //грузим его цвета и все данные
         AllStaticData.getApp().DownloadColorApp();
         AllStaticData.getApp().downloadConfigAndSetting();
+        //ставим настройки цевета
         colorDown.styleProperty().set(ChangingTheAppColor.paneDown.getStyle());
         colorUp.styleProperty().set(ChangingTheAppColor.paneUp.getStyle());
-
 
 
 

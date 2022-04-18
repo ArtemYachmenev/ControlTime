@@ -9,6 +9,9 @@ import java.util.ArrayList;
 public class DownloadAndSaveConfigApp implements Serializable {
 
 
+
+
+
     //проверка на закрытие окон приложения, можно потом развить
     public void checkingWindowСlosures(){
 
@@ -24,10 +27,11 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     }
 
-    //сохраняем настройки которые лежат в статиках AllStatickData
+    //сохраняем настройки которые лежат в статиках AllStaticData
     public void saveStaticData(){
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveConfig_"
+
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingADirectory.dirProfile +
+               "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
             String config="config: AllStaticData.getAllTimeConfig() "+AllStaticData.getAllTimeConfig()+" AllStaticData.getTimeSiteProgrConfig() "+AllStaticData.getTimeSiteProgrConfig()+
@@ -40,11 +44,10 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveSetting_"
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingADirectory.dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
-            //пишет в начале иероглифы
+            //сохранение настроек пользователя
             String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+AllStaticData.getTextSplitChoiceMesSett()+" AllStaticData.getCheckSoundAppSett() "+
                     AllStaticData.getCheckSoundAppSett()+" AllStaticData.getTextChoiceInfoMesSett() "+
                     AllStaticData.getTextChoiceInfoMesSett()+" AllStaticData.getTextsplitChoiceMesWorkSett() "
@@ -62,8 +65,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     public void downloadConfigAndSetting(){
         String config=null;
         String setting=null;
-        try (BufferedReader fis = new BufferedReader(new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveConfig_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingADirectory.dirProfile+"\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
             {
             config = fis.readLine();
@@ -72,8 +74,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader fis = new BufferedReader(new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveSetting_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingADirectory.dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             setting =  fis.readLine();
@@ -92,8 +93,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //сохраняем цвета приложения
     public void saveColorApp(String up, String down){
-        try (BufferedWriter fs = new BufferedWriter (new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveUp_"
+        try (BufferedWriter fs = new BufferedWriter (new FileWriter( CreatingADirectory.dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //пишет в начале иероглифы
             fs.write(up);
@@ -101,8 +101,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveDown_"
+        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( CreatingADirectory.dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             //пишет в начале иероглифы
@@ -117,8 +116,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         ChangingTheAppColor color=new ChangingTheAppColor();
         String colorUp=null;
         String colorDown=null;
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveUp_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingADirectory.dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             colorUp = fis.readLine();
@@ -126,8 +124,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\Users\\iachm\\IdeaProjects\\ControlTime\\SaveConfig" +
-                "AndSetting\\"+LoginOfTheWorkingUser.getUserLogin()+"\\saveDown_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingADirectory.dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             colorDown =  fis.readLine();

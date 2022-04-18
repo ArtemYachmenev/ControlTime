@@ -18,7 +18,7 @@ DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
     public void changeColorApp(String up, String down){
         paneUp.styleProperty().set("-fx-background-color: "+up);
         paneDown.styleProperty().set("-fx-background-color: "+down);
-        app.saveColorApp(up,down);
+      //  app.saveColorApp(up,down);
     }
 
 }

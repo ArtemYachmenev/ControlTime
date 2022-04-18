@@ -2,19 +2,20 @@ package sample.controller;
 
 public class AllStaticData {
 
+
+    // логин пользователя который опряделяется в LoginOfTheWorkingUser
+    //при использовании LoginOfTheWorkingUser он начинает носить его логин
+   public static String login=null;
+
+
+
     //переменная для вызова сохранения
     public static   DownloadAndSaveConfigApp  app=new DownloadAndSaveConfigApp();
 
     //используется для запомиания логина в авторизации
     public static String userLoginAut=null;
 
-    public static DownloadAndSaveConfigApp getApp() {
-        return app;
-    }
 
-    public static void setApp(DownloadAndSaveConfigApp app) {
-        AllStaticData.app = app;
-    }
 
     //используется для запоминания имени секрета и ответа в восставновлении 1
     public static String userLoginRecovery=null;
@@ -66,7 +67,21 @@ public class AllStaticData {
     //статик который вбирает одно закрытое окно и запускает сохранение конфига и настроек
     public static boolean checkCloseWindow=false;
 
+    public static String getLogin() {
+        return login;
+    }
 
+    public static void setLogin(String login) {
+        AllStaticData.login = login;
+    }
+
+    public static DownloadAndSaveConfigApp getApp() {
+        return app;
+    }
+
+    public static void setApp(DownloadAndSaveConfigApp app) {
+        AllStaticData.app = app;
+    }
 
     public static String getTextsplitChoiceMesWorkSett() {
         return textsplitChoiceMesWorkSett;

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
@@ -97,7 +98,11 @@ public class PaneColorSet {
             try {
                 if (checkResultUp.next() && checkResultDown.next()) {
                     ChangingTheAppColor color=new ChangingTheAppColor();
+                    //смена цвета
                     color.changeColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
+                    //сохранение цвета
+                    AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
+
 
                     System.out.println(checkResultUp.getString("codeup"));
                     System.out.println(checkResultDown.getString("codedown"));
@@ -118,14 +123,17 @@ public class PaneColorSet {
         try {
         if (checkResultUp.next() && checkResultDown.next()) {
             ChangingTheAppColor color=new ChangingTheAppColor();
+            //смена цвета
             color.changeColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
-
+            //сохранение цвета
+            AllStaticData.app.saveColorApp(checkResultUp.getString("codeup"),checkResultDown.getString("codedown"));
             System.out.println(checkResultUp.getString("codeup"));
             System.out.println(checkResultDown.getString("codedown"));
         }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
 
     }
 }

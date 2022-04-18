@@ -37,9 +37,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        DownloadAndSaveConfigApp app=new DownloadAndSaveConfigApp();
+
         launch(args);
-        app.checkingWindowСlosures();
+        //проверяем на зарытие окон
+        AllStaticData.getApp().checkingWindowСlosures();
 
 
     }
