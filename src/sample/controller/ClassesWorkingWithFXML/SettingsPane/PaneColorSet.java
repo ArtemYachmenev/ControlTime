@@ -110,6 +110,8 @@ public class PaneColorSet {
         }
 
 
+
+
     }
 
     //стандартный цвет

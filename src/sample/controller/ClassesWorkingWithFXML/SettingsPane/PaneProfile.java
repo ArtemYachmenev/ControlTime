@@ -24,6 +24,7 @@ import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ClassesWorkingWithFXML.WindowAuthorization;
 import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
+import sample.controller.CreatingAndDeletingADirectory;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.controller.LoginOfTheWorkingUser;
@@ -84,7 +85,10 @@ public class PaneProfile {
     private void realDeleteProfile() {
         //создаем подключение к бд и вытягиваем логин
         DatabaseHandler dbHandler=new DatabaseHandler();
+        //удаляем логин
         dbHandler.deleteUser(LoginOfTheWorkingUser.getUserLogin());
+        //удаляем директорию
+        CreatingAndDeletingADirectory.deleteDir(CreatingAndDeletingADirectory.dirProfile);
         openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
     }
 

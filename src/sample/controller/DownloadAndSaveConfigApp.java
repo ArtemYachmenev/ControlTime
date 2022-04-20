@@ -3,7 +3,6 @@ package sample.controller;
 import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 
 import java.io.*;
-import java.util.ArrayList;
 
 //сохраняет и грузит настройки приложения
 public class DownloadAndSaveConfigApp implements Serializable {
@@ -30,7 +29,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохраняем настройки которые лежат в статиках AllStaticData
     public void saveStaticData(){
 
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
                "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
@@ -44,7 +43,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             //сохранение настроек пользователя
@@ -65,7 +64,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     public void downloadConfigAndSetting(){
         String config=null;
         String setting=null;
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingADirectory.dirProfile+"\\saveConfig_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
             {
             config = fis.readLine();
@@ -74,7 +73,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             setting =  fis.readLine();
@@ -93,7 +92,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
     public void saveStaticDataForANewUser(){
 
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
                 "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
@@ -107,7 +106,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
             //сохранение настроек пользователя
@@ -128,7 +127,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //сохраняем цвета приложения
     public void saveColorApp(String up, String down){
-        try (BufferedWriter fs = new BufferedWriter (new FileWriter( CreatingADirectory.dirProfile+"\\saveUp_"
+        try (BufferedWriter fs = new BufferedWriter (new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //пишет в начале иероглифы
             fs.write(up);
@@ -136,7 +135,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( CreatingADirectory.dirProfile+"\\saveDown_"
+        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             //пишет в начале иероглифы
@@ -151,7 +150,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         ChangingTheAppColor color=new ChangingTheAppColor();
         String colorUp=null;
         String colorDown=null;
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingADirectory.dirProfile+"\\saveUp_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             colorUp = fis.readLine();
@@ -159,7 +158,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingADirectory.dirProfile+"\\saveDown_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             colorDown =  fis.readLine();

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.prism.paint.Color;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.CheckingForANewUser;
-import sample.controller.CreatingADirectory;
+import sample.controller.CreatingAndDeletingADirectory;
 
 
 public class WindowMenu {
@@ -57,7 +55,7 @@ public class WindowMenu {
     @FXML
     void initialize() {
         //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
-        CreatingADirectory.setDir();
+        CreatingAndDeletingADirectory.setDir();
         CheckingForANewUser.CheckingForANewUser();
 
         //ставим настройки цевета

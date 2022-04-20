@@ -11,7 +11,7 @@ public class CheckingForANewUser {
 
 
     public static void CheckingForANewUser() {
-        if (Files.exists(Path.of(CreatingADirectory.dirProfile +
+        if (Files.exists(Path.of(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))==true){
             //грузим его цвета и все данные
@@ -21,7 +21,7 @@ public class CheckingForANewUser {
             System.out.println("у профиля уже сформирована директория");
         }
         else{
-            CreatingADirectory.setDir();
+            CreatingAndDeletingADirectory.setDir();
             PaneColorSet.setStandartColor();
             AllStaticData.getApp().saveStaticDataForANewUser();
             AllStaticData.getApp().downloadConfigAndSetting();
