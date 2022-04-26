@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.DownloadAndSaveConfigApp;
+import sample.controller.ProcessTracking;
 
 
 public class Main extends Application {
@@ -18,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //загружаем цвет стандартный цвет приложения
         AllStaticData.getApp().downloadStandartColorApp();
-
+        ProcessTracking.trackingProgramm();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");

@@ -138,6 +138,17 @@ public class WindowSettings {
 
     }
 
+    // загружается  панель  отслеживания программ
+    @FXML
+    public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
+        //тут вторая версия панели
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingProgramPane2.fxml"));
+        stackPane.getChildren().removeAll();
+        stackPane.getChildren().setAll(fxml);
+        System.out.println("нажата кнопка отслеживания програм");
+
+    }
+
 
 
 

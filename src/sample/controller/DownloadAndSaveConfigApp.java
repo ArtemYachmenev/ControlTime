@@ -1,5 +1,7 @@
 package sample.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 
 import java.io.*;
@@ -89,9 +91,79 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     }
 
+    //сохранение приложений нового пользователя
+    public void saveListNewProgr() {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+            //сохранение статиков конфига
+            String ListProgr ="";
+            fs.write(ListProgr);
+            System.out.println("save listProgr for new profile" + ListProgr);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //сохранение отслеживаемых приложений пользователя
+    public void saveAListOfUsedApplications(String s) {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListUsedProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+            //сохранение статиков конфига
+            String ListProgr =s;
+            fs.write(ListProgr);
+            System.out.println("save " + ListProgr);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //сохранение всех приложений пользователя
+    public void saveListProg(String s) {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+            //сохранение статиков конфига
+            String ListProgr =s;
+            fs.write(ListProgr);
+            System.out.println("save " + ListProgr);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //загрузка приложений пользователя
+    public ObservableList<String> downloadListProgr() {
+        String list=null;
+        ObservableList<String> progr= null;
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            list =  fis.readLine();
+             progr= FXCollections.observableArrayList(list);
+            System.out.println("download "+list);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+return  progr;
+    }
+
+
+
+
+
+
+
     //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
     public void saveStaticDataForANewUser(){
-
+//конфиг н пользователя
         try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
                 "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
@@ -118,6 +190,18 @@ public class DownloadAndSaveConfigApp implements Serializable {
                     +" AllStaticData.getCheckChillSett() "+ false+" .";
             fs.write(setting);
             System.out.println("save "+setting);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        //создание документа для хранения программ пользователя
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
+            //сохранение статиков конфига
+            String ListProgr="list: ";
+            fs.write(ListProgr);
+            System.out.println("save "+ListProgr);
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

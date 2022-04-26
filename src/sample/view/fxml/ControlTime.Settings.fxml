@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
+<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowSettings">
     <children>
         <Label fx:id="Restoring" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="77.0" prefHeight="111.0" prefWidth="777.0" text="Ваши настройки" textAlignment="CENTER" textOverrun="CLIP">
             <font>
@@ -47,7 +47,12 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="profileButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProfilePane" prefHeight="77.0" prefWidth="308.0" text="Управление профилем">
+                  <Button fx:id="programButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProgramPane" prefHeight="77.0" prefWidth="308.0" text="Отслеживаемые программы">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="profileButton1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProfilePane" prefHeight="77.0" prefWidth="308.0" text="Управление профилем">
                      <font>
                         <Font size="20.0" />
                      </font>
