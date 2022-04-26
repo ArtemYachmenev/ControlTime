@@ -141,17 +141,52 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //загрузка приложений пользователя
     public ObservableList<String> downloadListProgr() {
-        String list=null;
-        ObservableList<String> progr= null;
+        String list="";
+        ObservableList<String> progr = FXCollections.observableArrayList();
+
+        int count=0;
+
+        //считаем сколько строк
         try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
-            list =  fis.readLine();
-             progr= FXCollections.observableArrayList(list);
-            System.out.println("download "+list);
+
+            while (list!=null){
+                list =  fis.readLine();
+                count++;
+                System.out.println(count+"//////////////////////");
+            }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+//читаем нужное количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+
+
+            //   list =  fis.readLine();
+            for  (int i=0;i<count-1;i++) {
+                if (i==(count-2)){
+                    list =  fis.readLine();
+
+                    progr.add(i,list);
+                    break;
+                }
+                list =  fis.readLine();
+
+progr.add(i,list);
+            }
+            //  progr= FXCollections.observableArrayList(list);
+           // progr= FXCollections.observableArrayList(builder.toString());
+
+            System.out.println("download list \n"+progr);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
 return  progr;
     }
 
