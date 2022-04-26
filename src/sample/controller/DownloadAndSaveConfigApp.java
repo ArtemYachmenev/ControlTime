@@ -124,15 +124,15 @@ public class DownloadAndSaveConfigApp implements Serializable {
     }
 
     //сохранение всех приложений пользователя
-    public void saveListProg(String s) {
+    public void saveListProg(StringBuilder s) {
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
             //сохранение статиков конфига
-            String ListProgr =s;
-            fs.write(ListProgr);
-            System.out.println("save " + ListProgr);
+            StringBuilder ListProgr =s;
+            fs.write(String.valueOf(ListProgr));
+            System.out.println("save \n" + ListProgr);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

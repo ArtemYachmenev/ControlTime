@@ -47,7 +47,7 @@ public class PaneProgram {
 
     @FXML
     void initialize() {
-
+//getList();
 
 
     }

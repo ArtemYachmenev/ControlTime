@@ -50,10 +50,69 @@ public class PaneListProgr {
 
     @FXML
     void initialize() {
-        getList();
+        StringBuilder builder=new StringBuilder();
+        TextField textProg = new TextField();
+        // создаем список объектов
+        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
+//строка перехватывает данные и мешает, разобраться позже почтему
+    //    langsListView1 = new ListView<String>(langs);
+
+
+    langsListView1.setItems(langs);
+
+
+
+        // получаем модель выбора элементов
+        MultipleSelectionModel<String> langsSelectionModel = langsListView1.getSelectionModel();
+        langsSelectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+
+        // устанавливаем слушатель для отслеживания изменений
+        langsSelectionModel.selectedItemProperty().addListener(new ChangeListener<String>(){
+
+            public void changed(ObservableValue<? extends String> changed, String oldValue, String newValue){
+
+                String selectedItems = "";
+                if(!builder.isEmpty()){
+                    builder.setLength(0);
+                }
+                ObservableList<String> selected = langsSelectionModel.getSelectedItems();
+                for (String item : selected){
+                    selectedItems += item + "\n";
+
+                    System.out.println(selectedItems);
+
+                }
+
+
+                selectedLbl.setText("Выбрано: " + selectedItems);
+              //  textProg.setText(selectedItems);
+
+                System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
+                System.out.println(builder.append(selectedItems));
+
+
+            }
+
+        });
+
+        addBtn.setOnAction(event -> langs.add(textField.getText()));
+        deleteBtn.setOnAction(event -> langs.remove(textField.getText()));
+
+//кнопка выбрать для выбора проложений и сохранения в список отлеживаемых приложений
+        selectBth.setOnAction(actionEvent -> {
+
+            AllStaticData.getApp().saveListProg(builder);
+           // System.out.println(builder);
+        });
+
+
+
 
 
     }
+
+
+
 
     public  void getList(){
 
@@ -64,8 +123,9 @@ public class PaneListProgr {
         TextField textProg = new TextField();
         // создаем список объектов
         ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
-        ListView<String> langsListView = new ListView<String>(langs);
-        langsListView1=langsListView;
+
+         langsListView1 = new ListView<String>(langs);
+
 
         Button addBtn = new Button("Добавить");
         Button deleteBtn = new Button("Удалить");
@@ -79,7 +139,7 @@ public class PaneListProgr {
 
 
         // получаем модель выбора элементов
-        MultipleSelectionModel<String> langsSelectionModel = langsListView.getSelectionModel();
+        MultipleSelectionModel<String> langsSelectionModel = langsListView1.getSelectionModel();
         langsSelectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
         // устанавливаем слушатель для отслеживания изменений
@@ -105,7 +165,7 @@ public class PaneListProgr {
 //кнопка выбрать для выбора проложений и сохранения в список отлеживаемых приложений
         selectBth.setOnAction(actionEvent -> {
 
-            AllStaticData.getApp().saveAListOfUsedApplications(textProg.getText());
+         //   AllStaticData.getApp().saveListProg(textProg.getText());
 
         });
 
