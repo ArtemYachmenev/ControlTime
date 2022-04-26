@@ -87,8 +87,8 @@ public class PaneListProgr {
                 selectedLbl.setText("Выбрано: " + selectedItems);
               //  textProg.setText(selectedItems);
 
-           //     System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
-           //     System.out.println(builder.append(selectedItems));
+                System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
+                builder.append(selectedItems);
 
 
             }
