@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.controller.AllStaticData;
+import sample.controller.DownloadAndSaveConfigApp;
 
 public class PaneListProgr {
 
@@ -40,10 +41,10 @@ public class PaneListProgr {
     private ListView<String> selectProgr;
 
     @FXML
-    private Button selectBth;
+    private Button saveBth;
 
-    @FXML
-    private Label selectedLbl;
+  //  @FXML
+ //   private Label selectedLbl;
 
     @FXML
     private TextField textField;
@@ -51,9 +52,10 @@ public class PaneListProgr {
     @FXML
     void initialize() {
         StringBuilder builder=new StringBuilder();
-        TextField textProg = new TextField();
+
         // создаем список объектов
         ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
+
 //строка перехватывает данные и мешает, разобраться позже почтему
     //    langsListView1 = new ListView<String>(langs);
 
@@ -79,15 +81,15 @@ public class PaneListProgr {
                 for (String item : selected){
                     selectedItems += item + "\n";
 
-                    System.out.println(selectedItems);
+                   // System.out.println(selectedItems);
 
                 }
 
 
-                selectedLbl.setText("Выбрано: " + selectedItems);
+              //  selectedLbl.setText("Выбрано: " + selectedItems);
               //  textProg.setText(selectedItems);
 
-                System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
+            //    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
                 builder.append(selectedItems);
 
 
@@ -95,14 +97,36 @@ public class PaneListProgr {
 
         });
 
-        addBtn.setOnAction(event -> langs.add(textField.getText()));
-        deleteBtn.setOnAction(event -> langs.remove(textField.getText()));
+        // кнопка сохранить для сохр проложений в списке
+        addBtn.setOnAction(event -> {
+            langs.add(textField.getText());
 
-//кнопка выбрать для выбора проложений и сохранения в список отлеживаемых приложений
-        selectBth.setOnAction(actionEvent -> {
 
-            AllStaticData.getApp().saveListProg(builder);
-           // System.out.println(builder);
+            //      StringBuilder builder1=AllStaticData.ListAllProgr.append(builder);
+                AllStaticData.getApp().saveListProg( AllStaticData.ListAllProgr.append("\n").append(textField.getText()));
+            //    System.out.println(builder1+" сохряются программмы из загрузовчного списка");
+
+
+
+        });
+
+        deleteBtn.setOnAction(event -> {
+            langs.remove(textField.getText());
+
+
+        });
+
+//кнопка сохранить для сохр проложений
+        saveBth.setOnAction(actionEvent -> {
+//            if (!builder.isEmpty()) {
+//
+//                AllStaticData.getApp().saveListProg(builder);
+//
+//            }
+//            else {
+//                AllStaticData.getApp().saveListProg( AllStaticData.ListAllProgr);
+//                System.out.println(AllStaticData.ListAllProgr+" сохряются программмы из загрузовчного списка");
+//            }
         });
 
 
@@ -113,7 +137,7 @@ public class PaneListProgr {
 
 
 
-
+// не используется
     public  void getList(){
 
 
@@ -155,7 +179,7 @@ public class PaneListProgr {
                     //System.out.println(item);
                 }
 
-                selectedLbl.setText("Выбрано: " + selectedItems);
+                //selectedLbl.setText("Выбрано: " + selectedItems);
                 textProg.setText(selectedItems);
 
 

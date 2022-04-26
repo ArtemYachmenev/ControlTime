@@ -4,10 +4,14 @@ import javafx.scene.layout.AnchorPane;
 
 public class AllStaticData {
 
+
+    // цвет верхней и нижней панели приложения
     public static AnchorPane paneUp=new AnchorPane();
     public static AnchorPane paneDown=new AnchorPane();
 
-
+    //public static int countLinesListProgr=0;
+    //держит в себе названия программ, если пользоваетль не выбрал программы то сохр старые из загрузовчного списка
+    public static StringBuilder ListAllProgr=new StringBuilder();
 
     // логин пользователя который опряделяется в LoginOfTheWorkingUser
     //при использовании LoginOfTheWorkingUser он начинает носить его логин

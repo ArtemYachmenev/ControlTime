@@ -144,17 +144,21 @@ public class DownloadAndSaveConfigApp implements Serializable {
         String list="";
         ObservableList<String> progr = FXCollections.observableArrayList();
 
-        int count=0;
+        int countLinesListProgr=0;
 
         //считаем сколько строк
         try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
-
+            //если в списке что то есть то чистим для загрузки сохраненных приложений
+            if (!AllStaticData.ListAllProgr.isEmpty())
+            {
+                AllStaticData.ListAllProgr.setLength(0);
+            }
             while (list!=null){
                 list =  fis.readLine();
-                count++;
-                System.out.println(count+"//////////////////////");
+                countLinesListProgr++;
+                System.out.println(countLinesListProgr+" стролько строк");
             }
 
         } catch (IOException e) {
@@ -167,17 +171,21 @@ public class DownloadAndSaveConfigApp implements Serializable {
         {
 
 
+
             //   list =  fis.readLine();
-            for  (int i=0;i<count-1;i++) {
-                if (i==(count-2)){
+            //тк последняя строка то всего нормальных строк -1
+            for  (int i=0;i<countLinesListProgr-1;i++) {
+                if (i==(countLinesListProgr-2)){
                     list =  fis.readLine();
 
                     progr.add(i,list);
+                    AllStaticData.ListAllProgr.append(list);
                     break;
                 }
                 list =  fis.readLine();
 
 progr.add(i,list);
+                AllStaticData.ListAllProgr.append(list).append("\n");
             }
             //  progr= FXCollections.observableArrayList(list);
            // progr= FXCollections.observableArrayList(builder.toString());
@@ -186,7 +194,7 @@ progr.add(i,list);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+        System.out.println(AllStaticData.ListAllProgr+" загружаются программмы из загрузовчного списка");
 return  progr;
     }
 
