@@ -131,6 +131,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
             //сохранение статиков конфига
             StringBuilder ListProgr =s;
+
             fs.write(String.valueOf(ListProgr));
             System.out.println("save \n" + ListProgr);
 
@@ -178,14 +179,18 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 if (i==(countLinesListProgr-2)){
                     list =  fis.readLine();
 
+
                     progr.add(i,list);
+
                     AllStaticData.ListAllProgr.append(list);
+
                     break;
                 }
                 list =  fis.readLine();
 
-progr.add(i,list);
-                AllStaticData.ListAllProgr.append(list).append("\n");
+    progr.add(i, list);
+    AllStaticData.ListAllProgr.append(list).append("\n");
+
             }
             //  progr= FXCollections.observableArrayList(list);
            // progr= FXCollections.observableArrayList(builder.toString());

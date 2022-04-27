@@ -16,8 +16,8 @@
          </font>
       </TextField>
       <ListView fx:id="selectProgr" layoutX="393.0" layoutY="233.0" prefHeight="220.0" prefWidth="251.0" />
-      <Button fx:id="saveBth" layoutX="24.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Отслеживать программу" />
-      <Button fx:id="addBtn" layoutX="24.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Добаить программу" />
+      <Button fx:id="selectBth" layoutX="24.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Отслеживать программу" />
+      <Button fx:id="addBtn" layoutX="24.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Добавить программу" />
       <Button fx:id="deleteBtn" layoutX="24.0" layoutY="167.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="210.0" text="Удалить программу" />
       <Label alignment="CENTER" layoutX="45.0" layoutY="207.0" prefHeight="31.0" prefWidth="168.0" text="Доступные программы" />
       <Label alignment="CENTER" layoutX="428.0" layoutY="192.0" prefHeight="37.0" prefWidth="181.0" text="Выбранные программы" />

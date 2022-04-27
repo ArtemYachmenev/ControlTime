@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import sample.controller.AllStaticData;
 import sample.controller.DownloadAndSaveConfigApp;
 
+import javax.swing.*;
+
 public class PaneListProgr {
 
     @FXML
@@ -41,7 +43,7 @@ public class PaneListProgr {
     private ListView<String> selectProgr;
 
     @FXML
-    private Button saveBth;
+    private Button selectBth;
 
   //  @FXML
  //   private Label selectedLbl;
@@ -99,34 +101,84 @@ public class PaneListProgr {
 
         // кнопка сохранить для сохр проложений в списке
         addBtn.setOnAction(event -> {
-            langs.add(textField.getText());
+
+            //принимает в себя не пустые слова и вставляет дополнительные строки
+            StringBuilder builder1=new StringBuilder();
+            if (!textField.getText().trim().equals(null)&&!textField.getText().trim().equals("")&&!textField.getText().trim().equals(" ")) {
+                langs.add(textField.getText());
+                //добаляем слово из строки в массив
+                AllStaticData.ListAllProgr.append(textField.getText()).append("\n");
 
 
-            //      StringBuilder builder1=AllStaticData.ListAllProgr.append(builder);
-                AllStaticData.getApp().saveListProg( AllStaticData.ListAllProgr.append("\n").append(textField.getText()));
-            //    System.out.println(builder1+" сохряются программмы из загрузовчного списка");
+                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
+                String[] lines = AllStaticData.ListAllProgr.toString().split("\\n");
+                for (String l:lines){
+                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
+                    //если в строке есть данные то вписываем в билдер2 в строку
+                    if (!l.equals(null)&&!l.equals("")&&!l.equals(" ")){
+                        builder1.append(l+"\n");
+                    }
+                }
+
+
+                AllStaticData.getApp().saveListProg(  builder1);
+
+            }
+            else
+                System.out.println("не введено название приложения");;
+
+
 
 
 
         });
 
+        //кнопка удаления из общего списка
         deleteBtn.setOnAction(event -> {
-            langs.remove(textField.getText());
+            //делает удаление из статического листа приложений
+            StringBuilder builder1=new StringBuilder();
+            //принимает в себя не пустые слова и вставляет дополнительные строки
+            StringBuilder builder2=new StringBuilder();
+         //   смотрим чтобы поле было не пустым
+            if (!textField.getText().trim().equals(null)&&!textField.getText().trim().equals("")&&!textField.getText().trim().equals(" ")) {
+                langs.remove(textField.getText());
+
+
+                //хранит текст из поля
+                String s=textField.getText();
+                //берет индекс первого символа искомого слова
+                int i = AllStaticData.ListAllProgr.indexOf(s);
+                if(i < 0) {
+                    return;
+                }
+
+                //оставляет вместо удаленного текста пустую строку
+                builder1=   AllStaticData.ListAllProgr.delete(i, i + s.length());
+                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
+                String[] lines = builder1.toString().split("\\n");
+                for (String l:lines){
+                 //   System.out.println(l+" fffffffffffffffffffffffffffffff");
+                    //если в строке есть данные то вписываем в билдер2 в строку
+                    if (!l.equals(null)&&!l.equals("")&&!l.equals(" ")){
+                        builder2.append(l+"\n");
+                    }
+                }
+
+
+                AllStaticData.getApp().saveListProg(  builder2);
+
+            }
+           else
+                System.out.println("не введено приложение для удаления");
+
 
 
         });
 
 //кнопка сохранить для сохр проложений
-        saveBth.setOnAction(actionEvent -> {
-//            if (!builder.isEmpty()) {
-//
-//                AllStaticData.getApp().saveListProg(builder);
-//
-//            }
-//            else {
-//                AllStaticData.getApp().saveListProg( AllStaticData.ListAllProgr);
-//                System.out.println(AllStaticData.ListAllProgr+" сохряются программмы из загрузовчного списка");
-//            }
+        selectBth.setOnAction(actionEvent -> {
+
+
         });
 
 
