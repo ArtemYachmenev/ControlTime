@@ -141,7 +141,7 @@ public class PaneProgram {
 //кнопка выбрать для выбора проложений и сохранения в список отлеживаемых приложений
        selectBth.setOnAction(actionEvent -> {
 
-           AllStaticData.getApp().saveAListOfUsedApplications(textProg.getText());
+       //    AllStaticData.getApp().saveAListOfUsedApplications(textProg.getText());
     //       System.out.println(textProg.getText());
 
     });

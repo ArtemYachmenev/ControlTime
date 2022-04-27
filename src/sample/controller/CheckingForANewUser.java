@@ -18,7 +18,8 @@ public class CheckingForANewUser {
           //  Files.isRegularFile()
             AllStaticData.getApp().DownloadColorApp();
             AllStaticData.getApp().downloadConfigAndSetting();
-            AllStaticData.getApp().downloadListProgr();
+         //   AllStaticData.getApp().downloadListProgr();
+         //   AllStaticData.getApp().downloadAListOfUsedApplications();
             System.out.println("у профиля уже сформирована директория");
         }
         else{
@@ -26,6 +27,7 @@ public class CheckingForANewUser {
             PaneColorSet.setStandartColor();
             AllStaticData.getApp().saveStaticDataForANewUser();
             AllStaticData.getApp().saveListNewProgr();
+            AllStaticData.getApp().saveUsedListNewProgr();
             AllStaticData.getApp().downloadConfigAndSetting();
             System.out.println("новая директория для нового пользователя");
         }

@@ -54,23 +54,32 @@ public class PaneListProgr {
     @FXML
     void initialize() {
         StringBuilder builder=new StringBuilder();
+        StringBuilder usedListBuilder=new StringBuilder();
 
         // создаем список объектов
         ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
+        //список объектов которые пользователь использует
+        ObservableList<String> usedLangs = FXCollections.observableArrayList(AllStaticData.getApp().downloadAListOfUsedApplications());
 
 //строка перехватывает данные и мешает, разобраться позже почтему
     //    langsListView1 = new ListView<String>(langs);
 
 
+//в листы просмотров вставляем сохраненные данные
     langsListView1.setItems(langs);
+        selectProgr.setItems(usedLangs);
 
 
-
-        // получаем модель выбора элементов
+        // получаем модель выбора элементов из общего листа
         MultipleSelectionModel<String> langsSelectionModel = langsListView1.getSelectionModel();
         langsSelectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
-        // устанавливаем слушатель для отслеживания изменений
+        //получаем модель выбора элементов из используемого листа
+        MultipleSelectionModel<String> usedLangsSelectionModel = selectProgr.getSelectionModel();
+        usedLangsSelectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+
+
+        // устанавливаем слушатель общего листа для отслеживания изменений
         langsSelectionModel.selectedItemProperty().addListener(new ChangeListener<String>(){
 
             public void changed(ObservableValue<? extends String> changed, String oldValue, String newValue){
@@ -88,6 +97,7 @@ public class PaneListProgr {
                 }
 
 
+
               //  selectedLbl.setText("Выбрано: " + selectedItems);
               //  textProg.setText(selectedItems);
 
@@ -97,7 +107,62 @@ public class PaneListProgr {
 
             }
 
-        });
+            // устанавливаем слушатель используемого листа для отслеживания изменений
+
+
+        }
+                // устанавливаем слушатель используемого листа для отслеживания изменений
+
+
+
+
+        );
+
+        // устанавливаем слушатель используемого листа для отслеживания изменений
+        usedLangsSelectionModel.selectedItemProperty().addListener(new ChangeListener<String>(){
+
+            public void changed(ObservableValue<? extends String> changed, String oldValue, String newValue){
+
+                String selectedItems = "";
+                if(!usedListBuilder.isEmpty())
+                { usedListBuilder.setLength(0);
+                }
+                ObservableList<String> selected = usedLangsSelectionModel.getSelectedItems();
+                for (String item : selected){
+                    selectedItems += item + "\n";
+
+                    // System.out.println(selectedItems);
+
+                }
+
+
+
+                //  selectedLbl.setText("Выбрано: " + selectedItems);
+                //  textProg.setText(selectedItems);
+
+                //    System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;");
+                usedListBuilder.append(selectedItems);
+
+
+            }
+            // устанавливаем слушатель используемого листа для отслеживания изменений
+
+
+        }
+        // устанавливаем слушатель используемого листа для отслеживания изменений
+
+
+
+
+        );
+
+
+
+
+
+
+
+
 
         // кнопка сохранить для сохр проложений в списке
         addBtn.setOnAction(event -> {
@@ -175,8 +240,34 @@ public class PaneListProgr {
 
         });
 
-//кнопка сохранить для сохр проложений
+//кнопка выбрать переносит название программы в лист используемых программ
         selectBth.setOnAction(actionEvent -> {
+            StringBuilder builder1=new StringBuilder();
+            if (!textField.getText().trim().equals(null)&&!textField.getText().trim().equals("")&&!textField.getText().trim().equals(" ")) {
+                usedLangs.add(textField.getText());
+                //добаляем слово из строки в массив
+                AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
+
+
+                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
+                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
+                for (String l:lines){
+                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
+                    //если в строке есть данные то вписываем в билдер2 в строку
+                    if (!l.equals(null)&&!l.equals("")&&!l.equals(" ")){
+                        builder1.append(l+"\n");
+                    }
+                }
+
+
+                AllStaticData.getApp().saveAListOfUsedApplications(  builder1);
+
+            }
+            else
+                System.out.println("не введено название используемого приложения");;
+
+
+
 
 
         });

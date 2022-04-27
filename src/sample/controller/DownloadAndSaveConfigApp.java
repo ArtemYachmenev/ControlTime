@@ -100,7 +100,23 @@ public class DownloadAndSaveConfigApp implements Serializable {
             //сохранение статиков конфига
             String ListProgr ="";
             fs.write(ListProgr);
-            System.out.println("save listProgr for new profile" + ListProgr);
+            System.out.println("save all listProgr for new profile" + ListProgr);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //сохранение выбранных приложений нового пользователя
+    public void saveUsedListNewProgr() {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListUsedProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+            //сохранение статиков конфига
+            String ListProgr ="";
+            fs.write(ListProgr);
+            System.out.println("save used listProgr for new profile" + ListProgr);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -108,20 +124,86 @@ public class DownloadAndSaveConfigApp implements Serializable {
     }
 
     //сохранение отслеживаемых приложений пользователя
-    public void saveAListOfUsedApplications(String s) {
+    public void saveAListOfUsedApplications(StringBuilder s) {
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListUsedProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
-            //сохранение статиков конфига
-            String ListProgr =s;
-            fs.write(ListProgr);
-            System.out.println("save " + ListProgr);
+            //сохранение текста новым билдером
+            StringBuilder ListProgr =s;
+
+            fs.write(String.valueOf(ListProgr));
+            System.out.println("save used list \n" + ListProgr);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
+
+    //загрузка отслеживаемых приложений пользователя
+    public ObservableList<String> downloadAListOfUsedApplications() {
+
+        String list="";
+        ObservableList<String> progr = FXCollections.observableArrayList();
+
+        int countLinesListProgr=0;
+
+        //считаем сколько строк
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            //если в списке что то есть то чистим для загрузки сохраненных приложений
+            if (!AllStaticData.ListUsedProgr.isEmpty())
+            {
+                AllStaticData.ListUsedProgr.setLength(0);
+            }
+            while (list!=null){
+                list =  fis.readLine();
+                countLinesListProgr++;
+                System.out.println(countLinesListProgr+" стролько строк");
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+//читаем нужное количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+
+            //   list =  fis.readLine();
+            //тк последняя строка то всего нормальных строк -1
+            for  (int i=0;i<countLinesListProgr-1;i++) {
+                if (i==(countLinesListProgr-2)){
+                    list =  fis.readLine();
+
+
+                    progr.add(i,list);
+
+                    AllStaticData.ListUsedProgr.append(list);
+
+                    break;
+                }
+                list =  fis.readLine();
+
+                progr.add(i, list);
+                AllStaticData.ListUsedProgr.append(list).append("\n");
+
+            }
+            //  progr= FXCollections.observableArrayList(list);
+            // progr= FXCollections.observableArrayList(builder.toString());
+
+            System.out.println("download used list \n"+progr);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(AllStaticData.ListUsedProgr+" загружаются используемые программмы из загрузовчного списка");
+        return  progr;
+    }
+
 
     //сохранение всех приложений пользователя
     public void saveListProg(StringBuilder s) {
@@ -129,7 +211,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
-            //сохранение статиков конфига
+            //присваеивание текста новым билдером
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
