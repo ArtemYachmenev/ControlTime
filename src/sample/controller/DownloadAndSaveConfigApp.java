@@ -215,7 +215,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
-            System.out.println("save \n" + ListProgr);
+            System.out.println("save all list \n" + ListProgr);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
