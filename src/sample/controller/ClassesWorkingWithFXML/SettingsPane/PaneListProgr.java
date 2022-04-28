@@ -7,12 +7,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -223,8 +226,7 @@ public class PaneListProgr {
             StringBuilder builder1 = new StringBuilder();
             //принимает в себя не пустые слова и вставляет дополнительные строки
             StringBuilder builder2 = new StringBuilder();
-            //принмает в себя названия исп программ
-            StringBuilder builder3 = new StringBuilder();
+
 
             //   смотрим чтобы поле было не пустым
             if (!textField.getText().trim().equals(null) && !textField.getText().trim().equals("") && !textField.getText().trim().equals(" ")) {
@@ -253,37 +255,37 @@ public class PaneListProgr {
             } else{
 
 
-                //хранит текст из поля
-                String s = new String();
-                //берет индекс первого символа искомого слова
-                int i=0;
-                //берет индекс последнего символа искомого слова
-                int a=0;
+//для сохранения не удаленных строк
+StringBuilder builderSave=new StringBuilder();
+                builderSave.append("\n");
 
-builder3=AllStaticData.ListUsedProgr;
-StringBuilder builder4=new StringBuilder();
-String regFirstEng="\\s+[a-zA-Z]+";
-String regRus="[а-яА-Я]+";
-String regSpace=" ";
+                //берет в себя строки из AllStaticData.ListUsedProgr
                 List<String> list = new ArrayList<>();
+                //берет в себя строки из usedListBuilder
                 List<String> list2 = new ArrayList<>();
+                //дублирует первый лист для беопасного удаления совпадающех строк
                 List<String> list3 = list;
 
+                //создаем массивы
                 String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
                 String[] lines2 = usedListBuilder.toString().split("\\n");
 
+                //присваиваем листам значения массивов
                 for (String l : lines) {
                     list.add(l);
-                    System.out.println(list+" bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+                    System.out.println(list+" лист использования");
                 }
 
 
 
                 for (String l : lines2) {
                     list2.add(l);
-                    System.out.println(list2+" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    System.out.println(list2+" лист выделенного");
                 }
 
+
+
+                //перебор совпадений во всем списке строк и в выбранном, если совпадение есть то удаляем эти строки и листа3
                 for (int o=0;o<list.size();o++){
                     for (int q=0;q<list2.size();q++){
                         if (Objects.equals(list.get(o),list2.get(q))) {
@@ -294,98 +296,35 @@ String regSpace=" ";
                                 for (String x : lines2) {
                                     if (Objects.equals(l,x)){
                                         usedLangs.remove(l);
+
                                     }
                                 }
                         }
                     }
                         }}
 
-//сделай нормас сохранение для файла ты сделал так что одинаковые строки сохраняются тип сохраняешь то что надо удалить
-                for (int q=0;q<list3.size();q++){
+                //обновляем и устанавливаем новый список в таблицу
+                selectProgr.refresh();
+                selectProgr.setItems(usedLangs);
 
-                    builder4.append(list3.get(q)+"\n");
-                    System.out.println(builder4+" vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+//усли удаляешь два числа одинаковых то лист виснет
+                for (int q=0;q<list3.size();q++) {
+                    if (!(list3.get(q)).equals(null) && !(list3.get(q)).equals("") && !(list3.get(q)).equals(" ")&& !(list3.get(q)).equals("\\s")&& !(list3.get(q)).equals("\n")) {
 
+                        builderSave.append(list3.get(q) + "\n");
+
+
+                    }
                 }
 
-//                for (String l : lines) {
-//                   for (String x : lines2) {
-//                       if (Objects.equals(l,x)){
-//                           usedLangs.remove(l);
-//                   }
-//                }
-//                for (int q=0;q<list2.size();q++){
-//
-//                    usedLangs.remove(q);
-//
-//                }
+                AllStaticData.getApp().saveAListOfUsedApplications(builderSave);
 
-
-
-                AllStaticData.getApp().saveAListOfUsedApplications(builder4);
-
-               // AllStaticData.ListUsedProgr=builder4;
+                AllStaticData.ListUsedProgr=builderSave;
                 usedListBuilder.setLength(0);
                 builder.setLength(0);
+                list3.clear();
 
 
-              //  System.out.println(builder4+"     dsffffffffffffffffffffffff");
-
-//                String[] lines3 = builder4.toString().split("\\n");
-//                for (String l : lines2) {
-//                    i = builder3.indexOf(l);
-//                           System.out.println(i+"       dfgggggggggggggggggggggggggg");
-//                           a=builder3.lastIndexOf("\n");
-//                           System.out.println(a+"         fffffffffffffffffffffffffffffffff");
-//                         //  s=l.substring(i,a);
-//builder4.append(l+ " adsasddddddddddd");
-
-
-
-
-//                }
-//                System.out.println(builder4);
-
-
-
-
-
-
-
-
-
-//                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
-//                String[] lines2 = usedListBuilder.toString().split("\\n");
-//                for (String l : lines) {
-//                    for (String x : lines2) {
-//
-//                        System.out.println(Objects.equals(l,x));
-//                        if (Objects.equals(l,x)){
-//                            //System.out.println(l);
-//                            s=l;
-//                            i = builder3.indexOf(s);
-//                            System.out.println(i+"       dfgggggggggggggggggggggggggg");
-//                            a=builder3.lastIndexOf(s);
-//                            System.out.println(a+"         fffffffffffffffffffffffffffffffff");
-//
-//
-//
-//
-//
-//                            if (i < 0) {
-//                                return;
-//                            }
-//                            builder3.delete(i, a);
-//                            usedLangs.remove(l);
-//                        }
-//
-//                    }
-//                }
-
-
-
-            //    AllStaticData.getApp().saveAListOfUsedApplications(builder3);
-             //   usedListBuilder.setLength(0);
             }
 
         });
@@ -404,10 +343,16 @@ String regSpace=" ";
                 AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
 
 
+
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
                 String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
                 for (String l : lines) {
                     //   System.out.println(l+" fffffffffffffffffffffffffffffff");
+
+
+
+
+
                     //если в строке есть данные то вписываем в билдер2 в строку
                     if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
                         builder1.append(l + "\n");
@@ -422,6 +367,8 @@ String regSpace=" ";
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
                 String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
                 String[] lines2 = builder.toString().split("\\n");
+
+
                 //присваиваем значения билдеру
                 for (String l : lines) {
 
@@ -430,6 +377,7 @@ String regSpace=" ";
 
                     }
                 }
+
 
                 //присваиваем значение массиву строк вытянутых из сохраненного файла где хранятся используемые программы
                 for (String l : lines2) {
