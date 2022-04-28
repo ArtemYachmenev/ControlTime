@@ -2,6 +2,8 @@ package sample.controller.ClassesWorkingWithFXML.SettingsPane;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -263,50 +265,66 @@ StringBuilder builder4=new StringBuilder();
 String regFirstEng="\\s+[a-zA-Z]+";
 String regRus="[а-яА-Я]+";
 String regSpace=" ";
-
+                List<String> list = new ArrayList<>();
+                List<String> list2 = new ArrayList<>();
+                List<String> list3 = list;
 
                 String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
                 String[] lines2 = usedListBuilder.toString().split("\\n");
+
                 for (String l : lines) {
-                    for (String x : lines2) {
-                        if (Objects.equals(l,x)){
-                            s=l;
-                       //     char b=s.charAt(builder3.indexOf());
-                       //     char n=s.charAt(s.length()-1);
-                      //      String z=s.substring(b);
-                      //      System.out.println(z);
+                    list.add(l);
+                    System.out.println(list+" bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+                }
 
-                     //       System.out.println(b+" "+n+" fgfggggggggggggggggggg");
-                            i = builder3.indexOf(s);
-                            a=builder3.lastIndexOf(s);
 
-                            System.out.println(i+"       dfgggggggggggggggggggggggggg");
 
-                         System.out.println(a+"         fffffffffffffffffffffffffffffffff");
+                for (String l : lines2) {
+                    list2.add(l);
+                    System.out.println(list2+" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
 
-                            builder3.replace(i,a+1, "delete");
-                            if (!l.equals(null) && !l.equals("delete")&& !l.contains("delete")&& !l.equals("")&& !l.equals(" ")) {
-                                builder4.append(l + "\n");
-                            }
-                            usedLangs.remove(l);
-
+                for (int o=0;o<list.size();o++){
+                    for (int q=0;q<list2.size();q++){
+                        if (Objects.equals(list.get(o),list2.get(q))) {
+                           // list.remove(o);
+                            System.out.println(Objects.equals(list.get(o),list2.get(q)));
+                            list3.remove(o);
+                            for (String l : lines) {
+                                for (String x : lines2) {
+                                    if (Objects.equals(l,x)){
+                                        usedLangs.remove(l);
+                                    }
+                                }
                         }
-
                     }
+                        }}
+
+//сделай нормас сохранение для файла ты сделал так что одинаковые строки сохраняются тип сохраняешь то что надо удалить
+                for (int q=0;q<list3.size();q++){
+
+                    builder4.append(list3.get(q)+"\n");
+                    System.out.println(builder4+" vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+
                 }
-                String[] lines3 = builder3.toString().split("\\n");
 
-                for (String l : lines3) {
+//                for (String l : lines) {
+//                   for (String x : lines2) {
+//                       if (Objects.equals(l,x)){
+//                           usedLangs.remove(l);
+//                   }
+//                }
+//                for (int q=0;q<list2.size();q++){
+//
+//                    usedLangs.remove(q);
+//
+//                }
 
-//                    if (!l.equals(null) && !l.equals("delete")&& !l.contains("delete")&& !l.equals("")&& !l.equals(" ")) {
-//                        builder4.append(l + "\n");
-//                    }
-                }
 
-                builder4=AllStaticData.ListUsedProgr;
+
                 AllStaticData.getApp().saveAListOfUsedApplications(builder4);
 
-                builder4.setLength(0);
+               // AllStaticData.ListUsedProgr=builder4;
                 usedListBuilder.setLength(0);
                 builder.setLength(0);
 
