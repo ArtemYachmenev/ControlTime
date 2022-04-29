@@ -192,8 +192,100 @@ public class PaneListProgr {
                     }
                 }
                 AllStaticData.getApp().saveListProg(builder2);
-            } else
-                System.out.println("не введено приложение для удаления");
+            } else{
+                //для сохранения не удаленных строк
+
+                StringBuilder builderSave=new StringBuilder();
+            builderSave.append("\n");
+
+            //берет в себя строки из AllStaticData.ListAllProgr
+
+            List<String> list = new ArrayList<>();
+            //берет в себя строки из usedListBuilder
+            List<String> list2 = new ArrayList<>();
+            //дублирует первый лист для беопасного удаления совпадающех строк
+            List<String> list3 = list;
+            //копирует третий лискт без пробелов и прочего
+            List<String> list4 = new ArrayList<>();
+            //создаем массивы
+            String[] lines = AllStaticData.ListAllProgr.toString().split("\\n");
+            String[] lines2 = builder.toString().split("\\n");
+
+            //присваиваем листам значения массивов
+            for (String l : lines) {
+                list.add(l);
+                System.out.println(list+" лист использования");
+            }
+
+
+//присваиваем листам значения массивов
+            for (String l : lines2) {
+                list2.add(l);
+                System.out.println(list2+" лист выделенного");
+            }
+
+
+
+            //перебор совпадений во всем списке строк и в выбранном, если совпадение есть то удаляем эти строки и листа3
+            for (int o=0;o<list.size();o++){
+                for (int q=0;q<list2.size();q++){
+                    if (Objects.equals(list.get(o),list2.get(q))) {
+
+                        System.out.println(Objects.equals(list.get(o),list2.get(q)));
+                        list3.remove(o);
+
+                    }
+                }}
+
+
+            //кладем в лист 4 значения 3го листа без пробелов и прочего
+
+            for (int o=0;o<list3.size();o++) {
+
+                if (!(list3.get(o)).equals(null) && !(list3.get(o)).equals("") && !(list3.get(o)).equals(" ")&& !(list3.get(o)).equals("\\s")&& !(list3.get(o)).equals("\n")) {
+                    list4.add(list3.get(o));
+
+                }
+            }
+
+            //чистим массив строк
+            langs.clear();
+            //  usedLangs.setAll("");
+            //  System.out.println(usedLangs+" fdsfdfdgfdgfdg");
+
+            //добавляем в чисты массив строк не удаленные строки
+            for (int o=0;o<list4.size();o++) {
+
+
+                langs.add(o,list4.get(o));
+
+
+
+            }
+
+
+
+//сохраняем в билдер сейв лист 4 с сохраненными строками
+            for (int q=0;q<list4.size();q++) {
+                if (!(list4.get(q)).equals(null) && !(list4.get(q)).equals("") && !(list4.get(q)).equals(" ")&& !(list4.get(q)).equals("\\s")&& !(list4.get(q)).equals("\n")) {
+
+                    builderSave.append(list4.get(q) + "\n");
+
+
+                }
+            }
+
+            AllStaticData.getApp().saveAListOfUsedApplications(builderSave);
+
+            //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
+
+            AllStaticData.ListAllProgr=builderSave;
+            usedListBuilder.setLength(0);
+            builder.setLength(0);
+            list3.clear();
+
+
+        }
         });
 
 //кнопка выбрать переносит название программы в лист используемых программ
@@ -265,7 +357,8 @@ StringBuilder builderSave=new StringBuilder();
                 List<String> list2 = new ArrayList<>();
                 //дублирует первый лист для беопасного удаления совпадающех строк
                 List<String> list3 = list;
-
+                //копирует третий лискт без пробелов и прочего
+                List<String> list4 = new ArrayList<>();
                 //создаем массивы
                 String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
                 String[] lines2 = usedListBuilder.toString().split("\\n");
@@ -277,7 +370,7 @@ StringBuilder builderSave=new StringBuilder();
                 }
 
 
-
+//присваиваем листам значения массивов
                 for (String l : lines2) {
                     list2.add(l);
                     System.out.println(list2+" лист выделенного");
@@ -289,35 +382,54 @@ StringBuilder builderSave=new StringBuilder();
                 for (int o=0;o<list.size();o++){
                     for (int q=0;q<list2.size();q++){
                         if (Objects.equals(list.get(o),list2.get(q))) {
-                           // list.remove(o);
+
                             System.out.println(Objects.equals(list.get(o),list2.get(q)));
                             list3.remove(o);
-                            for (String l : lines) {
-                                for (String x : lines2) {
-                                    if (Objects.equals(l,x)){
-                                        usedLangs.remove(l);
 
-                                    }
-                                }
-                        }
                     }
                         }}
 
-                //обновляем и устанавливаем новый список в таблицу
-                selectProgr.refresh();
-                selectProgr.setItems(usedLangs);
 
-//усли удаляешь два числа одинаковых то лист виснет
-                for (int q=0;q<list3.size();q++) {
-                    if (!(list3.get(q)).equals(null) && !(list3.get(q)).equals("") && !(list3.get(q)).equals(" ")&& !(list3.get(q)).equals("\\s")&& !(list3.get(q)).equals("\n")) {
+                //кладем в лист 4 значения 3го листа без пробелов и прочего
 
-                        builderSave.append(list3.get(q) + "\n");
+                for (int o=0;o<list3.size();o++) {
+
+                    if (!(list3.get(o)).equals(null) && !(list3.get(o)).equals("") && !(list3.get(o)).equals(" ")&& !(list3.get(o)).equals("\\s")&& !(list3.get(o)).equals("\n")) {
+                        list4.add(list3.get(o));
+
+                    }
+                }
+
+                //чистим массив строк
+               usedLangs.clear();
+              //  usedLangs.setAll("");
+              //  System.out.println(usedLangs+" fdsfdfdgfdgfdg");
+
+                //добавляем в чисты массив строк не удаленные строки
+                for (int o=0;o<list4.size();o++) {
+
+
+                            usedLangs.add(o,list4.get(o));
+
+
+
+                    }
+
+
+
+//сохраняем в билдер сейв лист 4 с сохраненными строками
+                for (int q=0;q<list4.size();q++) {
+                    if (!(list4.get(q)).equals(null) && !(list4.get(q)).equals("") && !(list4.get(q)).equals(" ")&& !(list4.get(q)).equals("\\s")&& !(list4.get(q)).equals("\n")) {
+
+                        builderSave.append(list4.get(q) + "\n");
 
 
                     }
                 }
 
                 AllStaticData.getApp().saveAListOfUsedApplications(builderSave);
+
+                //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
 
                 AllStaticData.ListUsedProgr=builderSave;
                 usedListBuilder.setLength(0);

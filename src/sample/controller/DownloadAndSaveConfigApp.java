@@ -176,8 +176,15 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
             //   list =  fis.readLine();
             //тк последняя строка то всего нормальных строк -1
+
+
+            // раньше было i==(countLinesListProgr-2), тем самым не выгружали пустую строку
+
+
+
+
             for  (int i=0;i<countLinesListProgr-1;i++) {
-                if (i==(countLinesListProgr-2)){
+                if (i==(countLinesListProgr-1)){
                     list =  fis.readLine();
 
 
@@ -189,8 +196,12 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 }
                 list =  fis.readLine();
 
-                progr.add(i, list);
-                AllStaticData.ListUsedProgr.append(list).append("\n");
+
+                //нe пропускает пустые строки
+               // if (!list.equals(null) && !list.equals("") && !list.equals(" ")&& !list.equals("\\s")) {
+                    progr.add(i, list);
+                    AllStaticData.ListUsedProgr.append(list).append("\n");
+              //  }
 
             }
             //  progr= FXCollections.observableArrayList(list);
