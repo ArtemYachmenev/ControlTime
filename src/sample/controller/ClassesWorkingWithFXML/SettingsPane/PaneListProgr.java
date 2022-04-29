@@ -275,7 +275,7 @@ public class PaneListProgr {
                 }
             }
 
-            AllStaticData.getApp().saveAListOfUsedApplications(builderSave);
+            AllStaticData.getApp().saveListProg(builderSave);
 
             //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
 
