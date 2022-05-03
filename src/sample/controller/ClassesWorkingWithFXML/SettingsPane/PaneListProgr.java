@@ -12,6 +12,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
@@ -21,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.DownloadAndSaveConfigApp;
 
@@ -148,18 +150,17 @@ public class PaneListProgr {
                 //добаляем слово из строки в массив
                 AllStaticData.ListAllProgr.append(textField.getText()).append("\n");
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-                String[] lines = AllStaticData.ListAllProgr.toString().split("\\n");
-                for (String l : lines) {
+
                     //   System.out.println(l+" fffffffffffffffffffffffffffffff");
                     //если в строке есть данные то вписываем в билдер2 в строку
-                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-                        builder1.append(l + "\n");
-                    }
-                }
+
+                        builder1.append(textField.getText() + "\n");
+
+
                 AllStaticData.getApp().saveListProg(builder1);
             } else
                 System.out.println("не введено название приложения");
-            ;
+
         });
 
         //кнопка удаления из общего списка
@@ -507,7 +508,9 @@ StringBuilder builderSave=new StringBuilder();
         });
 
 
+
     }
+
 }
 
 

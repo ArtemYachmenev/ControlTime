@@ -238,7 +238,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
             //присваеивание текста новым билдером
             StringBuilder ListProgr =s;
 
@@ -489,6 +489,8 @@ fs.flush();
 
     //загрузка отслеживаемых приложений пользователя из общего списка
     public ObservableList<String> downloadListProgr2() {
+        //если нет общего файла со списком приложений пк и пользователя то создаем его
+        CreatingAndDeletingADirectory.createGeneralListOfPrograms();
 
         String list="";
         ObservableList<String> progr = FXCollections.observableArrayList();

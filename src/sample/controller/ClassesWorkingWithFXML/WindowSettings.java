@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
+import sample.controller.CreatingAndDeletingADirectory;
 
 public class WindowSettings {
 
@@ -141,11 +142,14 @@ public class WindowSettings {
     // загружается  панель  отслеживания программ
     @FXML
     public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
-        //тут вторая версия панели
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingProgramPane2.fxml"));
+        //объединяем списки программ пк и пользователя
+        AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+        //вместо первой и  второй версия панели сразу лист с програми
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestList.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
         System.out.println("нажата кнопка отслеживания програм");
+
 
     }
 
