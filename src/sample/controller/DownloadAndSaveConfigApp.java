@@ -41,7 +41,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
                     AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig()+" .";
             fs.write(config);
             System.out.println("save "+config);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -57,6 +57,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
                     +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett()+" .";
             fs.write(setting);
             System.out.println("save "+setting);
+                 fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -101,7 +102,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             String ListProgr ="";
             fs.write(ListProgr);
             System.out.println("save all listProgr for new profile" + ListProgr);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -117,7 +118,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             String ListProgr ="";
             fs.write(ListProgr);
             System.out.println("save used listProgr for new profile" + ListProgr);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -134,7 +135,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
             fs.write(String.valueOf(ListProgr));
             System.out.println("save used list \n" + ListProgr);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -208,6 +209,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             // progr= FXCollections.observableArrayList(builder.toString());
 
             System.out.println("download used list \n"+progr);
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -227,7 +229,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
             fs.write(String.valueOf(ListProgr));
             System.out.println("save all list \n" + ListProgr);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -314,6 +316,7 @@ return  progr;
                     " AllStaticData.getChillTimeConfig() "+
                     false+" AllStaticData.getAllSoundConfig() "+false+" .";
             fs.write(config);
+            fs.flush();
             System.out.println("save "+config);
 
         } catch (IOException e) {
@@ -330,6 +333,7 @@ return  progr;
                     false+" AllStaticData.getTextsplitChoiceMesChillSett() "+"Таймер перерыва"
                     +" AllStaticData.getCheckChillSett() "+ false+" .";
             fs.write(setting);
+            fs.flush();
             System.out.println("save "+setting);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -342,7 +346,7 @@ return  progr;
             String ListProgr="list: ";
             fs.write(ListProgr);
             System.out.println("save "+ListProgr);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -356,7 +360,7 @@ return  progr;
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //пишет в начале иероглифы
             fs.write(up);
-
+            fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -365,6 +369,7 @@ return  progr;
               {
             //пишет в начале иероглифы
             fs.write(down);
+                  fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -400,4 +405,21 @@ return  progr;
     public void downloadStandartColorApp(){
         PaneColorSet.setStandartColor();
     }
+
+
+    public void saveAllProgrammPC(StringBuilder listProgramPC){
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listPrograms.txt"))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListProgr =listProgramPC;
+
+            fs.write(String.valueOf(ListProgr));
+
+fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
 }

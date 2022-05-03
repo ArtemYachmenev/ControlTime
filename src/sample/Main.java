@@ -7,9 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import sample.controller.AllStaticData;
-import sample.controller.DownloadAndSaveConfigApp;
-import sample.controller.ProcessTracking;
+import sample.controller.*;
 
 
 public class Main extends Application {
@@ -17,9 +15,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //если нет файла со списком приложений то создаем его
+        CreatingAndDeletingADirectory.createListPrograms();
+        //загружаем все программы установленные на пк из повершелла
+        GetAllProgrammPC.getAllProgrammPC();
         //загружаем цвет стандартный цвет приложения
         AllStaticData.getApp().downloadStandartColorApp();
-        ProcessTracking.trackingProgramm();
+     //   ProcessTracking.trackingProgramm();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");

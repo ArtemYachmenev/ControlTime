@@ -11,11 +11,13 @@ public class CheckingForANewUser {
 
 
     public static void CheckingForANewUser() {
+
         if (Files.exists(Path.of(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))==true){
             //грузим его цвета и все данные
           //  Files.isRegularFile()
+
             AllStaticData.getApp().DownloadColorApp();
             AllStaticData.getApp().downloadConfigAndSetting();
          //   AllStaticData.getApp().downloadListProgr();
@@ -23,6 +25,7 @@ public class CheckingForANewUser {
             System.out.println("у профиля уже сформирована директория");
         }
         else{
+
             CreatingAndDeletingADirectory.setDir();
             PaneColorSet.setStandartColor();
             AllStaticData.getApp().saveStaticDataForANewUser();

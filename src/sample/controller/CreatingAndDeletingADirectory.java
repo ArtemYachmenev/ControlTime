@@ -11,13 +11,17 @@ import java.util.Comparator;
 public  class CreatingAndDeletingADirectory {
 
     //public static File   dirProfile = new File("C://dataControlTime//"+AllStaticData.getLogin());
+    //путь к профилю
     public static Path dirProfile;
+    //файл со всеми прогарммами
+    public static File programPC;
+   // public static File programPCAll;
 
-
-    //создаем директории для профля
+    //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
     static {
         try {
             dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+          //  programPC= Files.createDirectories(Path.of("C:\\dataControlTime\\" + "listPrograms.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,10 +31,28 @@ public  class CreatingAndDeletingADirectory {
     public static void setDir() {
         try {
             dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    //создаем файл со списком приложений
+    public static void createListPrograms() {
+
+            programPC = new File(("C:\\dataControlTime\\listPrograms.txt"));
+        try {
+            programPC.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     public Path getDir() {
         return dirProfile;
