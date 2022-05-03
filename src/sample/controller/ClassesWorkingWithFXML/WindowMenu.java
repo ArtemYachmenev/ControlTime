@@ -57,6 +57,11 @@ public class WindowMenu {
         //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
         CreatingAndDeletingADirectory.setDir();
         CheckingForANewUser.CheckingForANewUser();
+        //если нет общего файла со списком приложений пк и пользователя то создаем его
+        CreatingAndDeletingADirectory.createGeneralListOfPrograms();
+
+        //объединяем списки программ пк и пользователя
+        AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
 
         //ставим настройки цевета
         colorDown.styleProperty().set(AllStaticData.getPaneUp().getStyle());

@@ -407,6 +407,7 @@ return  progr;
     }
 
 
+    //сохранение списка программ пк
     public void saveAllProgrammPC(StringBuilder listProgramPC){
         try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listPrograms.txt"))) {
             //присваеивание текста новым билдером
@@ -418,6 +419,55 @@ fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+    }
+
+
+
+
+    //объединение списка программ пользователя и пк
+    public void addingPcProgramsToTheListOfUsedPrograms(){
+
+        StringBuilder listPrograms=new StringBuilder();
+
+        String line=new String();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            while ((line = fis.readLine()) != null) {
+                listPrograms.append(line+"\n");
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
+        {
+            while ((line = fis.readLine()) != null) {
+                listPrograms.append(line+"\n");
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
+            //присваеивание текста новым билдером
+
+
+            fs.write(String.valueOf(listPrograms));
+          //  System.out.println("save all list \n" + ListProgr);
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
 
     }
 

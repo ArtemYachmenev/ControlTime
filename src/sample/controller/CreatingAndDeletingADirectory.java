@@ -13,8 +13,10 @@ public  class CreatingAndDeletingADirectory {
     //public static File   dirProfile = new File("C://dataControlTime//"+AllStaticData.getLogin());
     //путь к профилю
     public static Path dirProfile;
-    //файл со всеми прогарммами
+    //файл со всеми прогрмаммами
     public static File programPC;
+    //файл со всеми программами+листом с программами пользовтаеля
+    public static File generalListOfPrograms;
    // public static File programPCAll;
 
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
@@ -45,6 +47,22 @@ public  class CreatingAndDeletingADirectory {
             programPC = new File(("C:\\dataControlTime\\listPrograms.txt"));
         try {
             programPC.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //создаем файл со списком приложений пк+ программами пользователя
+    public static void createGeneralListOfPrograms() {
+
+        generalListOfPrograms = new File((CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"));
+        try {
+            generalListOfPrograms.createNewFile();
 
         } catch (IOException e) {
             e.printStackTrace();
