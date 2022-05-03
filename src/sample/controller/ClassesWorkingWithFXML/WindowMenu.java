@@ -60,8 +60,7 @@ public class WindowMenu {
         //если нет общего файла со списком приложений пк и пользователя то создаем его
         CreatingAndDeletingADirectory.createGeneralListOfPrograms();
 
-        //объединяем списки программ пк и пользователя
-        AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+
 
         //ставим настройки цевета
         colorDown.styleProperty().set(AllStaticData.getPaneUp().getStyle());
