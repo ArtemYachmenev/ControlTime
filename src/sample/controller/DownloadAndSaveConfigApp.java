@@ -213,6 +213,21 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
+        {
+            StringBuilder listPrograms=new StringBuilder();
+
+            String line=new String();
+            while ((line = fis.readLine()) != null) {
+                listPrograms.append(line+"\n");
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(AllStaticData.ListUsedProgr+" загружаются используемые программмы из загрузовчного списка");
         return  progr;
     }
@@ -443,6 +458,7 @@ fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
         try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
         {
             while ((line = fis.readLine()) != null) {
@@ -469,6 +485,36 @@ fs.flush();
         }
 
 
+    }
+
+    //загрузка отслеживаемых приложений пользователя из общего списка
+    public ObservableList<String> downloadListProgr2() {
+
+        String list="";
+        ObservableList<String> progr = FXCollections.observableArrayList();
+
+
+
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            StringBuilder listPrograms=new StringBuilder();
+
+            String line=new String();
+
+            while ((line = fis.readLine()) != null) {
+                progr.add(line);
+                AllStaticData.ListAllProgr.append(line+"\n");
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println( AllStaticData.ListAllProgr+" загружаются используемые программмы из загрузовчного списка");
+        return  progr;
     }
 
 

@@ -71,7 +71,7 @@ public class PaneListProgr {
         StringBuilder usedListBuilder = new StringBuilder();
 
         // создаем список объектов
-        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
+        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr2());
         //список объектов которые пользователь использует
         ObservableList<String> usedLangs = FXCollections.observableArrayList(AllStaticData.getApp().downloadAListOfUsedApplications());
 
