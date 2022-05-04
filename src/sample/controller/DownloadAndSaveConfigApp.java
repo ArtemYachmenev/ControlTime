@@ -471,10 +471,26 @@ fs.flush();
             System.out.println(e.getMessage());
         }
 
+        //если в файле что то есть то перезаписываем его
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            if (( fis.readLine()) != null) {
+                CreatingAndDeletingADirectory.overwritingGeneralListOfPrograms();
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //присваеивание текста новым билдером
+
 
 
             fs.write(String.valueOf(listPrograms));

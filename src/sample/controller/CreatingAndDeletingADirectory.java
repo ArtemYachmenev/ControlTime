@@ -71,6 +71,15 @@ public  class CreatingAndDeletingADirectory {
 
     }
 
+    //перезапись файла со списком приложений пк+ программами пользователя
+    public static void overwritingGeneralListOfPrograms() {
+
+        generalListOfPrograms.delete();
+        createGeneralListOfPrograms();
+
+
+    }
+
 
     public Path getDir() {
         return dirProfile;
