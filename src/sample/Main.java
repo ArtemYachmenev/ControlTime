@@ -21,7 +21,7 @@ public class Main extends Application {
         GetAllProgrammPC.getAllProgrammPC();
         //загружаем цвет стандартный цвет приложения
         AllStaticData.getApp().downloadStandartColorApp();
-     //   ProcessTracking.trackingProgramm();
+        ProcessTracking.trackingProgramm();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");
