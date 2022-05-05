@@ -124,8 +124,8 @@ public class DownloadAndSaveConfigApp implements Serializable {
         }
     }
 
-    //сохранение отслеживаемых приложений пользователя
-    public void saveAListOfUsedApplications(StringBuilder s) {
+    //сохранение отслеживаемых приложений пользователя без перезаписи
+    public void saveAListOfUsedApplicationsOverwriting(StringBuilder s) {
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListUsedProgr_"
@@ -139,6 +139,25 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    //сохранение отслеживаемых приложений пользователя c перезаписью файла
+    public void saveAListOfUsedApplications(StringBuilder s) {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListUsedProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
+            //сохранение текста новым билдером
+            StringBuilder ListProgr =s;
+
+            fs.write(String.valueOf(ListProgr));
+            System.out.println("save used list \n" + ListProgr);
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
 
