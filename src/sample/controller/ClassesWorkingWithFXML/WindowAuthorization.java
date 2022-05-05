@@ -89,8 +89,11 @@ public class WindowAuthorization {
         EntranceButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка входа");
-            String loginText= LoginField.getText().trim();
-            String loginPassword= PssswordField.getText().trim();
+          //  String loginText= LoginField.getText().trim();
+          // String loginPassword= PssswordField.getText().trim();
+
+            String loginText= "a";
+            String loginPassword= "a";
             if (!loginText.equals("") && !loginPassword.equals("")){
                 try {
                     loginUser(loginText,loginPassword);

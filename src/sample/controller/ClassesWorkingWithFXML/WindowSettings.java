@@ -142,6 +142,7 @@ public class WindowSettings {
     // загружается  панель  отслеживания программ
     @FXML
     public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
+        AllStaticData.app.downloadListProgr();
         //объединяем списки программ пк и пользователя
         AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
         //вместо первой и  второй версия панели сразу лист с програми

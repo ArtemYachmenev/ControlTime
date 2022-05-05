@@ -14,6 +14,8 @@ public class AllStaticData {
     public static StringBuilder ListAllProgr=new StringBuilder();
     //держит в себе названия программ, если пользоваетль выбрал программы то сохр старые из загрузовчного списка
     public static StringBuilder ListUsedProgr=new StringBuilder();
+    //держит в себе названия программ из пк и программ пользователя
+    public static StringBuilder GeneralListOfPrograms=new StringBuilder();
 
     // логин пользователя который опряделяется в LoginOfTheWorkingUser
     //при использовании LoginOfTheWorkingUser он начинает носить его логин

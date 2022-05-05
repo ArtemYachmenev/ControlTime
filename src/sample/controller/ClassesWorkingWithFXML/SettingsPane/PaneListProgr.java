@@ -73,7 +73,7 @@ public class PaneListProgr {
         StringBuilder usedListBuilder = new StringBuilder();
 
         // создаем список объектов
-        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr2());
+        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr3());
         //список объектов которые пользователь использует
         ObservableList<String> usedLangs = FXCollections.observableArrayList(AllStaticData.getApp().downloadAListOfUsedApplications());
 
@@ -158,6 +158,7 @@ public class PaneListProgr {
 
 
                 AllStaticData.getApp().saveListProg(builder1);
+
             } else
                 System.out.println("не введено название приложения");
 
@@ -169,9 +170,13 @@ public class PaneListProgr {
             StringBuilder builder1 = new StringBuilder();
             //принимает в себя не пустые слова и вставляет дополнительные строки
             StringBuilder builder2 = new StringBuilder();
+            //делает удаление из статического общего листа пк  приложений и пользователя
+            StringBuilder builder3 = new StringBuilder();
+            // принимает в себя не пустые слова из статического общего листа пк  приложений и пользователя и вставляет дополнительные строки
+            StringBuilder builder4 = new StringBuilder();
             //   смотрим чтобы поле было не пустым
             if (!textField.getText().trim().equals(null) && !textField.getText().trim().equals("") && !textField.getText().trim().equals(" ")) {
-                langs.remove(textField.getText());
+
 
 
                 //хранит текст из поля
@@ -183,6 +188,18 @@ public class PaneListProgr {
                 }
                 //оставляет вместо удаленного текста пустую строку
                 builder1 = AllStaticData.ListAllProgr.delete(i, i + s.length());
+                langs.remove(textField.getText());
+                //тут в дальнейшем можно реализовать удаление приложений пк, но пока безполезно тк список автоматически обновляется
+//                if (i < 0) {
+//                    return;
+//                }
+
+          //      builder3 = AllStaticData.GeneralListOfPrograms.delete(i, i + s.length());
+
+
+
+
+
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
                 String[] lines = builder1.toString().split("\\n");
                 for (String l : lines) {
@@ -192,14 +209,32 @@ public class PaneListProgr {
                         builder2.append(l + "\n");
                     }
                 }
-                AllStaticData.getApp().saveListProg(builder2);
+// массив с дополнительными разделениями приложений пк на строки, можно доработать (обойтись без дополнительного разделения на строки)
+//                String[] lines2 = builder3.toString().split("\\n");
+//                for (String l : lines2) {
+//                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
+//                    //если в строке есть данные то вписываем в билдер2 в строку
+//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
+//                        builder4.append(l + "\n");
+//                    }
+//                }
+                AllStaticData.getApp().saveListProgOverwriting(builder2);
+                // метод сохранения масива с удаленными приложениями
+               //   AllStaticData.getApp().saveGeneralListOfPrograms(builder4);
+                //перезаписываем файл с приложениями юзера и пк
+                AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+
             } else{
                 //для сохранения не удаленных строк
 
                 StringBuilder builderSave=new StringBuilder();
-            builderSave.append("\n");
+          //  builderSave.append("\n");
 
-            //берет в себя строки из AllStaticData.ListAllProgr
+                //для сохранения  строк из списка пользователя и пк
+
+                StringBuilder builderSaveGeneralListOfPrograms=new StringBuilder();
+
+            //берет в себя строки из AllStaticData.GeneralListOfPrograms
 
             List<String> list = new ArrayList<>();
             //берет в себя строки из usedListBuilder
@@ -208,32 +243,56 @@ public class PaneListProgr {
             List<String> list3 = list;
             //копирует третий лискт без пробелов и прочего
             List<String> list4 = new ArrayList<>();
+                //копирует строки всех приложений пользователя
+                List<String> list5 = new ArrayList<>();
+                //берет в себя только прилождения пользователя а не пк
+                List<String> list6 = new ArrayList<>();
+                //берет в себя только прилождения  пк
+              //  List<String> list7 = new ArrayList<>();
             //создаем массивы
-            String[] lines = AllStaticData.ListAllProgr.toString().split("\\n");
+                // держит в себе билдер с приложениями пк + юзера
+            String[] lines = AllStaticData.GeneralListOfPrograms.toString().split("\\n");
+                // держит в себе билдер с выделенными приложениями
             String[] lines2 = builder.toString().split("\\n");
+                // держит в себе билдер с приложениями юзера
+                String[] lines3 = AllStaticData.ListAllProgr.toString().split("\\n");
 
             //присваиваем листам значения массивов
             for (String l : lines) {
                 list.add(l);
-                System.out.println(list+" лист использования");
+              //  System.out.println(list+" лист использования");
             }
 
 
 //присваиваем листам значения массивов
             for (String l : lines2) {
                 list2.add(l);
-                System.out.println(list2+" лист выделенного");
+              //  System.out.println(list2+" лист выделенного");
             }
+
+                //присваиваем листам значения массивов
+                for (String l : lines3) {
+                    list5.add(l);
+                    //  System.out.println(list3+" лист выделенного");
+                }
 
 
 
             //перебор совпадений во всем списке строк и в выбранном, если совпадение есть то удаляем эти строки и листа3
             for (int o=0;o<list.size();o++){
                 for (int q=0;q<list2.size();q++){
-                    if (Objects.equals(list.get(o),list2.get(q))) {
 
-                        System.out.println(Objects.equals(list.get(o),list2.get(q)));
-                        list3.remove(o);
+
+                    if (Objects.equals(list.get(o),list2.get(q))) {
+                        //при совпадении идет цикл и сравнение GeneralListOfPrograms и ListAllProgr, если совпадение есть то можно удалять строку
+                        //тем самым удаляются только приложения юзера
+                        for (int a=0;a<list5.size();a++){
+                            if (Objects.equals(list.get(o),list5.get(a))) {
+                                System.out.println(Objects.equals(list.get(o),list2.get(q)));
+                                list3.remove(o);
+                            }
+                        }
+
 
                     }
                 }}
@@ -267,24 +326,61 @@ public class PaneListProgr {
 
 
 //сохраняем в билдер сейв лист 4 с сохраненными строками
-            for (int q=0;q<list4.size();q++) {
-                if (!(list4.get(q)).equals(null) && !(list4.get(q)).equals("") && !(list4.get(q)).equals(" ")&& !(list4.get(q)).equals("\\s")&& !(list4.get(q)).equals("\n")) {
+//            for (int q=0;q<list4.size();q++) {
+//                if (!(list4.get(q)).equals(null) && !(list4.get(q)).equals("") && !(list4.get(q)).equals(" ")&& !(list4.get(q)).equals("\\s")&& !(list4.get(q)).equals("\n")) {
+//
+//                    builderSave.append(list4.get(q) + "\n");
+//
+//
+//                }
+//            }
 
-                    builderSave.append(list4.get(q) + "\n");
+                //проверка на приложения пользоваетля
+                for (int q=0;q<list4.size();q++) {
+                    for (int o=0;o<list5.size();o++)
+                        if (Objects.equals(list5.get(o),list4.get(q))) {
 
+                            list6.add(q,list4.get(q));
+
+
+                    }
+//                    else {
+//                        list7.add(q,list4.get(q));
+//                        }
 
                 }
+
+//                for (int q=0;q<list7.size();q++) {
+////добавляем в билдер строки пк
+//                    builderSaveGeneralListOfPrograms.append(list7.get(q)+ "\n");
+//
+//                }
+
+//сохраняем в билдер сейв лист 6 с сохраненными строками
+                for (int q=0;q<list6.size();q++) {
+              //  if (!(list6.get(q)).equals(null) && !(list6.get(q)).equals("") && !(list6.get(q)).equals(" ")&& !(list6.get(q)).equals("\\s")&& !(list6.get(q)).equals("\n")) {
+
+                    builderSave.append(list6.get(q) + "\n");
+
+
+             //   }
             }
 
-            AllStaticData.getApp().saveListProg(builderSave);
+
+            AllStaticData.getApp().saveListProgOverwriting(builderSave);
 
             //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
 
             AllStaticData.ListAllProgr=builderSave;
+                //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
+
+             //   AllStaticData.GeneralListOfPrograms= builderSaveGeneralListOfPrograms;
+               // AllStaticData.GeneralListOfPrograms=
             usedListBuilder.setLength(0);
             builder.setLength(0);
-            list3.clear();
-
+           // list3.clear();
+                //перезаписываем файл с приложениями юзера и пк
+                AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
 
         }
         });

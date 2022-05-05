@@ -233,12 +233,47 @@ public class DownloadAndSaveConfigApp implements Serializable {
     }
 
 
-    //сохранение всех приложений пользователя
+    //сохранение всех приложений пользователя без перезаписи
     public void saveListProg(StringBuilder s) {
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt", true))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListProgr =s;
+
+            fs.write(String.valueOf(ListProgr));
+            System.out.println("save all list \n" + ListProgr);
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //сохранение всех приложений пользователя с перезаписью
+    public void saveListProgOverwriting(StringBuilder s) {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\saveListProgr_"
+                + LoginOfTheWorkingUser.getUserLogin() + ".txt"))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListProgr =s;
+
+            fs.write(String.valueOf(ListProgr));
+            System.out.println("save all list \n" + ListProgr);
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    //сохранение всех приложений пользователя
+    public void saveGeneralListOfPrograms(StringBuilder s) {
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //присваеивание текста новым билдером
             StringBuilder ListProgr =s;
 
@@ -531,7 +566,75 @@ fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println( AllStaticData.ListAllProgr+" загружаются используемые программмы из загрузовчного списка");
+
+        return  progr;
+    }
+
+    public ObservableList<String> downloadListProgr3() {
+        String list="";
+        ObservableList<String> progr = FXCollections.observableArrayList();
+
+        int countLinesListProgr=0;
+
+        //считаем сколько строк
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+            //если в списке что то есть то чистим для загрузки сохраненных приложений
+            if (!AllStaticData.GeneralListOfPrograms.isEmpty())
+            {
+                AllStaticData.GeneralListOfPrograms.setLength(0);
+            }
+            while (list!=null){
+                list =  fis.readLine();
+                countLinesListProgr++;
+               // System.out.println(countLinesListProgr+" стролько строк");
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+//читаем нужное количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile +
+                "\\generalListOfPrograms_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        {
+
+
+
+            //   list =  fis.readLine();
+            //тк последняя строка то всего нормальных строк -1
+            for  (int i=0;i<countLinesListProgr-1;i++) {
+                if (i==(countLinesListProgr-1)){
+                    list =  fis.readLine();
+
+
+                    progr.add(i,list);
+
+                    AllStaticData.GeneralListOfPrograms.append(list);
+
+                    break;
+                }
+                list =  fis.readLine();
+
+
+                //нe пропускает пустые строки
+                // if (!list.equals(null) && !list.equals("") && !list.equals(" ")&& !list.equals("\\s")) {
+                progr.add(i, list);
+                AllStaticData.GeneralListOfPrograms.append(list).append("\n");
+                //  }
+
+            }
+            //  progr= FXCollections.observableArrayList(list);
+            // progr= FXCollections.observableArrayList(builder.toString());
+
+           // System.out.println("download list \n"+progr);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+     //   System.out.println(AllStaticData.GeneralListOfPrograms+" загружаются программмы из загрузовчного списка");
         return  progr;
     }
 
