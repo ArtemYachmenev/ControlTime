@@ -142,6 +142,7 @@ public class WindowSettings {
     // загружается  панель  отслеживания программ
     @FXML
     public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
+        //грузим чтобы с статик билдером можно было манипулировать
         AllStaticData.app.downloadListProgr();
         //объединяем списки программ пк и пользователя
         AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
