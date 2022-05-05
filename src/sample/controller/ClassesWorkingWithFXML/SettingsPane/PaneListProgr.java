@@ -726,32 +726,97 @@ StringBuilder builderSave=new StringBuilder();
 
 
                 //добавляем в статик переменные из билдера который держит выделенные данные из первого листа
-                AllStaticData.ListUsedProgr.append(builder);
+           //     AllStaticData.ListUsedProgr.append(builder);
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
+               // String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
+//                String[] lines2 = builder.toString().split("\\n");
+//
+//
+//                //присваиваем значения билдеру
+//                for (String l : lines) {
+//
+//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
+//                        builder2.append(l + "\n");
+//
+//                    }
+//                }
+//
+//
+//                //присваиваем значение массиву строк вытянутых из сохраненного файла где хранятся используемые программы
+//                for (String l : lines2) {
+//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
+//                        usedLangs.add(l + "\n");
+//                    }
+//                }
+//
+//                AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder2);
+//                //если не обнулять то странно сохраняет строки
+//                builder.setLength(0);
+
+
+
+
+
+
+                List<String> list = new ArrayList<>();
+
+//берет в себя строки из builder
+
+                List<String> list2 = new ArrayList<>();
+
+                //берет в себя строки которых нет с списке пользователя
+
+                List<String> list3 = new ArrayList<>();
+
+                //присваиваем переменной данные
+                builder2=AllStaticData.ListUsedProgr;
+                //создаем массивы
+                // держит в себе билдер с выбранными приложениями
+                String[] lines = builder2.toString().split("\\n");
+                // держит в себе билдер с выбранными строками
                 String[] lines2 = builder.toString().split("\\n");
 
 
-                //присваиваем значения билдеру
+                //присваиваем листам значения массивов
                 for (String l : lines) {
-
-                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-                        builder2.append(l + "\n");
-
-                    }
+                    list.add(l);
+                    //  System.out.println(list+" лист использования");
                 }
 
-
-                //присваиваем значение массиву строк вытянутых из сохраненного файла где хранятся используемые программы
                 for (String l : lines2) {
-                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-                        usedLangs.add(l + "\n");
+                    list2.add(l);
+                    //  System.out.println(list2+" лист использования");
+                }
+
+
+
+
+                //если лист используемых приложений не содержит выбранных приложений из общего листа то сохраняем их в третий лист
+                    for (int a=0;a<list2.size();a++) {
+                        if (!list.contains(list2.get(a))) {
+                            list3.add(list2.get(a));
+                        }
+
+                    }
+
+
+                    //цикл для приваивания данных листа таблице и билдеру
+                for (int i=0;i<list3.size();i++) {
+                    if (!list3.get(i).equals(null) && !list3.get(i).equals("") && !list3.get(i).equals(" ")) {
+                        usedLangs.add(list3.get(i) + "\n");
+                        builder2.append(list3.get(i) + "\n");
+
                     }
                 }
 
-                AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder2);
-                //если не обнулять то странно сохраняет строки
+
+
+
+                //обнуляем чтобы в памяти выбранные элементы не хранились и сохраняем
                 builder.setLength(0);
+                AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder2);
+
+
 
             }
 
