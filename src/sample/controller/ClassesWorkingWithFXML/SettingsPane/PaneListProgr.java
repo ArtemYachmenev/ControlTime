@@ -237,7 +237,7 @@ public class PaneListProgr {
             //берет в себя строки из AllStaticData.GeneralListOfPrograms
 
             List<String> list = new ArrayList<>();
-            //берет в себя строки из usedListBuilder
+            //берет в себя строки из builder
             List<String> list2 = new ArrayList<>();
             //дублирует первый лист для беопасного удаления совпадающех строк
             List<String> list3 = list;
@@ -389,14 +389,57 @@ public class PaneListProgr {
         selectUsedBth.setOnAction(actionEvent -> {
             StringBuilder builder1 = new StringBuilder();
             if (!textField.getText().trim().equals(null) && !textField.getText().trim().equals("") && !textField.getText().trim().equals(" ")) {
-                usedLangs.add(textField.getText());
-                //добаляем слово из строки в массив
-                AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
+
+
+
+                //берет в себя строки из AllStaticData.ListUsedProgr
+
+                List<String> list = new ArrayList<>();
+                //берет в себя строки из usedListBuilder
+                List<String> list2 = new ArrayList<>();
+                //дублирует первый лист для беопасного удаления совпадающех строк
+                List<String> list3 = list;
+                //копирует третий лискт без пробелов и прочего
+                List<String> list4 = new ArrayList<>();
+                //копирует строки всех приложений пользователя
+                List<String> list5 = new ArrayList<>();
+
+
+                //создаем массивы
+                // держит в себе билдер с выбранными приложениями
+                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
+                // держит в себе билдер с выделенными приложениями
+                String word = textField.getText();
+
+
+                //присваиваем листам значения массивов
+                for (String l : lines) {
+                    list.add(l);
+                    //  System.out.println(list+" лист использования");
+                }
+
+                //счетчик
+                int count=0;
+                for (int i=0;i<list.size();i++){
+                    if (!list.get(i).equals(word)) {
+                       count++;
+                    }
+
+                }
+
+
+                //если счетчик равен количеству строк то добавляем слово, тк его там нет
+                if (count==list.size()){
+                    usedLangs.add(textField.getText());
+                    //добаляем слово из строки в массив
+                    AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
+
+                }
 
 
                 //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
-                for (String l : lines) {
+                String[] lines2 = AllStaticData.ListUsedProgr.toString().split("\\n");
+                for (String l : lines2) {
                     //   System.out.println(l+" fffffffffffffffffffffffffffffff");
                     //если в строке есть данные то вписываем в билдер2 в строку
                     if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
