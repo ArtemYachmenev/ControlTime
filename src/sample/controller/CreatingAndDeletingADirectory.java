@@ -15,6 +15,8 @@ public  class CreatingAndDeletingADirectory {
     public static Path dirProfile;
     //файл со всеми прогрмаммами
     public static File programPC;
+    //файл со всеми дисками
+    public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
     public static File generalListOfPrograms;
    // public static File programPCAll;
@@ -55,6 +57,7 @@ public  class CreatingAndDeletingADirectory {
 
     }
 
+
     //создаем файл со списком приложений пк+ программами пользователя
     public static void createGeneralListOfPrograms() {
 
@@ -76,6 +79,20 @@ public  class CreatingAndDeletingADirectory {
 
         generalListOfPrograms.delete();
         createGeneralListOfPrograms();
+
+
+    }
+
+    //создаем файл со списком дисков
+    public static void createListDisk() {
+
+        diskPC = new File(("C:\\dataControlTime\\listDisk.txt"));
+        try {
+            diskPC.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

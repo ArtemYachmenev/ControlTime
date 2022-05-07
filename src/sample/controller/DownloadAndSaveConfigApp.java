@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 
 import java.io.*;
+import java.util.ArrayList;
 
 //сохраняет и грузит настройки приложения
 public class DownloadAndSaveConfigApp implements Serializable {
@@ -491,8 +492,62 @@ fs.flush();
 
     }
 
+    //сохранение списка дисков пк
+    public void saveAllDiskPC(StringBuilder listDiskPC){
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDisk.txt"))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListDisk =listDiskPC;
+
+            fs.write(String.valueOf(ListDisk));
+
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    //загрузка списка дисков пк
+    public StringBuilder downloadAllDiskPC() {
+        String s="";
+
+        StringBuilder list=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listDisk.txt")))
+        {
 
 
+            while (s != null) {
+                s = fis.readLine();
+                list.append(s+"\n");
+
+
+            }
+          //  System.out.println(list);
+
+
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+    //грузим лист программ пк
+    public StringBuilder downloadAllProgramPC(){
+        StringBuilder builder=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
+        {
+            while ((fis.readLine()) != null) {
+                builder.append(fis.readLine()+"\n");
+
+
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return builder;
+    }
 
     //объединение списка программ пользователя и пк
     public void addingPcProgramsToTheListOfUsedPrograms(){
