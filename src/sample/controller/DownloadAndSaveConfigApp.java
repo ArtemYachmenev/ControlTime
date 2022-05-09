@@ -507,6 +507,21 @@ fs.flush();
 
     }
 
+    //сохранение списка дисков пк
+    public void saveDir(StringBuilder builder){
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDir.txt"))) {
+            //присваеивание текста новым билдером
+
+
+            fs.write(String.valueOf(builder));
+
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     //загрузка списка дисков пк
     public StringBuilder downloadAllDiskPC() {
         String s="";

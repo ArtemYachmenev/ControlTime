@@ -19,6 +19,8 @@ public  class CreatingAndDeletingADirectory {
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
     public static File generalListOfPrograms;
+    //файл со всеми программами+листом с программами пользовтаеля
+    public static File listDir;
    // public static File programPCAll;
 
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
@@ -89,6 +91,19 @@ public  class CreatingAndDeletingADirectory {
         diskPC = new File(("C:\\dataControlTime\\listDisk.txt"));
         try {
             diskPC.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    //создаем файл со списком программ пк и их директорий
+    public static void createListDirProg() {
+
+        listDir = new File(("C:\\dataControlTime\\listDir.txt"));
+        try {
+            listDir.createNewFile();
 
         } catch (IOException e) {
             e.printStackTrace();

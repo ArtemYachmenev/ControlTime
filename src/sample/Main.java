@@ -19,6 +19,8 @@ public class Main extends Application {
         CreatingAndDeletingADirectory.createListPrograms();
         //если нет файла со списком дисков то создаем его
         CreatingAndDeletingADirectory.createListDisk();
+        //если нет файла со списком директорий программ то создаем его
+        CreatingAndDeletingADirectory.createListDirProg();
         //загружаем все программы установленные на пк из повершелла
         GetAllProgrammPC.getAllProgrammPC();
         //загружаем все диски пк
