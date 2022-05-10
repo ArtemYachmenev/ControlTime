@@ -15,6 +15,8 @@ public  class CreatingAndDeletingADirectory {
     public static Path dirProfile;
     //файл со всеми прогрмаммами
     public static File programPC;
+    // ответ на запрос о всех программах пк повершелла
+    public static File programPCPowershell;
     //файл со всеми дисками
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
@@ -27,7 +29,6 @@ public  class CreatingAndDeletingADirectory {
     static {
         try {
             dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
-          //  programPC= Files.createDirectories(Path.of("C:\\dataControlTime\\" + "listPrograms.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,6 +60,29 @@ public  class CreatingAndDeletingADirectory {
 
     }
 
+    //создаем файл со списком приложений
+    public static void createListProgramsPowershell() {
+
+        programPCPowershell = new File(("C:\\dataControlTime\\listProgramsPowershell.txt"));
+        try {
+            programPCPowershell.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //удаляем файл со списком приложений
+    public static void overwritingListProgramsPowershell() {
+
+        programPCPowershell.delete();
+        createListProgramsPowershell();
+
+
+    }
+
 
     //создаем файл со списком приложений пк+ программами пользователя
     public static void createGeneralListOfPrograms() {
@@ -81,6 +105,14 @@ public  class CreatingAndDeletingADirectory {
 
         generalListOfPrograms.delete();
         createGeneralListOfPrograms();
+
+
+    }
+    //перезапись файла со списком приложений пк
+    public static void overwritingListOfPrograms() {
+
+        programPC.delete();
+        createListPrograms();
 
 
     }

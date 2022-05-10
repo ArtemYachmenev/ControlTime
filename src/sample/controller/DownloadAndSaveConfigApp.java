@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 //сохраняет и грузит настройки приложения
@@ -479,9 +480,12 @@ return  progr;
 
     //сохранение списка программ пк
     public void saveAllProgrammPC(StringBuilder listProgramPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listPrograms.txt"))) {
+      // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListProgr =listProgramPC;
+       //     System.out.println(ListProgr);
 
             fs.write(String.valueOf(ListProgr));
 
@@ -547,31 +551,62 @@ fs.flush();
         return list;
     }
 
-    //грузим лист программ пк
-    public StringBuilder downloadAllProgramPC(){
-        StringBuilder builder=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
-        {
-            while ((fis.readLine()) != null) {
-                builder.append(fis.readLine()+"\n");
+    //грузим лист программ пк из повершелла
+    public StringBuilder downloadAllProgramPCPowershell() {
+        StringBuilder builder = new StringBuilder();
+        int count = 0;
 
+        String list = "";
+        //читаем количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE))) {
+            while (list != null) {
+                list = fis.readLine();
+                count++;
+                System.out.println(count + " стролько строк");
 
             }
+
+            //   System.out.println(builder);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        //читаем нужное количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE))) {
+
+            //отсекаем лишние строки, при ответе повершелла их 8
+            for (int i = 0; i < count - 1; i++) {
+                if (i == (count - 8)) {
+                    list = fis.readLine();
+
+
+                    builder.append(list + "\n");
+
+
+                    break;
+                }
+                list = fis.readLine();
+
+                builder.append(list + "\n");
+
+                System.out.println(builder);
+
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        //  System.out.println(builder);
         return builder;
     }
 
-    //объединение списка программ пользователя и пк
+        //объединение списка программ пользователя и пк
     public void addingPcProgramsToTheListOfUsedPrograms(){
 
         StringBuilder listPrograms=new StringBuilder();
 
         String line=new String();
         try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
             while ((line = fis.readLine()) != null) {
                 listPrograms.append(line+"\n");
@@ -583,7 +618,7 @@ fs.flush();
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt")))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE)))
         {
             while ((line = fis.readLine()) != null) {
                 listPrograms.append(line+"\n");
@@ -612,7 +647,7 @@ fs.flush();
 
         try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
                 "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
+                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
 
 
@@ -688,7 +723,7 @@ fs.flush();
 //читаем нужное количество строк
         try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile +
                 "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
 
 

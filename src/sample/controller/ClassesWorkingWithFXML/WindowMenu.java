@@ -16,6 +16,7 @@ import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.CheckingForANewUser;
 import sample.controller.CreatingAndDeletingADirectory;
+import sample.controller.GetAllProgrammPC;
 
 
 public class WindowMenu {
@@ -59,7 +60,8 @@ public class WindowMenu {
         CheckingForANewUser.CheckingForANewUser();
         //если нет общего файла со списком приложений пк и пользователя то создаем его
         CreatingAndDeletingADirectory.createGeneralListOfPrograms();
-
+//форматируем все программы установленные на пк из повершелла
+        GetAllProgrammPC.getAllProgrammPC();
 
 
         //ставим настройки цевета

@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
 
@@ -17,12 +19,19 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //если нет файла со списком приложений то создаем его
         CreatingAndDeletingADirectory.createListPrograms();
+
         //если нет файла со списком дисков то создаем его
         CreatingAndDeletingADirectory.createListDisk();
+        //если нет файла со списком директорий программ от повершелла то создаем его
+        CreatingAndDeletingADirectory.createListProgramsPowershell();
         //если нет файла со списком директорий программ то создаем его
         CreatingAndDeletingADirectory.createListDirProg();
-        //загружаем все программы установленные на пк из повершелла
-        GetAllProgrammPC.getAllProgrammPC();
+
+//загружаем все программы установленные на пк из повершелла
+
+        GetAllProgrammPC.getAllProgramPowershall();
+
+
         //загружаем все диски пк
         GetAllProgrammPC.getListDiskPC();
        // AllStaticData.getApp().downloadAllDiskPC();
