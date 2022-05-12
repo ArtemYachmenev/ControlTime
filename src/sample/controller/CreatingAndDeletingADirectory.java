@@ -52,10 +52,20 @@ public  class CreatingAndDeletingADirectory {
             programPC = new File(("C:\\dataControlTime\\listPrograms.txt"));
         try {
             programPC.createNewFile();
+            AllStaticData.app.saveNewAllProgrammPC();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    //перезапись файла со списком приложений пк+ программами пользователя
+    public static void overwritingListPrograms() {
+
+        programPC.delete();
+        createListPrograms();
 
 
     }
@@ -90,9 +100,10 @@ public  class CreatingAndDeletingADirectory {
         generalListOfPrograms = new File((CreatingAndDeletingADirectory.dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"));
+
         try {
             generalListOfPrograms.createNewFile();
-
+            AllStaticData.app.saveNewGeneralListOfPrograms();
         } catch (IOException e) {
             e.printStackTrace();
         }

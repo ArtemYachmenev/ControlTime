@@ -110,6 +110,7 @@ public class GetAllProgrammPC {
 
 
 
+            CreatingAndDeletingADirectory.overwritingListPrograms();
           AllStaticData.getApp().saveAllProgrammPC(program);
          // builder1.setLength(0);
             // закрываем чтение
