@@ -10,7 +10,8 @@ public class GetAllProgrammPC {
     // public static StringBuilder programs=new StringBuilder();
     public static StringBuilder disk = new StringBuilder();
     public static StringBuilder program = new StringBuilder();
-
+    public static StringBuilder dir = new StringBuilder();
+    public static StringBuilder listOfEXEFilesInDirectories = new StringBuilder();
     // команда  с дополнительными параметрами
 //" Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | " +
 //                    "Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table -AutoSize "
@@ -177,38 +178,182 @@ public class GetAllProgrammPC {
     }
 
 
-    //ищем для программ директории
-    public static void searchForTheProgramDirectory(){
+    //ищем директории по запросу
+    public static void getAllProgramDirPowershell() {
         try {
-
-            String process_line;
-
-
-
             Process p = null;
 
 
-                //команда для поиска прог и их директорий
-                p=Runtime.getRuntime().exec("powershell Get-ChildItem HKLM:\\SOFTWARE" +
-                        "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software\\Wow6432Node" +
-                        "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
-                        "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
-                        "Sort-Object Displayname -Descending | Out-File -encoding utf8 -Width 200 " +
-                        CreatingAndDeletingADirectory.listDir);
+            //команда для поиска прог и их директорий
+            p=Runtime.getRuntime().exec("powershell Get-ChildItem HKLM:\\SOFTWARE" +
+                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software\\Wow6432Node" +
+                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
+                    "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
+                    "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
+                    CreatingAndDeletingADirectory.listDir);
 
 
-
-                p.getOutputStream().close();
-
-
-            //команда для поиска прог и их директорий 2
 
             p.getOutputStream().close();
 
         } catch (Exception err) {
             err.printStackTrace();
         }
+
+
     }
+    //ищем для программ директории
+    public static void searchForTheProgramPowershellDirectory(){
+
+            ArrayList<String> list=new ArrayList<>();
+
+            String process_line;
+
+
+
+
+
+            StringBuilder builder= AllStaticData.getApp().downloadAllProgramPowershellDirectory();
+            String[] lines = builder.toString().split("\\n");
+
+
+            //ставим массив в лист
+            for (String l : lines){
+                list.add(l);
+                //  System.out.println(list);
+            }
+
+//            list.remove(0);
+//            list.remove(1);
+//            list.remove(list.size()-2);
+//            list.remove(list.size()-1);
+            //цикл фильтрующий список листа с программами
+            for (int i=0;i<list.size();i++){
+                if (list.get(i).equals(null)||list.get(i).equals("\n")||list.get(i).equals("")||list.get(i).contains("---------------")||list.get(i).contains("InstallLocation")
+                        ||list.get(i).equals("")||list.get(i).equals("\s")||list.get(i).equals("\n")){
+                    list.set(i,"");
+
+                }
+
+            }
+
+//цикл втсавляющий не пустые строки в список листа с программами
+            for (int i=0; i<list.size();i++){
+                if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
+                    dir.append(list.get(i) + "\n");
+                }
+            }
+
+
+
+
+
+            CreatingAndDeletingADirectory.overwritingProgramsDirPowershell();
+            AllStaticData.getApp().saveDirProgrammPC(dir);
+            //команда для поиска прог и их директорий 2
+
+
+    }
+
+
+    //ищем файлы в директориях программ пк
+
+    //может надо из выгруженного списка отделить директории и их потом вставить в запрос
+    //можно в каждой строке искать до диска
+
+    public static void getListOfEXEFilesInDirectories(){
+        try {
+
+
+        String process_line;
+
+        Process p = null;
+
+
+
+
+
+
+        //для вырывания директорий программ
+        StringBuilder builder= AllStaticData.getApp().downloadDirProgrammPC();
+        String[] lines = builder.toString().split("\\n");
+        ArrayList<String> list=new ArrayList<>();
+
+        //для вырывания директорий
+            StringBuilder builder2= AllStaticData.getApp().downloadAllDiskPC();
+        String[] lines2 = builder.toString().split("\\n");
+        ArrayList<String> list2=new ArrayList<>();
+
+            //для сохранения директорий
+
+            ArrayList<String> list3=new ArrayList<>();
+
+
+
+        //ставим массив в лист
+        for (String l : lines){
+            list.add(l);
+            //  System.out.println(list);
+        }
+
+            //ставим массив в лист
+            for (String l : lines2){
+                list2.add(l);
+                //  System.out.println(list);
+            }
+
+
+            int indexFirst=0;
+            int indexLast=0;
+
+
+
+//цикл втсавляющий не пустые строки в список листа с программами
+            //перебирающий и вырывающий пити директорий
+        for (int i=0; i<list.size();i++){
+            if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
+                for (int j=0; j<list2.size();j++) {
+                    //если строка  содержит тот или иной диск
+                    if(list.get(i).contains(list2.get(j))){
+                        //присваиваем индесам место где идет этот диск
+                        indexFirst = list.get(i).indexOf(list2.get(j));
+
+                    }
+
+
+                }
+            }
+        }
+
+//команда для поиска прог и их директорий
+            p=Runtime.getRuntime().exec("powershell Get-ChildItem HKLM:\\SOFTWARE" +
+                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software\\Wow6432Node" +
+                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
+                    "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
+                    "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
+                    CreatingAndDeletingADirectory.listDir);
+
+
+
+            p.getOutputStream().close();
+
+
+
+
+
+
+
+
+
+            // CreatingAndDeletingADirectory.overwritingProgramsDirPowershell();
+        AllStaticData.getApp().saveDirProgrammPC(dir);
+        //команда для поиска прог и их директорий 2
+
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
 
 
 }

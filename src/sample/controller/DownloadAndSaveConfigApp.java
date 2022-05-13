@@ -498,12 +498,79 @@ fs.flush();
 
     }
 
+    //сохранение списка программ пк
+    public void saveDirProgrammPC(StringBuilder listDirProgramPC){
+        // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
+
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListDir =listDirProgramPC;
+            //     System.out.println(ListProgr);
+
+            fs.write(String.valueOf(ListDir));
+
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+    //загрузка списка директорий программ пк
+    public StringBuilder downloadDirProgrammPC(){
+        // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
+
+        StringBuilder builder = new StringBuilder();
+
+
+        int count = 0;
+
+        String list = "";
+        //читаем количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader("C:\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+            while (list != null) {
+                list = fis.readLine();
+               builder.append(list+"\n");
+               // System.out.println(count + " стролько строк");
+
+            }
+
+            //   System.out.println(builder);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+return builder;
+    }
+
+
+
     //сохранение нового списка программ пк
     public void saveNewAllProgrammPC(){
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
         String s="";
         try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16))) {
+            //присваеивание текста новым билдером
+
+            //     System.out.println(ListProgr);
+
+            fs.write(String.valueOf(s));
+
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    //сохранение нового списка программ пк
+    public void saveNewAListDirProg(){
+        // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
+
+        String s="";
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16))) {
             //присваеивание текста новым билдером
 
             //     System.out.println(ListProgr);
@@ -537,7 +604,7 @@ fs.flush();
 
     //сохранение списка дисков пк
     public void saveAllDiskPC(StringBuilder listDiskPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDisk.txt"))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listDisk.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDisk =listDiskPC;
 
@@ -570,7 +637,7 @@ fs.flush();
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listDisk.txt")))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listDisk.txt", StandardCharsets.UTF_16LE)))
         {
 
 
@@ -590,6 +657,8 @@ fs.flush();
         return list;
     }
 
+
+
     //грузим лист программ пк из повершелла
     public StringBuilder downloadAllProgramPCPowershell() {
         StringBuilder builder = new StringBuilder();
@@ -603,7 +672,7 @@ fs.flush();
             while (list != null) {
                 list = fis.readLine();
                 count++;
-                System.out.println(count + " стролько строк");
+              //  System.out.println(count + " стролько строк");
 
             }
 
@@ -630,7 +699,7 @@ fs.flush();
 
                 builder.append(list + "\n");
 
-                System.out.println(builder);
+             //   System.out.println(builder);
 
             }
 
@@ -661,6 +730,80 @@ fs.flush();
         //  System.out.println(builder);
         return builder1;
     }
+
+
+    //грузим лист программ пк c директориями из повершелла
+    public StringBuilder downloadAllProgramPowershellDirectory() {
+        StringBuilder builder = new StringBuilder();
+        StringBuilder builder1=new StringBuilder();
+
+        int count = 0;
+
+        String list = "";
+        //читаем количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.listDir, StandardCharsets.UTF_16LE))) {
+            while (list != null) {
+                list = fis.readLine();
+                count++;
+             //   System.out.println(count + " стролько строк");
+
+            }
+
+            //   System.out.println(builder);
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        //читаем нужное количество строк
+        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.listDir, StandardCharsets.UTF_16LE))) {
+
+            //отсекаем лишние строки, при ответе повершелла их 8
+            for (int i = 0; i < count - 1; i++) {
+                if (i == (count - 8)) {
+                    list = fis.readLine();
+
+
+                    builder.append(list + "\n");
+
+
+                    break;
+                }
+                list = fis.readLine();
+
+                builder.append(list + "\n");
+
+             //   System.out.println(builder);
+
+            }
+
+            //читстим билдер от одинаковых программ
+
+
+            ArrayList<String> cleanListBuilder = new ArrayList<>();
+            // держит в себе билдер с приложениями
+            String[] lines = builder.toString().split("\\n");
+            //удаляем дубликаты
+            Set<String> set = new HashSet<String>(Arrays.asList(lines));
+            String[] result = set.toArray(new String[set.size()]);
+
+            //присваиваем листам значения массивов
+            for (String l : result) {
+                //   cleanListBuilder.add(l);
+                //  System.out.println(list+" лист использования");
+                builder1.append(l + "\n");
+            }
+//            for (int o=0;o<cleanListBuilder.size();o++) {
+//                builder1.append(cleanListBuilder.get(o) + "\n");
+//
+//            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        //  System.out.println(builder);
+        return builder1;
+    }
+
 
         //объединение списка программ пользователя и пк
     public void addingPcProgramsToTheListOfUsedPrograms(){

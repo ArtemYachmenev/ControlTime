@@ -57,11 +57,15 @@ public class WindowMenu {
     void initialize() {
         //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
         CreatingAndDeletingADirectory.setDir();
+        // ставим файл для фалов в директориях приложений
+        CreatingAndDeletingADirectory.createListOfEXEFilesInDirectories();
         CheckingForANewUser.CheckingForANewUser();
         //если нет общего файла со списком приложений пк и пользователя то создаем его
         CreatingAndDeletingADirectory.createGeneralListOfPrograms();
 //форматируем все программы установленные на пк из повершелла
         GetAllProgrammPC.getAllProgrammPC();
+//грузим директории без дубликатов
+        GetAllProgrammPC.searchForTheProgramPowershellDirectory();
 
 
         //ставим настройки цевета

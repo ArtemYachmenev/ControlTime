@@ -21,8 +21,10 @@ public  class CreatingAndDeletingADirectory {
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
     public static File generalListOfPrograms;
-    //файл со всеми программами+листом с программами пользовтаеля
+    //файл со всеми программами пк и директориями
     public static File listDir;
+    //файл со всеми программами пк и директориями
+    public static File listOfEXEFilesInDirectories;
    // public static File programPCAll;
 
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
@@ -46,6 +48,21 @@ public  class CreatingAndDeletingADirectory {
         }
     }
 
+    //создаем файл со списком файлов в директориях приложений пк
+    public static void createListOfEXEFilesInDirectories() {
+
+        listOfEXEFilesInDirectories = new File(("C:\\dataControlTime\\listOfEXEFilesInDirectories.txt"));
+        try {
+            listOfEXEFilesInDirectories.createNewFile();
+           // AllStaticData.app.saveNewAllProgrammPC();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     //создаем файл со списком приложений
     public static void createListPrograms() {
 
@@ -61,11 +78,20 @@ public  class CreatingAndDeletingADirectory {
 
     }
 
-    //перезапись файла со списком приложений пк+ программами пользователя
+    //перезапись файла со списком приложений пк
     public static void overwritingListPrograms() {
 
         programPC.delete();
         createListPrograms();
+
+
+    }
+
+    //перезапись файла со списком приложений пк и их директориями
+    public static void overwritingProgramsDirPowershell() {
+
+        listDir.delete();
+        createListDirProg();
 
 
     }
@@ -147,13 +173,15 @@ public  class CreatingAndDeletingADirectory {
         listDir = new File(("C:\\dataControlTime\\listDir.txt"));
         try {
             listDir.createNewFile();
-
+            AllStaticData.app.saveNewAListDirProg();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
     }
+
+
 
 
     public Path getDir() {

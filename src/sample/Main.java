@@ -30,12 +30,12 @@ public class Main extends Application {
 //загружаем все программы установленные на пк из повершелла
 
         GetAllProgrammPC.getAllProgramPowershall();
-
+        GetAllProgrammPC.getAllProgramDirPowershell();
 
         //загружаем все диски пк
         GetAllProgrammPC.getListDiskPC();
        // AllStaticData.getApp().downloadAllDiskPC();
-        GetAllProgrammPC.searchForTheProgramDirectory();
+
         //загружаем цвет стандартный цвет приложения
         AllStaticData.getApp().downloadStandartColorApp();
         ProcessTracking.trackingProgramm();
