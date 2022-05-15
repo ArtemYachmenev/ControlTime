@@ -93,13 +93,18 @@ public class GetAllProgrammPC {
        // System.out.println(builder2 + " gggggggggggggggggggggggggggggggggggggggggggggggg");
 
 
-//сравниваение фалов с пк программами
+//сравниваение фалов с пк программами если не сходится то все обновляем
      //  if (builder.compareTo(builder2)!=0){
           if (!Objects.equals(builder.toString().length(),builder2.toString().length())){
-                //грузим файлы в директориях
-                getAllProgramPowershall();
+//грузим файлы в директориях
+              GetAllProgrammPC.getAllProgramPowershall();
               //загружаем все диски пк
               GetAllProgrammPC.getListDiskPC();
+              //форматируем все программы установленные на пк из повершелла
+              GetAllProgrammPC.getAllProgrammPC();
+//грузим директории без дубликатов
+              GetAllProgrammPC.searchForTheProgramPowershellDirectory();
+              GetAllProgrammPC.getListOfEXEFilesInDirectories();
               programsHaveChanged=true;
 
 

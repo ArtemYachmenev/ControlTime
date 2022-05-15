@@ -65,10 +65,7 @@ public class WindowMenu {
         //сравниваем списки
         GetAllProgrammPC.comparisonAllProgramPowershall();
 
-//форматируем все программы установленные на пк из повершелла
-        GetAllProgrammPC.getAllProgrammPC();
-//грузим директории без дубликатов
-        GetAllProgrammPC.searchForTheProgramPowershellDirectory();
+
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
 
@@ -78,9 +75,9 @@ public class WindowMenu {
 //
 //
         //если список программ с прошлого запуска пк изменился то ищем новые ехе
-        if (GetAllProgrammPC.programsHaveChanged==true){
-            GetAllProgrammPC.getListOfEXEFilesInDirectories();
-        }
+//        if (GetAllProgrammPC.programsHaveChanged==true){
+//
+//        }
 
 
 
