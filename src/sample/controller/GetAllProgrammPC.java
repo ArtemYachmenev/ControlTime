@@ -219,8 +219,8 @@ public class GetAllProgrammPC {
 
             //ставим массив в лист
             for (String l : lines){
-                list.add(l);
-                //  System.out.println(list);
+                list.add(l+"~~~~~");
+             //     System.out.println(list);
             }
 
 //            list.remove(0);
@@ -265,12 +265,14 @@ public class GetAllProgrammPC {
         try {
 
 
-        String process_line;
+        String line = "";
+        String str=new String();
 
         Process p = null;
 
 
 
+        //добавь в файл сохранения директорий стоп символы для нахождения последнего индекса
 
 
 
@@ -279,21 +281,21 @@ public class GetAllProgrammPC {
         String[] lines = builder.toString().split("\\n");
         ArrayList<String> list=new ArrayList<>();
 
-        //для вырывания директорий
+        //для вырывания дисков где лежат директории
             StringBuilder builder2= AllStaticData.getApp().downloadAllDiskPC();
-        String[] lines2 = builder.toString().split("\\n");
+        String[] lines2 = builder2.toString().split("\\n");
         ArrayList<String> list2=new ArrayList<>();
 
             //для сохранения директорий
 
             ArrayList<String> list3=new ArrayList<>();
-
+            StringBuilder builder3= new StringBuilder();
 
 
         //ставим массив в лист
         for (String l : lines){
             list.add(l);
-            //  System.out.println(list);
+            //  System.out.println(list+" fgffffffffffffffffffffffffffffffffffff");
         }
 
             //ставим массив в лист
@@ -303,39 +305,71 @@ public class GetAllProgrammPC {
             }
 
 
-            int indexFirst=0;
-            int indexLast=0;
+//            int indexFirst=0;
+//            int indexIntermediate=0;
+//            int indexLast=0;
 
 
 
 //цикл втсавляющий не пустые строки в список листа с программами
             //перебирающий и вырывающий пити директорий
-        for (int i=0; i<list.size();i++){
+        for (int i=0; i<list.size()-1;i++){
             if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
                 for (int j=0; j<list2.size();j++) {
                     //если строка  содержит тот или иной диск
                     if(list.get(i).contains(list2.get(j))){
-                        //присваиваем индесам место где идет этот диск
-                        indexFirst = list.get(i).indexOf(list2.get(j));
+
+                        //присваиваем индексам место где идет этот диск
+                        int   indexFirst = list.get(i).indexOf(list2.get(j));
+                        //индекс откуда начинается конец ~~~~~
+                        int  indexLast=list.get(i).indexOf("~~~~~");
+
+                       // line = list.get(i).substring(indexFirst, indexLast);
+str=list.get(i);
+//название программы
+String substr=str.substring(0, indexFirst-1);
+//ее путь
+String substr2=str.substring(indexFirst, indexLast-1);
+                      //  System.out.println(list2.get(j));
+                     //   System.out.println(indexFirst);
+                     //   System.out.println(substr2);
+
+                      //  System.out.println((str.substring(0, indexFirst-1)+" ggggggggggggggggggggggggggggggggggggggggggggggggggggggg"));
+                        builder3.append(substr+"\n");
+
+
+//команда для поиска ехе файлов в этих директориях
+                        p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse *.exe | Select Name");
+                        BufferedReader input =
+                                new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        while ((line = input.readLine()) != null) {
+                           // line = input.readLine();
+                            if (!(line.contains("Name"))&&!(line.contains("----"))&&!(line.equals("\\n"))&&!(line.equals("\\s"))) {
+
+                         //   System.out.println("1111111111111111111111111111111111111111111111");
+                                System.out.println(line);
+                                builder3.append(line + "\n");
+                            }
+
+                        }
+                      //  builder3.append("~~~~~ \n");
+                        p.getOutputStream().close();
+
+
 
                     }
 
 
                 }
+
             }
+
         }
 
-//команда для поиска прог и их директорий
-            p=Runtime.getRuntime().exec("powershell Get-ChildItem HKLM:\\SOFTWARE" +
-                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software\\Wow6432Node" +
-                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
-                    "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
-                    "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
-                    CreatingAndDeletingADirectory.listDir);
+//            for (int i=0; i<list3.size();i++) {
+//                builder3.append(list3.get(i)+"\n");
+//            }
 
-
-
-            p.getOutputStream().close();
 
 
 
@@ -346,7 +380,7 @@ public class GetAllProgrammPC {
 
 
             // CreatingAndDeletingADirectory.overwritingProgramsDirPowershell();
-        AllStaticData.getApp().saveDirProgrammPC(dir);
+        AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder3);
         //команда для поиска прог и их директорий 2
 
         } catch (Exception err) {

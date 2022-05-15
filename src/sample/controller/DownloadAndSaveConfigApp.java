@@ -632,6 +632,21 @@ return builder;
 
     }
 
+    //сохранение списка дисков пк
+    public void saveListOfEXEFilesInDirectories(StringBuilder listDiskPC){
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
+            //присваеивание текста новым билдером
+            StringBuilder ListDisk =listDiskPC;
+
+            fs.write(String.valueOf(ListDisk));
+
+            fs.flush();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     //загрузка списка дисков пк
     public StringBuilder downloadAllDiskPC() {
         String s="";
@@ -745,7 +760,7 @@ return builder;
             while (list != null) {
                 list = fis.readLine();
                 count++;
-             //   System.out.println(count + " стролько строк");
+                //  System.out.println(count + " стролько строк");
 
             }
 
@@ -772,7 +787,7 @@ return builder;
 
                 builder.append(list + "\n");
 
-             //   System.out.println(builder);
+                //   System.out.println(builder);
 
             }
 

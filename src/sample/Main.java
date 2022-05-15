@@ -36,8 +36,11 @@ public class Main extends Application {
         GetAllProgrammPC.getListDiskPC();
        // AllStaticData.getApp().downloadAllDiskPC();
 
+
         //загружаем цвет стандартный цвет приложения
         AllStaticData.getApp().downloadStandartColorApp();
+
+
         ProcessTracking.trackingProgramm();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));

@@ -66,7 +66,8 @@ public class WindowMenu {
         GetAllProgrammPC.getAllProgrammPC();
 //грузим директории без дубликатов
         GetAllProgrammPC.searchForTheProgramPowershellDirectory();
-
+//грузим файлы в директориях
+        GetAllProgrammPC.getListOfEXEFilesInDirectories();
 
         //ставим настройки цевета
         colorDown.styleProperty().set(AllStaticData.getPaneUp().getStyle());
