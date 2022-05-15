@@ -22,6 +22,7 @@ import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.CreatingAndDeletingADirectory;
+import sample.controller.GetAllProgrammPC;
 
 public class WindowSettings {
 
@@ -142,6 +143,10 @@ public class WindowSettings {
     // загружается  панель  отслеживания программ
     @FXML
     public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
+
+
+
+
         //грузим чтобы с статик билдером можно было манипулировать
         AllStaticData.app.downloadListProgr();
         //объединяем списки программ пк и пользователя

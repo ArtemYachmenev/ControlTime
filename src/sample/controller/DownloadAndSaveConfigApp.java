@@ -747,6 +747,57 @@ return builder;
     }
 
 
+    //грузим старый  лист программ пк из повершелла БЕЗ ИЗМЕНЕНИЙ И ФИЛЬТРА который был сформирован при создании профиля
+    public StringBuilder downloadOldAllProgramPCPowershell() {
+        String s="";
+
+        StringBuilder list=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE)))
+        {
+
+
+            while (s != null) {
+                s = fis.readLine();
+                list.append(s+"\n");
+
+
+            }
+            //  System.out.println(list);
+
+
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+    //грузим старый  лист программ пк из повершелла БЕЗ ИЗМЕНЕНИЙ И ФИЛЬТРА который был сформирован при создании профиля
+    public StringBuilder downloadNewAllProgramPCPowershell() {
+        String s="";
+
+        StringBuilder list=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.programPCPowershellCompare, StandardCharsets.UTF_16LE)))
+        {
+
+
+            while (s != null) {
+                s = fis.readLine();
+                list.append(s+"\n");
+
+
+            }
+            //  System.out.println(list);
+
+
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+
     //грузим лист программ пк c директориями из повершелла
     public StringBuilder downloadAllProgramPowershellDirectory() {
         StringBuilder builder = new StringBuilder();

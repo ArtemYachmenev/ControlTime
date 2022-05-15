@@ -19,18 +19,27 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //если нет файла со списком приложений то создаем его
         CreatingAndDeletingADirectory.createListPrograms();
-
+// ставим файл для фалов в директориях приложений
+        CreatingAndDeletingADirectory.createListOfEXEFilesInDirectories();
         //если нет файла со списком дисков то создаем его
         CreatingAndDeletingADirectory.createListDisk();
         //если нет файла со списком директорий программ от повершелла то создаем его
         CreatingAndDeletingADirectory.createListProgramsPowershell();
+        //если нет файла со списком директорий программ от повершелла для дальнейшего сравнения то создаем его
+        CreatingAndDeletingADirectory.createListProgramsPowershellCompare();
         //если нет файла со списком директорий программ то создаем его
         CreatingAndDeletingADirectory.createListDirProg();
 
-//загружаем все программы установленные на пк из повершелла
+//загружаем все программы установленные на пк из повершелла и файл для сравнения
 
-        GetAllProgrammPC.getAllProgramPowershall();
+      //  GetAllProgrammPC.getAllProgramPowershall();
         GetAllProgrammPC.getAllProgramDirPowershell();
+
+
+
+        //грузим новый список для сравнения приложений пк, обновились или нет
+        GetAllProgrammPC.newAllProgramPowershall();
+
 
         //загружаем все диски пк
         GetAllProgrammPC.getListDiskPC();

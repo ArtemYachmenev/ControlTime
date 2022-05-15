@@ -32,6 +32,7 @@ public class CheckingForANewUser {
             AllStaticData.getApp().saveListNewProgr();
             AllStaticData.getApp().saveUsedListNewProgr();
             AllStaticData.getApp().saveNewGeneralListOfPrograms();
+            GetAllProgrammPC.getAllProgramPowershall();
             AllStaticData.getApp().downloadConfigAndSetting();
             System.out.println("новая директория для нового пользователя");
         }

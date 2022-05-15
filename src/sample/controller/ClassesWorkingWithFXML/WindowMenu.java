@@ -57,8 +57,7 @@ public class WindowMenu {
     void initialize() {
         //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
         CreatingAndDeletingADirectory.setDir();
-        // ставим файл для фалов в директориях приложений
-        CreatingAndDeletingADirectory.createListOfEXEFilesInDirectories();
+
         CheckingForANewUser.CheckingForANewUser();
         //если нет общего файла со списком приложений пк и пользователя то создаем его
         CreatingAndDeletingADirectory.createGeneralListOfPrograms();
@@ -67,7 +66,20 @@ public class WindowMenu {
 //грузим директории без дубликатов
         GetAllProgrammPC.searchForTheProgramPowershellDirectory();
 //грузим файлы в директориях
-        GetAllProgrammPC.getListOfEXEFilesInDirectories();
+    //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
+
+//сравниваем списки
+        GetAllProgrammPC.comparisonAllProgramPowershall();
+        //создаем файл пк программ для сравнения с существующих списком
+//        GetAllProgrammPC.comparisonAllProgramPowershall();
+//
+//
+//        if (GetAllProgrammPC.hmmmm==true){
+//            GetAllProgrammPC.getListOfEXEFilesInDirectories();
+//        }
+
+
+
 
         //ставим настройки цевета
         colorDown.styleProperty().set(AllStaticData.getPaneUp().getStyle());

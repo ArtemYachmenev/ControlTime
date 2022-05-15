@@ -23,6 +23,8 @@ public  class CreatingAndDeletingADirectory {
     public static File generalListOfPrograms;
     //файл со всеми программами пк и директориями
     public static File listDir;
+    //файл со всеми программами пк и директориями новый для сравнения
+    public static File programPCPowershellCompare;
     //файл со всеми программами пк и директориями
     public static File listOfEXEFilesInDirectories;
    // public static File programPCAll;
@@ -110,6 +112,21 @@ public  class CreatingAndDeletingADirectory {
 
     }
 
+
+    //создаем файл со списком приложений новый для сравнения со старым
+    public static void createListProgramsPowershellCompare() {
+
+        programPCPowershellCompare = new File(("C:\\dataControlTime\\listProgramsPowershellCompare.txt"));
+        try {
+            programPCPowershellCompare.createNewFile();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     //удаляем файл со списком приложений
     public static void overwritingListProgramsPowershell() {
 
@@ -180,6 +197,8 @@ public  class CreatingAndDeletingADirectory {
 
 
     }
+
+
 
 
 

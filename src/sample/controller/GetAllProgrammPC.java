@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GetAllProgrammPC {
 
@@ -11,6 +12,7 @@ public class GetAllProgrammPC {
     public static StringBuilder disk = new StringBuilder();
     public static StringBuilder program = new StringBuilder();
     public static StringBuilder dir = new StringBuilder();
+
     public static StringBuilder listOfEXEFilesInDirectories = new StringBuilder();
     // команда  с дополнительными параметрами
 //" Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | " +
@@ -24,6 +26,8 @@ public class GetAllProgrammPC {
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending " +
                     "| Out-File -Width 200 "
                     + CreatingAndDeletingADirectory.programPCPowershell);
+            p.getOutputStream().close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,6 +40,71 @@ public class GetAllProgrammPC {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+// каждый запуск делаем файл для сравнения если список приложений пк изменился то обновляем список путей
+    public static void newAllProgramPowershall()  {
+
+        Process p = null;
+
+
+        try {
+            p = Runtime.getRuntime().exec("powershell " + " Get-ChildItem HKLM:" +
+                    "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software" +
+                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
+                    "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending | Out-File  -Width 200 " +
+                    CreatingAndDeletingADirectory.programPCPowershellCompare);
+
+          
+           
+            p.getOutputStream().close();
+
+
+
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//            Process p = Runtime.getRuntime().exec("powershell " + " Get-ChildItem HKLM:" +
+//                    "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software" +
+//                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
+//                    "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending " );
+        try {
+            p.getOutputStream().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    // каждый запуск делаем файл для сравнения если список приложений пк изменился то обновляем список путей
+    public static void comparisonAllProgramPowershall()  {
+        String line=new String();
+        Process p = null;
+        StringBuilder builder=AllStaticData.app.downloadNewAllProgramPCPowershell();
+        StringBuilder builder2=AllStaticData.app.downloadOldAllProgramPCPowershell();
+       // System.out.println(builder2);
+       // System.out.println(builder2 + " gggggggggggggggggggggggggggggggggggggggggggggggg");
+
+
+//сравниваение фалов с пк программами
+     //  if (builder.compareTo(builder2)!=0){
+          if (!Objects.equals(builder.toString().length(),builder2.toString().length())){
+                //грузим файлы в директориях
+
+                getAllProgramPowershall();
+
+                getListOfEXEFilesInDirectories();
+
+            }
+
+
+
 
     }
 
