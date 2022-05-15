@@ -41,8 +41,7 @@ public class Main extends Application {
         GetAllProgrammPC.newAllProgramPowershall();
 
 
-        //загружаем все диски пк
-        GetAllProgrammPC.getListDiskPC();
+
        // AllStaticData.getApp().downloadAllDiskPC();
 
 

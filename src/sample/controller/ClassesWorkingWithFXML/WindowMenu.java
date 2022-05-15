@@ -61,6 +61,10 @@ public class WindowMenu {
         CheckingForANewUser.CheckingForANewUser();
         //если нет общего файла со списком приложений пк и пользователя то создаем его
         CreatingAndDeletingADirectory.createGeneralListOfPrograms();
+
+        //сравниваем списки
+        GetAllProgrammPC.comparisonAllProgramPowershall();
+
 //форматируем все программы установленные на пк из повершелла
         GetAllProgrammPC.getAllProgrammPC();
 //грузим директории без дубликатов
@@ -68,15 +72,15 @@ public class WindowMenu {
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
 
-//сравниваем списки
-        GetAllProgrammPC.comparisonAllProgramPowershall();
+
         //создаем файл пк программ для сравнения с существующих списком
 //        GetAllProgrammPC.comparisonAllProgramPowershall();
 //
 //
-//        if (GetAllProgrammPC.hmmmm==true){
-//            GetAllProgrammPC.getListOfEXEFilesInDirectories();
-//        }
+        //если список программ с прошлого запуска пк изменился то ищем новые ехе
+        if (GetAllProgrammPC.programsHaveChanged==true){
+            GetAllProgrammPC.getListOfEXEFilesInDirectories();
+        }
 
 
 

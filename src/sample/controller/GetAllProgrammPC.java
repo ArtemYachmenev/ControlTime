@@ -13,6 +13,7 @@ public class GetAllProgrammPC {
     public static StringBuilder program = new StringBuilder();
     public static StringBuilder dir = new StringBuilder();
 
+    public static boolean programsHaveChanged=false;
     public static StringBuilder listOfEXEFilesInDirectories = new StringBuilder();
     // команда  с дополнительными параметрами
 //" Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | " +
@@ -96,10 +97,12 @@ public class GetAllProgrammPC {
      //  if (builder.compareTo(builder2)!=0){
           if (!Objects.equals(builder.toString().length(),builder2.toString().length())){
                 //грузим файлы в директориях
-
                 getAllProgramPowershall();
+              //загружаем все диски пк
+              GetAllProgrammPC.getListDiskPC();
+              programsHaveChanged=true;
 
-                getListOfEXEFilesInDirectories();
+
 
             }
 
