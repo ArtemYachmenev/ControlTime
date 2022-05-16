@@ -256,29 +256,29 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
     //загрузка обычного списка билдера используемых приложений для отслеживания времени
     public StringBuilder downloadAListOfUsedApplicationsTracking() {
-        String s="";
+        String list="";
 
-        StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+
+//читаем нужное количество строк
+
+        StringBuilder listPrograms=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE)))
         {
 
 
-            while (s != null) {
-                s = fis.readLine();
-                list.append(s+"\n");
+            String line=new String();
+            while ((line = fis.readLine()) != null) {
+                listPrograms.append(line+"\n");
 
 
             }
-            //  System.out.println(list);
-
-
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return list;
-    }
+
+        return  listPrograms;
+        }
 
 
     //сохранение всех приложений пользователя без перезаписи
@@ -551,7 +551,7 @@ fs.flush();
         StringBuilder builder = new StringBuilder();
 
 
-        int count = 0;
+
 
         String list = "";
         //читаем количество строк
@@ -563,11 +563,12 @@ fs.flush();
 
             }
 
-            //   System.out.println(builder);
+            //   System.out.println(builder+ "       eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
 return builder;
     }
 
@@ -676,27 +677,32 @@ return builder;
 
     //загрузка списка .exe программ
     public StringBuilder downloadListOfEXEFilesInDirectories() {
+
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listOfEXEFilesInDirectories.txt", StandardCharsets.UTF_16LE)))
+
+
+
+//читаем нужное количество строк
+
+        StringBuilder listPrograms=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE)))
         {
 
 
-            while (s != null) {
-                s = fis.readLine();
-                list.append(s+"\n");
+            String line=new String();
+            while ((line = fis.readLine()) != null) {
+                listPrograms.append(line+"\n");
 
 
             }
-            //  System.out.println(list);
-
-
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return list;
+
+        return  listPrograms;
     }
 
 
@@ -717,7 +723,7 @@ return builder;
 
 
             }
-          //  System.out.println(list);
+            System.out.println(list);
 
 
 

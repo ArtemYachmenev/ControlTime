@@ -63,7 +63,7 @@ public class WindowMenu {
         GetAllProgrammPC.comparisonAllProgramPowershall();
 //форматируем все программы установленные на пк из повершелла
         GetAllProgrammPC.getAllProgrammPC();
-
+        StartTrackingTheWorkOfPrograms.runProgramAndWait();
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
 
@@ -129,7 +129,7 @@ public class WindowMenu {
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
-           StartTrackingTheWorkOfPrograms.runProgramAndWait();
+
         }
 
     }
