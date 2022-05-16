@@ -13,10 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import sample.controller.AllStaticData;
-import sample.controller.CheckingForANewUser;
-import sample.controller.CreatingAndDeletingADirectory;
-import sample.controller.GetAllProgrammPC;
+import sample.controller.*;
 
 
 public class WindowMenu {
@@ -64,7 +61,8 @@ public class WindowMenu {
 
         //сравниваем списки
         GetAllProgrammPC.comparisonAllProgramPowershall();
-
+//форматируем все программы установленные на пк из повершелла
+        GetAllProgrammPC.getAllProgrammPC();
 
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
@@ -76,6 +74,7 @@ public class WindowMenu {
 //
         //если список программ с прошлого запуска пк изменился то ищем новые ехе
 //        if (GetAllProgrammPC.programsHaveChanged==true){
+//            GetAllProgrammPC.getListOfEXEFilesInDirectories();
 //
 //        }
 
@@ -130,6 +129,7 @@ public class WindowMenu {
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
+           StartTrackingTheWorkOfPrograms.runProgramAndWait();
         }
 
     }

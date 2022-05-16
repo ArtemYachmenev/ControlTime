@@ -73,7 +73,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
             {
             config = fis.readLine();
-            System.out.println("download "+config);
+         //   System.out.println("download "+config);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -82,7 +82,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             setting =  fis.readLine();
-            System.out.println("download "+setting);
+        //    System.out.println("download "+setting);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -103,7 +103,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             //сохранение статиков конфига
             String ListProgr ="";
             fs.write(ListProgr);
-            System.out.println("save all listProgr for new profile" + ListProgr);
+         //   System.out.println("save all listProgr for new profile" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -119,7 +119,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             //сохранение статиков конфига
             String ListProgr ="";
             fs.write(ListProgr);
-            System.out.println("save used listProgr for new profile" + ListProgr);
+       //     System.out.println("save used listProgr for new profile" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -136,7 +136,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
-            System.out.println("save used list \n" + ListProgr);
+       //     System.out.println("save used list \n" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -153,7 +153,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
-            System.out.println("save used list \n" + ListProgr);
+      //      System.out.println("save used list \n" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -184,7 +184,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             while (list!=null){
                 list =  fis.readLine();
                 countLinesListProgr++;
-                System.out.println(countLinesListProgr+" стролько строк");
+            //    System.out.println(countLinesListProgr+" стролько строк");
             }
 
         } catch (IOException e) {
@@ -229,7 +229,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             //  progr= FXCollections.observableArrayList(list);
             // progr= FXCollections.observableArrayList(builder.toString());
 
-            System.out.println("download used list \n"+progr);
+        //    System.out.println("download used list \n"+progr);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -249,8 +249,35 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(AllStaticData.ListUsedProgr+" загружаются используемые программмы из загрузовчного списка");
+  //      System.out.println(AllStaticData.ListUsedProgr+" загружаются используемые программмы из загрузовчного списка");
         return  progr;
+    }
+
+
+    //загрузка обычного списка билдера используемых приложений для отслеживания времени
+    public StringBuilder downloadAListOfUsedApplicationsTracking() {
+        String s="";
+
+        StringBuilder list=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+        {
+
+
+            while (s != null) {
+                s = fis.readLine();
+                list.append(s+"\n");
+
+
+            }
+            //  System.out.println(list);
+
+
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
 
 
@@ -281,7 +308,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
-            System.out.println("save all list \n" + ListProgr);
+       //     System.out.println("save all list \n" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -327,7 +354,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
 
                 countLinesListProgr++;
-                System.out.println(countLinesListProgr+" стролько строк");
+       //         System.out.println(countLinesListProgr+" стролько строк");
             }
 
         } catch (IOException e) {
@@ -363,11 +390,11 @@ public class DownloadAndSaveConfigApp implements Serializable {
             //  progr= FXCollections.observableArrayList(list);
            // progr= FXCollections.observableArrayList(builder.toString());
 
-            System.out.println("download list \n"+progr);
+      //      System.out.println("download list \n"+progr);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(AllStaticData.ListAllProgr+" загружаются программмы из загрузовчного списка");
+   //     System.out.println(AllStaticData.ListAllProgr+" загружаются программмы из загрузовчного списка");
 return  progr;
     }
 
@@ -647,6 +674,34 @@ return builder;
 
     }
 
+    //загрузка списка .exe программ
+    public StringBuilder downloadListOfEXEFilesInDirectories() {
+        String s="";
+
+        StringBuilder list=new StringBuilder();
+        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listOfEXEFilesInDirectories.txt", StandardCharsets.UTF_16LE)))
+        {
+
+
+            while (s != null) {
+                s = fis.readLine();
+                list.append(s+"\n");
+
+
+            }
+            //  System.out.println(list);
+
+
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+
+
+
     //загрузка списка дисков пк
     public StringBuilder downloadAllDiskPC() {
         String s="";
@@ -866,7 +921,7 @@ return builder;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        //  System.out.println(builder);
+      //    System.out.println(builder);
         return builder1;
     }
 

@@ -95,21 +95,20 @@ public class GetAllProgrammPC {
 
 //сравниваение фалов с пк программами если не сходится то все обновляем
      //  if (builder.compareTo(builder2)!=0){
-          if (!Objects.equals(builder.toString().length(),builder2.toString().length())){
+        if (!Objects.equals(builder.toString().length(),builder2.toString().length())){
 //грузим файлы в директориях
-              GetAllProgrammPC.getAllProgramPowershall();
-              //загружаем все диски пк
-              GetAllProgrammPC.getListDiskPC();
-              //форматируем все программы установленные на пк из повершелла
-              GetAllProgrammPC.getAllProgrammPC();
+            GetAllProgrammPC.getAllProgramPowershall();
+            //загружаем все диски пк
+            GetAllProgrammPC.getListDiskPC();
+
 //грузим директории без дубликатов
-              GetAllProgrammPC.searchForTheProgramPowershellDirectory();
-              GetAllProgrammPC.getListOfEXEFilesInDirectories();
-              programsHaveChanged=true;
+            GetAllProgrammPC.searchForTheProgramPowershellDirectory();
+            GetAllProgrammPC.getListOfEXEFilesInDirectories();
+            programsHaveChanged=true;
 
 
 
-            }
+        }
 
 
 
@@ -117,7 +116,7 @@ public class GetAllProgrammPC {
     }
 
 
-
+//чистим дубликаты программ из ответа повершелла
     public static void getAllProgrammPC(){ //> С:\list-of-programs.txt
         ArrayList<String> list=new ArrayList<>();
 
@@ -167,10 +166,10 @@ public class GetAllProgrammPC {
 //            list.remove(1);
 //            list.remove(list.size()-2);
 //            list.remove(list.size()-1);
-            //цикл фильтрующий список листа с программами
+            //цикл фильтрующий список листа с программами Objects.equals(list.get(i),"\n")
             for (int i=0;i<list.size();i++){
-                if (list.get(i).equals(null)||list.get(i).equals("\n")||list.get(i).equals("")||list.get(i).contains("-----------")||list.get(i).contains("DisplayName")
-                        ||list.get(i).equals("")||list.get(i).equals("\s")||list.get(i).equals("\n")){
+                if (list.get(i).equals(null)||Objects.equals(list.get(i),"\n")||list.get(i).equals("")||list.get(i).contains("-----------")||list.get(i).contains("DisplayName")
+                        ||list.get(i).equals(" ")||Objects.equals(list.get(i),"")||list.get(i).equals("\s")||Objects.equals(list.get(i),"\\n")||list.get(i).contains("                                                ")){
                     list.set(i,"");
 
                 }
@@ -179,7 +178,7 @@ public class GetAllProgrammPC {
 
 //цикл втсавляющий не пустые строки в список листа с программами
             for (int i=0; i<list.size();i++){
-                if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
+                if (!(Objects.equals(list.get(i),""))&&!(Objects.equals(list.get(i),"\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
                     program.append(list.get(i) + "\n");
                 }
             }
@@ -200,6 +199,9 @@ public class GetAllProgrammPC {
 
 
     }
+
+
+
 
     public static void getListDiskPC(){
         ArrayList<String> list=new ArrayList<>();
@@ -283,7 +285,7 @@ public class GetAllProgrammPC {
     public static void searchForTheProgramPowershellDirectory(){
 
             ArrayList<String> list=new ArrayList<>();
-
+        ArrayList<String> list2=new ArrayList<>();
             String process_line;
 
 
@@ -299,6 +301,9 @@ public class GetAllProgrammPC {
                 list.add(l+"~~~~~");
              //     System.out.println(list);
             }
+
+
+
 
 //            list.remove(0);
 //            list.remove(1);
@@ -412,21 +417,33 @@ String substr2=str.substring(indexFirst, indexLast-1);
                      //   System.out.println(substr2);
 
                       //  System.out.println((str.substring(0, indexFirst-1)+" ggggggggggggggggggggggggggggggggggggggggggggggggggggggg"));
-                        builder3.append(substr+"\n");
+
 
 
 //команда для поиска ехе файлов в этих директориях
                         p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse *.exe | Select Name");
+
+                        //если у программы есть exe то записываем его
+                        BufferedReader inputGetNameProg =
+                                new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        while ((line = inputGetNameProg.readLine()) != null) {
+                            if (line.contains(".exe")) {
+                                builder3.append(substr+"\n");
+                                break;
+                            }}
+
                         BufferedReader input =
                                 new BufferedReader(new InputStreamReader(p.getInputStream()));
                         while ((line = input.readLine()) != null) {
-                           // line = input.readLine();
-                            if (!(line.contains("Name"))&&!(line.contains("----"))&&!(line.equals("\\n"))&&!(line.equals("\\s"))) {
 
-                         //   System.out.println("1111111111111111111111111111111111111111111111");
-                                System.out.println(line);
-                                builder3.append(line + "\n");
-                            }
+                                // line = input.readLine();
+                                if (!(line.contains("Name")) && !(line.contains("----")) && !(line.equals("\\n")) && !(line.equals("\\s"))) {
+
+                                    //   System.out.println("1111111111111111111111111111111111111111111111");
+                                    System.out.println(line);
+                                    builder3.append(line + "\n");
+                                }
+
 
                         }
                       //  builder3.append("~~~~~ \n");

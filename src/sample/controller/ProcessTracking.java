@@ -8,7 +8,7 @@ public class ProcessTracking {
 
     public static boolean programActivity=false;
 
-    public static Boolean trackingProgramm(){
+    public static void trackingProgramm(){
         try {
             String pr_name = "RazerCentralService.exe"; //<-- искомый процесс
             String process_line;
@@ -36,7 +36,7 @@ public class ProcessTracking {
             err.printStackTrace();
         }
         System.out.println(programActivity);
-return programActivity;
+//return programActivity;
 
     }
 }

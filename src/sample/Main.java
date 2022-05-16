@@ -32,7 +32,7 @@ public class Main extends Application {
 
 //загружаем все программы установленные на пк из повершелла и файл для сравнения
 
-      //  GetAllProgrammPC.getAllProgramPowershall();
+        //  GetAllProgrammPC.getAllProgramPowershall();
         GetAllProgrammPC.getAllProgramDirPowershell();
 
 

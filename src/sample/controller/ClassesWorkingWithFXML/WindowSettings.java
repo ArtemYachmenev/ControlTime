@@ -151,8 +151,8 @@ public class WindowSettings {
         AllStaticData.app.downloadListProgr();
         //объединяем списки программ пк и пользователя
         AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
-        //вместо первой и  второй версия панели сразу лист с програми
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestList.fxml"));
+        //вместо первой и  второй третья версия панели без программ пользователя сразу лист с програми
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestListNoUsersProgram.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
         System.out.println("нажата кнопка отслеживания програм");
