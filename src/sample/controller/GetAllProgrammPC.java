@@ -120,7 +120,7 @@ public class GetAllProgrammPC {
 //чистим дубликаты программ из ответа повершелла
     public static void getAllProgrammPC(){ //> С:\list-of-programs.txt
         ArrayList<String> list=new ArrayList<>();
-
+StringBuilder programBuilder=new StringBuilder();
 
         //> С:\list-of-programs.txt
             // String programs_name = " Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | " +
@@ -180,16 +180,16 @@ public class GetAllProgrammPC {
 //цикл втсавляющий не пустые строки в список листа с программами
             for (int i=0; i<list.size();i++){
                 if (!(Objects.equals(list.get(i),""))&&!(Objects.equals(list.get(i),"\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
-                    program.append(list.get(i) + "\n");
+                    programBuilder.append(list.get(i) + "\n");
                 }
             }
-
+      program=  programBuilder;
 
 
 
 
          //   CreatingAndDeletingADirectory.overwritingListPrograms();
-          AllStaticData.getApp().saveAllProgrammPC(program);
+          AllStaticData.getApp().saveAllProgrammPC(programBuilder);
          // builder1.setLength(0);
             // закрываем чтение
             // закрываем процесс
@@ -208,6 +208,7 @@ public class GetAllProgrammPC {
         ArrayList<String> list=new ArrayList<>();
         try {
 
+            StringBuilder diskBuilder=new StringBuilder();
             String programs_name = "wmic logicaldisk get name"; //<-- команда для вывода всех дисков пк
             String process_line;
 
@@ -238,15 +239,15 @@ public class GetAllProgrammPC {
 //цикл втсавляющий не пустые строки в список листа с дисками
             for (int i=0; i<list.size();i++){
                 if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))) {
-                    disk.append(list.get(i) + "\n");
+                    diskBuilder.append(list.get(i) + "\n");
                 }
             }
+disk=diskBuilder;
 
 
 
 
-
-            AllStaticData.app.saveAllDiskPC(disk);
+            AllStaticData.app.saveAllDiskPC(diskBuilder);
             // закрываем чтение
             input.close();
             // закрываем процесс
@@ -288,7 +289,7 @@ public class GetAllProgrammPC {
             ArrayList<String> list=new ArrayList<>();
         ArrayList<String> list2=new ArrayList<>();
             String process_line;
-
+        StringBuilder dirBuilder=new StringBuilder();
 
 
 
@@ -343,7 +344,7 @@ public class GetAllProgrammPC {
                     //если строка  содержит тот или иной диск
                     if (list.get(i).contains(list2.get(j))) {
 
-                        dir.append(list.get(i) + "\n");
+                        dirBuilder.append(list.get(i) + "\n");
 
 
 
@@ -354,10 +355,10 @@ public class GetAllProgrammPC {
             }
                     }
 
-
+       dir= dirBuilder;
 
             CreatingAndDeletingADirectory.overwritingProgramsDirPowershell();
-            AllStaticData.getApp().saveDirProgrammPC(dir);
+            AllStaticData.getApp().saveDirProgrammPC(dirBuilder);
             //команда для поиска прог и их директорий 2
 
 
