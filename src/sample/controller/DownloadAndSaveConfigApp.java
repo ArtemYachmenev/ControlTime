@@ -262,7 +262,8 @@ public class DownloadAndSaveConfigApp implements Serializable {
 //читаем нужное количество строк
 
         StringBuilder listPrograms=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( "C:\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
 
 
@@ -660,7 +661,7 @@ return builder;
 
     }
 
-    //сохранение списка дисков пк
+    //сохранение списка ехе пк
     public void saveListOfEXEFilesInDirectories(StringBuilder listDiskPC){
         try (BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
@@ -732,6 +733,8 @@ return builder;
         }
         return list;
     }
+
+
 
 
 

@@ -71,7 +71,7 @@ public  class CreatingAndDeletingADirectory {
             programPC = new File(("C:\\dataControlTime\\listPrograms.txt"));
         try {
             programPC.createNewFile();
-            AllStaticData.app.saveNewAllProgrammPC();
+        //    AllStaticData.app.saveNewAllProgrammPC();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,6 +94,14 @@ public  class CreatingAndDeletingADirectory {
 
         listDir.delete();
         createListDirProg();
+
+
+    }
+    //перезапись файла со списком exe
+    public static void overwritingEXE() {
+
+        listOfEXEFilesInDirectories.delete();
+        createListOfEXEFilesInDirectories();
 
 
     }

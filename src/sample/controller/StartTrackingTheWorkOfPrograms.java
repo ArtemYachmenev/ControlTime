@@ -34,6 +34,11 @@ public class StartTrackingTheWorkOfPrograms {
         //сделай чтобы совпадения искались и для каждый выбранной программы доставались exe
         //может даже файл с ехе сделать чтобы ехе сохранялис в строку
         //переводим в более удобочитаемую форму
+
+
+        //при поиске директорий еще отсеиваются программы без директорий, надо сделать так чтобы программы с директориями записались в файл с программами
+
+
         for (String l : lines){
           //   matcher = pattern1.matcher (l.trim());
 
@@ -42,14 +47,14 @@ public class StartTrackingTheWorkOfPrograms {
 
             //  System.out.println(list.add(l.trim())+" fgffffffffffffffffffffffffffffffffffff");
         }
-        System.out.println(list);
+
 
 builder.setLength(0);
         for (int i=0;i<list.size();i++){
 
        builder.append(list.get(i)+"\n");
         }
-        AllStaticData.getApp().saveAllProgrammPC(builder);
+
 
         //ставим массив в лист
         for (String l : lines2){
@@ -61,24 +66,34 @@ builder.setLength(0);
 
             builder2.append(list2.get(i)+"\n");
         }
-        AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder2);
-        System.out.println(list2);
+
+
+    //    AllStaticData.getApp().saveAllProgrammPC(builder);
+     //   AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder2);
+
+
+        //  System.out.println(list);
+    //    System.out.println(list2);
+
+
+
         int count=0;
         //перебор на поиск совпадений программ и вытяегивание ехе
         for (int i=0;i<list.size();i++){
             for (int j=0;j<list2.size();j++){
-                if (list.get(i).contains(list2.get(j))){
+             //   if (list.get(i).contains(list2.get(j))){
+                if (Objects.equals(list.get(i),list2.get(j))){
 
-                    System.out.println(list2.get(j)+"");
-
-
+                    //System.out.println(list2.get(j)+" ssssssssssssssssssssssssssssssssssss \n");
+                 s+=   list2.get(j)+" ssssssssssssssssssssssssssssssssssss \n";
+list3.add(list2.get(j));
 
                 }
 
             }
         }
 
-     //   System.out.println(s);
+        System.out.println(list3);
 
 
         Process process;

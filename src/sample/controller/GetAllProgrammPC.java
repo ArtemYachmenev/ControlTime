@@ -1,8 +1,7 @@
 package sample.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -100,6 +99,8 @@ public class GetAllProgrammPC {
             GetAllProgrammPC.getAllProgramPowershall();
             //загружаем все диски пк
             GetAllProgrammPC.getListDiskPC();
+            //форматируем все программы установленные на пк из повершелла
+            GetAllProgrammPC.getAllProgrammPC();
 
 //грузим директории без дубликатов
             GetAllProgrammPC.searchForTheProgramPowershellDirectory();
@@ -187,7 +188,7 @@ public class GetAllProgrammPC {
 
 
 
-            CreatingAndDeletingADirectory.overwritingListPrograms();
+         //   CreatingAndDeletingADirectory.overwritingListPrograms();
           AllStaticData.getApp().saveAllProgrammPC(program);
          // builder1.setLength(0);
             // закрываем чтение
@@ -291,17 +292,24 @@ public class GetAllProgrammPC {
 
 
 
-
+//директории
             StringBuilder builder= AllStaticData.getApp().downloadAllProgramPowershellDirectory();
             String[] lines = builder.toString().split("\\n");
 
+            //диски
+        StringBuilder builder2= AllStaticData.getApp().downloadAllDiskPC();
+        String[] lines2 = builder2.toString().split("\\n");
 
             //ставим массив в лист
             for (String l : lines){
-                list.add(l+"~~~~~");
+                list.add(l+"****");
              //     System.out.println(list);
             }
 
+        for (String l : lines2){
+            list2.add(l);
+            //     System.out.println(list);
+        }
 
 
 
@@ -319,14 +327,32 @@ public class GetAllProgrammPC {
 
             }
 
-//цикл втсавляющий не пустые строки в список листа с программами
+//цикл втсавляющий не пустые строки в список листа с программами наверно потом убрать
             for (int i=0; i<list.size();i++){
                 if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
-                    dir.append(list.get(i) + "\n");
+               //     dir.append(list.get(i) + "\n");
                 }
             }
 
 
+
+//цикл оставляющий только проги с директориями
+        for (int i=0; i<list.size()-1;i++){
+            if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))&&!(list.get(i).equals(" "))) {
+                for (int j = 0; j < list2.size(); j++) {
+                    //если строка  содержит тот или иной диск
+                    if (list.get(i).contains(list2.get(j))) {
+
+                        dir.append(list.get(i) + "\n");
+
+
+
+
+
+                    }
+                }
+            }
+                    }
 
 
 
@@ -346,6 +372,10 @@ public class GetAllProgrammPC {
     public static void getListOfEXEFilesInDirectories(){
         try {
 
+            CreatingAndDeletingADirectory.overwritingEXE();
+
+
+            CreatingAndDeletingADirectory.overwritingListPrograms();
 
         String line = "";
         String str=new String();
@@ -370,8 +400,11 @@ public class GetAllProgrammPC {
 
             //для сохранения директорий
 
-            ArrayList<String> list3=new ArrayList<>();
+
             StringBuilder builder3= new StringBuilder();
+
+            //для сохранения программ у которых есть ехе
+            StringBuilder builder4= new StringBuilder();
 
 
         //ставим массив в лист
@@ -403,8 +436,8 @@ public class GetAllProgrammPC {
 
                         //присваиваем индексам место где идет этот диск
                         int   indexFirst = list.get(i).indexOf(list2.get(j));
-                        //индекс откуда начинается конец ~~~~~
-                        int  indexLast=list.get(i).indexOf("~~~~~");
+                        //индекс откуда начинается конец ****
+                        int  indexLast=list.get(i).indexOf("****");
 
                        // line = list.get(i).substring(indexFirst, indexLast);
 str=list.get(i);
@@ -412,42 +445,45 @@ str=list.get(i);
 String substr=str.substring(0, indexFirst-1);
 //ее путь
 String substr2=str.substring(indexFirst, indexLast-1);
-                      //  System.out.println(list2.get(j));
-                     //   System.out.println(indexFirst);
-                     //   System.out.println(substr2);
+                      //  System.out.println("vvvvvvvvvvvvvvvv "+ substr2+" xxxxxxxxxxxxxxxxxxxxxxxx");
 
-                      //  System.out.println((str.substring(0, indexFirst-1)+" ggggggggggggggggggggggggggggggggggggggggggggggggggggggg"));
+                        //загружваем запрос в повершелл он сразу сохраняет ответ в файл
 
+                        //в два стрингбилдера почему то грузятся и названия и ехе одновременно
 
-
-//команда для поиска ехе файлов в этих директориях
-                        p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse *.exe | Select Name");
+                        exeAnswer(substr2);
+                        Thread.sleep(25);
+                        p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse -force *.exe | Select Name");
+Thread.sleep(25);
 
                         //если у программы есть exe то записываем его
                         BufferedReader inputGetNameProg =
                                 new BufferedReader(new InputStreamReader(p.getInputStream()));
                         while ((line = inputGetNameProg.readLine()) != null) {
                             if (line.contains(".exe")) {
-                                builder3.append(substr+"\n");
+                                builder3.append("***** "+substr+"\n");
+                                builder4.append(substr+"\n");
                                 break;
                             }}
-
+                        Thread.sleep(25);
                         BufferedReader input =
-                                new BufferedReader(new InputStreamReader(p.getInputStream()));
+                                new BufferedReader(new FileReader( "C:\\dataControlTime\\test.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
 
-                                // line = input.readLine();
-                                if (!(line.contains("Name")) && !(line.contains("----")) && !(line.equals("\\n")) && !(line.equals("\\s"))) {
+                            // line = input.readLine();
+                            if (!(line.contains("Name")) && !(line.contains("----")) && !(line.equals("\\n")) && !(line.equals("\\s"))) {
 
-                                    //   System.out.println("1111111111111111111111111111111111111111111111");
-                                    System.out.println(line);
-                                    builder3.append(line + "\n");
-                                }
+                                //   System.out.println("1111111111111111111111111111111111111111111111");
+                                System.out.println(line);
+                                builder3.append(line + "\n");
+                            }
 
 
                         }
-                      //  builder3.append("~~~~~ \n");
+                        Thread.sleep(25);
+                        //  builder3.append("~~~~~ \n");
                         p.getOutputStream().close();
+
 
 
 
@@ -460,28 +496,61 @@ String substr2=str.substring(indexFirst, indexLast-1);
 
         }
 
-//            for (int i=0; i<list3.size();i++) {
-//                builder3.append(list3.get(i)+"\n");
-//            }
 
 
+            BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\test.txt",StandardCharsets.UTF_16LE)) ;
+                //присваеивание текста новым билдером
 
 
+                fs.write(String.valueOf(""));
+
+                fs.flush();
+
+            BufferedWriter fs2 = new BufferedWriter(new FileWriter("C:\\dataControlTime\\test2.txt",StandardCharsets.UTF_16LE)) ;
+            //присваеивание текста новым билдером
 
 
+            fs2.write(String.valueOf(builder3));
 
+            fs.flush();
 
-
-
-            // CreatingAndDeletingADirectory.overwritingProgramsDirPowershell();
+          //   CreatingAndDeletingADirectory.overwritingEXE();
         AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder3);
+
+         //   CreatingAndDeletingADirectory.overwritingListPrograms();
+        //   System.out.println(builder4);
+            AllStaticData.getApp().saveAllProgrammPC(builder4);
         //команда для поиска прог и их директорий 2
 
+            builder.setLength(0);
+            builder2.setLength(0);
+            builder3.setLength(0);
+            builder4.setLength(0);
         } catch (Exception err) {
             err.printStackTrace();
         }
     }
 
 
+    public static void exeAnswer(String builder){
+        Process p;
+        try {
+            p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
+                    "| Out-File  -Width 200 C:\\dataControlTime\\test.txt" );
+
+
+            p.getOutputStream().close();;
+            p.getInputStream().close();
+//            p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
+//                    "| Out-File  -Width 200 C:\\dataControlTime\\test2.txt" );
+//
+//
+//            p.getOutputStream().close();;
+//            p.getInputStream().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

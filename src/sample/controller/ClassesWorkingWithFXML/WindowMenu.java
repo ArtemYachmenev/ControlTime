@@ -61,8 +61,10 @@ public class WindowMenu {
 
         //сравниваем списки
         GetAllProgrammPC.comparisonAllProgramPowershall();
-//форматируем все программы установленные на пк из повершелла
-        GetAllProgrammPC.getAllProgrammPC();
+
+        //раньше тут было, теперь это лежит в comparisonAllProgramPowershall
+        //форматируем все программы установленные на пк из повершелла
+        //        GetAllProgrammPC.getAllProgrammPC();
         StartTrackingTheWorkOfPrograms.runProgramAndWait();
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
