@@ -29,6 +29,8 @@ public class Main extends Application {
         CreatingAndDeletingADirectory.createListProgramsPowershellCompare();
         //если нет файла со списком директорий программ то создаем его
         CreatingAndDeletingADirectory.createListDirProg();
+        //если нет файла с ответом о exe в директориях программ то создаем его
+        CreatingAndDeletingADirectory.createDataEXE();
 
 //загружаем все программы установленные на пк из повершелла и файл для сравнения
 

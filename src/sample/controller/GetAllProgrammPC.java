@@ -468,7 +468,7 @@ Thread.sleep(25);
                             }}
                         Thread.sleep(25);
                         BufferedReader input =
-                                new BufferedReader(new FileReader( "C:\\dataControlTime\\test.txt", StandardCharsets.UTF_16LE));
+                                new BufferedReader(new FileReader( "C:\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
 
                             // line = input.readLine();
@@ -499,21 +499,15 @@ Thread.sleep(25);
 
 
 
-            BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\test.txt",StandardCharsets.UTF_16LE)) ;
-                //присваеивание текста новым билдером
+//            BufferedWriter fs = new BufferedWriter(new FileWriter("C:\\dataControlTime\\dataEXE.txt",StandardCharsets.UTF_16LE)) ;
+//                //присваеивание текста новым билдером
+//
+//
+//                fs.write(String.valueOf(""));
+//
+//                fs.flush();
 
 
-                fs.write(String.valueOf(""));
-
-                fs.flush();
-
-            BufferedWriter fs2 = new BufferedWriter(new FileWriter("C:\\dataControlTime\\test2.txt",StandardCharsets.UTF_16LE)) ;
-            //присваеивание текста новым билдером
-
-
-            fs2.write(String.valueOf(builder3));
-
-            fs.flush();
 
           //   CreatingAndDeletingADirectory.overwritingEXE();
         AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder3);
@@ -537,7 +531,7 @@ Thread.sleep(25);
         Process p;
         try {
             p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
-                    "| Out-File  -Width 200 C:\\dataControlTime\\test.txt" );
+                    "| Out-File  -Width 200 C:\\dataControlTime\\dataEXE.txt" );
 
 
             p.getOutputStream().close();;

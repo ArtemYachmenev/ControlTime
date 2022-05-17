@@ -27,6 +27,8 @@ public  class CreatingAndDeletingADirectory {
     public static File programPCPowershellCompare;
     //файл со всеми программами пк и директориями
     public static File listOfEXEFilesInDirectories;
+    //файл с ответ на запрос о ехе в директориях
+    public static File dataEXE;
    // public static File programPCAll;
 
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
@@ -57,6 +59,21 @@ public  class CreatingAndDeletingADirectory {
         try {
             listOfEXEFilesInDirectories.createNewFile();
            // AllStaticData.app.saveNewAllProgrammPC();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //создаем файл со списком файлов в директориях приложений пк
+    public static void createDataEXE() {
+
+        dataEXE = new File(("C:\\dataControlTime\\dataEXE.txt"));
+        try {
+            dataEXE.createNewFile();
+            // AllStaticData.app.saveNewAllProgrammPC();
 
         } catch (IOException e) {
             e.printStackTrace();
