@@ -24,6 +24,7 @@ public class StartTrackingTheWorkOfPrograms {
         //лист для хранения .exe
         ArrayList<String> list3=new ArrayList<>();
         String s=new String();
+        String a=new String();
 
         int firstIndex=0;
         int lastIndex=0;
@@ -72,8 +73,8 @@ builder.setLength(0);
      //   AllStaticData.getApp().saveListOfEXEFilesInDirectories(builder2);
 
 
-        //  System.out.println(list);
-    //    System.out.println(list2);
+          System.out.println(list + " gggggggggggggggggggggggggggggggggggggggggggggg");
+        System.out.println(list2+" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 
 
@@ -81,20 +82,40 @@ builder.setLength(0);
         //перебор на поиск совпадений программ и вытяегивание ехе
         for (int i=0;i<list.size();i++){
             for (int j=0;j<list2.size();j++){
-             //   if (list.get(i).contains(list2.get(j))){
-                if (Objects.equals(list.get(i),list2.get(j))){
+                if (list2.get(j).contains("***** ")) {
+                    firstIndex = list2.get(j).indexOf(" ");
+                 //   System.out.println(firstIndex + " xxxxxxxxxxxxxxxxxxx");
+                //    lastIndex = list2.get(j).indexOf(list2.get(j).length()-1);
+                //    System.out.println(lastIndex + " yyyyyyyyyyyyyyyyyyyyyy");
+                     s=list2.get(j).substring(firstIndex+1,list2.get(j).length());
+                    System.out.println(s + " ppppppppppppppppppppppp");
+                    if (list.get(i).contains(s)){
+                        count++;
 
-                    //System.out.println(list2.get(j)+" ssssssssssssssssssssssssssssssssssss \n");
-                 s+=   list2.get(j)+" ssssssssssssssssssssssssssssssssssss \n";
-list3.add(list2.get(j));
+                        //    if (Objects.equals(list.get(i),list2.get(j))) {
+                        for ( int k = j + 1 ; k < list2.size(); k++) {
 
+                            if (!list2.get(k).contains("***** ")) {
+                                //       System.out.println(list2.get(j));
+                                //System.out.println(list2.get(j)+" ssssssssssssssssssssssssssssssssssss \n");
+                              //  a += list2.get(k);
+                                    list3.add(list2.get(k));
+                            }
+                            else break;
+                        }
+                    }
                 }
+
+              //  s=null;
 
             }
         }
 
-        System.out.println(list3);
-
+     //   System.out.println(a+" ssssssssssssssssssssssssssssssssssss" );
+        for (int j=0;j<list3.size();j++) {
+            System.out.println(list3.get(j) + " ssssssssssssssssssssssssssssssssssss");
+        }
+        System.out.println(count);
 
         Process process;
         java.lang.Runtime runtime;

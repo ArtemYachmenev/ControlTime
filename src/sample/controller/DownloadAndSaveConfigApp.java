@@ -277,7 +277,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
+       // System.out.println(listPrograms+ " 2222222222222222222222222222222222");
         return  listPrograms;
         }
 

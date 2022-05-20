@@ -22,7 +22,7 @@ public class GetAllProgrammPC {
         try {
             p = Runtime.getRuntime().exec("powershell " + " Get-ChildItem HKLM:" +
                     "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software" +
-                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
+                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending " +
                     "| Out-File -Width 200 "
                     + CreatingAndDeletingADirectory.programPCPowershell);
@@ -52,7 +52,7 @@ public class GetAllProgrammPC {
         try {
             p = Runtime.getRuntime().exec("powershell " + " Get-ChildItem HKLM:" +
                     "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software" +
-                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
+                    "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending | Out-File  -Width 200 " +
                     CreatingAndDeletingADirectory.programPCPowershellCompare);
 
@@ -268,7 +268,7 @@ disk=diskBuilder;
             //команда для поиска прог и их директорий
             p=Runtime.getRuntime().exec("powershell Get-ChildItem HKLM:\\SOFTWARE" +
                     "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software\\Wow6432Node" +
-                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
+                    "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
                     "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
                     "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
                     CreatingAndDeletingADirectory.listDir);
@@ -453,20 +453,20 @@ String substr2=str.substring(indexFirst, indexLast-1);
                         //в два стрингбилдера почему то грузятся и названия и ехе одновременно
 
                         exeAnswer(substr2);
-                        Thread.sleep(25);
+                        Thread.sleep(50);
                         p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse -force *.exe | Select Name");
-Thread.sleep(25);
+Thread.sleep(50);
 
                         //если у программы есть exe то записываем его
                         BufferedReader inputGetNameProg =
                                 new BufferedReader(new InputStreamReader(p.getInputStream()));
                         while ((line = inputGetNameProg.readLine()) != null) {
                             if (line.contains(".exe")) {
-                                builder3.append("***** "+substr+"\n");
+                                builder3.append("***** "+substr.trim()+"\n");
                                 builder4.append(substr+"\n");
                                 break;
                             }}
-                        Thread.sleep(25);
+                        Thread.sleep(50);
                         BufferedReader input =
                                 new BufferedReader(new FileReader( "C:\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
@@ -526,7 +526,7 @@ Thread.sleep(25);
         }
     }
 
-
+//ответ из повершелла который
     public static void exeAnswer(String builder){
         Process p;
         try {
