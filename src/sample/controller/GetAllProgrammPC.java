@@ -453,10 +453,12 @@ String substr2=str.substring(indexFirst, indexLast-1);
                         //в два стрингбилдера почему то грузятся и названия и ехе одновременно
 
                         exeAnswer(substr2);
+
                         Thread.sleep(50);
                         p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse -force *.exe | Select Name");
 Thread.sleep(50);
-
+//ждем пока закончит выводить
+p.waitFor();
                         //если у программы есть exe то записываем его
                         BufferedReader inputGetNameProg =
                                 new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -534,6 +536,12 @@ Thread.sleep(50);
                     "| Out-File  -Width 200 C:\\dataControlTime\\dataEXE.txt" );
 
 
+            //ждем пока закончит писать в файл
+            try {
+                p.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             p.getOutputStream().close();;
             p.getInputStream().close();
 //            p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+

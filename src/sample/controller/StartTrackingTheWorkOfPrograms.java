@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -145,6 +147,7 @@ public class StartTrackingTheWorkOfPrograms {
 
     //чтобы от каждой прогри шел отдельный поток с ехе, и от каждого ехе свой проверяющий поток
 
+    //в файле где ехе приложений надо добавить pid
     public static void doesItWorkOrNot(ArrayList<String> list, int count) {
 
         String progName;
@@ -183,17 +186,17 @@ public class StartTrackingTheWorkOfPrograms {
             System.out.println(listProgEXE.get(j));
         }
 
+        ExecutorService executorService= Executors.newFixedThreadPool(count);
+        for (int i=0;i<count;i++){
 
-        boolean vmRunning = ProcessHandle.allProcesses()
-                .map(ProcessHandle::info)
-                .map(ProcessHandle.Info::command)
-                .flatMap(Optional::stream)
-                .anyMatch(s -> s.contains("ProtonVPN.exe"));
+        }
+
+
 
 //
 ////        ProcessHandle.allProcesses()
 ////                .forEach(process -> System.out.println(processDetails(process)));
-        System.out.println(vmRunning);
+  //      System.out.println(vmRunning);
  //   }
 //
 //    private static String processDetails(ProcessHandle process) {
@@ -244,6 +247,23 @@ public class StartTrackingTheWorkOfPrograms {
 //            System.out.println("no2");
 //            return false;
 //        }
+    }
+}
+class CheckProcess implements Runnable{
+
+    String nameProgram;
+    int countEXE;
+    ArrayList<String> nameEXE;
+
+
+    @Override
+    public void run() {
+        //тут показвает запущен ли процесс
+        boolean vmRunning = ProcessHandle.allProcesses()
+                .map(ProcessHandle::info)
+                .map(ProcessHandle.Info::command)
+                .flatMap(Optional::stream)
+                .anyMatch(s -> s.contains("Battle.net.exe"));
     }
 }
 

@@ -37,7 +37,7 @@ public class AllStaticData {
     public static String userAnswerRecovery=null;
 
     //используется для хранения значения включения или выключения приложения в меню
-    public static boolean OnOrOffAppButtonMenu=false;
+    public static volatile boolean  OnOrOffAppButtonMenu=false;
 
     //сохранение состояний чекбоксов персонального конфига
     public static boolean allTimeConfig=false;
