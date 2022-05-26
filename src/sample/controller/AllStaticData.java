@@ -87,8 +87,15 @@ public class AllStaticData {
     //статик для запуска отсчета времени и мониторинга мыши
    // public static boolean workApp=false;
 
+
+
+
     //лист для понятия работают или нет программы
     public volatile static ArrayList<String> workApp=new ArrayList<>();
+    //промежуточный лист для переноса программ и их состояний в таймер
+    public  static ArrayList<String> workApp2=new ArrayList<>();
+    //лист для хранения назвоний программ и количества их ехе
+    public  static ArrayList<String> nameProgCountEXE=new ArrayList<>();
 
 
 

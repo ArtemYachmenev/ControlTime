@@ -15,6 +15,8 @@ public class StartTrackingTheWorkOfPrograms {
   public static  volatile   ExecutorService executorService;
 
     public static void runProgramAndWait() {
+        //каждый раз обновляем лист
+        AllStaticData.nameProgCountEXE=new ArrayList<>();
 
         //грузим приложения которые надо отслеживать
         StringBuilder builder = AllStaticData.getApp().downloadAListOfUsedApplicationsTracking();
@@ -141,6 +143,7 @@ public class StartTrackingTheWorkOfPrograms {
       //  System.out.println(builder3);
 
         doesItWorkOrNot(list4,count);
+
         // System.out.println(doesItWorkOrNot());
     }
 
@@ -156,7 +159,7 @@ public class StartTrackingTheWorkOfPrograms {
     //
     public static void doesItWorkOrNot(ArrayList<String> list, int count) {
 
-        String progName;
+        String progName="";
 
         //индексы для вырезания названий программ
         int firstIndex = 0;
@@ -179,10 +182,14 @@ public class StartTrackingTheWorkOfPrograms {
                 firstIndex = list.get(j).indexOf(" ");
                 progName = list.get(j).substring(firstIndex + 1, list.get(j).length());
              //   listProgEXE.add(progName);
+                //добавляем в лист имя программы
+                AllStaticData.nameProgCountEXE.add(list.get(j));
                 //отсчет +2 чтобы отступить от изначального назваиня программы и пропустить пробел и звезды
                 for (int k = j + 2; k < list.size(); k++) {
                     if (!list.get(j).equals("\n") && !list.get(j).equals(null) && !list.get(j).equals("") && !list.get(j).equals(" ") && !list.get(j).equals("\s") && !list.get(j).equals(" \n")&&!list.get(k).contains("***** ")) {
                         listProgEXE.add(list.get(k));
+                        //добавляем в лист количесво ехе
+                        AllStaticData.nameProgCountEXE.add(list.get(k));
                         sumEXE++;
                     }
                     //если находим другие звезды то выходим из цикла
@@ -191,83 +198,34 @@ public class StartTrackingTheWorkOfPrograms {
                     }
 
                 }
-//                boolean vmRunning = ProcessHandle.allProcesses()
-//                        .map(ProcessHandle::pid)
-//                        .anyMatch(s -> Objects.equals(s,"6204"));
-//                System.out.println("ahahahahahahahhhhhhhhhhhhhhhhhhhhhhhh");
-//
-//                System.out.println(vmRunning);
-                //запускаем поток
-                executorService.execute(new CheckProcess(progName,sumEXE,listProgEXE));
-                sumEXE=0;
-                listProgEXE=new ArrayList<>();
+
+
+
+          //      operationTimer.checkingTheApplicationLaunch(AllStaticData.nameProgCountEXE,AllStaticData.workApp);
+           //     sumEXE=0;
+            //    listProgEXE=new ArrayList<>();
             }
         }
+                //просто смотрим что все нормально
+        for (int j = 0; j < AllStaticData.nameProgCountEXE.size(); j++) {
+            System.out.println(AllStaticData.nameProgCountEXE.get(j)+" bbbbbbbbbbbb");
+        }
 
-        //просто смотрим что все нормально
-//        for (int j = 0; j < listProgEXE.size(); j++) {
-//            System.out.println(listProgEXE.get(j));
-//        }
+        //запускаем поток
+        executorService.execute(new CheckProcess(progName,sumEXE,listProgEXE));
 
-
-
-
-
-
-//
-////        ProcessHandle.allProcesses()
-////                .forEach(process -> System.out.println(processDetails(process)));
-  //      System.out.println(vmRunning);
- //   }
-//
-//    private static String processDetails(ProcessHandle process) {
-//        return String.format("%8d %8s %10s %26s %-40s",
-//                process.pid(),
-//                process.info(),
-//                text(process.parent().map(ProcessHandle::pid)),
-//                text(process.info().user()),
-//                text(process.info().startInstant()),
-//                text(process.info().commandLine()));
-//    }
-//
-//    private static String text(Optional<?> optional) {
-//        return optional.map(Object::toString).orElse("-");
-//    }
-//
-//
+        //добавляем в лист имя программы и количесво ехе
 
 
-//        String line;
-//        Process process;
-//        java.lang.Runtime runtime;
-//        try {
-//            runtime = Runtime.getRuntime();
-//            process = runtime.exec("ProtonVPN");
-//            process.waitFor();
-//            if (0 == process.waitFor ()) {
-//                System.out.println("govno");
-//            }
-//            else {
-//                System.out.println("huinya");
-//            }
-//            BufferedReader input =
-//                    new BufferedReader(new InputStreamReader(process.getInputStream()));
-//            while ((line = input.readLine()) != null) {
-//                System.out.println(process.waitFor()); //<-- Parse data here.
-//
-//                process.waitFor();
-//            }
-//
-//
-//            return true;
-//
-//        } catch (InterruptedException e) {
-//            System.out.println("no1");
-//            return false;
-//        } catch (Exception e) {
-//            System.out.println("no2");
-//            return false;
-//        }
+        //запускаем прогу в которой в которой должен работать счетчик
+        OperationTimer operationTimer=new OperationTimer();
+      //  operationTimer.checkingTheApplicationLaunch();
+
+       executorService.execute(new OperationTimer());
+
+
+
+
     }
 }
 class CheckProcess implements Runnable {
@@ -296,18 +254,16 @@ class CheckProcess implements Runnable {
 //        }
         //пока выполнитель не выключен работает
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+            //каждый раз чистим список
+            AllStaticData.workApp.clear();
 //добавляем имя программы
-         //   AllStaticData.workApp.add("***** " + nameProgram);
+            //   AllStaticData.workApp.add("***** " + nameProgram);
             //тут показвает запущен ли процесс
             for (int i = 0; i < nameEXE.size(); i++) {
                 int finalI = i;
                 //      System.out.println(nameEXE.get(i));
 
-//тест где pid
 
-//                boolean vmRunning = ProcessHandle.allProcesses()
-//                        .map(ProcessHandle::pid)
-//                        .anyMatch(s -> Objects.equals(s, nameEXE.get(finalI)));
 
                 boolean vmRunning = ProcessHandle.allProcesses()
                         .map(ProcessHandle::info)
@@ -315,47 +271,12 @@ class CheckProcess implements Runnable {
                         .flatMap(Optional::stream)
                         .anyMatch(s -> s.contains(nameEXE.get(finalI)));
                 activity = vmRunning;
-                System.out.println(nameEXE.get(i) + " " + vmRunning);
-//                int indexNameProg = 0;
-////ищем индекс программы с которого потом начинаем отсчет
-//                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
-//                    if (AllStaticData.workApp.get(k).contains(nameProgram)) {
-//                        indexNameProg = k;
-//                    }
-//                }
 
-                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
-                    //если строка содержит имя то  значение перезаписываем
-                            if (AllStaticData.workApp.get(k).contains(nameEXE.get(i))) {
-                                AllStaticData.workApp.set(k, nameEXE.get(i) + " " + vmRunning);
-                            }
-                            else   AllStaticData.workApp.add(nameEXE.get(i) + " " + vmRunning);
-                        }
-//                for (int k = indexNameProg; k < AllStaticData.workApp.size(); k++) {
-//
-//
-//                    //отсчет +1 чтобы отступить от изначального назваиня программы
-//                    //перебор от первого ехе до последжнего одной программы
-//                    for (int b = k + 1; b < AllStaticData.workApp.size(); b++) {
-//
-//                        if (!AllStaticData.workApp.get(b).equals("\n") && !AllStaticData.workApp.get(b).equals(null) && !AllStaticData.workApp.get(b).isEmpty() && !AllStaticData.workApp.get(b).equals("")
-//                                && !AllStaticData.workApp.get(b).equals(" ") && !AllStaticData.workApp.get(b).equals("\s") && !AllStaticData.workApp.get(b).equals(" \n") && !AllStaticData.workApp.get(b).contains("***** ")) {
-//                            //если строка содержит имя то  значение перезаписываем
-//                            if (AllStaticData.workApp.get(b).contains(nameEXE.get(i))) {
-//                                AllStaticData.workApp.set(b, nameEXE.get(i) + " " + vmRunning);
-//                            }
-//                        }
-//
-//                    }
-//
-//
-//                }
+                //добавляем элементы
+                AllStaticData.workApp.add(nameEXE.get(i) + " " + vmRunning);
 
 
-                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
 
-                    System.out.println(AllStaticData.workApp.get(k));
-                }
                 //имя приложения и состояния его ехе (работают или нет) добавляются в лист
                 //если приложение уже есть в листе то состояния перезаписываются
 
@@ -363,13 +284,21 @@ class CheckProcess implements Runnable {
 
 
             }
+            //смотрим что все нормально
+//            for (int k = 0; k < AllStaticData.workApp.size(); k++) {
+//
+//                System.out.println(AllStaticData.workApp.get(k)+" aaaaaaaaaaaaaaaaaaaaaaaa");
+//            }
             try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
             }
+
         }
+
+
     }
 }
 

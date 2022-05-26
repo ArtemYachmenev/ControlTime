@@ -138,6 +138,7 @@ StartTrackingTheWorkOfPrograms.executorService.shutdown();
             //        запускаем мониторинг работы ехе
             StartTrackingTheWorkOfPrograms.runProgramAndWait();
             System.out.println("мониторим работающие exe");
+
 //            while (true) {
 //                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
 //                    System.out.println("new newenwnenewnew");
