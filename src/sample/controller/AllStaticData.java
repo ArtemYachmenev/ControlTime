@@ -2,6 +2,9 @@ package sample.controller;
 
 import javafx.scene.layout.AnchorPane;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class AllStaticData {
 
 
@@ -80,6 +83,16 @@ public class AllStaticData {
 
     //статик который вбирает одно закрытое окно и запускает сохранение конфига и настроек
     public static boolean checkCloseWindow=false;
+
+    //статик для запуска отсчета времени и мониторинга мыши
+   // public static boolean workApp=false;
+
+    //лист для понятия работают или нет программы
+    public volatile static ArrayList<String> workApp=new ArrayList<>();
+
+
+
+
 
     public static AnchorPane getPaneUp() {
         return paneUp;

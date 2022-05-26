@@ -466,6 +466,9 @@ p.waitFor();
                             if (line.contains(".exe")) {
                                 builder3.append("***** "+substr.trim()+"\n");
                                 builder4.append(substr+"\n");
+
+                                //пытаюсь найти pid родительских ехе
+                           //     Process getPid=Runtime.getRuntime().exec("wmic process get processid,parentprocessid,executablepath|find "avp.exe"");
                                 break;
                             }}
                         Thread.sleep(50);
@@ -477,6 +480,7 @@ p.waitFor();
                             if (!(line.contains("Name")) && !(line.contains("----")) && !(line.equals("\\n")) && !(line.equals("\\s"))) {
 
                                 //   System.out.println("1111111111111111111111111111111111111111111111");
+
                                 System.out.println(line);
                                 builder3.append(line + "\n");
                             }

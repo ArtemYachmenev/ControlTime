@@ -65,7 +65,7 @@ public class WindowMenu {
         //раньше тут было, теперь это лежит в comparisonAllProgramPowershall
         //форматируем все программы установленные на пк из повершелла
         //        GetAllProgrammPC.getAllProgrammPC();
-        StartTrackingTheWorkOfPrograms.runProgramAndWait();
+       // StartTrackingTheWorkOfPrograms.runProgramAndWait();
 //грузим файлы в директориях
     //    GetAllProgrammPC.getListOfEXEFilesInDirectories();
 
@@ -128,10 +128,22 @@ public class WindowMenu {
     public void klickButtonOn(){
         if (AllStaticData.OnOrOffAppButtonMenu==true){
             AllStaticData.OnOrOffAppButtonMenu=false;
+
+StartTrackingTheWorkOfPrograms.executorService.shutdown();
+            System.out.println("больше не мониторим работающие exe");
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
 
+            //        запускаем мониторинг работы ехе
+            StartTrackingTheWorkOfPrograms.runProgramAndWait();
+            System.out.println("мониторим работающие exe");
+//            while (true) {
+//                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
+//                    System.out.println("new newenwnenewnew");
+//                    System.out.println(AllStaticData.workApp.get(k));
+//                }
+//            }
         }
 
     }
