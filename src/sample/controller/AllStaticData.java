@@ -96,8 +96,10 @@ public class AllStaticData {
     public  static ArrayList<String> workApp2=new ArrayList<>();
     //лист для хранения назвоний программ и количества их ехе
     public  static ArrayList<String> nameProgCountEXE=new ArrayList<>();
-
-
+    //хранит в себе имя приложения и общее состояние
+  //  public volatile static ArrayList<Object> goWork = new ArrayList<>();
+    //хранит в себе имя приложения и общее состояние
+    public volatile static  ArrayList<Object> oneProgAndEXE=new ArrayList<>();
 
 
 

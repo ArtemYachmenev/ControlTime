@@ -1,11 +1,14 @@
 package sample.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Callable;
 
+//import static sample.controller.AllStaticData.goWork;
+import static sample.controller.AllStaticData.oneProgAndEXE;
+
+//import static sample.controller.AllStaticData.goWork;
+
+//отслеживает состояния ехе рпограмм
 public class OperationTimer implements Runnable {
 
     //нужно чтобы читались состояния ехе приложения и если есть хоть один тру
@@ -16,56 +19,70 @@ public class OperationTimer implements Runnable {
 
     //лист который хранит названия приложений и их состояния
     ArrayList<String> prog = new ArrayList<>();
+    //хранит имя приложения и состояния ехе
+    ArrayList<Object> trueOrFalse = new ArrayList<>();
+    //хранит в себе имя приложения и общее состояние
+    ArrayList<Object> goWork = new ArrayList<>();
+    //проверка на хотя бы один тру программы
+    public void checkingTheApplicationLaunch() {
 
-    //тут надо из одного листа считать названия приложений и их ехе и наложить их значения в prog
-//    public void checkingTheApplicationLaunch() {
-//
-//        System.out.println("huifffffffffffffffffffffffff");
-//
-//            try {
-//                Thread.sleep(10000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            prog.clear();
-//            for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
-//                for (int j = 0; j < AllStaticData.workApp2.size(); j++) {
-//                    if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
-//                        prog.add(AllStaticData.nameProgCountEXE.get(i));
-//                        for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
-//                            //&& nameProgAndEXE.get(k).contains(workApp.get(j))
-//                            if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-//                                prog.add(AllStaticData.workApp2.get(j));
-//                            } else break;
-//                        }
-//
-//
-//                    }
-//
-//                }
-//            }
-//            for (int i = 0; i < prog.size(); i++) {
-//
-//                System.out.println(prog.get(i)+" vvvvvvvvvvvvvvvvvvvv");
-//            }
-//
-//
-//
-//    }
-
-
-    @Override
-    public void run() {
-
-
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        int firstIndex = 0;
+        int lastIndex = 0;
+        String s;
 
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        for (int i = 0; i < prog.size(); i++) {
+            if (prog.get(i).contains("***** ")) {
+                firstIndex = prog.get(i).indexOf(" ");
+
+                s = prog.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
+                //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                trueOrFalse.add(s);
+
+                    for (int k = i + 1; k < prog.size(); k++) {
+
+                        if (!prog.get(k).contains("***** ")) {
+
+                            trueOrFalse.add(prog.get(k));
+
+                        }  if (prog.get(k).contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+        for (int i = 0; i < trueOrFalse.size(); i++) {
+
+            System.out.println(trueOrFalse.get(i)+" vvvvvvvvvvvvvvvvvvvv");
+        }
+
+        }
+
+
+
+
+
+    //тут надо из одного листа считать названия приложений и их ехе и наложить их значения в prog
+    @Override
+    public void run() {
+
+
+        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             prog.clear();
+            trueOrFalse.clear();
+            goWork.clear();
 
             int firstIndex = 0;
             int lastIndex = 0;
@@ -103,106 +120,271 @@ public class OperationTimer implements Runnable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-//копия
-//            for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
+//                for (int i = 0; i < prog.size(); i++) {
 //
-//                if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
-//                    //  System.out.println(AllStaticData.nameProgCountEXE.get(i));
-//                    prog.add(AllStaticData.nameProgCountEXE.get(i));
-//                    for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
-//                        for (int j = 0; j < AllStaticData.workApp.size(); j++) {
-//                            if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-//                                if (AllStaticData.workApp.get(j).trim().contains(AllStaticData.nameProgCountEXE.get(k).trim())) {
-//                                    prog.add(AllStaticData.workApp.get(j));
-//                                }
-//                            } else break;
-//
-//                        }
-//
-//                    }
-//
-//
+//                    System.out.println(prog.get(i)+" vvvvvvvvvvvvvvvvvvvv");
 //                }
+
+                //берем только состояния ехе и названия приложений
+            for (int i = 0; i < prog.size(); i++) {
+                if (prog.get(i).contains("***** ")) {
+                    firstIndex = prog.get(i).indexOf(" ");
+
+                    s = prog.get(i).substring(firstIndex + 1, prog.get(i).length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    trueOrFalse.add("***** "+s);
+
+                    for (int k = i + 1; k < prog.size(); k++) {
+
+                        if (!prog.get(k).contains("***** ")) {
+                            firstIndex = prog.get(k).lastIndexOf(" ");
+
+                            s = prog.get(k).substring(firstIndex + 1, prog.get(k).length());
+
+
+                            trueOrFalse.add(s);
+
+                        }  if (prog.get(k).contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+//            for (int i = 0; i < trueOrFalse.size(); i++) {
+//
+//                System.out.println(trueOrFalse.get(i)+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//            }
+
+            //достаем имя приложения и его общее состояние
+            for (int i = 0; i < trueOrFalse.size(); i++) {
+                if (trueOrFalse.get(i).toString().contains("***** ")) {
+                    firstIndex = trueOrFalse.get(i).toString().indexOf(" ");
+
+                    s = trueOrFalse.get(i).toString().substring(firstIndex + 1, trueOrFalse.get(i).toString().length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    goWork.add("***** "+s);
+
+                    for (int k = i + 1; k < trueOrFalse.size(); k++) {
+
+                        if (!trueOrFalse.get(k).toString().contains("***** ")) {
+                            if (trueOrFalse.get(k).toString().contains("true"))
+
+                            goWork.add("true");
+
+
+                        }  if (trueOrFalse.get(k).toString().contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+//            for (int i = 0; i < goWork.size(); i++) {
+//
+//                System.out.println(goWork.get(i));
 //            }
 
 
-//                for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
-//                    for (int j = 0; j < AllStaticData.workApp.size(); j++) {
-//                        if (AllStaticData.nameProgCountEXE.get(j).contains("***** ")) {
-//                            firstIndex = AllStaticData.nameProgCountEXE.get(i).indexOf(" ");
-//
-//                            s = AllStaticData.nameProgCountEXE.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
-//                            //     System.out.println(s + " ppppppppppppppppppppppp");
-//                            if (AllStaticData.nameProgCountEXE.get(i).contains(s)) {
-//
-//                                prog.add("***** " + s);
-//
-//
-//                                //    if (Objects.equals(list.get(i),list2.get(j))) {
-//                                for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
-//
-//                                    if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-//                                        if (AllStaticData.workApp.get(j).contains(AllStaticData.nameProgCountEXE.get(k))) {
-//                                            prog.add(AllStaticData.workApp.get(i));
-//                                        }
-//                                    } else break;
-//                                }
-//                            }
-//                        }
-//
-//                    }
-//                }
+            //чистим от дубликатов ехе
+            for (int i = 0; i < goWork.size(); i++) {
+                if (goWork.get(i).toString().contains("***** ")) {
+                    firstIndex = goWork.get(i).toString().indexOf(" ");
 
-//удаляем дубликаты
-//                Set<String> set = new HashSet<String>(prog);
-//                String[] result = set.toArray(new String[set.size()]);
-//                prog.clear();
-//                //присваиваем листам значения массивов
-//                for (String l : result) {
-//                    //   cleanListBuilder.add(l);
-//                    //  System.out.println(list+" лист использования");
-//                    prog.add(l);
-//                }
+                    s = goWork.get(i).toString().substring(firstIndex + 1, goWork.get(i).toString().length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
 
 
-                for (int i = 0; i < prog.size(); i++) {
+                    oneProgAndEXE.add(s);
 
-                    System.out.println(prog.get(i)+" vvvvvvvvvvvvvvvvvvvv");
+                    for (int k = i + 1; k < goWork.size(); k++) {
+
+                        if (!goWork.get(k).toString().contains("***** ")) {
+                            if (goWork.get(k).toString().contains("true"))
+                                oneProgAndEXE.add("***** true");
+break;
+                        }
+
+
+                        if (goWork.get(k).toString().contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < oneProgAndEXE.size(); i++) {
+
+                System.out.println(oneProgAndEXE.get(i)+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            }
+
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        }
+
+  //  @Override
+    public Object call() throws Exception {
+        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            prog.clear();
+
+            int firstIndex = 0;
+            int lastIndex = 0;
+            String s;
+
+
+            for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
+                if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
+                    firstIndex = AllStaticData.nameProgCountEXE.get(i).indexOf(" ");
+
+                    s = AllStaticData.nameProgCountEXE.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    prog.add("***** " + s);
+                    for (int j = 0; j < AllStaticData.workApp.size(); j++) {
+
+
+
+                        //    if (Objects.equals(list.get(i),list2.get(j))) {
+                        for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
+
+                            if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
+                                if (AllStaticData.workApp.get(j).trim().contains(AllStaticData.nameProgCountEXE.get(k).trim())) {
+                                    prog.add(AllStaticData.workApp.get(j));
+                                }
+                            }  if (AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
+                                break;
+                            }
+                        }
+                    }
                 }
 
             }
 
-        }
-    }
 
-// старый код длясоединения названий прог и состояний их ехе
-//                for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
-//                    for (int j = 0; j < AllStaticData.workApp.size(); j++) {
-//                        if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
-//                            prog.add(AllStaticData.nameProgCountEXE.get(i));
-//                            for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
-//                                //&& nameProgAndEXE.get(k).contains(workApp.get(j))
-//                                if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")&& !AllStaticData.nameProgCountEXE.get(k).equals(null)) {
-//                                    prog.add(AllStaticData.workApp.get(j));
-//                                }
-//                                if (AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-//                                    break;
-//                                };
-//                            }
+
+//                for (int i = 0; i < prog.size(); i++) {
 //
-//
-//                        }
-//
-//                    }
+//                    System.out.println(prog.get(i)+" vvvvvvvvvvvvvvvvvvvv");
 //                }
+
+            //берем только состояния ехе и названия приложений
+            for (int i = 0; i < prog.size(); i++) {
+                if (prog.get(i).contains("***** ")) {
+                    firstIndex = prog.get(i).indexOf(" ");
+
+                    s = prog.get(i).substring(firstIndex + 1, prog.get(i).length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    trueOrFalse.add("***** "+s);
+
+                    for (int k = i + 1; k < prog.size(); k++) {
+
+                        if (!prog.get(k).contains("***** ")) {
+                            firstIndex = prog.get(k).lastIndexOf(" ");
+
+                            s = prog.get(k).substring(firstIndex + 1, prog.get(k).length());
+
+
+                            trueOrFalse.add(s);
+
+                        }  if (prog.get(k).contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+//            for (int i = 0; i < trueOrFalse.size(); i++) {
+//
+//                System.out.println(trueOrFalse.get(i)+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//            }
+
+            //достаем имя приложения и его общее состояние
+            for (int i = 0; i < trueOrFalse.size(); i++) {
+                if (trueOrFalse.get(i).toString().contains("***** ")) {
+                    firstIndex = trueOrFalse.get(i).toString().indexOf(" ");
+
+                    s = trueOrFalse.get(i).toString().substring(firstIndex + 1, trueOrFalse.get(i).toString().length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    goWork.add(s);
+
+                    for (int k = i + 1; k < trueOrFalse.size(); k++) {
+
+                        if (!trueOrFalse.get(k).toString().contains("***** ")) {
+                            if (trueOrFalse.get(k).toString().contains("true"))
+
+                                goWork.add("***** true");
+
+
+                        }  if (trueOrFalse.get(k).toString().contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            //чистим от дубликатов ехе
+            for (int i = 0; i < goWork.size(); i++) {
+                if (goWork.get(i).toString().contains("***** ")) {
+                    firstIndex = goWork.get(i).toString().indexOf(" ");
+
+                    s = goWork.get(i).toString().substring(firstIndex + 1, goWork.get(i).toString().length());
+                    //     System.out.println(s + " ppppppppppppppppppppppp");
+
+
+                    oneProgAndEXE.add(s);
+
+                    for (int k = i + 1; k < goWork.size(); k++) {
+
+                        if (!goWork.get(k).toString().contains("***** ")) {
+                            if (goWork.get(k).toString().contains("true"))
+                                oneProgAndEXE.add("***** true");
+
+                        }
+                        if (Objects.equals(goWork.get(k).toString(),goWork.get(k+1).toString()))
+                        {
+                            break;
+                        }
+
+                        if (goWork.get(k).toString().contains("***** ")) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < oneProgAndEXE.size(); i++) {
+
+                System.out.println(oneProgAndEXE.get(i)+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            }
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return oneProgAndEXE;
+    }
+}

@@ -207,9 +207,9 @@ public class StartTrackingTheWorkOfPrograms {
             }
         }
                 //просто смотрим что все нормально
-        for (int j = 0; j < AllStaticData.nameProgCountEXE.size(); j++) {
-            System.out.println(AllStaticData.nameProgCountEXE.get(j)+" bbbbbbbbbbbb");
-        }
+//        for (int j = 0; j < AllStaticData.nameProgCountEXE.size(); j++) {
+//            System.out.println(AllStaticData.nameProgCountEXE.get(j)+" bbbbbbbbbbbb");
+//        }
 
         //запускаем поток
         executorService.execute(new CheckProcess(progName,sumEXE,listProgEXE));
@@ -290,7 +290,7 @@ class CheckProcess implements Runnable {
 //                System.out.println(AllStaticData.workApp.get(k)+" aaaaaaaaaaaaaaaaaaaaaaaa");
 //            }
             try {
-                Thread.sleep(30000);
+                Thread.sleep(20000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
