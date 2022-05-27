@@ -2,6 +2,8 @@ package sample.controller;
 
 import java.util.*;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 //import static sample.controller.AllStaticData.goWork;
 import static sample.controller.AllStaticData.oneProgAndEXE;
@@ -24,47 +26,9 @@ public class OperationTimer implements Runnable {
     //хранит в себе имя приложения и общее состояние
     ArrayList<Object> goWork = new ArrayList<>();
     //проверка на хотя бы один тру программы
-    public void checkingTheApplicationLaunch() {
-
-        int firstIndex = 0;
-        int lastIndex = 0;
-        String s;
-
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        for (int i = 0; i < prog.size(); i++) {
-            if (prog.get(i).contains("***** ")) {
-                firstIndex = prog.get(i).indexOf(" ");
-
-                s = prog.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
-                //     System.out.println(s + " ppppppppppppppppppppppp");
-
-
-                trueOrFalse.add(s);
-
-                    for (int k = i + 1; k < prog.size(); k++) {
-
-                        if (!prog.get(k).contains("***** ")) {
-
-                            trueOrFalse.add(prog.get(k));
-
-                        }  if (prog.get(k).contains("***** ")) {
-                            break;
-                        }
-                    }
-                }
-            }
-        for (int i = 0; i < trueOrFalse.size(); i++) {
-
-            System.out.println(trueOrFalse.get(i)+" vvvvvvvvvvvvvvvvvvvv");
-        }
-
-        }
-
-
+//
+    ExecutorService executorService;
+int count=0;
 
 
 
@@ -83,11 +47,11 @@ public class OperationTimer implements Runnable {
             prog.clear();
             trueOrFalse.clear();
             goWork.clear();
-
+            oneProgAndEXE.clear();
             int firstIndex = 0;
             int lastIndex = 0;
             String s;
-
+            count=0;
 
             for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
                 if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
@@ -114,6 +78,7 @@ public class OperationTimer implements Runnable {
                                 }
                             }
                         }
+
                     }
 
                 }
@@ -197,13 +162,13 @@ public class OperationTimer implements Runnable {
                     //     System.out.println(s + " ppppppppppppppppppppppp");
 
 
-                    oneProgAndEXE.add(s);
-
+                    oneProgAndEXE.add("***** "+s);
+count++;
                     for (int k = i + 1; k < goWork.size(); k++) {
 
                         if (!goWork.get(k).toString().contains("***** ")) {
                             if (goWork.get(k).toString().contains("true"))
-                                oneProgAndEXE.add("***** true");
+                                oneProgAndEXE.add("true");
 break;
                         }
 
@@ -212,14 +177,25 @@ break;
                             break;
                         }
                     }
+
                 }
             }
 
 
-            for (int i = 0; i < oneProgAndEXE.size(); i++) {
+//            for (int i = 0; i < oneProgAndEXE.size(); i++) {
+//
+//                System.out.println(oneProgAndEXE.get(i)+" ");
+//            }
 
-                System.out.println(oneProgAndEXE.get(i)+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            //надо чтобы после запуска таймера если приложение включилось оно отслеживалось
+            //может сделать алгоритм где после программы есть тру надо запускать его а если нет то опять цикл проходить а сзапущенное пропускать
+            if (AllStaticData.workTimer==false){
+                AllStaticData.workTimer=true;
+                executorService= Executors.newFixedThreadPool(count);
+                executorService.execute(new MyTimer());
             }
+
+
 
             try {
                 Thread.sleep(15000);
@@ -231,6 +207,22 @@ break;
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //  @Override
     public Object call() throws Exception {
@@ -273,6 +265,7 @@ break;
                             }
                         }
                     }
+
                 }
 
             }
@@ -387,4 +380,44 @@ break;
         }
         return oneProgAndEXE;
     }
+
+//    public void checkingTheApplicationLaunch() {
+//
+//        int firstIndex = 0;
+//        int lastIndex = 0;
+//        String s;
+//
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        for (int i = 0; i < prog.size(); i++) {
+//            if (prog.get(i).contains("***** ")) {
+//                firstIndex = prog.get(i).indexOf(" ");
+//
+//                s = prog.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
+//                //     System.out.println(s + " ppppppppppppppppppppppp");
+//
+//
+//                trueOrFalse.add(s);
+//
+//                    for (int k = i + 1; k < prog.size(); k++) {
+//
+//                        if (!prog.get(k).contains("***** ")) {
+//
+//                            trueOrFalse.add(prog.get(k));
+//
+//                        }  if (prog.get(k).contains("***** ")) {
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        for (int i = 0; i < trueOrFalse.size(); i++) {
+//
+//            System.out.println(trueOrFalse.get(i)+" vvvvvvvvvvvvvvvvvvvv");
+//        }
+//
+//        }
 }

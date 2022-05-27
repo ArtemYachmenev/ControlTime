@@ -99,7 +99,16 @@ public class AllStaticData {
     //хранит в себе имя приложения и общее состояние
   //  public volatile static ArrayList<Object> goWork = new ArrayList<>();
     //хранит в себе имя приложения и общее состояние
-    public volatile static  ArrayList<Object> oneProgAndEXE=new ArrayList<>();
+    public volatile static  ArrayList<String> oneProgAndEXE=new ArrayList<>();
+    //хранит в себе имя приложения для его отслеживания времени
+    public volatile static  ArrayList<String> nameProg=new ArrayList<>();
+    //хранит состояние таймера его работы
+    public volatile static boolean workTimer=false;
+
+
+
+
+
 
 
 

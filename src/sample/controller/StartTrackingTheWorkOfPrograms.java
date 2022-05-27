@@ -15,6 +15,7 @@ public class StartTrackingTheWorkOfPrograms {
   public static  volatile   ExecutorService executorService;
 
     public static void runProgramAndWait() {
+
         //каждый раз обновляем лист
         AllStaticData.nameProgCountEXE=new ArrayList<>();
 
@@ -169,7 +170,8 @@ public class StartTrackingTheWorkOfPrograms {
 
 
         //исполнитель запуска потоков
-       executorService= Executors.newFixedThreadPool(count);
+      // executorService= Executors.newFixedThreadPool(count);
+        executorService= Executors.newFixedThreadPool(count);
 
         int sumEXE=0;
         for (int j = 0; j < list.size(); j++) {
