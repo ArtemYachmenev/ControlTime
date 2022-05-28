@@ -4,6 +4,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import static sample.controller.AllStaticData.listRunProg2;
+
 
 public class MyTimer implements Runnable{
 
@@ -17,50 +19,62 @@ public class MyTimer implements Runnable{
 
     @Override
     public void run() {
+        synchronized (listRunProg2){
         count=0;
         AllStaticData.nameProg.clear();
         //считаем колво приложений
 
-        for (int i = 0; i < AllStaticData.oneProgAndEXE.size(); i++) {
-            if (AllStaticData.oneProgAndEXE.get(i).toString().contains("***** ")) {
+        for (int i = 0; i < AllStaticData.listRunProg2.size(); i++) {
+            if (AllStaticData.listRunProg2.get(i).toString().contains("***** ")) {
                 count++;
             }
         }
-        executorService= Executors.newFixedThreadPool(count);
+      //  System.out.println(count);
+            //делаем один поток count не нужен
+        executorService= Executors.newSingleThreadExecutor();
    //     System.out.println(count);
 
             //проверяем работает есть ли тру у приложений, если есть запускаем выполнение потоков на отсчет времени, если нет то стопим
-            for (int i = 0; i < AllStaticData.oneProgAndEXE.size(); i++) {
-                if (AllStaticData.oneProgAndEXE.get(i).toString().contains("***** ")) {
-                    firstIndex = AllStaticData.oneProgAndEXE.get(i).toString().indexOf(" ");
+            for (int i = 0; i < AllStaticData.listRunProg2.size(); i++) {
+                if (AllStaticData.listRunProg2.get(i).toString().contains("***** ")) {
+                    firstIndex = AllStaticData.listRunProg2.get(i).toString().indexOf(" ");
 
-                    s = AllStaticData.oneProgAndEXE.get(i).toString().substring(firstIndex + 1, AllStaticData.oneProgAndEXE.get(i).toString().length());
+                    s = AllStaticData.listRunProg2.get(i).toString().substring(firstIndex + 1, AllStaticData.listRunProg2.get(i).toString().length());
 
 
-
-                    System.out.println(s+" отслеживается");
+                          System.out.println(s+" отслеживается");
                     //добавляем имя проги для того чтобы потом записать ее в бд
                     AllStaticData.nameProg.add(s);
-                    for (int k = i + 1; k < AllStaticData.oneProgAndEXE.size(); k++) {
+                    for (int k = i + 1; k < AllStaticData.listRunProg2.size(); k++) {
 
-                        if (!AllStaticData.oneProgAndEXE.get(k).toString().contains("***** ")) {
-                            if (AllStaticData.oneProgAndEXE.get(k).toString().contains("true")) {
+                        if (!AllStaticData.listRunProg2.get(k).toString().contains("***** ")) {
+                            if (AllStaticData.listRunProg2.get(k).toString().contains("true")) {
 
 
-executorService.execute(new ApplicationWorkingHours());
+                                executorService.execute(new ApplicationWorkingHours());
+
+
+
+
 //чистим имя
+
                                 // AllStaticData.nameProg.clear();
                             }
 
                         }
-                        if (AllStaticData.oneProgAndEXE.get(k).toString().contains("***** ")) {
+                        if (AllStaticData.listRunProg2.get(k).toString().contains("***** ")) {
                             break;
                         }
+                     //   listRunProg2.remove(i);
+                      //  listRunProg2.remove(i);
                     }
                 }
             }
+            //чистим лист
+            listRunProg2.clear();
+            }
             try {
-                Thread.sleep(20000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

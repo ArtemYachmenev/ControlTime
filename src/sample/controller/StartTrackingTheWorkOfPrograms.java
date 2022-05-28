@@ -19,6 +19,7 @@ public class StartTrackingTheWorkOfPrograms {
         //каждый раз обновляем лист
         AllStaticData.nameProgCountEXE=new ArrayList<>();
 
+
         //грузим приложения которые надо отслеживать
         StringBuilder builder = AllStaticData.getApp().downloadAListOfUsedApplicationsTracking();
         String[] lines = builder.toString().split("\\n");

@@ -6,7 +6,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 //import static sample.controller.AllStaticData.goWork;
-import static sample.controller.AllStaticData.oneProgAndEXE;
+import static sample.controller.AllStaticData.*;
+
 
 //import static sample.controller.AllStaticData.goWork;
 
@@ -35,8 +36,11 @@ int count=0;
     //тут надо из одного листа считать названия приложений и их ехе и наложить их значения в prog
     @Override
     public void run() {
-
-
+        //обновляем ключ по созданию потоков и числу программ и листы
+        AllStaticData.countProg=false;
+        AllStaticData.listRunProg.clear();
+        AllStaticData.listRunProg2.clear();
+        listRunIndex.clear();
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
             try {
                 Thread.sleep(5000);
@@ -52,7 +56,8 @@ int count=0;
             int lastIndex = 0;
             String s;
             count=0;
-
+            AllStaticData.listRunProg.clear();
+        //    AllStaticData.listRunProg2.clear();
             for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
                 if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
                     firstIndex = AllStaticData.nameProgCountEXE.get(i).indexOf(" ");
@@ -167,9 +172,14 @@ count++;
                     for (int k = i + 1; k < goWork.size(); k++) {
 
                         if (!goWork.get(k).toString().contains("***** ")) {
-                            if (goWork.get(k).toString().contains("true"))
+                            if (goWork.get(k).toString().contains("true")) {
                                 oneProgAndEXE.add("true");
-break;
+                                //добавление в тестовый лист
+                                AllStaticData.listRunProg.add(s + " 1");
+                                //   count++;
+                                break;
+                            }
+                            else AllStaticData.listRunProg.add(s+" 0");
                         }
 
 
@@ -181,24 +191,94 @@ break;
                 }
             }
 
+            if (AllStaticData.countProg==false){
+                AllStaticData.countProg=true;
+                AllStaticData.countProgram=count;
+                executorService = Executors.newFixedThreadPool(count);
+            }
 
-//            for (int i = 0; i < oneProgAndEXE.size(); i++) {
+//            for (int i = 0; i < AllStaticData.listRunProg.size(); i++) {
 //
-//                System.out.println(oneProgAndEXE.get(i)+" ");
+//                System.out.println(AllStaticData.listRunProg.get(i)+" aaaaaaaaaa");
 //            }
+       //     System.out.println(listRunIndex.isEmpty()+" ggggggggggggggggggggggggggggggggggg");
 
             //надо чтобы после запуска таймера если приложение включилось оно отслеживалось
             //может сделать алгоритм где после программы есть тру надо запускать его а если нет то опять цикл проходить а сзапущенное пропускать
-            if (AllStaticData.workTimer==false){
-                AllStaticData.workTimer=true;
-                executorService= Executors.newFixedThreadPool(count);
-                executorService.execute(new MyTimer());
+            //для этого сделать listRunProg listRunProg2, listRunProg2 должен добавлять значения тру которых ранбше не было
+            synchronized (listRunProg2) {
+                if (AllStaticData.countProgram != 0) {
+//можно сделать отсчет от соунт
+//можно создать лист в который заносятся индексы запущенных программ после добавления в него при переборе его в цикле чтобы индексы не выпадали
+//надо добавить список где наверно храняться индесы и если  совпадают значения то не запускать их
+
+
+
+                    for (int k = 0; k < AllStaticData.listRunProg.size(); k++) {
+
+                            if (AllStaticData.listRunProg.get(k).toString().contains("1")) {
+                                lastIndex = AllStaticData.listRunProg.get(k).toString().lastIndexOf(" ");
+
+                                s = AllStaticData.listRunProg.get(k).toString().substring(0, lastIndex);
+                                if (listRunIndex.isEmpty()==true){
+                                //    System.out.println("ddddddddddddddddddddddukaaaaaaaaaa");
+                                    //добавление в новый тестовый лист2
+                                    listRunProg2.add("***** " + s);
+                                    listRunProg2.add("true");
+                                    listRunIndex.add(listRunProg.get(k));
+
+                                    executorService.execute(new MyTimer());
+                                    AllStaticData.countProgram--;
+                                }
+                                else{
+                                for (int i = 0; i < listRunIndex.size(); i++) {
+                                    if (!Objects.equals(listRunIndex.get(i), listRunProg.get(k)) ) {
+                                      //  System.out.println("ddddddddddddddddddddddukaaaaaaaaaa");
+                                        //добавление в новый тестовый лист2
+                                        listRunProg2.add("***** " + s);
+                                        listRunProg2.add("true");
+                                        listRunIndex.add(listRunProg.get(k));
+
+                                        executorService.execute(new MyTimer());
+                                        AllStaticData.countProgram--;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+//                    for (int k = 0; k < AllStaticData.listRunProg.size(); k++) {
+//                        if (AllStaticData.listRunProg.get(k).toString().contains("1")) {
+//                            lastIndex = AllStaticData.listRunProg.get(k).toString().lastIndexOf(" ");
+//
+//                            s = AllStaticData.listRunProg.get(k).toString().substring(0, lastIndex);
+//                            //добавление в новый тестовый лист2
+//                            listRunProg2.add("***** " + s);
+//                            listRunProg2.add("true");
+//
+//                            executorService.execute(new MyTimer());
+//                            AllStaticData.countProgram--;
+//                        }
+//                    }
+                }
             }
+// чтто тут не так
+//            for (int i = 0; i < listRunProg2.size(); i++) {
+//
+//                System.out.println(listRunProg2.get(i)+" bbbbbbbbbbbbbb");
+//            }
+
+
+//            if (AllStaticData.workTimer==false){
+//                AllStaticData.workTimer=true;
+//                executorService= Executors.newFixedThreadPool(count);
+//                executorService.execute(new MyTimer());
+//            }
 
 
 
             try {
-                Thread.sleep(15000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

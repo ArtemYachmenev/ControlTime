@@ -105,9 +105,17 @@ public class AllStaticData {
     //хранит состояние таймера его работы
     public volatile static boolean workTimer=false;
 
-
-
-
+    //тестовые значения
+//лист который хранит приложения с тру, если тру нет то пишет 0
+  public static volatile   ArrayList<String> listRunProg=new ArrayList<>();
+    //лист который хранит приложения с тру в новой строке
+    public static volatile   ArrayList<Object> listRunProg2=new ArrayList<>();
+    //булеан для того чтобы при вызове потока один раз считать количество программ
+    public volatile static boolean countProg=false;
+    //берет и хранит количество программ
+    public volatile static int countProgram=0;
+    //лист который хранит приложения с тру в новой строке
+    public static volatile   ArrayList<String> listRunIndex=new ArrayList<>();
 
 
 
