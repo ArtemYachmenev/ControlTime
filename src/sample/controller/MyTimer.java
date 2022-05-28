@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import static sample.controller.AllStaticData.listRunActual;
 import static sample.controller.AllStaticData.listRunProg2;
 
 
@@ -88,6 +89,8 @@ class ApplicationWorkingHours implements Runnable {
 //берем индекс проги
     int count=MyTimer.count;
 int i=count-1;
+    long elapsedTime;
+    long elapsedTimeInterrupt;
 //имя проги
     String s=MyTimer.s;
     @Override
@@ -95,10 +98,38 @@ int i=count-1;
 
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
          //   System.out.println("ждем");
+            //прогоняем цикл
+            synchronized (listRunActual) {
+                for (int j = 0; j < listRunActual.size(); j++) {
+                    //если есть наше приложение
+                    if (listRunActual.get(j).toString().contains(s)) {
+                        //если приложение не включено то сигнал остановки работы потока
+                        if (!listRunActual.get(j).toString().contains(" 1")) {
+                            System.out.println("ostanovka");
+                            Thread.currentThread().interrupt();
+                            System.out.println("suka");
+                            //время работы программы при остановке работы приложения
+                            elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
+                            System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
+                            //если если сигнал оно останавливается и проверяется запущено ли приложение снова
+                        }
+                        if (Thread.currentThread().isInterrupted()) {
+
+
+                            //если запущено то запускается опять
+                            if (listRunActual.get(j).toString().contains(" 1")) {
+                                Thread.currentThread().run();
+
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
-            AllStaticData.workTimer=false;
-            long elapsedTime = System.currentTimeMillis() - startTime;
+          //  AllStaticData.workTimer=false;
+             elapsedTime = (System.currentTimeMillis() - startTime)+elapsedTimeInterrupt;
+
             System.out.println(s+" "+elapsedTime);
         }
 

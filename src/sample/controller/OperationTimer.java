@@ -41,6 +41,7 @@ int count=0;
         AllStaticData.listRunProg.clear();
         AllStaticData.listRunProg2.clear();
         listRunIndex.clear();
+        listRunActual.clear();
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
             try {
                 Thread.sleep(5000);
@@ -188,6 +189,28 @@ count++;
                         }
                     }
 
+                }
+            }
+
+            //надо создать лист который хранит состояние запущенно или закрыто приложение чтобы в таймере его потом остановить
+            //если состояния равны то не перезаписывать их а если не равны то перезаписать на актуальное
+
+            //если лист пустой до добавляем в него изначальные состояния
+            synchronized (listRunActual) {
+                if (listRunActual.size() < listRunProg.size()) {
+                    listRunActual.clear();
+                    for (int i = 0; i < listRunProg.size(); i++) {
+                        listRunActual.add(listRunProg.get(i));
+                    }
+                }
+
+                //сверяем состояния и если что обновляем их
+                for (int i = 0; i < listRunProg.size(); i++) {
+                    for (int j = 0; j < listRunActual.size(); j++) {
+                        if (!Objects.equals(listRunActual.get(j), listRunProg.get(i))) {
+                            listRunActual.set(j, listRunProg.get(i));
+                        }
+                    }
                 }
             }
 

@@ -116,7 +116,8 @@ public class AllStaticData {
     public volatile static int countProgram=0;
     //лист который хранит приложения с тру в новой строке
     public static volatile   ArrayList<String> listRunIndex=new ArrayList<>();
-
+    //лист который хранит актуальное состояние приложения
+    public static volatile   ArrayList<String> listRunActual=new ArrayList<>();
 
 
 
