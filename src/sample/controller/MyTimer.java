@@ -91,6 +91,8 @@ class ApplicationWorkingHours implements Runnable {
 int i=count-1;
     long elapsedTime;
     long elapsedTimeInterrupt;
+    boolean run;
+    boolean runFalse=false;
 //имя проги
     String s=MyTimer.s;
     @Override
@@ -99,12 +101,28 @@ int i=count-1;
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
          //   System.out.println("ждем");
             //прогоняем цикл
+            //не работает тут
             synchronized (listRunActual) {
+
                 for (int j = 0; j < listRunActual.size(); j++) {
+                    if (listRunActual.get(j).contains(s)) {
+                        run=true;
+                        break;
+                    //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
+                    }
+                    else run=false;
+
+
+
+                }
+              //  System.out.println(run+s);
                     //если есть наше приложение
-                    if (listRunActual.get(j).toString().contains(s)) {
-                        //если приложение не включено то сигнал остановки работы потока
-                        if (!listRunActual.get(j).toString().contains(" 1")) {
+                    if (run==false) {
+                        if (runFalse == false) {
+                            //  System.out.println(listRunActual.contains(s));
+                            //  System.out.println(listRunActual.get(j)+" ffffffffffffffffffffffffffff");
+                            //если приложение не включено то сигнал остановки работы потока
+
                             System.out.println("ostanovka");
                             Thread.currentThread().interrupt();
                             System.out.println("suka");
@@ -112,19 +130,68 @@ int i=count-1;
                             elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
                             System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
                             //если если сигнал оно останавливается и проверяется запущено ли приложение снова
-                        }
-                        if (Thread.currentThread().isInterrupted()) {
-
-
-                            //если запущено то запускается опять
-                            if (listRunActual.get(j).toString().contains(" 1")) {
-                                Thread.currentThread().run();
-
-                            }
+                            runFalse=true;
+                          //  run=true;
                         }
                     }
-                }
-            }
+                            if (Thread.currentThread().isInterrupted()) {
+
+                        for (int j = 0; j < listRunActual.size(); j++) {
+                            if (listRunActual.get(j).contains(s)) {
+                                run=true;
+                                runFalse=false;
+                                Thread.currentThread().run();
+
+                                break;
+                                //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
+                            }
+                         //   else run=false;
+                         //   runFalse=false;
+
+
+                        }
+                            //если запущено то запускается опять
+//                            if (listRunActual.contains(s)) {
+//                                run=true;
+//
+//runFalse=false;
+//                            }
+                        }
+                    }
+
+         //   }
+
+
+
+
+
+//                for (int j = 0; j < listRunActual.size(); j++) {
+//                 //   System.out.println(s+"11111111111111111111111");
+//                    //если есть наше приложение
+//                    if (listRunActual.get(j).toString().contains(s)) {
+//                      //  System.out.println(listRunActual.get(j)+" ffffffffffffffffffffffffffff");
+//                        //если приложение не включено то сигнал остановки работы потока
+//                        if (!listRunActual.get(j).toString().contains(" 1")) {
+//                            System.out.println("ostanovka");
+//                            Thread.currentThread().interrupt();
+//                            System.out.println("suka");
+//                            //время работы программы при остановке работы приложения
+//                            elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
+//                            System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
+//                            //если если сигнал оно останавливается и проверяется запущено ли приложение снова
+//                        }
+//                     else    if (Thread.currentThread().isInterrupted()) {
+//
+//
+//                            //если запущено то запускается опять
+//                            if (listRunActual.get(j).toString().contains(" 1")) {
+//                                Thread.currentThread().run();
+//
+//                            }
+//                        }
+//                    }
+//                }
+//            }
         }
         if (StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
           //  AllStaticData.workTimer=false;

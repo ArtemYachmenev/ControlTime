@@ -197,21 +197,25 @@ count++;
 
             //если лист пустой до добавляем в него изначальные состояния
             synchronized (listRunActual) {
-                if (listRunActual.size() < listRunProg.size()) {
+                if (listRunActual.size() != listRunProg.size()||listRunActual.isEmpty()) {
                     listRunActual.clear();
                     for (int i = 0; i < listRunProg.size(); i++) {
                         listRunActual.add(listRunProg.get(i));
+                        System.out.println(listRunProg.get(i));
                     }
+                 //   System.out.println("перезапись");
                 }
 
                 //сверяем состояния и если что обновляем их
-                for (int i = 0; i < listRunProg.size(); i++) {
-                    for (int j = 0; j < listRunActual.size(); j++) {
-                        if (!Objects.equals(listRunActual.get(j), listRunProg.get(i))) {
-                            listRunActual.set(j, listRunProg.get(i));
-                        }
-                    }
-                }
+//                for (int i = 0; i < listRunProg.size(); i++) {
+//                    for (int j = 0; j < listRunActual.size(); j++) {
+//                        if (!Objects.equals(listRunActual.get(j), listRunProg.get(i))) {
+//                            listRunActual.set(j, listRunProg.get(i));
+//                            System.out.println(listRunProg.get(j)+" ccccccccccccccccccccc");
+//                        }
+//                    }
+//                }
+             //   System.out.println("перезапись2222222222");
             }
 
             if (AllStaticData.countProg==false){
@@ -220,9 +224,9 @@ count++;
                 executorService = Executors.newFixedThreadPool(count);
             }
 
-//            for (int i = 0; i < AllStaticData.listRunProg.size(); i++) {
+//            for (int i = 0; i < AllStaticData.listRunActual.size(); i++) {
 //
-//                System.out.println(AllStaticData.listRunProg.get(i)+" aaaaaaaaaa");
+//                System.out.println(AllStaticData.listRunActual.get(i)+" aaaaaaaaaa");
 //            }
        //     System.out.println(listRunIndex.isEmpty()+" ggggggggggggggggggggggggggggggggggg");
 
