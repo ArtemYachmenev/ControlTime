@@ -293,7 +293,7 @@ class CheckProcess implements Runnable {
 //                System.out.println(AllStaticData.workApp.get(k)+" aaaaaaaaaaaaaaaaaaaaaaaa");
 //            }
             try {
-                Thread.sleep(20000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
 

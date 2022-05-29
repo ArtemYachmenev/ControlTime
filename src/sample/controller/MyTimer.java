@@ -91,8 +91,15 @@ class ApplicationWorkingHours implements Runnable {
 int i=count-1;
     long elapsedTime;
     long elapsedTimeInterrupt;
+    //массовое сохранение времени
+    long sumTime=0;
     boolean run;
+    //ключ для остановки потока
     boolean runFalse=false;
+    //ключ для определения отсчета времени
+    boolean keyTime=false;
+    //ключ для того если приложение закрылось поток уснул
+    boolean keyProgramClose=false;
 //имя проги
     String s=MyTimer.s;
     @Override
@@ -111,45 +118,83 @@ int i=count-1;
                     //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
                     }
                     else run=false;
-
+                 //   runFalse = false;
 
 
                 }
               //  System.out.println(run+s);
-                    //если есть наше приложение
+                    //если  наше приложение остановилось
                     if (run==false) {
                         if (runFalse == false) {
                             //  System.out.println(listRunActual.contains(s));
                             //  System.out.println(listRunActual.get(j)+" ffffffffffffffffffffffffffff");
                             //если приложение не включено то сигнал остановки работы потока
 
-                            System.out.println("ostanovka");
-                            Thread.currentThread().interrupt();
-                            System.out.println("suka");
+                          //  System.out.println("ostanovka");
+                         //   Thread.currentThread().interrupt();
+
                             //время работы программы при остановке работы приложения
                             elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
+
+                            //если мы закрывали прогармму то суммируем время с текущим и обновляем стартовое время
+                            sumTime+=elapsedTimeInterrupt;
+
                             System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
                             //если если сигнал оно останавливается и проверяется запущено ли приложение снова
                             runFalse=true;
-                          //  run=true;
+                            keyTime=true;
+                            keyProgramClose=true;
                         }
                     }
-                            if (Thread.currentThread().isInterrupted()) {
+             //   System.out.println(Thread.currentThread().isInterrupted());
+                            if (keyProgramClose==true) {
+                               // System.out.println("kaka");
 
-                        for (int j = 0; j < listRunActual.size(); j++) {
-                            if (listRunActual.get(j).contains(s)) {
-                                run=true;
-                                runFalse=false;
-                                Thread.currentThread().run();
 
-                                break;
-                                //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
-                            }
+                                for (int j = 0; j < listRunActual.size(); j++) {
+                                    if (listRunActual.get(j).contains(s)) {
+                                   //     System.out.println(listRunActual.get(j).contains(s) + " kaka");
+                                        //если прога перезапущена то обновляем время ее старта
+                                        startTime = System.currentTimeMillis();
+                                      //  run = true;
+                                        runFalse = false;
+                                        keyProgramClose = false;
+                                        //  Thread.currentThread().run();
+                                        System.out.println("zapushen");
+                                        break;
+                                        //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
+                                    }
+                                }
+                                    try {
+
+                                     //   System.out.println(Thread.currentThread().getName());
+                                    //    System.out.println(Thread.currentThread().getState());
+                                        Thread.sleep(3000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+
+
+
+
+//                        for (int j = 0; j < listRunActual.size(); j++) {
+//                            if (listRunActual.get(j).contains(s)) {
+//                                //если прога перезапущена то обновляем время ее старта
+//                                startTime=System.currentTimeMillis();
+//                                run=true;
+//                                runFalse=false;
+//
+//                                Thread.currentThread().run();
+//                                System.out.println("zapushen");
+//                                break;
+//                                //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
+//                            }
                          //   else run=false;
                          //   runFalse=false;
 
 
-                        }
+
                             //если запущено то запускается опять
 //                            if (listRunActual.contains(s)) {
 //                                run=true;
@@ -195,8 +240,14 @@ int i=count-1;
         }
         if (StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
           //  AllStaticData.workTimer=false;
-             elapsedTime = (System.currentTimeMillis() - startTime)+elapsedTimeInterrupt;
+            if (keyTime==false) {
 
+                elapsedTime = (System.currentTimeMillis() - startTime) ;
+            }
+            //если мы перезапускали программу то такая формула
+            else if (keyTime==true){
+                elapsedTime =(System.currentTimeMillis() - startTime) + sumTime;
+            }
             System.out.println(s+" "+elapsedTime);
         }
 
