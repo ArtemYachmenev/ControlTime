@@ -191,6 +191,7 @@ count++;
 
                 }
             }
+          //  System.out.println(count);
 
             //надо создать лист который хранит состояние запущенно или закрыто приложение чтобы в таймере его потом остановить
             //если состояния равны то не перезаписывать их а если не равны то перезаписать на актуальное
@@ -253,21 +254,37 @@ count++;
                                     listRunProg2.add("***** " + s);
                                     listRunProg2.add("true");
                                     listRunIndex.add(listRunProg.get(k));
-
+                                 //   System.out.println(s +" в работу1");
                                     executorService.execute(new MyTimer());
                                     AllStaticData.countProgram--;
                                 }
-                                else{
-                                for (int i = 0; i < listRunIndex.size(); i++) {
-                                    if (!Objects.equals(listRunIndex.get(i), listRunProg.get(k)) ) {
-                                      //  System.out.println("ddddddddddddddddddddddukaaaaaaaaaa");
-                                        //добавление в новый тестовый лист2
-                                        listRunProg2.add("***** " + s);
-                                        listRunProg2.add("true");
-                                        listRunIndex.add(listRunProg.get(k));
+                                else {
+                                    for (int i = 0; i < listRunActual.size(); i++) {
 
-                                        executorService.execute(new MyTimer());
-                                        AllStaticData.countProgram--;
+                                          if (listRunActual.get(i).contains( s)) {
+                                            for (int l=0;l<listRunIndex.size();l++) {
+                                                //если не найдется в общем списке то переделать может сделать contains по вырезанным именам
+                                                if (!listRunIndex.contains(listRunActual.get(i))) {
+                                                    listRunProg2.add("***** " + s);
+                                                    listRunProg2.add("true");
+                                                    listRunIndex.add(listRunProg.get(k));
+                                                    executorService.execute(new MyTimer());
+                                                    AllStaticData.countProgram--;
+                                                }
+                                            }
+//                                        if (!Objects.equals(listRunActual.get(i), listRunProg.get(k))) {
+//                                            //  System.out.println("ddddddddddddddddddddddukaaaaaaaaaa");
+//                                            //добавление в новый тестовый лист2
+//
+//                                            listRunProg2.add("***** " + s);
+//                                            listRunProg2.add("true");
+//                                            listRunIndex.add(listRunProg.get(k));
+////                                        System.out.println(s +" в работу2");
+////                                        System.out.println(listRunIndex.get(i)+" listRunIndex.get(i)");
+////                                        System.out.println(listRunProg.get(k)+" listRunProg.get(k)");
+//                                            executorService.execute(new MyTimer());
+//                                            AllStaticData.countProgram--;
+//                                        }
                                     }
                                 }
                             }

@@ -172,7 +172,7 @@ public class StartTrackingTheWorkOfPrograms {
 
         //исполнитель запуска потоков
       // executorService= Executors.newFixedThreadPool(count);
-        executorService= Executors.newFixedThreadPool(count);
+        executorService= Executors.newFixedThreadPool(2);
 
         int sumEXE=0;
         for (int j = 0; j < list.size(); j++) {

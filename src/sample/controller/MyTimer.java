@@ -18,7 +18,7 @@ public class MyTimer implements Runnable{
     int firstIndex = 0;
     int lastIndex = 0;
  static volatile   String s;
-    public    ExecutorService executorService;
+    public  static   ExecutorService executorService;
    static int count=0;
 
 
@@ -260,7 +260,7 @@ int i=count-1;
         WorkingHours workingHours=new WorkingHours(currentDate.toString(),s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
         handler.saveWORKINGHOURS(workingHours,AllStaticData.login);
-
+MyTimer.executorService.shutdown();
     //    System.out.println(currentDate.toString()+"fdaaaaaaaaaaaaaaaa");
       //  System.out.println(getDurationBreakdown(elapsedTime)+"ffffffffffffffffffffffffffffff");
     }
