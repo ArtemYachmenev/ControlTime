@@ -1,8 +1,13 @@
 package sample.controller;
 
+import sample.controller.Database.DatabaseHandler;
+import sample.controller.Database.WorkingHours;
+
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import static sample.controller.AllStaticData.listRunActual;
 import static sample.controller.AllStaticData.listRunProg2;
@@ -84,6 +89,7 @@ public class MyTimer implements Runnable{
     }
 
 class ApplicationWorkingHours implements Runnable {
+    Date currentDate = new Date();
     //отсчет времени
     long startTime = System.currentTimeMillis();
 //берем индекс проги
@@ -250,6 +256,37 @@ int i=count-1;
             }
             System.out.println(s+" "+elapsedTime);
         }
+        getDurationBreakdown(elapsedTime);
+        WorkingHours workingHours=new WorkingHours(currentDate.toString(),s,getDurationBreakdown(elapsedTime));
+        DatabaseHandler handler=new DatabaseHandler();
+        handler.saveWORKINGHOURS(workingHours,AllStaticData.login);
 
+    //    System.out.println(currentDate.toString()+"fdaaaaaaaaaaaaaaaa");
+      //  System.out.println(getDurationBreakdown(elapsedTime)+"ffffffffffffffffffffffffffffff");
+    }
+    public  String getDurationBreakdown(long millis) {
+        if(millis < 0) {
+            throw new IllegalArgumentException("Duration must be greater than zero!");
+        }
+
+      //  long days = TimeUnit.MILLISECONDS.toDays(millis);
+      //  millis -= TimeUnit.DAYS.toMillis(days);
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        millis -= TimeUnit.HOURS.toMillis(hours);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
+        millis -= TimeUnit.MINUTES.toMillis(minutes);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
+
+        StringBuilder sb = new StringBuilder(64);
+      //  sb.append(days);
+     //   sb.append(" Дней ");
+        sb.append(hours);
+        sb.append(" Часов ");
+        sb.append(minutes);
+        sb.append(" Минут ");
+        sb.append(seconds);
+        sb.append(" Секунд");
+
+        return(sb.toString());
     }
 }

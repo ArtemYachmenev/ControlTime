@@ -51,7 +51,7 @@ public class Main extends Application {
         AllStaticData.getApp().downloadStandartColorApp();
 
 
-        ProcessTracking.trackingProgramm();
+      //  ProcessTracking.trackingProgramm();
 
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");

@@ -7,5 +7,5 @@ public class Configs {
     protected String dbPass="ct";
     protected String dbName="usersTC";
     protected String dbBACKGROUNDCOLOR="BACKGROUNDCOLOR";
-
+    protected String dbWORKINGHOURS="WORKINGHOURS";
 }

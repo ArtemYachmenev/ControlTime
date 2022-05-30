@@ -206,4 +206,50 @@ public class DatabaseHandler extends Configs{
     }
 
 
+    //    сохранение времени пользотваеля
+    public void saveWORKINGHOURS(WorkingHours hours, String userLogin){
+        //сначала нужно достать id
+        ResultSet resultSet=null;
+        int k = 0;
+        String select = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+
+            resultSet=prSt.executeQuery();
+            if (resultSet.next()) {
+               // System.out.println(resultSet.getString("id"));
+                 k= Integer.parseInt(resultSet.getString("id"));
+             //   System.out.println(k);
+            }
+           // int k=resultSet;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String insert = "insert into"+" "+Const.WORKINGHOURS_TABLE+"("+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+","+Const.WORKINGHOURS_ID_USER+")"+
+                "values(?,?,?,?)";
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(insert);
+            prSt.setString(1,hours.getDateOfWork());
+            prSt.setString(2,hours.getProgram());
+            prSt.setString(3,hours.getTime());
+
+                prSt.setInt(4, (k));
+
+
+
+            prSt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
