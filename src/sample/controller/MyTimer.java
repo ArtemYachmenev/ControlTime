@@ -234,7 +234,7 @@ if (keyMouse==true) {
 
         String res=oldDateFormat.format(currentDate);
 
-        System.out.println(res);
+       // System.out.println(res);
         WorkingHours workingHours=new WorkingHours(res,s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
         handler.saveWORKINGHOURS(workingHours,AllStaticData.login);

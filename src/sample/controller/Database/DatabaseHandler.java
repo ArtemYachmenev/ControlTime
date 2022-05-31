@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class DatabaseHandler extends Configs{
@@ -280,8 +282,16 @@ public class DatabaseHandler extends Configs{
 
         //выбираем столбцы из таблицы
         ResultSet result24=null;
+        Date currentDate=new Date();
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
 
-        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k;
+
+
+        String res=oldDateFormat.format(currentDate);
+//  String select24 = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'"+" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'01')="+"\'"+res.substring(0,2)+"\'";
+               String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                       +" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'01')="+"\'"+res.substring(0,2)+"\'";
+      //  String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k;
         try {
             PreparedStatement prSt24=getDbConnection().prepareStatement(select24);
 
