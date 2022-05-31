@@ -3,6 +3,8 @@ package sample.controller;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.WorkingHours;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -193,7 +195,7 @@ if (keyMouse==true) {
 }
                 try {
 
-                    Thread.sleep(5000);
+                    Thread.sleep(60000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -223,6 +225,9 @@ if (keyMouse==true) {
             System.out.println(s+" "+elapsedTime);
         }
         getDurationBreakdown(elapsedTime);
+
+        LocalDateTime datetime = LocalDateTime.parse((CharSequence) currentDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+        System.out.println(datetime);
         WorkingHours workingHours=new WorkingHours(currentDate.toString(),s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
         handler.saveWORKINGHOURS(workingHours,AllStaticData.login);

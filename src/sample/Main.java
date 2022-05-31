@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
 
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class Main extends Application {
@@ -69,8 +71,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+       // LocalDateTime datetime = LocalDateTime.parse((CharSequence) currentDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-
+        Date date = new Date();
+        String s=date.toString();
+        String res=oldDateFormat.format(date);
+        System.out.println(res);
         launch(args);
         //проверяем на зарытие окон
         AllStaticData.getApp().checkingWindowСlosures();

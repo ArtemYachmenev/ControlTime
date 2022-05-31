@@ -234,7 +234,7 @@ public class DatabaseHandler extends Configs{
                 "values(?,?,?,?)";
         try {
             PreparedStatement prSt=getDbConnection().prepareStatement(insert);
-            prSt.setString(1,hours.getDateOfWork());
+            prSt.setString(1,hours.getDate());
             prSt.setString(2,hours.getProgram());
             prSt.setString(3,hours.getTime());
 
@@ -250,6 +250,52 @@ public class DatabaseHandler extends Configs{
             e.printStackTrace();
         }
 
+    }
+
+
+    //берем приложения который работали за день
+    public ResultSet get24(String userLogin){
+
+        //сначала нужно достать id
+        ResultSet resultSet=null;
+        int k = 0;
+        String select = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+
+            resultSet=prSt.executeQuery();
+            if (resultSet.next()) {
+                // System.out.println(resultSet.getString("id"));
+                k= Integer.parseInt(resultSet.getString("id"));
+                //   System.out.println(k);
+            }
+            // int k=resultSet;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //выбираем столбцы из таблицы
+        ResultSet result24=null;
+
+        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k;
+        try {
+            PreparedStatement prSt24=getDbConnection().prepareStatement(select24);
+
+
+            prSt24.executeQuery();
+            result24=prSt24.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return result24;
     }
 
 }
