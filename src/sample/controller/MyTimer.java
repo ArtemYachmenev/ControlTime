@@ -3,9 +3,11 @@ package sample.controller;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.WorkingHours;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -226,9 +228,14 @@ if (keyMouse==true) {
         }
         getDurationBreakdown(elapsedTime);
 
-        LocalDateTime datetime = LocalDateTime.parse((CharSequence) currentDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
-        System.out.println(datetime);
-        WorkingHours workingHours=new WorkingHours(currentDate.toString(),s,getDurationBreakdown(elapsedTime));
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
+
+
+
+        String res=oldDateFormat.format(currentDate);
+
+        System.out.println(res);
+        WorkingHours workingHours=new WorkingHours(res,s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
         handler.saveWORKINGHOURS(workingHours,AllStaticData.login);
 MyTimer.executorService.shutdown();
