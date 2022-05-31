@@ -1,5 +1,6 @@
 package sample.controller;
 
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class StartTrackingTheWorkOfPrograms {
   public static  volatile   ExecutorService executorService;
 
     public static void runProgramAndWait() {
+
+
 
         //каждый раз обновляем лист
         AllStaticData.nameProgCountEXE=new ArrayList<>();
@@ -172,7 +175,7 @@ public class StartTrackingTheWorkOfPrograms {
 
         //исполнитель запуска потоков
       // executorService= Executors.newFixedThreadPool(count);
-        executorService= Executors.newFixedThreadPool(2);
+        executorService= Executors.newFixedThreadPool(3);
 
         int sumEXE=0;
         for (int j = 0; j < list.size(); j++) {
@@ -226,8 +229,10 @@ public class StartTrackingTheWorkOfPrograms {
 
        executorService.execute(new OperationTimer());
 
+executorService.execute(new MouseTracking());
 
-
+      //  MouseTracking tracking=new MouseTracking();
+     //   tracking.mouseMove();
 
     }
 }

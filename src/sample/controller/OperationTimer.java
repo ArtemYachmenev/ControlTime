@@ -322,7 +322,7 @@ count++;
 
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

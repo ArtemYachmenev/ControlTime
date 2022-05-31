@@ -9,8 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static sample.controller.AllStaticData.listRunActual;
-import static sample.controller.AllStaticData.listRunProg2;
+import static sample.controller.AllStaticData.*;
 
 
 public class MyTimer implements Runnable{
@@ -106,153 +105,120 @@ int i=count-1;
     boolean keyTime=false;
     //ключ для того если приложение закрылось поток уснул
     boolean keyProgramClose=false;
+    //ключ для одинарного отсчета времени если мышь не двигается
+    boolean keyMouse=true;
 //имя проги
     String s=MyTimer.s;
     @Override
     public void run() {
 
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
-         //   System.out.println("ждем");
-            //прогоняем цикл
-            //не работает тут
-            synchronized (listRunActual) {
 
-                for (int j = 0; j < listRunActual.size(); j++) {
-                    if (listRunActual.get(j).contains(s)) {
-                        run=true;
-                        break;
-                    //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
+            //если мышка двигается то идет запись времени
+            if (workMouse==true) {
+                keyMouse=true;
+                synchronized (listRunActual) {
+
+                    for (int j = 0; j < listRunActual.size(); j++) {
+                        if (listRunActual.get(j).contains(s)) {
+                            run = true;
+                            break;
+
+                        } else run = false;
+                        //   runFalse = false;
+
+
                     }
-                    else run=false;
-                 //   runFalse = false;
-
-
-                }
-              //  System.out.println(run+s);
+                    //  System.out.println(run+s);
                     //если  наше приложение остановилось
-                    if (run==false) {
+                    if (run == false) {
                         if (runFalse == false) {
-                            //  System.out.println(listRunActual.contains(s));
-                            //  System.out.println(listRunActual.get(j)+" ffffffffffffffffffffffffffff");
-                            //если приложение не включено то сигнал остановки работы потока
 
-                          //  System.out.println("ostanovka");
-                         //   Thread.currentThread().interrupt();
 
                             //время работы программы при остановке работы приложения
                             elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
 
+
                             //если мы закрывали прогармму то суммируем время с текущим и обновляем стартовое время
-                            sumTime+=elapsedTimeInterrupt;
+                            sumTime = sumTime + elapsedTimeInterrupt;
 
                             System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
                             //если если сигнал оно останавливается и проверяется запущено ли приложение снова
-                            runFalse=true;
-                            keyTime=true;
-                            keyProgramClose=true;
-                        }
-                    }
-             //   System.out.println(Thread.currentThread().isInterrupted());
-                            if (keyProgramClose==true) {
-                               // System.out.println("kaka");
-
-
-                                for (int j = 0; j < listRunActual.size(); j++) {
-                                    if (listRunActual.get(j).contains(s)) {
-                                   //     System.out.println(listRunActual.get(j).contains(s) + " kaka");
-                                        //если прога перезапущена то обновляем время ее старта
-                                        startTime = System.currentTimeMillis();
-                                      //  run = true;
-                                        runFalse = false;
-                                        keyProgramClose = false;
-                                        //  Thread.currentThread().run();
-                                        System.out.println("zapushen");
-                                        break;
-                                        //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
-                                    }
-                                }
-                                    try {
-
-                                     //   System.out.println(Thread.currentThread().getName());
-                                    //    System.out.println(Thread.currentThread().getState());
-                                        Thread.sleep(3000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-
-
-
-
-//                        for (int j = 0; j < listRunActual.size(); j++) {
-//                            if (listRunActual.get(j).contains(s)) {
-//                                //если прога перезапущена то обновляем время ее старта
-//                                startTime=System.currentTimeMillis();
-//                                run=true;
-//                                runFalse=false;
-//
-//                                Thread.currentThread().run();
-//                                System.out.println("zapushen");
-//                                break;
-//                                //    System.out.println(listRunActual.get(j).contains(s) + "11111111111111111111111");
-//                            }
-                         //   else run=false;
-                         //   runFalse=false;
-
-
-
-                            //если запущено то запускается опять
-//                            if (listRunActual.contains(s)) {
-//                                run=true;
-//
-//runFalse=false;
-//                            }
+                            runFalse = true;
+                            keyTime = true;
+                            keyProgramClose = true;
                         }
                     }
 
-         //   }
+                    if (keyProgramClose == true) {
 
 
+                        for (int j = 0; j < listRunActual.size(); j++) {
+                            if (listRunActual.get(j).contains(s)) {
+
+                                startTime = System.currentTimeMillis();
+
+                                runFalse = false;
+                                keyProgramClose = false;
+                                //  Thread.currentThread().run();
+                                System.out.println("zapushen");
+                                break;
+
+                            }
+                        }
+                        try {
+
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+
+            }
+            else {
+if (keyMouse==true) {
+    //время работы программы при остановке работы приложения
+    elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
 
 
+    //если мы закрывали прогармму то суммируем время с текущим и обновляем стартовое время
+    sumTime = sumTime + elapsedTimeInterrupt;
+    startTime = System.currentTimeMillis();
 
-//                for (int j = 0; j < listRunActual.size(); j++) {
-//                 //   System.out.println(s+"11111111111111111111111");
-//                    //если есть наше приложение
-//                    if (listRunActual.get(j).toString().contains(s)) {
-//                      //  System.out.println(listRunActual.get(j)+" ffffffffffffffffffffffffffff");
-//                        //если приложение не включено то сигнал остановки работы потока
-//                        if (!listRunActual.get(j).toString().contains(" 1")) {
-//                            System.out.println("ostanovka");
-//                            Thread.currentThread().interrupt();
-//                            System.out.println("suka");
-//                            //время работы программы при остановке работы приложения
-//                            elapsedTimeInterrupt = System.currentTimeMillis() - startTime;
-//                            System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
-//                            //если если сигнал оно останавливается и проверяется запущено ли приложение снова
-//                        }
-//                     else    if (Thread.currentThread().isInterrupted()) {
-//
-//
-//                            //если запущено то запускается опять
-//                            if (listRunActual.get(j).toString().contains(" 1")) {
-//                                Thread.currentThread().run();
-//
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+    System.out.println(s + " поток остановился и проработал " + elapsedTimeInterrupt);
+    System.out.println("мышь не двигается");
+    keyMouse=false;
+}
+                try {
+
+                    Thread.sleep(5000);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         if (StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
           //  AllStaticData.workTimer=false;
             if (keyTime==false) {
 
-                elapsedTime = (System.currentTimeMillis() - startTime) ;
+                elapsedTime = (System.currentTimeMillis() - startTime) +sumTime;
             }
             //если мы перезапускали программу то такая формула
+            //сделать нормальный отсечт времени
             else if (keyTime==true){
-                elapsedTime =(System.currentTimeMillis() - startTime) + sumTime;
+               // if (run=false){
+                    elapsedTime=sumTime;
+
+//                }
+//                else if(run=false && runFalse==false) {
+//                    elapsedTime = (System.currentTimeMillis() - startTime) + sumTime;
+//                }
+//                else if (run=false && runFalse==true) {
+//                    elapsedTime = (System.currentTimeMillis() - startTime) + sumTime;
+//                }
             }
             System.out.println(s+" "+elapsedTime);
         }

@@ -118,7 +118,8 @@ public class AllStaticData {
     public static volatile   ArrayList<String> listRunIndex=new ArrayList<>();
     //лист который хранит актуальное состояние приложения
     public static volatile   ArrayList<String> listRunActual=new ArrayList<>();
-
+    //булеан для того чтобы при хранить значение работает мышка или нет если да то тру
+    public volatile static boolean workMouse;
 
 
     public static AnchorPane getPaneUp() {
