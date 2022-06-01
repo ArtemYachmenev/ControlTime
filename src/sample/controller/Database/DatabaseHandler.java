@@ -320,4 +320,56 @@ public class DatabaseHandler extends Configs{
         return result24;
     }
 
+
+
+
+    //берем приложения который работали за выбранное время между двумя датами
+    public ResultSet getBetweenDate(String userLogin, String date1,String date2){
+
+        //сначала нужно достать id
+        ResultSet resultSet=null;
+        int k = 0;
+        String select = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+
+            resultSet=prSt.executeQuery();
+            if (resultSet.next()) {
+                // System.out.println(resultSet.getString("id"));
+                k= Integer.parseInt(resultSet.getString("id"));
+                //   System.out.println(k);
+            }
+            // int k=resultSet;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //выбираем столбцы из таблицы
+        ResultSet resultBetween=null;
+
+
+        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date+"\'";
+
+
+        try {
+            PreparedStatement prSt24=getDbConnection().prepareStatement(select24);
+
+
+            prSt24.executeQuery();
+            resultBetween=prSt24.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultBetween;
+    }
+
 }
