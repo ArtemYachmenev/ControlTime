@@ -105,6 +105,7 @@ String t=check.getString("TIME");
 
                WorkingHours workingHours=   new WorkingHours(d,h,p,t);
             //    System.out.println(res);
+
                 list.add(new WorkingHours(d,h,p,t));
 
 

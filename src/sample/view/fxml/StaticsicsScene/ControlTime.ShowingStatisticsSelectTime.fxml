@@ -17,39 +17,40 @@
       </Label>
       <AnchorPane fx:id="colorDown" layoutX="1.0" layoutY="215.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Введите даты в формате dd-MM-yyyy:" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="25.0" prefWidth="401.0" text="Введите даты в формате DD-MM-YY:" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB" size="25.0" />
                </font>
             </Label>
-            <TextField fx:id="textMoth" layoutX="293.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
-            <TextField fx:id="textDay" layoutX="201.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
-            <TextField fx:id="textYear" layoutX="388.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
-            <TableView fx:id="table" layoutY="122.0" prefHeight="361.0" prefWidth="998.0">
-               <columns>
-                  <TableColumn fx:id="date" prefWidth="320.0" text="Дата работы и время запуска программы" />
-                  <TableColumn fx:id="program" prefWidth="320.0" text="Программа" />
-                  <TableColumn fx:id="time" prefWidth="357.0" text="Время работы" />
-               </columns>
-            </TableView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="485.0" layoutY="62.0" prefHeight="25.0" prefWidth="29.0" text="по" textAlignment="CENTER">
+            <TextField fx:id="textMoth" layoutX="250.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
+            <TextField fx:id="textDay" layoutX="155.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
+            <TextField fx:id="textYear" layoutX="344.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="431.0" layoutY="65.0" prefHeight="25.0" prefWidth="141.0" text="Конечная дата:" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="65.0" prefHeight="25.0" prefWidth="29.0" text="с" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="65.0" prefHeight="25.0" prefWidth="141.0" text="Начальная дата:" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="textDay1" layoutX="526.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
-            <TextField fx:id="textMoth1" layoutX="619.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
-            <TextField fx:id="textYear1" layoutX="712.0" layoutY="65.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
-            <Button fx:id="StatisticsForTheSelectedTimeButton" layoutX="823.0" layoutY="62.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-radius: 10;" text="Показать">
+            <TextField fx:id="textDay1" layoutX="579.0" layoutY="66.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
+            <TextField fx:id="textMoth1" layoutX="674.0" layoutY="66.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
+            <TextField fx:id="textYear1" layoutX="771.0" layoutY="66.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
+            <Button fx:id="StatisticsForTheSelectedTimeButton" layoutX="869.0" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-radius: 10;" text="Показать">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <TableView fx:id="table" layoutX="2.0" layoutY="105.0" prefHeight="378.0" prefWidth="998.0">
+               <columns>
+                  <TableColumn fx:id="date" prefWidth="178.0" text="Дата работы " />
+                  <TableColumn fx:id="working_hours" prefWidth="193.0" text="Время запуска" />
+                  <TableColumn fx:id="program" prefWidth="387.0" text="Программа" />
+                  <TableColumn fx:id="time" prefWidth="237.0" text="Время работы" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <Button fx:id="Exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="126.0" style="-fx-background-radius: 10;" text="Назад">

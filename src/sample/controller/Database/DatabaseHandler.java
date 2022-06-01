@@ -359,17 +359,18 @@ public class DatabaseHandler extends Configs{
         //выбираем столбцы из таблицы
         ResultSet resultBetween=null;
 
-
-        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
-                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date1+"\'";
+      //  System.out.println(date1);
+      //  System.out.println(date2);
+        String selectBetween = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_WORKING_HOURS+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and trunc("+Const.WORKINGHOURS_DATE_OF_WORK+")>=TO_DATE(TO_CHAR(\'"+date1+"\'),\'DD.MM.YY\')"+" and trunc("+Const.WORKINGHOURS_DATE_OF_WORK+")<=TO_DATE(TO_CHAR(\'"+date2+"\'),\'DD.MM.YY\')";
 
 
         try {
-            PreparedStatement prSt24=getDbConnection().prepareStatement(select24);
+            PreparedStatement prStBetween=getDbConnection().prepareStatement(selectBetween);
 
 
-            prSt24.executeQuery();
-            resultBetween=prSt24.executeQuery();
+            prStBetween.executeQuery();
+            resultBetween=prStBetween.executeQuery();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -378,6 +379,106 @@ public class DatabaseHandler extends Configs{
         }
 
         return resultBetween;
+    }
+
+    //берем приложения который работали за выбранное время от первой даты
+    public ResultSet getFirstDate(String userLogin, String date){
+
+        //сначала нужно достать id
+        ResultSet resultSet=null;
+        int k = 0;
+        String select = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+
+            resultSet=prSt.executeQuery();
+            if (resultSet.next()) {
+                // System.out.println(resultSet.getString("id"));
+                k= Integer.parseInt(resultSet.getString("id"));
+                //   System.out.println(k);
+            }
+            // int k=resultSet;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //выбираем столбцы из таблицы
+        ResultSet resultFirstDate=null;
+
+        //  System.out.println(date1);
+        //  System.out.println(date2);
+        String selectFirstDate = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_WORKING_HOURS+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and trunc("+Const.WORKINGHOURS_DATE_OF_WORK+")>=TO_DATE(TO_CHAR(\'"+date+"\'),\'DD.MM.YY\')";
+
+
+        try {
+            PreparedStatement prStFirstDate=getDbConnection().prepareStatement(selectFirstDate);
+
+
+            prStFirstDate.executeQuery();
+            resultFirstDate=prStFirstDate.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultFirstDate;
+    }
+
+    //берем приложения который работали за выбранное время до второй даты
+    public ResultSet getLastDate(String userLogin, String date){
+
+        //сначала нужно достать id
+        ResultSet resultSet=null;
+        int k = 0;
+        String select = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'";
+
+        try {
+            PreparedStatement prSt=getDbConnection().prepareStatement(select);
+
+            resultSet=prSt.executeQuery();
+            if (resultSet.next()) {
+                // System.out.println(resultSet.getString("id"));
+                k= Integer.parseInt(resultSet.getString("id"));
+                //   System.out.println(k);
+            }
+            // int k=resultSet;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //выбираем столбцы из таблицы
+        ResultSet resultLastDate=null;
+
+        //  System.out.println(date1);
+        //  System.out.println(date2);
+        String selectLastDate = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_WORKING_HOURS+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and trunc("+Const.WORKINGHOURS_DATE_OF_WORK+")<=TO_DATE(TO_CHAR(\'"+date+"\'),\'DD.MM.YY\')";
+
+
+        try {
+            PreparedStatement prStLastDate=getDbConnection().prepareStatement(selectLastDate);
+
+
+            prStLastDate.executeQuery();
+            resultLastDate=prStLastDate.executeQuery();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return resultLastDate;
     }
 
 }
