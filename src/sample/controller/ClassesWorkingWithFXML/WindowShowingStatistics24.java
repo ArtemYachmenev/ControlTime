@@ -79,6 +79,9 @@ public class WindowShowingStatistics24 implements Initializable {
             //пока есть записи выводится все
             while (check.next()){
 
+//                if (!check.next()){
+//                    list.add(new WorkingHours("нет данных","нет данных","нет данных"));
+//                }
 String d=check.getString("DATE_OF_WORK");
 String p=check.getString("PROGRAM");
 String t=check.getString("TIME");

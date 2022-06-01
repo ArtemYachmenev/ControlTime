@@ -288,9 +288,21 @@ public class DatabaseHandler extends Configs{
 
 
         String res=oldDateFormat.format(currentDate);
+        String day=res.substring(0,2);
+        String mount=res.substring(3,5);
+        String year=res.substring(6,10);
+      //  System.out.println(day);
+      //  System.out.println(mount);
+      //  System.out.println(year);
+        String date=res.substring(0,10);
+       // System.out.println(date);
 //  String select24 = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'"+" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'01')="+"\'"+res.substring(0,2)+"\'";
-               String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
-                       +" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'01')="+"\'"+res.substring(0,2)+"\'";
+           //    String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+      //                 +" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'"+date+"')="+"\'"+date+"\'";
+
+        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date+"\'";
+
       //  String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k;
         try {
             PreparedStatement prSt24=getDbConnection().prepareStatement(select24);
