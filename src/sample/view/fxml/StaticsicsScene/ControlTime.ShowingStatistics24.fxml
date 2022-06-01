@@ -16,11 +16,12 @@
       </Label>
       <AnchorPane fx:id="colorDown" layoutX="1.0" layoutY="215.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
          <children>
-            <TableView fx:id="table" layoutX="2.0" layoutY="2.0" prefHeight="483.0" prefWidth="998.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+            <TableView fx:id="table" layoutX="2.0" layoutY="2.0" prefHeight="481.0" prefWidth="998.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
               <columns>
-                <TableColumn fx:id="date" prefWidth="320.0" text="Дата работы и время запуска программы" />
-                <TableColumn fx:id="program" prefWidth="320.0" text="Программа" />
-                  <TableColumn fx:id="time" prefWidth="357.0" text="Время работы" />
+                <TableColumn fx:id="date" prefWidth="178.0" text="Дата работы " />
+                <TableColumn fx:id="working_hours" prefWidth="193.0" text="Время запуска" />
+                  <TableColumn fx:id="program" prefWidth="387.0" text="Программа" />
+                  <TableColumn fx:id="time" prefWidth="237.0" text="Время работы" />
               </columns>
             </TableView>
          </children>

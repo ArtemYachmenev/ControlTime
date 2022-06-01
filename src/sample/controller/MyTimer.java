@@ -228,14 +228,20 @@ if (keyMouse==true) {
         }
         getDurationBreakdown(elapsedTime);
 
-        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
+      //  SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
 
 
 
-        String res=oldDateFormat.format(currentDate);
+        String res= String.valueOf(currentDate).substring(11,19);
+      //  System.out.println(res);
 
        // System.out.println(res);
-        WorkingHours workingHours=new WorkingHours(res,s,getDurationBreakdown(elapsedTime));
+
+        java.util.Date utilStartDate = currentDate;
+        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
+
+
+        WorkingHours workingHours=new WorkingHours(sqlStartDate,res,s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
         handler.saveWORKINGHOURS(workingHours,AllStaticData.login);
 MyTimer.executorService.shutdown();

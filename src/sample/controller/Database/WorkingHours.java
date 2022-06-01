@@ -2,14 +2,31 @@ package sample.controller.Database;
 
 import javafx.scene.control.TableColumn;
 
+import java.sql.Date;
+
 //класс для таблицы WorkingHours
 public class WorkingHours {
-    private String date;
+    private Date date;
+    private String dateString;
+    private String working_hours;
     private String program;
     private String time;
 
-    public WorkingHours(String date, String program, String time) {
+    public WorkingHours(Date date,String working_hours, String program, String time) {
         this.date = date;
+        this.working_hours=working_hours;
+        this.program = program;
+        this.time = time;
+    }
+    public WorkingHours(Date date, String program, String time) {
+        this.date = date;
+
+        this.program = program;
+        this.time = time;
+    }
+    public WorkingHours(String dateString,String working_hours, String program, String time) {
+        this.dateString = dateString;
+        this.working_hours=working_hours;
         this.program = program;
         this.time = time;
     }
@@ -18,12 +35,27 @@ public class WorkingHours {
    // }
 
 
+    public String getDateString() {
+        return dateString;
+    }
 
-    public String getDate() {
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDateOfWork(String dateOfWork) {
+    public String getWorking_hours() {
+        return working_hours;
+    }
+
+    public void setWorking_hours(String working_hours) {
+        this.working_hours = working_hours;
+    }
+
+    public void setDateOfWork(Date dateOfWork) {
         this.date = dateOfWork;
     }
 

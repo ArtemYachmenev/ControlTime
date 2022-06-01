@@ -2,8 +2,11 @@ package sample.controller.ClassesWorkingWithFXML;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -51,7 +54,7 @@ public class WindowShowingStatistics24 implements Initializable {
     private AnchorPane colorUp;
 
     @FXML
-    private TableColumn<WorkingHours, String> date;
+    private TableColumn<WorkingHours, Date> date;
 
     @FXML
     private TableColumn<WorkingHours, String> program;
@@ -61,7 +64,8 @@ public class WindowShowingStatistics24 implements Initializable {
 
     @FXML
     private TableColumn<WorkingHours, String> time;
-
+    @FXML
+    private TableColumn<WorkingHours, String> working_hours;
 //надо считаь данные из бд и вставить в лист
 
 
@@ -78,20 +82,30 @@ public class WindowShowingStatistics24 implements Initializable {
 
             //пока есть записи выводится все
             while (check.next()){
-
+//                System.out.println(check.getString("DATE_OF_WORK")+ " dddddddddd");
+//                System.out.println(check.getString("WORKING_HOURS")+ " dddddddddd");
+//
+//                System.out.println(check.getString("PROGRAM")+ " dddddddddd");
+//                System.out.println(check.getString("TIME")+ " dddddddddd");
 //                if (!check.next()){
 //                    list.add(new WorkingHours("нет данных","нет данных","нет данных"));
 //                }
-String d=check.getString("DATE_OF_WORK");
+Date  d=check.getDate("DATE_OF_WORK");
+String h=check.getString("WORKING_HOURS");
 String p=check.getString("PROGRAM");
 String t=check.getString("TIME");
 
 
-              //  System.out.println(d);
+             //   System.out.println(h+" eeeeeeeeeeeeeeeeeeeee");
+                SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd.MM.YY ");
 
 
-               WorkingHours workingHours=   new WorkingHours(d,p,t);
-                list.add(new WorkingHours(d,p,t));
+
+                String res=oldDateFormat.format(d);
+
+               WorkingHours workingHours=   new WorkingHours(d,h,p,t);
+            //    System.out.println(res);
+                list.add(new WorkingHours(d,h,p,t));
 
 
             }
@@ -101,11 +115,12 @@ String t=check.getString("TIME");
 
 
 
-        date.setCellValueFactory(new PropertyValueFactory<WorkingHours,String>("date"));
+        date.setCellValueFactory(new PropertyValueFactory<WorkingHours,Date>("date"));
+        working_hours.setCellValueFactory(new PropertyValueFactory<WorkingHours,String>("working_hours"));
         program.setCellValueFactory(new PropertyValueFactory< WorkingHours,String>("program"));
         time.setCellValueFactory(new PropertyValueFactory< WorkingHours,String>("time"));
 
-
+     //   System.out.println(date);
         table.setItems(list);
      //   System.out.println(table==null);
 

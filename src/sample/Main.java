@@ -84,8 +84,8 @@ public class Main extends Application {
         Date date = new Date();
 
         String res=oldDateFormat.format(date);
-
-        System.out.println(res);
+        String res2= String.valueOf(date);
+        System.out.println(res2);
 
         launch(args);
         //проверяем на зарытие окон

@@ -232,15 +232,16 @@ public class DatabaseHandler extends Configs{
             e.printStackTrace();
         }
 
-        String insert = "insert into"+" "+Const.WORKINGHOURS_TABLE+"("+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+","+Const.WORKINGHOURS_ID_USER+")"+
-                "values(?,?,?,?)";
+        String insert = "insert into"+" "+Const.WORKINGHOURS_TABLE+"("+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_WORKING_HOURS+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+","+Const.WORKINGHOURS_ID_USER+")"+
+                "values(?,?,?,?,?)";
         try {
             PreparedStatement prSt=getDbConnection().prepareStatement(insert);
-            prSt.setString(1,hours.getDate());
-            prSt.setString(2,hours.getProgram());
-            prSt.setString(3,hours.getTime());
+            prSt.setDate(1,hours.getDate());
+            prSt.setString(2,hours.getWorking_hours());
+            prSt.setString(3,hours.getProgram());
+            prSt.setString(4,hours.getTime());
 
-                prSt.setInt(4, (k));
+                prSt.setInt(5, (k));
 
 
 
@@ -283,7 +284,7 @@ public class DatabaseHandler extends Configs{
         //выбираем столбцы из таблицы
         ResultSet result24=null;
         Date currentDate=new Date();
-        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
+        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd.MM.YY hh:mm:ss", Locale.ROOT);
 
 
 
@@ -294,14 +295,21 @@ public class DatabaseHandler extends Configs{
       //  System.out.println(day);
       //  System.out.println(mount);
       //  System.out.println(year);
-        String date=res.substring(0,10);
-       // System.out.println(date);
+        String date=res.substring(0,8);
+      //  System.out.println(date);
+
+        java.util.Date utilStartDate = currentDate;
+        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
+       // java.sql.Date sqlStartDate2 = java.sql.Date.valueOf(res);
+
+     //   System.out.println(sqlStartDate2+"      mmmmmmmmmmmmmmm");
+
 //  String select24 = "select "+Const.USER_ID+" from "+Const.USER_TABLE+" where "+Const.USER_LOGIN+"='"+userLogin+"'"+" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'01')="+"\'"+res.substring(0,2)+"\'";
            //    String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
       //                 +" and "+"instr("+Const.WORKINGHOURS_DATE_OF_WORK+",'"+date+"')="+"\'"+date+"\'";
 
-        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
-                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date+"\'";
+        String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_WORKING_HOURS+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
+                +" and trunc("+Const.WORKINGHOURS_DATE_OF_WORK+")=TO_DATE(TO_CHAR(\'"+date+"\'),\'DD.MM.YY\')";
 
       //  String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k;
         try {
@@ -353,7 +361,7 @@ public class DatabaseHandler extends Configs{
 
 
         String select24 = "select "+Const.WORKINGHOURS_DATE_OF_WORK+","+Const.WORKINGHOURS_PROGRAM+","+Const.WORKINGHOURS_TIME+" from "+Const.WORKINGHOURS_TABLE+" where "+Const.WORKINGHOURS_ID_USER+" ="+k
-                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date+"\'";
+                +" and "+"substr("+Const.WORKINGHOURS_DATE_OF_WORK+",1,10)="+"\'"+date1+"\'";
 
 
         try {

@@ -31,6 +31,7 @@ public class Const {
     public static final String WORKINGHOURS_TABLE="WORKINGHOURS";
     public static final String WORKINGHOURS_ID="ID";
     public static final String WORKINGHOURS_DATE_OF_WORK="DATE_OF_WORK";
+    public static final String WORKINGHOURS_WORKING_HOURS="WORKING_HOURS";
     public static final String WORKINGHOURS_PROGRAM="PROGRAM";
     public static final String WORKINGHOURS_TIME="TIME";
     public static final String WORKINGHOURS_ID_USER="ID_USER";
