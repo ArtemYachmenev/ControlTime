@@ -55,7 +55,7 @@ boolean keyRun=true;
             if (Objects.equals(mouseX,resultX)==true&&Objects.equals(mouseY,resultY)==true){
                 //чтобы поток записывающий время спал
                 AllStaticData.workMouse=false;
-              //  System.out.println(Objects.equals(mouseX,resultX)&&Objects.equals(mouseY,resultY));
+
 
             //    System.out.println("нет движения");
             }
@@ -66,12 +66,13 @@ boolean keyRun=true;
             resultX=mouseX;
             resultY=mouseY;
             try {
-                Thread.sleep(60000);
+                Thread.sleep(300000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         //    System.out.println(mouseX+" "+mouseY);
         }
+
     }
 
 

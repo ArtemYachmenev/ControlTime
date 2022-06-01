@@ -34,6 +34,8 @@ public  class CreatingAndDeletingADirectory {
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
     static {
         try {
+           // AllStaticData.app.downloadAllDiskPC();
+
             dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
         } catch (IOException e) {
             e.printStackTrace();

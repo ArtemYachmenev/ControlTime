@@ -197,7 +197,7 @@ if (keyMouse==true) {
 }
                 try {
 
-                    Thread.sleep(60000);
+                    Thread.sleep(300000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

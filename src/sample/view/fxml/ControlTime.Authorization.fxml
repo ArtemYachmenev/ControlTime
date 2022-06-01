@@ -7,40 +7,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowAuthorization">
+<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.WindowAuthorization">
    <children>
-      <Label layoutX="374.0" layoutY="65.0" prefHeight="111.0" prefWidth="253.0" text="Time Contol">
+      <Label alignment="CENTER" layoutX="205.0" layoutY="14.0" prefHeight="63.0" prefWidth="191.0" text="Time Contol">
          <font>
-            <Font name="Agency FB" size="68.0" />
+            <Font name="Agency FB" size="47.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="colorDown" layoutX="1.0" layoutY="215.0" prefHeight="493.0" prefWidth="1000.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
+      <AnchorPane fx:id="colorDown" layoutY="84.0" prefHeight="316.0" prefWidth="600.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
          <children>
-            <TextField fx:id="LoginField" layoutX="238.0" layoutY="118.0" prefHeight="47.0" prefWidth="524.0" promptText="Логин" style="-fx-border-color: #fafafa; -fx-background-radius: 10;">
+            <Button fx:id="EntranceButton" layoutX="162.0" layoutY="152.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Вход">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="LoginField" alignment="CENTER" layoutX="162.0" layoutY="39.0" prefHeight="46.0" prefWidth="276.0" promptText="Логин" style="-fx-border-color: #fafafa; -fx-background-radius: 10;">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="PssswordField" layoutX="238.0" layoutY="189.0" prefHeight="47.0" prefWidth="524.0" promptText="Пароль" style="-fx-border-color: #fafafa; -fx-background-radius: 10;">
+            <Button fx:id="CreateNewProfileButton" layoutX="162.0" layoutY="258.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Создать новый профиль">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="PasswordRecoveryButton" layoutX="162.0" layoutY="204.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Я не помню пароль">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="PssswordField" alignment="CENTER" layoutX="162.0" layoutY="98.0" prefHeight="46.0" prefWidth="276.0" promptText="Пароль" style="-fx-border-color: #fafafa; -fx-background-radius: 10;">
                <font>
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <Button fx:id="PasswordRecoveryButton" layoutX="239.0" layoutY="382.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Я не помню пароль">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="CreateNewProfileButton" layoutX="239.0" layoutY="435.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="524.0" style="-fx-background-radius: 10;" text="Создать новый профиль">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="EntranceButton" layoutX="387.0" layoutY="265.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="227.0" style="-fx-background-radius: 10;" text="Вход">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

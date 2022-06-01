@@ -61,10 +61,10 @@ public class Main extends Application {
 
 
       //  ProcessTracking.trackingProgramm();
-
+        GetAllProgrammPC.getListDiskPC();
         Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");
-        primaryStage.setScene(new Scene(root, 1000, 700));
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
         //отслеживание закрытия окна
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
