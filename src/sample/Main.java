@@ -66,6 +66,7 @@ public class Main extends Application {
         primaryStage.setTitle("TimeControl");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
+        primaryStage.setResizable(false);
         //отслеживание закрытия окна
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {

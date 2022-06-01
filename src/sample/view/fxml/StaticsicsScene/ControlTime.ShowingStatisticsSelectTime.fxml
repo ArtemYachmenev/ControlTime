@@ -48,8 +48,8 @@
       <TableView fx:id="table" layoutY="195.0" prefHeight="306.0" prefWidth="700.0">
          <columns>
             <TableColumn fx:id="date" prefWidth="145.0" text="Дата работы " />
-            <TableColumn fx:id="working_hours" prefWidth="157.0" text="Время запуска" />
-            <TableColumn fx:id="program" prefWidth="188.0" text="Программа" />
+            <TableColumn fx:id="working_hours" prefWidth="101.0" text="Время запуска" />
+            <TableColumn fx:id="program" prefWidth="244.0" text="Программа" />
             <TableColumn fx:id="time" prefWidth="209.0" text="Время работы" />
          </columns>
       </TableView>

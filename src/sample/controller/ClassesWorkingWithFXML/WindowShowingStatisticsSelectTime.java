@@ -272,6 +272,7 @@ String date2=textDay1.getText()+"."+textMoth1.getText()+"."+textYear1.getText();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        stage.setResizable(false);
         //отслеживание закрытия окна
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
