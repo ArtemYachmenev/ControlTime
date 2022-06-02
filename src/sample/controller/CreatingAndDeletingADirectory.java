@@ -1,5 +1,7 @@
 package sample.controller;
 
+import javafx.scene.paint.Color;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +21,7 @@ public  class CreatingAndDeletingADirectory {
         try {
            // AllStaticData.app.downloadAllDiskPC();
 
-            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\ControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +30,7 @@ public  class CreatingAndDeletingADirectory {
     //переопределяем директории для профля
     public static void setDir() {
         try {
-            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\ControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
 
 
 
@@ -40,7 +42,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком файлов в директориях приложений пк
     public static void createListOfEXEFilesInDirectories() {
 
-        listOfEXEFilesInDirectories = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt"));
+        listOfEXEFilesInDirectories = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listOfEXEFilesInDirectories.txt"));
         try {
             listOfEXEFilesInDirectories.createNewFile();
            // AllStaticData.app.saveNewAllProgrammPC();
@@ -55,7 +57,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком файлов в директориях приложений пк
     public static void createDataEXE() {
 
-        dataEXE = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt"));
+        dataEXE = new File((AllStaticData.firstDiskLine+"\\ControlTime\\dataEXE.txt"));
         try {
             dataEXE.createNewFile();
             // AllStaticData.app.saveNewAllProgrammPC();
@@ -70,7 +72,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений
     public static void createListPrograms() {
 
-            programPC = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt"));
+            programPC = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listPrograms.txt"));
         try {
             programPC.createNewFile();
         //    AllStaticData.app.saveNewAllProgrammPC();
@@ -128,7 +130,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений
     public static void createListProgramsPowershell() {
 
-        programPCPowershell = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listProgramsPowershell.txt"));
+        programPCPowershell = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listProgramsPowershell.txt"));
         try {
             programPCPowershell.createNewFile();
 
@@ -143,7 +145,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений новый для сравнения со старым
     public static void createListProgramsPowershellCompare() {
 
-        programPCPowershellCompare = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listProgramsPowershellCompare.txt"));
+        programPCPowershellCompare = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listProgramsPowershellCompare.txt"));
         try {
             programPCPowershellCompare.createNewFile();
 
@@ -201,7 +203,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком дисков
     public static void createListDisk() {
 
-        diskPC = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt"));
+        diskPC = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listDisk.txt"));
         try {
             diskPC.createNewFile();
 
@@ -214,7 +216,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком программ пк и их директорий
     public static void createListDirProg() {
 
-        listDir = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt"));
+        listDir = new File((AllStaticData.firstDiskLine+"\\ControlTime\\listDir.txt"));
         try {
             listDir.createNewFile();
             AllStaticData.app.saveNewAListDirProg();

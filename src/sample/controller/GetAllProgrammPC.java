@@ -20,6 +20,11 @@ public class GetAllProgrammPC {
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending " +
                     "| Out-File -Width 200 "
                     + programPCPowershell);
+            try {
+                p.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             p.getOutputStream().close();
 
 
@@ -50,7 +55,7 @@ public class GetAllProgrammPC {
                     "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending | Out-File  -Width 200 " +
                     programPCPowershellCompare);
-
+            p.waitFor();
           
            
             p.getOutputStream().close();
@@ -61,6 +66,8 @@ public class GetAllProgrammPC {
 
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 //            Process p = Runtime.getRuntime().exec("powershell " + " Get-ChildItem HKLM:" +
@@ -209,7 +216,7 @@ StringBuilder programBuilder=new StringBuilder();
 
             //открываем cmd пишем команду по выводу всех дисков
             Process p = Runtime.getRuntime().exec(programs_name);
-
+            p.waitFor();
 
 
             //читаем строки и сохраняем их
@@ -264,7 +271,7 @@ disk=diskBuilder;
 
             //открываем cmd пишем команду по выводу всех дисков
             Process p = Runtime.getRuntime().exec(programs_name);
-
+            p.waitFor();
 
 
             //читаем строки и сохраняем их
@@ -338,7 +345,7 @@ disk=diskBuilder;
                     "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
                     "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
                    listDir);
-
+p.waitFor();
 
 
             p.getOutputStream().close();
@@ -523,7 +530,7 @@ String substr2=str.substring(indexFirst, indexLast-1);
                         Thread.sleep(50);
                         p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse -force *.exe | Select Name");
 Thread.sleep(50);
-
+                        p.waitFor();
 //ждем пока закончит выводить
 p.waitFor();
                         //если у программы есть exe то записываем его
@@ -540,7 +547,7 @@ p.waitFor();
                             }}
                         Thread.sleep(50);
                         BufferedReader input =
-                                new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
+                                new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\ControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
 
                             // line = input.readLine();
@@ -609,7 +616,7 @@ p.waitFor();
         Process p;
         try {
             p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
-                    "| Out-File  -Width 200 "+ AllStaticData.firstDiskLine+":\\dataControlTime\\dataEXE.txt" );
+                    "| Out-File  -Width 200 "+ AllStaticData.firstDiskLine+":\\ControlTime\\dataEXE.txt" );
 
 
             //ждем пока закончит писать в файл

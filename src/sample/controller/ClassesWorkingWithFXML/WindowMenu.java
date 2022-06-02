@@ -53,10 +53,10 @@ public class WindowMenu {
 
     @FXML
     void initialize() {
-if (AllStaticData.b!=null){
-    OnButton.setTextFill(AllStaticData.b);
-   // System.out.println(AllStaticData.b);
-}
+//if (AllStaticData.b!=null){
+//    OnButton.setTextFill(AllStaticData.b);
+//   // System.out.println(AllStaticData.b);
+//}
 
 
 
@@ -144,15 +144,15 @@ if (AllStaticData.b!=null){
 
         if (AllStaticData.OnOrOffAppButtonMenu==true){
             AllStaticData.OnOrOffAppButtonMenu=false;
-            OnButton.setStyle("");
-            AllStaticData.b=null;
+         //   OnButton.setStyle("");
+         //   AllStaticData.b=null;
 executorServiceStartTrackingTheWorkOfPrograms.shutdown();
             System.out.println("больше не мониторим работающие exe");
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
-            OnButton.setTextFill(Color.CORAL);
-            AllStaticData.b=Color.CORAL;
+         //   OnButton.setTextFill(Color.CORAL);
+       //     AllStaticData.b=Color.CORAL;
 
             //        запускаем мониторинг работы ехе
             StartTrackingTheWorkOfPrograms.runProgramAndWait();
@@ -176,6 +176,7 @@ executorServiceStartTrackingTheWorkOfPrograms.shutdown();
         if (executorServiceStartTrackingTheWorkOfPrograms!=null) {
             executorServiceStartTrackingTheWorkOfPrograms.shutdown();
         }
+        AllStaticData.OnOrOffAppButtonMenu=false;
         OnButton.setStyle("");
         AllStaticData.b=null;
         Exit.getScene().getWindow().hide();

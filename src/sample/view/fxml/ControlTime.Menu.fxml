@@ -10,17 +10,17 @@
     <children>
         <AnchorPane fx:id="colorDown" layoutX="1.0" layoutY="97.0" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="OnButton" layoutX="212.0" layoutY="100.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="ВКЛ/ОТКЛ">
+            <Button fx:id="OnButton" alignment="CENTER" layoutX="212.0" layoutY="100.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="ВКЛ/ОТКЛ">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="StatisticsButton" layoutX="212.0" layoutY="180.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Показ статистики">
+            <Button fx:id="StatisticsButton" alignment="CENTER" layoutX="212.0" layoutY="180.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Показ статистики">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="SettingsButton" layoutX="212.0" layoutY="264.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Настройки">
+            <Button fx:id="SettingsButton" alignment="CENTER" layoutX="212.0" layoutY="264.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="276.0" style="-fx-background-radius: 10;" text="Настройки">
                <font>
                   <Font size="20.0" />
                </font>

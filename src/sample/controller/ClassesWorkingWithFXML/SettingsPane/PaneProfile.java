@@ -54,8 +54,8 @@ public class PaneProfile {
             if (executorServiceStartTrackingTheWorkOfPrograms!=null) {
                 executorServiceStartTrackingTheWorkOfPrograms.shutdown();
             }
-          //  WindowMenu.
-          //  AllStaticData.b=null;
+            AllStaticData.OnOrOffAppButtonMenu=false;
+           // AllStaticData.b=null;
             exit("/sample/view/fxml/ControlTime.Authorization.fxml");
 
         });

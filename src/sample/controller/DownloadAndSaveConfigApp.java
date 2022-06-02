@@ -25,90 +25,17 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 ||AllStaticData.getCloseStatistics24()||AllStaticData.getCloseStatisticsSelectTime();
         if (AllStaticData.checkCloseWindow==true){
             //если окно закрылось вызываем сохранение настроек
-            saveStaticData();
+            System.out.println("window closed" +
+                    "");
         }
 
     }
 
-    //сохраняем настройки которые лежат в статиках AllStaticData
-    public void saveStaticData(){
-
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-               "\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
-            //сохранение статиков конфига
-            String config="config: AllStaticData.getAllTimeConfig() "+AllStaticData.getAllTimeConfig()+" AllStaticData.getTimeSiteProgrConfig() "+AllStaticData.getTimeSiteProgrConfig()+
-                    " AllStaticData.getMessegeConfig() "+AllStaticData.getMessegeConfig()+" AllStaticData.getWorkTimeConfig() "+AllStaticData.getWorkTimeConfig()+
-                    " AllStaticData.getChillTimeConfig() "+
-                    AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig()+" .";
-            fs.write(config);
-            System.out.println("save "+config);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-             {
-            //сохранение настроек пользователя
-            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+AllStaticData.getTextSplitChoiceMesSett()+" AllStaticData.getCheckSoundAppSett() "+
-                    AllStaticData.getCheckSoundAppSett()+" AllStaticData.getTextChoiceInfoMesSett() "+
-                    AllStaticData.getTextChoiceInfoMesSett()+" AllStaticData.getTextsplitChoiceMesWorkSett() "
-                    +AllStaticData.getTextsplitChoiceMesWorkSett()+" AllStaticData.getCheckWorkSett() "+
-                    AllStaticData.getCheckWorkSett()+" AllStaticData.getTextsplitChoiceMesChillSett() "+AllStaticData.getTextsplitChoiceMesChillSett()
-                    +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett()+" .";
-            fs.write(setting);
-            System.out.println("save "+setting);
-                 fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    //загружаем цвета конфиг и настройки пользователя
-    public void downloadConfigAndSetting(){
-        String config=null;
-        String setting=null;
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-            {
-            config = fis.readLine();
-         //   System.out.println("download "+config);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-             {
-            setting =  fis.readLine();
-        //    System.out.println("download "+setting);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        //загруженные цвета устанавливаем в конфиги и настройки
-        SubstitutingSettingsAndConfigurations configurations=new SubstitutingSettingsAndConfigurations();
-        configurations.setConstConfigApp(config, setting);
 
 
 
-    }
 
-    //сохранение приложений нового пользователя
-    public void saveListNewProgr() {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
-            //сохранение статиков конфига
-            String ListProgr ="";
-            fs.write(ListProgr);
-         //   System.out.println("save all listProgr for new profile" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     //сохранение выбранных приложений нового пользователя
     public void saveUsedListNewProgr() {
@@ -235,7 +162,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt")))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\ControlTime\\listPrograms.txt")))
         {
             StringBuilder listPrograms=new StringBuilder();
 
@@ -405,53 +332,7 @@ return  progr;
 
 
 
-    //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
-    public void saveStaticDataForANewUser(){
-//конфиг н пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-                "\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
-            //сохранение статиков конфига
-            String config="config: AllStaticData.getAllTimeConfig() "+false+" AllStaticData.getTimeSiteProgrConfig() "+false+
-                    " AllStaticData.getMessegeConfig() "+false+" AllStaticData.getWorkTimeConfig() "+false+
-                    " AllStaticData.getChillTimeConfig() "+
-                    false+" AllStaticData.getAllSoundConfig() "+false+" .";
-            fs.write(config);
-            fs.flush();
-            System.out.println("save "+config);
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-        {
-            //сохранение настроек пользователя
-            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+"Вариант вывода уведомлений"+" AllStaticData.getCheckSoundAppSett() "+
-                    false+" AllStaticData.getTextChoiceInfoMesSett() "+
-                    "Вариант информации в уведомлении"+" AllStaticData.getTextsplitChoiceMesWorkSett() "
-                    +"Таймер работы"+" AllStaticData.getCheckWorkSett() "+
-                    false+" AllStaticData.getTextsplitChoiceMesChillSett() "+"Таймер перерыва"
-                    +" AllStaticData.getCheckChillSett() "+ false+" .";
-            fs.write(setting);
-            fs.flush();
-            System.out.println("save "+setting);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        //создание документа для хранения программ пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-                "\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16))){
-            //сохранение статиков конфига
-            String ListProgr="list: ";
-            fs.write(ListProgr);
-            System.out.println("save "+ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
 
 
@@ -512,7 +393,7 @@ return  progr;
     public void saveAllProgrammPC(StringBuilder listProgramPC){
       // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListProgr =listProgramPC;
        //     System.out.println(ListProgr);
@@ -530,7 +411,7 @@ fs.flush();
     public void saveDirProgrammPC(StringBuilder listDirProgramPC){
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDir =listDirProgramPC;
             //     System.out.println(ListProgr);
@@ -556,7 +437,7 @@ fs.flush();
 
         String list = "";
         //читаем количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(AllStaticData.firstDiskLine+"\\ControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
             while (list != null) {
                 list = fis.readLine();
                builder.append(list+"\n");
@@ -580,7 +461,7 @@ return builder;
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
         String s="";
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listPrograms.txt",StandardCharsets.UTF_16))) {
             //присваеивание текста новым билдером
 
             //     System.out.println(ListProgr);
@@ -599,7 +480,7 @@ return builder;
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
         String s="";
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listDir.txt",StandardCharsets.UTF_16))) {
             //присваеивание текста новым билдером
 
             //     System.out.println(ListProgr);
@@ -633,7 +514,7 @@ return builder;
 
     //сохранение списка дисков пк
     public void saveAllDiskPC(StringBuilder listDiskPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listDisk.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDisk =listDiskPC;
 
@@ -648,7 +529,7 @@ return builder;
 
     //сохранение списка дисков пк
     public void saveDir(StringBuilder builder){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt"))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listDir.txt"))) {
             //присваеивание текста новым билдером
 
 
@@ -663,7 +544,7 @@ return builder;
 
     //сохранение списка ехе пк
     public void saveListOfEXEFilesInDirectories(StringBuilder listDiskPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\ControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDisk =listDiskPC;
 
@@ -688,7 +569,7 @@ return builder;
 //читаем нужное количество строк
 
         StringBuilder listPrograms=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\ControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE)))
         {
 
 
@@ -714,7 +595,7 @@ return builder;
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt", StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\ControlTime\\listDisk.txt", StandardCharsets.UTF_16LE)))
         {
 
 
@@ -958,7 +839,7 @@ return builder;
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt", StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\ControlTime\\listPrograms.txt", StandardCharsets.UTF_16LE)))
         {
             while ((line = fis.readLine()) != null) {
                 listPrograms.append(line+"\n");

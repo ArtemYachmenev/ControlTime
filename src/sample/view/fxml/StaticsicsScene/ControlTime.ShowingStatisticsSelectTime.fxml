@@ -17,27 +17,32 @@
       </Label>
       <AnchorPane fx:id="colorDown" layoutY="100.0" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="16.0" prefHeight="25.0" prefWidth="141.0" text="Начальная дата:" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="58.0" prefHeight="25.0" prefWidth="141.0" text="Начальная дата:" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="textDay" layoutX="168.0" layoutY="16.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
-            <TextField fx:id="textMoth" layoutX="265.0" layoutY="16.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
-            <TextField fx:id="textYear" layoutX="362.0" layoutY="16.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="134.0" text="Конечная дата:" textAlignment="CENTER">
+            <TextField fx:id="textDay" layoutX="168.0" layoutY="58.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
+            <TextField fx:id="textMoth" layoutX="265.0" layoutY="58.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
+            <TextField fx:id="textYear" layoutX="362.0" layoutY="58.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="90.0" prefHeight="25.0" prefWidth="134.0" text="Конечная дата:" textAlignment="CENTER">
                <font>
                   <Font name="Agency FB" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="textYear1" layoutX="362.0" layoutY="55.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
-            <TextField fx:id="textDay1" layoutX="168.0" layoutY="55.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
-            <TextField fx:id="textMoth1" layoutX="265.0" layoutY="55.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
-            <Button fx:id="StatisticsForTheSelectedTimeButton" layoutX="511.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-radius: 10;" text="Показать">
+            <TextField fx:id="textYear1" layoutX="362.0" layoutY="90.0" prefHeight="17.0" prefWidth="85.0" promptText="Год" />
+            <TextField fx:id="textDay1" layoutX="168.0" layoutY="90.0" prefHeight="17.0" prefWidth="85.0" promptText="День" />
+            <TextField fx:id="textMoth1" layoutX="265.0" layoutY="90.0" prefHeight="17.0" prefWidth="85.0" promptText="Месяц" />
+            <Button fx:id="StatisticsForTheSelectedTimeButton" layoutX="509.0" layoutY="68.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" style="-fx-background-radius: 10;" text="Показать">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="15.0" layoutY="20.0" prefHeight="27.0" prefWidth="338.0" text="Дата вводится в формате: DD.MM.YY" textAlignment="CENTER">
+               <font>
+                  <Font name="Agency FB" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Button fx:id="Exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-background-radius: 10;" text="Назад">
@@ -45,7 +50,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutY="195.0" prefHeight="306.0" prefWidth="700.0">
+      <TableView fx:id="table" layoutY="223.0" prefHeight="278.0" prefWidth="700.0">
          <columns>
             <TableColumn fx:id="date" prefWidth="145.0" text="Дата работы " />
             <TableColumn fx:id="working_hours" prefWidth="101.0" text="Время запуска" />
