@@ -7,7 +7,7 @@ import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-
+import static sample.controller.AllStaticData.*;
 //сохраняет и грузит настройки приложения
 public class DownloadAndSaveConfigApp implements Serializable {
 
@@ -33,7 +33,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохраняем настройки которые лежат в статиках AllStaticData
     public void saveStaticData(){
 
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
                "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
@@ -47,7 +47,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             //сохранение настроек пользователя
@@ -69,7 +69,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     public void downloadConfigAndSetting(){
         String config=null;
         String setting=null;
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveConfig_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
             {
             config = fis.readLine();
@@ -78,7 +78,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             setting =  fis.readLine();
@@ -97,7 +97,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение приложений нового пользователя
     public void saveListNewProgr() {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
             //сохранение статиков конфига
@@ -113,7 +113,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение выбранных приложений нового пользователя
     public void saveUsedListNewProgr() {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListUsedProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
             //сохранение статиков конфига
@@ -129,7 +129,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение отслеживаемых приложений пользователя без перезаписи
     public void saveAListOfUsedApplicationsOverwriting(StringBuilder s) {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListUsedProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
             //сохранение текста новым билдером
@@ -146,7 +146,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение отслеживаемых приложений пользователя c перезаписью файла
     public void saveAListOfUsedApplications(StringBuilder s) {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListUsedProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
             //сохранение текста новым билдером
@@ -173,7 +173,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         int countLinesListProgr=0;
 
         //считаем сколько строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListUsedProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
             //если в списке что то есть то чистим для загрузки сохраненных приложений
@@ -192,7 +192,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         }
 
 //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListUsedProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
 
@@ -262,7 +262,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
 //читаем нужное количество строк
 
         StringBuilder listPrograms=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListUsedProgr_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveListUsedProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
 
@@ -285,7 +285,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение всех приложений пользователя без перезаписи
     public void saveListProg(StringBuilder s) {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt", true))) {
             //присваеивание текста новым билдером
@@ -302,7 +302,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение всех приложений пользователя с перезаписью
     public void saveListProgOverwriting(StringBuilder s) {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\saveListProgr_"
                 + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
@@ -320,7 +320,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
     //сохранение всех приложений пользователя
     public void saveGeneralListOfPrograms(StringBuilder s) {
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //присваеивание текста новым билдером
@@ -342,7 +342,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         int countLinesListProgr=0;
 
         //считаем сколько строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
             //если в списке что то есть то чистим для загрузки сохраненных приложений
@@ -363,7 +363,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
         }
 
 //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
 
@@ -408,7 +408,7 @@ return  progr;
     //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
     public void saveStaticDataForANewUser(){
 //конфиг н пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
                 "\\saveConfig_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
             //сохранение статиков конфига
@@ -423,7 +423,7 @@ return  progr;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveSetting_"
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
             //сохранение настроек пользователя
@@ -440,7 +440,7 @@ return  progr;
             System.out.println(e.getMessage());
         }
         //создание документа для хранения программ пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
                 "\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16))){
             //сохранение статиков конфига
@@ -457,7 +457,7 @@ return  progr;
 
     //сохраняем цвета приложения
     public void saveColorApp(String up, String down){
-        try (BufferedWriter fs = new BufferedWriter (new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveUp_"
+        try (BufferedWriter fs = new BufferedWriter (new FileWriter( dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
             //пишет в начале иероглифы
             fs.write(up);
@@ -465,7 +465,7 @@ return  progr;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( CreatingAndDeletingADirectory.dirProfile+"\\saveDown_"
+        try (BufferedWriter  fs = new BufferedWriter (new FileWriter( dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             //пишет в начале иероглифы
@@ -481,7 +481,7 @@ return  progr;
         ChangingTheAppColor color=new ChangingTheAppColor();
         String colorUp=null;
         String colorDown=null;
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveUp_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveUp_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
              {
             colorUp = fis.readLine();
@@ -489,7 +489,7 @@ return  progr;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveDown_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
               {
             colorDown =  fis.readLine();
@@ -617,7 +617,7 @@ return builder;
 
     //сохранение нового списка программ пк и пользователя
     public void saveNewGeneralListOfPrograms(){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
             //сохранение статиков конфига
@@ -747,7 +747,7 @@ return builder;
 
         String list = "";
         //читаем количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(programPCPowershell, StandardCharsets.UTF_16LE))) {
             while (list != null) {
                 list = fis.readLine();
                 count++;
@@ -761,7 +761,7 @@ return builder;
             System.out.println(e.getMessage());
         }
         //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(programPCPowershell, StandardCharsets.UTF_16LE))) {
 
             //отсекаем лишние строки, при ответе повершелла их 8
             for (int i = 0; i < count - 1; i++) {
@@ -816,7 +816,7 @@ return builder;
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.programPCPowershell, StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( programPCPowershell, StandardCharsets.UTF_16LE)))
         {
 
 
@@ -841,7 +841,7 @@ return builder;
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.programPCPowershellCompare, StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( programPCPowershellCompare, StandardCharsets.UTF_16LE)))
         {
 
 
@@ -871,7 +871,7 @@ return builder;
 
         String list = "";
         //читаем количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.listDir, StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(listDir, StandardCharsets.UTF_16LE))) {
             while (list != null) {
                 list = fis.readLine();
                 count++;
@@ -885,7 +885,7 @@ return builder;
             System.out.println(e.getMessage());
         }
         //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(CreatingAndDeletingADirectory.listDir, StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(listDir, StandardCharsets.UTF_16LE))) {
 
             //отсекаем лишние строки, при ответе повершелла их 8
             for (int i = 0; i < count - 1; i++) {
@@ -945,7 +945,7 @@ return builder;
 
 
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile+"\\saveListProgr_"
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveListProgr_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {
             while ((line = fis.readLine()) != null) {
@@ -973,7 +973,7 @@ return builder;
 
 
         //если в файле что то есть то перезаписываем его
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
@@ -987,7 +987,7 @@ return builder;
             System.out.println(e.getMessage());
         }
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
@@ -1014,7 +1014,7 @@ return builder;
 
 
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
@@ -1043,7 +1043,7 @@ return builder;
         int countLinesListProgr=0;
 
         //считаем сколько строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt")))
         {
@@ -1063,7 +1063,7 @@ return builder;
         }
 
 //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( CreatingAndDeletingADirectory.dirProfile +
+        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
         {

@@ -6,39 +6,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 
+import static sample.controller.AllStaticData.*;
+
 
 //создает директорию для профиля пользователя
 public  class CreatingAndDeletingADirectory {
 
-    //public static File   dirProfile = new File("C://dataControlTime//"+AllStaticData.getLogin());
-    //путь к профилю
-    public static Path dirProfile;
-    //файл со всеми прогрмаммами
-    public static File programPC;
-    // ответ на запрос о всех программах пк повершелла
-    public static File programPCPowershell;
-    //файл со основным диском
-    public static File firstDisk;
-    //файл со всеми дисками
-    public static File diskPC;
-    //файл со всеми программами+листом с программами пользовтаеля
-    public static File generalListOfPrograms;
-    //файл со всеми программами пк и директориями
-    public static File listDir;
-    //файл со всеми программами пк и директориями новый для сравнения
-    public static File programPCPowershellCompare;
-    //файл со всеми программами пк и директориями
-    public static File listOfEXEFilesInDirectories;
-    //файл с ответ на запрос о ехе в директориях
-    public static File dataEXE;
-   // public static File programPCAll;
+
 
     //заново присваиваем переменным пути  для профля и файла со всеми прогарммами чтобы если что ими оперировать
     static {
         try {
            // AllStaticData.app.downloadAllDiskPC();
 
-            dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +28,7 @@ public  class CreatingAndDeletingADirectory {
     //переопределяем директории для профля
     public static void setDir() {
         try {
-            dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            AllStaticData.dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
 
 
 
@@ -186,7 +167,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений пк+ программами пользователя
     public static void createGeneralListOfPrograms() {
 
-        generalListOfPrograms = new File((CreatingAndDeletingADirectory.dirProfile +
+        generalListOfPrograms = new File((dirProfile +
                 "\\generalListOfPrograms_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"));
 

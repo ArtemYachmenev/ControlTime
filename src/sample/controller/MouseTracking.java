@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Objects;
-
+import static sample.controller.AllStaticData.*;
 //тут можно сделать два способа или просто отслеживать координаты мышки или отслеживать нажатие и тп, но для этого надо разворачивать окно поверх окна винды
 //пока будут просто координаты
 public class MouseTracking  implements MouseListener, MouseMotionListener, Runnable {
@@ -33,7 +33,7 @@ boolean keyRun=true;
 
       //  while (mouseX!=0 || mouseY!=0){
        // while (keyRun==true){
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()){
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()){
             mouseX=MouseInfo.getPointerInfo().getLocation().getX();
             mouseY=MouseInfo.getPointerInfo().getLocation().getY();
             if (Objects.equals(mouseX,resultX)&&Objects.equals(mouseY,resultY)){
@@ -49,7 +49,7 @@ boolean keyRun=true;
 
     @Override
     public void run() {
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()){
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()){
             mouseX=MouseInfo.getPointerInfo().getLocation().getX();
             mouseY=MouseInfo.getPointerInfo().getLocation().getY();
             if (Objects.equals(mouseX,resultX)==true&&Objects.equals(mouseY,resultY)==true){

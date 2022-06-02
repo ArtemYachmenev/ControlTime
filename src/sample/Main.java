@@ -23,9 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import static sample.controller.OpenWindows.Kernel32.PROCESS_QUERY_INFORMATION;
-import static sample.controller.OpenWindows.Kernel32.PROCESS_VM_READ;
-import static sample.controller.OpenWindows.MAX_TITLE_LENGTH;
+
 
 
 public class Main extends Application {

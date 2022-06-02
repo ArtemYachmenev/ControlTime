@@ -21,7 +21,7 @@ public class MyTimer implements Runnable{
     int firstIndex = 0;
     int lastIndex = 0;
  static volatile   String s;
-    public  static   ExecutorService executorService;
+
    static int count=0;
 
 
@@ -116,7 +116,7 @@ int i=count-1;
     @Override
     public void run() {
 
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()) {
 
             //если мышка двигается то идет запись времени
             if (workMouse==true) {
@@ -204,7 +204,7 @@ if (keyMouse==true) {
                 }
             }
         }
-        if (StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        if (executorServiceStartTrackingTheWorkOfPrograms.isShutdown()) {
           //  AllStaticData.workTimer=false;
             if (keyTime==false) {
 
@@ -237,14 +237,14 @@ if (keyMouse==true) {
 
        // System.out.println(res);
 
-        java.util.Date utilStartDate = currentDate;
+        Date utilStartDate = currentDate;
         java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
 
 
         WorkingHours workingHours=new WorkingHours(sqlStartDate,res,s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
-        handler.saveWORKINGHOURS(workingHours,AllStaticData.login);
-MyTimer.executorService.shutdown();
+        handler.saveWORKINGHOURS(workingHours, login);
+executorService.shutdown();
     //    System.out.println(currentDate.toString()+"fdaaaaaaaaaaaaaaaa");
       //  System.out.println(getDurationBreakdown(elapsedTime)+"ffffffffffffffffffffffffffffff");
     }

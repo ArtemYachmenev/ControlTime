@@ -3,12 +3,60 @@ package sample.controller;
 import javafx.scene.layout.AnchorPane;
 
 import java.awt.*;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 public class AllStaticData {
+
+    //статики класса GetAllProgramPC
+    // public static StringBuilder programs=new StringBuilder();
+    public static StringBuilder disk = new StringBuilder();
+    public static StringBuilder program = new StringBuilder();
+    public static StringBuilder dir = new StringBuilder();
+
+    public static boolean programsHaveChanged=false;
+    public static StringBuilder listOfEXEFilesInDirectoriesBuilder = new StringBuilder();
+
+    //статик класса MyTimer
+    public  static ExecutorService executorService;
+
+    //статик класса StartTrackingTheWorkOfPrograms
+    //исполнитель запуска потоков
+    public static  volatile   ExecutorService executorServiceStartTrackingTheWorkOfPrograms;
+
+    //public static File   dirProfile = new File("C://dataControlTime//"+AllStaticData.getLogin());
+    //путь к профилю
+    public static Path dirProfile;
+    //файл со всеми прогрмаммами
+    public static File programPC;
+    // ответ на запрос о всех программах пк повершелла
+    public static File programPCPowershell;
+    //файл со основным диском
+    public static File firstDisk;
+    //файл со всеми дисками
+    public static File diskPC;
+    //файл со всеми программами+листом с программами пользовтаеля
+    public static File generalListOfPrograms;
+    //файл со всеми программами пк и директориями
+    public static File listDir;
+    //файл со всеми программами пк и директориями новый для сравнения
+    public static File programPCPowershellCompare;
+    //файл со всеми программами пк и директориями
+    public static File listOfEXEFilesInDirectories;
+    //файл с ответ на запрос о ехе в директориях
+    public static File dataEXE;
+    // public static File programPCAll;
+
+
+
+
+
 
 // цвет button menu
 public static Color b;

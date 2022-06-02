@@ -28,7 +28,7 @@ import sample.controller.CreatingAndDeletingADirectory;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 import sample.controller.LoginOfTheWorkingUser;
-
+import static sample.controller.AllStaticData.*;
 import javax.swing.*;
 
 public class PaneProfile {
@@ -50,13 +50,16 @@ public class PaneProfile {
     void initialize() {
         exitButton.setOnAction(ActionEvent -> {
             System.out.println("выход из профиля");
+            if (executorServiceStartTrackingTheWorkOfPrograms!=null) {
+                executorServiceStartTrackingTheWorkOfPrograms.shutdown();
+            }
             exit("/sample/view/fxml/ControlTime.Authorization.fxml");
 
         });
 
         deleteProfile.setOnAction(ActionEvent -> {
             System.out.println("удаление профиля");
-            //confirmationOfDeletion("/sample/view/fxml/SettingsPane/confirmationOfDeletion.fxml");
+
             confirmationOfDeletion();
         });
 
@@ -88,12 +91,13 @@ public class PaneProfile {
         //удаляем логин
         dbHandler.deleteUser(LoginOfTheWorkingUser.getUserLogin());
         //удаляем директорию
-        CreatingAndDeletingADirectory.deleteDir(CreatingAndDeletingADirectory.dirProfile);
+        CreatingAndDeletingADirectory.deleteDir(dirProfile);
         openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
     }
 
     //открытие окно меню
     public void openAut (String window){
+
         exitButton.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));

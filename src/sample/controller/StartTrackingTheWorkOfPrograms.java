@@ -11,10 +11,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import static sample.controller.AllStaticData.*;
 public class StartTrackingTheWorkOfPrograms {
-    //исполнитель запуска потоков
-  public static  volatile   ExecutorService executorService;
+
 
     public static void runProgramAndWait() {
 
@@ -176,7 +175,7 @@ public class StartTrackingTheWorkOfPrograms {
 
         //исполнитель запуска потоков
       // executorService= Executors.newFixedThreadPool(count);
-        executorService= Executors.newFixedThreadPool(3);
+        executorServiceStartTrackingTheWorkOfPrograms= Executors.newFixedThreadPool(3);
 
         int sumEXE=0;
         for (int j = 0; j < list.size(); j++) {
@@ -250,7 +249,7 @@ public class StartTrackingTheWorkOfPrograms {
 //        }
 
         //запускаем поток
-        executorService.execute(new CheckProcess(progName,sumEXE,listProgEXE));
+        executorServiceStartTrackingTheWorkOfPrograms.execute(new CheckProcess(progName,sumEXE,listProgEXE));
 
         //добавляем в лист имя программы и количесво ехе
 
@@ -259,9 +258,9 @@ public class StartTrackingTheWorkOfPrograms {
         OperationTimer operationTimer=new OperationTimer();
       //  operationTimer.checkingTheApplicationLaunch();
 
-       executorService.execute(new OperationTimer());
+        executorServiceStartTrackingTheWorkOfPrograms.execute(new OperationTimer());
 
-executorService.execute(new MouseTracking());
+        executorServiceStartTrackingTheWorkOfPrograms.execute(new MouseTracking());
 
       //  MouseTracking tracking=new MouseTracking();
      //   tracking.mouseMove();
@@ -293,7 +292,7 @@ class CheckProcess implements Runnable {
 //               this.d=-1;
 //        }
         //пока выполнитель не выключен работает
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()) {
             //каждый раз чистим список
             AllStaticData.workApp.clear();
 

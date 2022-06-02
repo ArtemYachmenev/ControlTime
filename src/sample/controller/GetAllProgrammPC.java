@@ -4,16 +4,10 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
-
+import static sample.controller.AllStaticData.*;
 public class GetAllProgrammPC {
 
-    // public static StringBuilder programs=new StringBuilder();
-    public static StringBuilder disk = new StringBuilder();
-    public static StringBuilder program = new StringBuilder();
-    public static StringBuilder dir = new StringBuilder();
 
-    public static boolean programsHaveChanged=false;
-    public static StringBuilder listOfEXEFilesInDirectories = new StringBuilder();
     // команда  с дополнительными параметрами
 //" Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | " +
 //                    "Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table -AutoSize "
@@ -25,7 +19,7 @@ public class GetAllProgrammPC {
                     "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending " +
                     "| Out-File -Width 200 "
-                    + CreatingAndDeletingADirectory.programPCPowershell);
+                    + programPCPowershell);
             p.getOutputStream().close();
 
 
@@ -55,7 +49,7 @@ public class GetAllProgrammPC {
                     "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKLM:\\Software" +
                     "\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* " +
                     "| % { Get-ItemProperty $_.PsPath } | Select DisplayName | Sort-Object Displayname -Descending | Out-File  -Width 200 " +
-                    CreatingAndDeletingADirectory.programPCPowershellCompare);
+                    programPCPowershellCompare);
 
           
            
@@ -343,7 +337,7 @@ disk=diskBuilder;
                     "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*, HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | % " +
                     "{ Get-ItemProperty $_.PsPath } | Select DisplayName,InstallLocation | " +
                     "Sort-Object Displayname -Descending | Out-File  -Width 200 " +
-                    CreatingAndDeletingADirectory.listDir);
+                   listDir);
 
 
 

@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
-
+import static sample.controller.AllStaticData.*;
 
 public class WindowMenu {
 
@@ -146,7 +146,7 @@ if (AllStaticData.b!=null){
             AllStaticData.OnOrOffAppButtonMenu=false;
             OnButton.setStyle("");
             AllStaticData.b=null;
-StartTrackingTheWorkOfPrograms.executorService.shutdown();
+executorServiceStartTrackingTheWorkOfPrograms.shutdown();
             System.out.println("больше не мониторим работающие exe");
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
@@ -173,6 +173,11 @@ StartTrackingTheWorkOfPrograms.executorService.shutdown();
 
     //открытие окно меню
     public void openAut (String window){
+        if (executorServiceStartTrackingTheWorkOfPrograms!=null) {
+            executorServiceStartTrackingTheWorkOfPrograms.shutdown();
+        }
+        OnButton.setStyle("");
+        AllStaticData.b=null;
         Exit.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));

@@ -37,12 +37,12 @@ int count=0;
     @Override
     public void run() {
         //обновляем ключ по созданию потоков и числу программ и листы
-        AllStaticData.countProg=false;
-        AllStaticData.listRunProg.clear();
-        AllStaticData.listRunProg2.clear();
+        countProg=false;
+        listRunProg.clear();
+        listRunProg2.clear();
         listRunIndex.clear();
         listRunActual.clear();
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()) {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
@@ -57,29 +57,29 @@ int count=0;
             int lastIndex = 0;
             String s;
             count=0;
-            AllStaticData.listRunProg.clear();
+            listRunProg.clear();
         //    AllStaticData.listRunProg2.clear();
-            for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
-                if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
-                    firstIndex = AllStaticData.nameProgCountEXE.get(i).indexOf(" ");
+            for (int i = 0; i < nameProgCountEXE.size(); i++) {
+                if (nameProgCountEXE.get(i).contains("***** ")) {
+                    firstIndex = nameProgCountEXE.get(i).indexOf(" ");
 
-                    s = AllStaticData.nameProgCountEXE.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
+                    s = nameProgCountEXE.get(i).substring(firstIndex + 1, nameProgCountEXE.get(i).length());
                     //     System.out.println(s + " ppppppppppppppppppppppp");
 
 
                     prog.add("***** " + s);
-                for (int j = 0; j < AllStaticData.workApp.size(); j++) {
+                for (int j = 0; j < workApp.size(); j++) {
 
 
 
                             //    if (Objects.equals(list.get(i),list2.get(j))) {
-                            for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
+                            for (int k = i + 1; k < nameProgCountEXE.size(); k++) {
 
-                                if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-                                    if (AllStaticData.workApp.get(j).trim().contains(AllStaticData.nameProgCountEXE.get(k).trim())) {
-                                        prog.add(AllStaticData.workApp.get(j));
+                                if (!nameProgCountEXE.get(k).contains("***** ")) {
+                                    if (workApp.get(j).trim().contains(nameProgCountEXE.get(k).trim())) {
+                                        prog.add(workApp.get(j));
                                     }
-                                }  if (AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
+                                }  if (nameProgCountEXE.get(k).contains("***** ")) {
                                     break;
                                 }
                             }
@@ -176,11 +176,11 @@ count++;
                             if (goWork.get(k).toString().contains("true")) {
                                 oneProgAndEXE.add("true");
                                 //добавление в тестовый лист
-                                AllStaticData.listRunProg.add(s + " 1");
+                                listRunProg.add(s + " 1");
                                 //   count++;
                                 break;
                             }
-                            else AllStaticData.listRunProg.add(s+" 0");
+                            else listRunProg.add(s+" 0");
                         }
 
 
@@ -219,9 +219,9 @@ count++;
              //   System.out.println("перезапись2222222222");
             }
 
-            if (AllStaticData.countProg==false){
-                AllStaticData.countProg=true;
-                AllStaticData.countProgram=count;
+            if (countProg==false){
+                countProg=true;
+                countProgram=count;
                 executorService = Executors.newFixedThreadPool(count);
             }
 
@@ -235,19 +235,19 @@ count++;
             //может сделать алгоритм где после программы есть тру надо запускать его а если нет то опять цикл проходить а сзапущенное пропускать
             //для этого сделать listRunProg listRunProg2, listRunProg2 должен добавлять значения тру которых ранбше не было
             synchronized (listRunProg2) {
-                if (AllStaticData.countProgram != 0) {
+                if (countProgram != 0) {
 //можно сделать отсчет от соунт
 //можно создать лист в который заносятся индексы запущенных программ после добавления в него при переборе его в цикле чтобы индексы не выпадали
 //надо добавить список где наверно храняться индесы и если  совпадают значения то не запускать их
 
 
 
-                    for (int k = 0; k < AllStaticData.listRunProg.size(); k++) {
+                    for (int k = 0; k < listRunProg.size(); k++) {
 
-                            if (AllStaticData.listRunProg.get(k).toString().contains("1")) {
-                                lastIndex = AllStaticData.listRunProg.get(k).toString().lastIndexOf(" ");
+                            if (listRunProg.get(k).toString().contains("1")) {
+                                lastIndex = listRunProg.get(k).toString().lastIndexOf(" ");
 
-                                s = AllStaticData.listRunProg.get(k).toString().substring(0, lastIndex);
+                                s = listRunProg.get(k).toString().substring(0, lastIndex);
                                 if (listRunIndex.isEmpty()==true){
                                 //    System.out.println("ddddddddddddddddddddddukaaaaaaaaaa");
                                     //добавление в новый тестовый лист2
@@ -256,7 +256,7 @@ count++;
                                     listRunIndex.add(listRunProg.get(k));
                                  //   System.out.println(s +" в работу1");
                                     executorService.execute(new MyTimer());
-                                    AllStaticData.countProgram--;
+                                    countProgram--;
                                 }
                                 else {
                                     for (int i = 0; i < listRunActual.size(); i++) {
@@ -269,7 +269,7 @@ count++;
                                                     listRunProg2.add("true");
                                                     listRunIndex.add(listRunProg.get(k));
                                                     executorService.execute(new MyTimer());
-                                                    AllStaticData.countProgram--;
+                                                    countProgram--;
                                                 }
                                             }
 //                                        if (!Objects.equals(listRunActual.get(i), listRunProg.get(k))) {
@@ -350,7 +350,7 @@ count++;
 
   //  @Override
     public Object call() throws Exception {
-        while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
+        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()) {
 
             try {
                 Thread.sleep(5000);
@@ -364,27 +364,27 @@ count++;
             String s;
 
 
-            for (int i = 0; i < AllStaticData.nameProgCountEXE.size(); i++) {
-                if (AllStaticData.nameProgCountEXE.get(i).contains("***** ")) {
-                    firstIndex = AllStaticData.nameProgCountEXE.get(i).indexOf(" ");
+            for (int i = 0; i < nameProgCountEXE.size(); i++) {
+                if (nameProgCountEXE.get(i).contains("***** ")) {
+                    firstIndex = nameProgCountEXE.get(i).indexOf(" ");
 
-                    s = AllStaticData.nameProgCountEXE.get(i).substring(firstIndex + 1, AllStaticData.nameProgCountEXE.get(i).length());
+                    s = nameProgCountEXE.get(i).substring(firstIndex + 1, nameProgCountEXE.get(i).length());
                     //     System.out.println(s + " ppppppppppppppppppppppp");
 
 
                     prog.add("***** " + s);
-                    for (int j = 0; j < AllStaticData.workApp.size(); j++) {
+                    for (int j = 0; j < workApp.size(); j++) {
 
 
 
                         //    if (Objects.equals(list.get(i),list2.get(j))) {
-                        for (int k = i + 1; k < AllStaticData.nameProgCountEXE.size(); k++) {
+                        for (int k = i + 1; k < nameProgCountEXE.size(); k++) {
 
-                            if (!AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
-                                if (AllStaticData.workApp.get(j).trim().contains(AllStaticData.nameProgCountEXE.get(k).trim())) {
-                                    prog.add(AllStaticData.workApp.get(j));
+                            if (!nameProgCountEXE.get(k).contains("***** ")) {
+                                if (workApp.get(j).trim().contains(nameProgCountEXE.get(k).trim())) {
+                                    prog.add(workApp.get(j));
                                 }
-                            }  if (AllStaticData.nameProgCountEXE.get(k).contains("***** ")) {
+                            }  if (nameProgCountEXE.get(k).contains("***** ")) {
                                 break;
                             }
                         }
