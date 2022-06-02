@@ -100,35 +100,7 @@ public class WindowSettings {
 
     }
 
-// загружается  панель настройка сообщений
-@FXML
-    public void SettingInfoMesPane(javafx.event.ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingInfoMesPane.fxml"));
-        stackPane.getChildren().removeAll();
-        stackPane.getChildren().setAll(fxml);
-    System.out.println("нажата кнопка изменения информации уведомлений");
 
-    }
-
-    // загружается  панель настройка информации сообщений
-    @FXML
-    public void SettingMessagePane(javafx.event.ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingMessagePane.fxml"));
-        stackPane.getChildren().removeAll();
-        stackPane.getChildren().setAll(fxml);
-        System.out.println("нажата кнопка изменения  уведомлений");
-
-    }
-
-    // загружается  панель настройка времени работы и отдыха
-    @FXML
-    public void SettingTimerPane(javafx.event.ActionEvent event) throws IOException {
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingTimerPane.fxml"));
-        stackPane.getChildren().removeAll();
-        stackPane.getChildren().setAll(fxml);
-        System.out.println("нажата кнопка изменения времени работы и отдыха");
-
-    }
 
     // загружается  панель настройка профиля
     @FXML
@@ -190,8 +162,7 @@ public class WindowSettings {
         }
 
 
-    public static class SettingTimerPane {
-    }
+
 }
 
 

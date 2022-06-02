@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
 import sample.controller.ClassesWorkingWithFXML.WindowAuthorization;
+import sample.controller.ClassesWorkingWithFXML.WindowMenu;
 import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
 import sample.controller.CreatingAndDeletingADirectory;
 import sample.controller.Database.DatabaseHandler;
@@ -53,6 +54,8 @@ public class PaneProfile {
             if (executorServiceStartTrackingTheWorkOfPrograms!=null) {
                 executorServiceStartTrackingTheWorkOfPrograms.shutdown();
             }
+          //  WindowMenu.
+          //  AllStaticData.b=null;
             exit("/sample/view/fxml/ControlTime.Authorization.fxml");
 
         });

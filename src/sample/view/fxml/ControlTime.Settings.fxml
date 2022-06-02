@@ -35,21 +35,6 @@
                   <Button fx:id="colorAppButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingColorPane" prefHeight="77.0" prefWidth="180.0" text="Цвета приложения" />
                   <Button fx:id="programButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProgramPane" prefHeight="77.0" prefWidth="180.0" text="Отслеживаемые программы" />
                   <Button fx:id="profileButton1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProfilePane" prefHeight="77.0" prefWidth="180.0" text="Управление профилем" />
-                  <Button fx:id="messegeButton" cacheShape="false" centerShape="false" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#SettingMessagePane" prefHeight="77.0" prefWidth="314.0" text="Уведомления" visible="false">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="infoMessegeButton" cacheShape="false" centerShape="false" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#SettingInfoMesPane" prefHeight="77.0" prefWidth="308.0" scaleShape="false" text="Информация в уведомлении" visible="false">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="timerButton" alignment="CENTER" cacheShape="false" centerShape="false" focusTraversable="false" mnemonicParsing="false" onAction="#SettingTimerPane" prefHeight="77.0" prefWidth="308.0" scaleShape="false" text="Таймер работы и отдыха" visible="false">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
          </children>
