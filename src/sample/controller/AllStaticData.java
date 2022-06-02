@@ -38,7 +38,7 @@ public class AllStaticData {
     // ответ на запрос о всех программах пк повершелла
     public static File programPCPowershell;
     //файл со основным диском
-    public static File firstDisk;
+    public static String firstDisk;
     //файл со всеми дисками
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
