@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
@@ -52,6 +53,19 @@ public class WindowMenu {
 
     @FXML
     void initialize() {
+if (AllStaticData.b!=null){
+    OnButton.setTextFill(AllStaticData.b);
+   // System.out.println(AllStaticData.b);
+}
+
+
+
+
+
+
+
+
+
         //устанавливаем директорию  зашедшего пользователя (меняем с пользователя Null на нашего)
         CreatingAndDeletingADirectory.setDir();
 
@@ -126,14 +140,19 @@ public class WindowMenu {
 
     //нажатие на кнопку вкл выкл
     public void klickButtonOn(){
+
+
         if (AllStaticData.OnOrOffAppButtonMenu==true){
             AllStaticData.OnOrOffAppButtonMenu=false;
-
+            OnButton.setStyle("");
+            AllStaticData.b=null;
 StartTrackingTheWorkOfPrograms.executorService.shutdown();
             System.out.println("больше не мониторим работающие exe");
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
+            OnButton.setTextFill(Color.CORAL);
+            AllStaticData.b=Color.CORAL;
 
             //        запускаем мониторинг работы ехе
             StartTrackingTheWorkOfPrograms.runProgramAndWait();
@@ -146,6 +165,7 @@ StartTrackingTheWorkOfPrograms.executorService.shutdown();
 //                }
 //            }
         }
+
 
     }
 

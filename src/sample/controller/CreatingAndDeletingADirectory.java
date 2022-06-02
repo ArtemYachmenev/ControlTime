@@ -17,6 +17,8 @@ public  class CreatingAndDeletingADirectory {
     public static File programPC;
     // ответ на запрос о всех программах пк повершелла
     public static File programPCPowershell;
+    //файл со основным диском
+    public static File firstDisk;
     //файл со всеми дисками
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
@@ -36,7 +38,7 @@ public  class CreatingAndDeletingADirectory {
         try {
            // AllStaticData.app.downloadAllDiskPC();
 
-            dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,7 +47,7 @@ public  class CreatingAndDeletingADirectory {
     //переопределяем директории для профля
     public static void setDir() {
         try {
-            dirProfile = Files.createDirectories(Path.of("C:\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
+            dirProfile = Files.createDirectories(Path.of(AllStaticData.firstDiskLine+"\\dataControlTime\\" + LoginOfTheWorkingUser.getUserLogin()));
 
 
 
@@ -57,7 +59,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком файлов в директориях приложений пк
     public static void createListOfEXEFilesInDirectories() {
 
-        listOfEXEFilesInDirectories = new File(("C:\\dataControlTime\\listOfEXEFilesInDirectories.txt"));
+        listOfEXEFilesInDirectories = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt"));
         try {
             listOfEXEFilesInDirectories.createNewFile();
            // AllStaticData.app.saveNewAllProgrammPC();
@@ -72,7 +74,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком файлов в директориях приложений пк
     public static void createDataEXE() {
 
-        dataEXE = new File(("C:\\dataControlTime\\dataEXE.txt"));
+        dataEXE = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt"));
         try {
             dataEXE.createNewFile();
             // AllStaticData.app.saveNewAllProgrammPC();
@@ -87,7 +89,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений
     public static void createListPrograms() {
 
-            programPC = new File(("C:\\dataControlTime\\listPrograms.txt"));
+            programPC = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt"));
         try {
             programPC.createNewFile();
         //    AllStaticData.app.saveNewAllProgrammPC();
@@ -98,6 +100,23 @@ public  class CreatingAndDeletingADirectory {
 
 
     }
+
+
+//    //создаем файл с основным диском
+//    public static void createFirstDisk() {
+//
+//        firstDisk = new File(("C:\\dataControlTime\\firstDisk.txt"));
+//        try {
+//            firstDisk.createNewFile();
+//            //    AllStaticData.app.saveNewAllProgrammPC();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
+
 
     //перезапись файла со списком приложений пк
     public static void overwritingListPrograms() {
@@ -128,7 +147,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений
     public static void createListProgramsPowershell() {
 
-        programPCPowershell = new File(("C:\\dataControlTime\\listProgramsPowershell.txt"));
+        programPCPowershell = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listProgramsPowershell.txt"));
         try {
             programPCPowershell.createNewFile();
 
@@ -143,7 +162,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком приложений новый для сравнения со старым
     public static void createListProgramsPowershellCompare() {
 
-        programPCPowershellCompare = new File(("C:\\dataControlTime\\listProgramsPowershellCompare.txt"));
+        programPCPowershellCompare = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listProgramsPowershellCompare.txt"));
         try {
             programPCPowershellCompare.createNewFile();
 
@@ -201,7 +220,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком дисков
     public static void createListDisk() {
 
-        diskPC = new File(("C:\\dataControlTime\\listDisk.txt"));
+        diskPC = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt"));
         try {
             diskPC.createNewFile();
 
@@ -214,7 +233,7 @@ public  class CreatingAndDeletingADirectory {
     //создаем файл со списком программ пк и их директорий
     public static void createListDirProg() {
 
-        listDir = new File(("C:\\dataControlTime\\listDir.txt"));
+        listDir = new File((AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt"));
         try {
             listDir.createNewFile();
             AllStaticData.app.saveNewAListDirProg();

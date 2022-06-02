@@ -28,6 +28,7 @@ public class GetAllProgrammPC {
                     + CreatingAndDeletingADirectory.programPCPowershell);
             p.getOutputStream().close();
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -258,6 +259,77 @@ disk=diskBuilder;
         }
     }
 
+    //ищем первый диск чтобы он был корневой директорией
+    public static void getFirstDiskPC(){
+        ArrayList<String> list=new ArrayList<>();
+        try {
+
+            StringBuilder diskBuilder=new StringBuilder();
+            String programs_name = "wmic logicaldisk get name"; //<-- команда для вывода всех дисков пк
+            String process_line;
+
+            //открываем cmd пишем команду по выводу всех дисков
+            Process p = Runtime.getRuntime().exec(programs_name);
+
+
+
+            //читаем строки и сохраняем их
+            BufferedReader input =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while (((process_line = input.readLine()) != null)) {
+
+                list.add(process_line.trim());
+
+            }
+
+//
+            //цикл фильтрующий список листа с дисками
+            for (int i=0; i<list.size();i++){
+                if ((list.get(i).equals(null))||(list.get(i).equals("\\n"))||(list.get(i).equals(""))||(list.get(i).equals("Name"))||(list.get(i).equals(""))){
+                    list.set(i,"");
+                }
+                //  System.out.println(list.get(i));
+
+            }
+
+//цикл втсавляющий не пустые строки в список листа с дисками
+            for (int i=0; i<list.size();i++){
+                if (!(list.get(i).equals(""))&&!(list.get(i).equals("\n"))&&!(list.get(i).equals("\s"))) {
+                    diskBuilder.append(list.get(i) + "\n");
+                    break;
+                }
+            }
+
+
+            String[] lines = diskBuilder.toString().split("\\n");
+
+
+
+            //ставим массив в лист
+            for (String l : lines){
+                AllStaticData.firstDiskLine=l;
+            //    System.out.println(l);
+                //     System.out.println(list);
+            }
+
+
+
+
+
+           // AllStaticData.app.saveAllDiskPC(diskBuilder);
+            // закрываем чтение
+            input.close();
+            // закрываем процесс
+            p.getOutputStream().close();
+
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+
+
+
 
     //ищем директории по запросу
     public static void getAllProgramDirPowershell() {
@@ -457,6 +529,7 @@ String substr2=str.substring(indexFirst, indexLast-1);
                         Thread.sleep(50);
                         p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+substr2 +"\\\" -Recurse -force *.exe | Select Name");
 Thread.sleep(50);
+
 //ждем пока закончит выводить
 p.waitFor();
                         //если у программы есть exe то записываем его
@@ -473,7 +546,7 @@ p.waitFor();
                             }}
                         Thread.sleep(50);
                         BufferedReader input =
-                                new BufferedReader(new FileReader( "C:\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
+                                new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
 
                             // line = input.readLine();
@@ -502,6 +575,11 @@ p.waitFor();
             }
 
         }
+
+        //метод для нахождения пид для каждого exe программ
+
+           // можно его также воткнуть в первый поток запускающий отслеживание программ
+            //да, возьми пиды и вставь в лист, потом когда будешь программы закрывать они будут офаться
 
 
 
@@ -537,7 +615,7 @@ p.waitFor();
         Process p;
         try {
             p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
-                    "| Out-File  -Width 200 C:\\dataControlTime\\dataEXE.txt" );
+                    "| Out-File  -Width 200 "+ AllStaticData.firstDiskLine+":\\dataControlTime\\dataEXE.txt" );
 
 
             //ждем пока закончит писать в файл

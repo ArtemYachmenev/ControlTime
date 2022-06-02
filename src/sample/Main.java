@@ -1,5 +1,8 @@
 package sample;
 
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +23,23 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import static sample.controller.OpenWindows.Kernel32.PROCESS_QUERY_INFORMATION;
+import static sample.controller.OpenWindows.Kernel32.PROCESS_VM_READ;
+import static sample.controller.OpenWindows.MAX_TITLE_LENGTH;
+
 
 public class Main extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+//узнаем основной диск
+        GetAllProgrammPC.getFirstDiskPC();
+
+        //если нет файла со основным диском
+       // CreatingAndDeletingADirectory.createFirstDisk();
+
+
         //если нет файла со списком приложений то создаем его
         CreatingAndDeletingADirectory.createListPrograms();
 // ставим файл для фалов в директориях приложений
@@ -84,7 +98,7 @@ public class Main extends Application {
 
         Date date = new Date();
 
-        String res=oldDateFormat.format(date);
+
         String res2= String.valueOf(date);
         System.out.println(res2);
 

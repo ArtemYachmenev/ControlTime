@@ -2,10 +2,16 @@ package sample.controller;
 
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 
 public class AllStaticData {
+
+// цвет button menu
+public static Color b;
 
 
     // цвет верхней и нижней панели приложения
@@ -84,6 +90,11 @@ public class AllStaticData {
     //статик который вбирает одно закрытое окно и запускает сохранение конфига и настроек
     public static boolean checkCloseWindow=false;
 
+    //статик который вбирает первый диск для создания всех директорий
+    public static String firstDiskLine;
+    //статик который вбирает первый диск для создания всех директорий
+    public static StringBuilder firstDiskBuilder;
+
     //статик для запуска отсчета времени и мониторинга мыши
    // public static boolean workApp=false;
 
@@ -104,6 +115,8 @@ public class AllStaticData {
     public volatile static  ArrayList<String> nameProg=new ArrayList<>();
     //хранит состояние таймера его работы
     public volatile static boolean workTimer=false;
+    //лист для понятия для работающих exe программ чтобы потом их убить
+    public volatile static ArrayList<String> workAppKill=new ArrayList<>();
 
     //тестовые значения
 //лист который хранит приложения с тру, если тру нет то пишет 0

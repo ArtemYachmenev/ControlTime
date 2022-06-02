@@ -2,6 +2,7 @@ package sample.controller;
 
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -204,6 +205,37 @@ public class StartTrackingTheWorkOfPrograms {
                     }
 
                 }
+                AllStaticData.workAppKill.clear();
+
+//тут можно сдлелать лист с пидами
+                Process  p = null;
+                try {
+                    String line;
+                    for (int i=0;i<listProgEXE.size();i++) {
+                        p = Runtime.getRuntime().exec("tasklist | findstr /i " +listProgEXE.get(i));
+
+                        BufferedReader inputGetPidProg =
+                                new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        while ((line = inputGetPidProg.readLine()) != null) {
+                            String s=line.substring(line.lastIndexOf(".exe"));
+
+                            //    AllStaticData.workAppKill.add();
+                              //  builder4.append(substr+"\n");
+
+                                //пытаюсь найти pid родительских ехе
+                                //     Process getPid=Runtime.getRuntime().exec("wmic process get processid,parentprocessid,executablepath|find "avp.exe"");
+                                break;
+                            }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    p.getOutputStream().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
 
 
@@ -264,6 +296,7 @@ class CheckProcess implements Runnable {
         while (!StartTrackingTheWorkOfPrograms.executorService.isShutdown()) {
             //каждый раз чистим список
             AllStaticData.workApp.clear();
+
 //добавляем имя программы
             //   AllStaticData.workApp.add("***** " + nameProgram);
             //тут показвает запущен ли процесс
@@ -282,7 +315,8 @@ class CheckProcess implements Runnable {
 
                 //добавляем элементы
                 AllStaticData.workApp.add(nameEXE.get(i) + " " + vmRunning);
-
+                AllStaticData.workAppKill.add(nameEXE.get(i));
+              //  System.out.println(nameEXE.get(i) + " " + vmRunning);
 
 
                 //имя приложения и состояния его ехе (работают или нет) добавляются в лист
@@ -305,7 +339,20 @@ class CheckProcess implements Runnable {
             }
 
         }
-
+        //если кнопка выключена то выключаем все
+//        Process  p = null;
+//        try {
+//            for (int i=0;i<AllStaticData.workAppKill.size();i++) {
+//                p = Runtime.getRuntime().exec("taskkill /F /IM " +AllStaticData.workAppKill.get(i));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            p.getOutputStream().close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
