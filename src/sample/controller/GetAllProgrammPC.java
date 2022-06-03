@@ -543,7 +543,7 @@ Thread.sleep(50);
                      //   Thread.sleep(50);
                         //сделай чтобы диск с был в стоке монолитом ошибки при запросах повершелла
                         BufferedReader input =
-                                new BufferedReader(new FileReader( "C:\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
+                                new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt", StandardCharsets.UTF_16LE));
                         while ((line = input.readLine()) != null) {
 
                             // line = input.readLine();
@@ -612,7 +612,7 @@ Thread.sleep(50);
         Process p;
         try {
             p=Runtime.getRuntime().exec("powershell Get-ChildItem  -path \\\""+builder +"\\\" -Recurse -Force   *.exe | Select Name"+
-                    "| Out-File  -Width 200 "+ "C:\\dataControlTime\\dataEXE.txt" );
+                    "| Out-File  -Width 200 "+ AllStaticData.firstDiskLine+"\\dataControlTime\\dataEXE.txt" );
 
 
             //ждем пока закончит писать в файл

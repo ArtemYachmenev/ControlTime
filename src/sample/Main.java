@@ -33,7 +33,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 //узнаем основной диск
         GetAllProgrammPC.getFirstDiskPC();
-
+      //  System.out.println(AllStaticData.firstDiskLine);
         //если нет файла со основным диском
        // CreatingAndDeletingADirectory.createFirstDisk();
 
@@ -92,13 +92,13 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
+   //     SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.ROOT);
 
-        Date date = new Date();
+    //    Date date = new Date();
 
 
-        String res2= String.valueOf(date);
-        System.out.println(res2);
+      //  String res2= String.valueOf(date);
+      //  System.out.println(res2);
 
         launch(args);
         //проверяем на зарытие окон
