@@ -235,7 +235,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt")))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt")))
         {
             StringBuilder listPrograms=new StringBuilder();
 
@@ -512,7 +512,7 @@ return  progr;
     public void saveAllProgrammPC(StringBuilder listProgramPC){
       // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListProgr =listProgramPC;
        //     System.out.println(ListProgr);
@@ -530,7 +530,7 @@ fs.flush();
     public void saveDirProgrammPC(StringBuilder listDirProgramPC){
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listDir.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDir =listDirProgramPC;
             //     System.out.println(ListProgr);
@@ -556,7 +556,7 @@ fs.flush();
 
         String list = "";
         //читаем количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedReader fis = new BufferedReader(new FileReader(AllStaticData.firstDiskLine+"\\TimeControl\\listDir.txt",StandardCharsets.UTF_16LE))) {
             while (list != null) {
                 list = fis.readLine();
                builder.append(list+"\n");
@@ -580,7 +580,7 @@ return builder;
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
         String s="";
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt",StandardCharsets.UTF_16))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt",StandardCharsets.UTF_16))) {
             //присваеивание текста новым билдером
 
             //     System.out.println(ListProgr);
@@ -599,7 +599,7 @@ return builder;
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
         String s="";
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt",StandardCharsets.UTF_16))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listDir.txt",StandardCharsets.UTF_16))) {
             //присваеивание текста новым билдером
 
             //     System.out.println(ListProgr);
@@ -633,7 +633,7 @@ return builder;
 
     //сохранение списка дисков пк
     public void saveAllDiskPC(StringBuilder listDiskPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listDisk.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDisk =listDiskPC;
 
@@ -648,7 +648,7 @@ return builder;
 
     //сохранение списка дисков пк
     public void saveDir(StringBuilder builder){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listDir.txt"))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listDir.txt"))) {
             //присваеивание текста новым билдером
 
 
@@ -663,7 +663,7 @@ return builder;
 
     //сохранение списка ехе пк
     public void saveListOfEXEFilesInDirectories(StringBuilder listDiskPC){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
+        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE))) {
             //присваеивание текста новым билдером
             StringBuilder ListDisk =listDiskPC;
 
@@ -688,7 +688,7 @@ return builder;
 //читаем нужное количество строк
 
         StringBuilder listPrograms=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listOfEXEFilesInDirectories.txt",StandardCharsets.UTF_16LE)))
         {
 
 
@@ -714,7 +714,7 @@ return builder;
         String s="";
 
         StringBuilder list=new StringBuilder();
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listDisk.txt", StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listDisk.txt", StandardCharsets.UTF_16LE)))
         {
 
 
@@ -958,7 +958,7 @@ return builder;
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\dataControlTime\\listPrograms.txt", StandardCharsets.UTF_16LE)))
+        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt", StandardCharsets.UTF_16LE)))
         {
             while ((line = fis.readLine()) != null) {
                 listPrograms.append(line+"\n");
