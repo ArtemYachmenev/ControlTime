@@ -193,7 +193,7 @@ public class PaneListProgrNoUserProgram {
                     builder1.append(l + "\n");
                 }
             }
-            AllStaticData.getApp().saveListProgOverwriting(builder1);
+         //   AllStaticData.getApp().saveListProgOverwriting(builder1);
 
 
 
@@ -257,11 +257,11 @@ public class PaneListProgrNoUserProgram {
 //                        builder4.append(l + "\n");
 //                    }
 //                }
-                AllStaticData.getApp().saveListProgOverwriting(builder2);
+             //   AllStaticData.getApp().saveListProgOverwriting(builder2);
                 // метод сохранения масива с удаленными приложениями
                //   AllStaticData.getApp().saveGeneralListOfPrograms(builder4);
                 //перезаписываем файл с приложениями юзера и пк
-                AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+             //   AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
 
             } else{
                 //для сохранения не удаленных строк
@@ -289,8 +289,8 @@ public class PaneListProgrNoUserProgram {
                 //берет в себя только прилождения  пк
                 //  List<String> list7 = new ArrayList<>();
                 //создаем массивы
-                // держит в себе билдер с приложениями пк + юзера
-                String[] lines = AllStaticData.GeneralListOfPrograms.toString().split("\\n");
+                // держит в себе билдер с приложениями пк
+                String[] lines = AllStaticData.ListOfPrograms.toString().split("\\n");
                 // держит в себе билдер с выделенными приложениями
                 String[] lines2 = builder.toString().split("\\n");
                 // держит в себе билдер с приложениями юзера
@@ -411,12 +411,12 @@ public class PaneListProgrNoUserProgram {
                 }
 
 
-                AllStaticData.getApp().saveListProgOverwriting(builderSave);
+           //     AllStaticData.getApp().saveListProgOverwriting(builderSave);
 
                 //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
 
                 AllStaticData.ListAllProgr=builderSave;
-                AllStaticData.GeneralListOfPrograms=builderGeneralListOfPrograms;
+                AllStaticData.ListOfPrograms=builderGeneralListOfPrograms;
                 //присваиваем постоянному массиву реальное количество строк и обнуляем билтеры и листы, иначе нечасто выпаают ошибки
 
                 //   AllStaticData.GeneralListOfPrograms= builderSaveGeneralListOfPrograms;
@@ -425,7 +425,7 @@ public class PaneListProgrNoUserProgram {
                 builder.setLength(0);
                 // list3.clear();
                 //перезаписываем файл с приложениями юзера и пк
-                AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+              //  AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
 
 
 
@@ -577,7 +577,7 @@ public class PaneListProgrNoUserProgram {
             // метод сохранения масива с удаленными приложениями
             //   AllStaticData.getApp().saveGeneralListOfPrograms(builder4);
             //перезаписываем файл с приложениями юзера и пк
-            AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+         //   AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
 
 
 

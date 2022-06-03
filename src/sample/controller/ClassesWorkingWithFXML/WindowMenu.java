@@ -71,7 +71,7 @@ public class WindowMenu {
 
         CheckingForANewUser.CheckingForANewUser();
         //если нет общего файла со списком приложений пк и пользователя то создаем его
-        CreatingAndDeletingADirectory.createGeneralListOfPrograms();
+      //  CreatingAndDeletingADirectory.createGeneralListOfPrograms();
 
         //сравниваем списки
         GetAllProgrammPC.comparisonAllProgramPowershall();

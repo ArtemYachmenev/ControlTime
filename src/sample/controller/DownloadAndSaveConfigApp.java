@@ -25,90 +25,90 @@ public class DownloadAndSaveConfigApp implements Serializable {
                 ||AllStaticData.getCloseStatistics24()||AllStaticData.getCloseStatisticsSelectTime();
         if (AllStaticData.checkCloseWindow==true){
             //если окно закрылось вызываем сохранение настроек
-            saveStaticData();
+          //  saveStaticData();
         }
 
     }
 
     //сохраняем настройки которые лежат в статиках AllStaticData
-    public void saveStaticData(){
+//    public void saveStaticData(){
+//
+//        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
+//               "\\saveConfig_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
+//            //сохранение статиков конфига
+//            String config="config: AllStaticData.getAllTimeConfig() "+AllStaticData.getAllTimeConfig()+" AllStaticData.getTimeSiteProgrConfig() "+AllStaticData.getTimeSiteProgrConfig()+
+//                    " AllStaticData.getMessegeConfig() "+AllStaticData.getMessegeConfig()+" AllStaticData.getWorkTimeConfig() "+AllStaticData.getWorkTimeConfig()+
+//                    " AllStaticData.getChillTimeConfig() "+
+//                    AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig()+" .";
+//            fs.write(config);
+//            System.out.println("save "+config);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//             {
+//            //сохранение настроек пользователя
+//            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+AllStaticData.getTextSplitChoiceMesSett()+" AllStaticData.getCheckSoundAppSett() "+
+//                    AllStaticData.getCheckSoundAppSett()+" AllStaticData.getTextChoiceInfoMesSett() "+
+//                    AllStaticData.getTextChoiceInfoMesSett()+" AllStaticData.getTextsplitChoiceMesWorkSett() "
+//                    +AllStaticData.getTextsplitChoiceMesWorkSett()+" AllStaticData.getCheckWorkSett() "+
+//                    AllStaticData.getCheckWorkSett()+" AllStaticData.getTextsplitChoiceMesChillSett() "+AllStaticData.getTextsplitChoiceMesChillSett()
+//                    +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett()+" .";
+//            fs.write(setting);
+//            System.out.println("save "+setting);
+//                 fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-               "\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
-            //сохранение статиков конфига
-            String config="config: AllStaticData.getAllTimeConfig() "+AllStaticData.getAllTimeConfig()+" AllStaticData.getTimeSiteProgrConfig() "+AllStaticData.getTimeSiteProgrConfig()+
-                    " AllStaticData.getMessegeConfig() "+AllStaticData.getMessegeConfig()+" AllStaticData.getWorkTimeConfig() "+AllStaticData.getWorkTimeConfig()+
-                    " AllStaticData.getChillTimeConfig() "+
-                    AllStaticData.getChillTimeConfig()+" AllStaticData.getAllSoundConfig() "+AllStaticData.getAllSoundConfig()+" .";
-            fs.write(config);
-            System.out.println("save "+config);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-             {
-            //сохранение настроек пользователя
-            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+AllStaticData.getTextSplitChoiceMesSett()+" AllStaticData.getCheckSoundAppSett() "+
-                    AllStaticData.getCheckSoundAppSett()+" AllStaticData.getTextChoiceInfoMesSett() "+
-                    AllStaticData.getTextChoiceInfoMesSett()+" AllStaticData.getTextsplitChoiceMesWorkSett() "
-                    +AllStaticData.getTextsplitChoiceMesWorkSett()+" AllStaticData.getCheckWorkSett() "+
-                    AllStaticData.getCheckWorkSett()+" AllStaticData.getTextsplitChoiceMesChillSett() "+AllStaticData.getTextsplitChoiceMesChillSett()
-                    +" AllStaticData.getCheckChillSett() "+ AllStaticData.getCheckChillSett()+" .";
-            fs.write(setting);
-            System.out.println("save "+setting);
-                 fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    //загружаем цвета конфиг и настройки пользователя
-    public void downloadConfigAndSetting(){
-        String config=null;
-        String setting=null;
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-            {
-            config = fis.readLine();
-         //   System.out.println("download "+config);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-             {
-            setting =  fis.readLine();
-        //    System.out.println("download "+setting);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        //загруженные цвета устанавливаем в конфиги и настройки
-        SubstitutingSettingsAndConfigurations configurations=new SubstitutingSettingsAndConfigurations();
-        configurations.setConstConfigApp(config, setting);
-
-
-
-    }
+//    //загружаем цвета конфиг и настройки пользователя
+//    public void downloadConfigAndSetting(){
+//        String config=null;
+//        String setting=null;
+//        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveConfig_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//            {
+//            config = fis.readLine();
+//         //   System.out.println("download "+config);
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveSetting_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//             {
+//            setting =  fis.readLine();
+//        //    System.out.println("download "+setting);
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        //загруженные цвета устанавливаем в конфиги и настройки
+//        SubstitutingSettingsAndConfigurations configurations=new SubstitutingSettingsAndConfigurations();
+//        configurations.setConstConfigApp(config, setting);
+//
+//
+//
+//    }
 
     //сохранение приложений нового пользователя
-    public void saveListNewProgr() {
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
-            //сохранение статиков конфига
-            String ListProgr ="";
-            fs.write(ListProgr);
-         //   System.out.println("save all listProgr for new profile" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveListNewProgr() {
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\saveListProgr_"
+//                + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
+//            //сохранение статиков конфига
+//            String ListProgr ="";
+//            fs.write(ListProgr);
+//         //   System.out.println("save all listProgr for new profile" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     //сохранение выбранных приложений нового пользователя
     public void saveUsedListNewProgr() {
@@ -136,7 +136,7 @@ public class DownloadAndSaveConfigApp implements Serializable {
             StringBuilder ListProgr =s;
 
             fs.write(String.valueOf(ListProgr));
-       //     System.out.println("save used list \n" + ListProgr);
+         //   System.out.println("save used list \n" + ListProgr);
             fs.flush();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -144,23 +144,23 @@ public class DownloadAndSaveConfigApp implements Serializable {
     }
 
     //сохранение отслеживаемых приложений пользователя c перезаписью файла
-    public void saveAListOfUsedApplications(StringBuilder s) {
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\saveListUsedProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
-            //сохранение текста новым билдером
-            StringBuilder ListProgr =s;
-
-            fs.write(String.valueOf(ListProgr));
-      //      System.out.println("save used list \n" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-    }
+//    public void saveAListOfUsedApplications(StringBuilder s) {
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\saveListUsedProgr_"
+//                + LoginOfTheWorkingUser.getUserLogin() + ".txt",true))) {
+//            //сохранение текста новым билдером
+//            StringBuilder ListProgr =s;
+//
+//            fs.write(String.valueOf(ListProgr));
+//      //      System.out.println("save used list \n" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//
+//    }
 
 
 
@@ -235,20 +235,20 @@ public class DownloadAndSaveConfigApp implements Serializable {
             System.out.println(e.getMessage());
         }
 
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt")))
-        {
-            StringBuilder listPrograms=new StringBuilder();
-
-            String line=new String();
-            while ((line = fis.readLine()) != null) {
-                listPrograms.append(line+"\n");
-
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+//        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt")))
+//        {
+//            StringBuilder listPrograms=new StringBuilder();
+//
+//            String line=new String();
+//            while ((line = fis.readLine()) != null) {
+//                listPrograms.append(line+"\n");
+//
+//
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
   //      System.out.println(AllStaticData.ListUsedProgr+" загружаются используемые программмы из загрузовчного списка");
         return  progr;
     }
@@ -283,121 +283,121 @@ public class DownloadAndSaveConfigApp implements Serializable {
 
 
     //сохранение всех приложений пользователя без перезаписи
-    public void saveListProg(StringBuilder s) {
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt", true))) {
-            //присваеивание текста новым билдером
-            StringBuilder ListProgr =s;
-
-            fs.write(String.valueOf(ListProgr));
-            System.out.println("save all list \n" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveListProg(StringBuilder s) {
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\saveListProgr_"
+//                + LoginOfTheWorkingUser.getUserLogin() + ".txt", true))) {
+//            //присваеивание текста новым билдером
+//            StringBuilder ListProgr =s;
+//
+//            fs.write(String.valueOf(ListProgr));
+//            System.out.println("save all list \n" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     //сохранение всех приложений пользователя с перезаписью
-    public void saveListProgOverwriting(StringBuilder s) {
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\saveListProgr_"
-                + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
-            //присваеивание текста новым билдером
-            StringBuilder ListProgr =s;
-
-            fs.write(String.valueOf(ListProgr));
-       //     System.out.println("save all list \n" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveListProgOverwriting(StringBuilder s) {
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\saveListProgr_"
+//                + LoginOfTheWorkingUser.getUserLogin() + ".txt",StandardCharsets.UTF_16LE))) {
+//            //присваеивание текста новым билдером
+//            StringBuilder ListProgr =s;
+//
+//            fs.write(String.valueOf(ListProgr));
+//       //     System.out.println("save all list \n" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
 
     //сохранение всех приложений пользователя
-    public void saveGeneralListOfPrograms(StringBuilder s) {
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
-            //присваеивание текста новым билдером
-            StringBuilder ListProgr =s;
-
-            fs.write(String.valueOf(ListProgr));
-            System.out.println("save all list \n" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveGeneralListOfPrograms(StringBuilder s) {
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt"))) {
+//            //присваеивание текста новым билдером
+//            StringBuilder ListProgr =s;
+//
+//            fs.write(String.valueOf(ListProgr));
+//            System.out.println("save all list \n" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     //загрузка приложений пользователя
-    public ObservableList<String> downloadListProgr() {
-        String list="";
-        ObservableList<String> progr = FXCollections.observableArrayList();
-
-        int countLinesListProgr=0;
-
-        //считаем сколько строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
-        {
-            //если в списке что то есть то чистим для загрузки сохраненных приложений
-            if (!AllStaticData.ListAllProgr.isEmpty())
-            {
-                AllStaticData.ListAllProgr.setLength(0);
-            }
-            while (list!=null){
-                list =  fis.readLine();
-
-
-                countLinesListProgr++;
-       //         System.out.println(countLinesListProgr+" стролько строк");
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-//читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
-        {
-
-
-
-            //   list =  fis.readLine();
-            //тк последняя строка то всего нормальных строк -1
-            for  (int i=0;i<countLinesListProgr-1;i++) {
-                if (i==(countLinesListProgr-1)){
-                    list =  fis.readLine();
-
-
-                    progr.add(i,list);
-
-                    AllStaticData.ListAllProgr.append(list);
-
-                    break;
-                }
-                list =  fis.readLine();
-
-    progr.add(i, list);
-    AllStaticData.ListAllProgr.append(list).append("\n");
-
-            }
-            //  progr= FXCollections.observableArrayList(list);
-           // progr= FXCollections.observableArrayList(builder.toString());
-
-      //      System.out.println("download list \n"+progr);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-   //     System.out.println(AllStaticData.ListAllProgr+" загружаются программмы из загрузовчного списка");
-return  progr;
-    }
+//    public ObservableList<String> downloadListProgr() {
+//        String list="";
+//        ObservableList<String> progr = FXCollections.observableArrayList();
+//
+//        int countLinesListProgr=0;
+//
+//        //считаем сколько строк
+//        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+//        {
+//            //если в списке что то есть то чистим для загрузки сохраненных приложений
+//            if (!AllStaticData.ListAllProgr.isEmpty())
+//            {
+//                AllStaticData.ListAllProgr.setLength(0);
+//            }
+//            while (list!=null){
+//                list =  fis.readLine();
+//
+//
+//                countLinesListProgr++;
+//       //         System.out.println(countLinesListProgr+" стролько строк");
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+////читаем нужное количество строк
+//        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile+"\\saveListProgr_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+//        {
+//
+//
+//
+//            //   list =  fis.readLine();
+//            //тк последняя строка то всего нормальных строк -1
+//            for  (int i=0;i<countLinesListProgr-1;i++) {
+//                if (i==(countLinesListProgr-1)){
+//                    list =  fis.readLine();
+//
+//
+//                    progr.add(i,list);
+//
+//                    AllStaticData.ListAllProgr.append(list);
+//
+//                    break;
+//                }
+//                list =  fis.readLine();
+//
+//    progr.add(i, list);
+//    AllStaticData.ListAllProgr.append(list).append("\n");
+//
+//            }
+//            //  progr= FXCollections.observableArrayList(list);
+//           // progr= FXCollections.observableArrayList(builder.toString());
+//
+//      //      System.out.println("download list \n"+progr);
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//   //     System.out.println(AllStaticData.ListAllProgr+" загружаются программмы из загрузовчного списка");
+//return  progr;
+//    }
 
 
 
@@ -406,52 +406,52 @@ return  progr;
 
 
     //сохраняем настройки которые лежат в статиках AllStaticData для нового профиля
-    public void saveStaticDataForANewUser(){
-//конфиг н пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-                "\\saveConfig_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
-            //сохранение статиков конфига
-            String config="config: AllStaticData.getAllTimeConfig() "+false+" AllStaticData.getTimeSiteProgrConfig() "+false+
-                    " AllStaticData.getMessegeConfig() "+false+" AllStaticData.getWorkTimeConfig() "+false+
-                    " AllStaticData.getChillTimeConfig() "+
-                    false+" AllStaticData.getAllSoundConfig() "+false+" .";
-            fs.write(config);
-            fs.flush();
-            System.out.println("save "+config);
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-        {
-            //сохранение настроек пользователя
-            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+"Вариант вывода уведомлений"+" AllStaticData.getCheckSoundAppSett() "+
-                    false+" AllStaticData.getTextChoiceInfoMesSett() "+
-                    "Вариант информации в уведомлении"+" AllStaticData.getTextsplitChoiceMesWorkSett() "
-                    +"Таймер работы"+" AllStaticData.getCheckWorkSett() "+
-                    false+" AllStaticData.getTextsplitChoiceMesChillSett() "+"Таймер перерыва"
-                    +" AllStaticData.getCheckChillSett() "+ false+" .";
-            fs.write(setting);
-            fs.flush();
-            System.out.println("save "+setting);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        //создание документа для хранения программ пользователя
-        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
-                "\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16))){
-            //сохранение статиков конфига
-            String ListProgr="list: ";
-            fs.write(ListProgr);
-            System.out.println("save "+ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveStaticDataForANewUser(){
+////конфиг н пользователя
+//        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
+//                "\\saveConfig_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt"))){
+//            //сохранение статиков конфига
+//            String config="config: AllStaticData.getAllTimeConfig() "+false+" AllStaticData.getTimeSiteProgrConfig() "+false+
+//                    " AllStaticData.getMessegeConfig() "+false+" AllStaticData.getWorkTimeConfig() "+false+
+//                    " AllStaticData.getChillTimeConfig() "+
+//                    false+" AllStaticData.getAllSoundConfig() "+false+" .";
+//            fs.write(config);
+//            fs.flush();
+//            System.out.println("save "+config);
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter( dirProfile+"\\saveSetting_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//        {
+//            //сохранение настроек пользователя
+//            String setting="setting: AllStaticData.getTextSplitChoiceMesSett() "+"Вариант вывода уведомлений"+" AllStaticData.getCheckSoundAppSett() "+
+//                    false+" AllStaticData.getTextChoiceInfoMesSett() "+
+//                    "Вариант информации в уведомлении"+" AllStaticData.getTextsplitChoiceMesWorkSett() "
+//                    +"Таймер работы"+" AllStaticData.getCheckWorkSett() "+
+//                    false+" AllStaticData.getTextsplitChoiceMesChillSett() "+"Таймер перерыва"
+//                    +" AllStaticData.getCheckChillSett() "+ false+" .";
+//            fs.write(setting);
+//            fs.flush();
+//            System.out.println("save "+setting);
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        //создание документа для хранения программ пользователя
+//        try (BufferedWriter fs = new BufferedWriter( new FileWriter( dirProfile +
+//                "\\saveListProgr_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16))){
+//            //сохранение статиков конфига
+//            String ListProgr="list: ";
+//            fs.write(ListProgr);
+//            System.out.println("save "+ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
 
 
@@ -576,23 +576,23 @@ return builder;
 
 
     //сохранение нового списка программ пк
-    public void saveNewAllProgrammPC(){
-        // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
-
-        String s="";
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt",StandardCharsets.UTF_16))) {
-            //присваеивание текста новым билдером
-
-            //     System.out.println(ListProgr);
-
-            fs.write(String.valueOf(s));
-
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
+//    public void saveNewAllProgrammPC(){
+//        // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
+//
+//        String s="";
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt",StandardCharsets.UTF_16))) {
+//            //присваеивание текста новым билдером
+//
+//            //     System.out.println(ListProgr);
+//
+//            fs.write(String.valueOf(s));
+//
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//    }
 
     //сохранение нового списка программ пк
     public void saveNewAListDirProg(){
@@ -616,20 +616,20 @@ return builder;
 
 
     //сохранение нового списка программ пк и пользователя
-    public void saveNewGeneralListOfPrograms(){
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
-            //сохранение статиков конфига
-            String ListProgr ="";
-            fs.write(ListProgr);
-          //  System.out.println("save used listProgr for new profile" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
+//    public void saveNewGeneralListOfPrograms(){
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
+//            //сохранение статиков конфига
+//            String ListProgr ="";
+//            fs.write(ListProgr);
+//          //  System.out.println("save used listProgr for new profile" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//    }
 
     //сохранение списка дисков пк
     public void saveAllDiskPC(StringBuilder listDiskPC){
@@ -934,108 +934,108 @@ return builder;
         return builder1;
     }
 
-
-        //объединение списка программ пользователя и пк
-    public void addingPcProgramsToTheListOfUsedPrograms(){
-
-        StringBuilder listPrograms=new StringBuilder();
-
-        String line=new String();
-
-
-
-
-        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveListProgr_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
-        {
-            while ((line = fis.readLine()) != null) {
-                listPrograms.append(line+"\n");
-
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt", StandardCharsets.UTF_16LE)))
-        {
-            while ((line = fis.readLine()) != null) {
-                listPrograms.append(line+"\n");
-
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-
-        //если в файле что то есть то перезаписываем его
-        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-        {
-            if (( fis.readLine()) != null) {
-                CreatingAndDeletingADirectory.overwritingGeneralListOfPrograms();
-
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
-            //присваеивание текста новым билдером
-
-
-
-            fs.write(String.valueOf(listPrograms));
-          //  System.out.println("save all list \n" + ListProgr);
-            fs.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-    }
+//можно потом сделать просто из лист програм
+        //объединение списка программ пользователя и пк // upd загрузка списка программ пк для дальнейшего безопасного использотвания
+//    public void addingPcProgramsToTheListOfUsedPrograms(){
+//
+//        StringBuilder listPrograms=new StringBuilder();
+//
+//        String line=new String();
+//
+//
+//
+//
+////        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile+"\\saveListProgr_"
+////                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+////        {
+////            while ((line = fis.readLine()) != null) {
+////                listPrograms.append(line+"\n");
+////
+////
+////            }
+////
+////        } catch (IOException e) {
+////            System.out.println(e.getMessage());
+////        }
+//
+//        try (BufferedReader  fis = new BufferedReader (new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt", StandardCharsets.UTF_16LE)))
+//        {
+//            while ((line = fis.readLine()) != null) {
+//                listPrograms.append(line+"\n");
+//
+//
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//
+//
+//        //если в файле что то есть то перезаписываем его
+//        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//        {
+//            if (( fis.readLine()) != null) {
+//                CreatingAndDeletingADirectory.overwritingGeneralListOfPrograms();
+//
+//
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        try (BufferedWriter fs = new BufferedWriter(new FileWriter(dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE))) {
+//            //присваеивание текста новым билдером
+//
+//
+//
+//            fs.write(String.valueOf(listPrograms));
+//          //  System.out.println("save all list \n" + ListProgr);
+//            fs.flush();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//
+//    }
 
     //загрузка отслеживаемых приложений пользователя из общего списка
-    public ObservableList<String> downloadListProgr2() {
-        //если нет общего файла со списком приложений пк и пользователя то создаем его
-        CreatingAndDeletingADirectory.createGeneralListOfPrograms();
-
-        String list="";
-        ObservableList<String> progr = FXCollections.observableArrayList();
-
-
-
-        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
-        {
-            StringBuilder listPrograms=new StringBuilder();
-
-            String line=new String();
-
-            while ((line = fis.readLine()) != null) {
-                progr.add(line);
-                AllStaticData.ListAllProgr.append(line+"\n");
-
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return  progr;
-    }
-
+//    public ObservableList<String> downloadListProgr2() {
+//        //если нет общего файла со списком приложений пк и пользователя то создаем его
+//        CreatingAndDeletingADirectory.createGeneralListOfPrograms();
+//
+//        String list="";
+//        ObservableList<String> progr = FXCollections.observableArrayList();
+//
+//
+//
+//        try (BufferedReader  fis = new BufferedReader (new FileReader( dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+//        {
+//            StringBuilder listPrograms=new StringBuilder();
+//
+//            String line=new String();
+//
+//            while ((line = fis.readLine()) != null) {
+//                progr.add(line);
+//                AllStaticData.ListAllProgr.append(line+"\n");
+//
+//
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return  progr;
+//    }
+//грузим лист програм пк для их отображения в настройках
     public ObservableList<String> downloadListProgr3() {
         String list="";
         ObservableList<String> progr = FXCollections.observableArrayList();
@@ -1043,14 +1043,12 @@ return builder;
         int countLinesListProgr=0;
 
         //считаем сколько строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt")))
+        try (BufferedReader fis = new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt")))
         {
             //если в списке что то есть то чистим для загрузки сохраненных приложений
-            if (!AllStaticData.GeneralListOfPrograms.isEmpty())
+            if (!AllStaticData.ListOfPrograms.isEmpty())
             {
-                AllStaticData.GeneralListOfPrograms.setLength(0);
+                AllStaticData.ListOfPrograms.setLength(0);
             }
             while (list!=null){
                 list =  fis.readLine();
@@ -1063,9 +1061,7 @@ return builder;
         }
 
 //читаем нужное количество строк
-        try (BufferedReader fis = new BufferedReader(new FileReader( dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt",StandardCharsets.UTF_16LE)))
+        try (BufferedReader fis = new BufferedReader(new FileReader( AllStaticData.firstDiskLine+"\\TimeControl\\listPrograms.txt",StandardCharsets.UTF_16LE)))
         {
 
 
@@ -1079,7 +1075,7 @@ return builder;
 
                     progr.add(i,list);
 
-                    AllStaticData.GeneralListOfPrograms.append(list);
+                    AllStaticData.ListOfPrograms.append(list);
 
                     break;
                 }
@@ -1089,7 +1085,7 @@ return builder;
                 //нe пропускает пустые строки
                 // if (!list.equals(null) && !list.equals("") && !list.equals(" ")&& !list.equals("\\s")) {
                 progr.add(i, list);
-                AllStaticData.GeneralListOfPrograms.append(list).append("\n");
+                AllStaticData.ListOfPrograms.append(list).append("\n");
                 //  }
 
             }

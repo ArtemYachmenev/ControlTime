@@ -120,9 +120,10 @@ public class WindowSettings {
 
 
         //грузим чтобы с статик билдером можно было манипулировать
-        AllStaticData.app.downloadListProgr();
+     //   AllStaticData.app.downloadListProgr();
         //объединяем списки программ пк и пользователя
-        AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
+
+      //  AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
         //вместо первой и  второй третья версия панели без программ пользователя сразу лист с програми
         Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestListNoUsersProgram.fxml"));
         stackPane.getChildren().removeAll();

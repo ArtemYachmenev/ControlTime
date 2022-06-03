@@ -4,14 +4,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="411.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet">
+<Pane prefHeight="352.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet">
    <children>
-      <Button fx:id="colorAppButton" layoutX="85.0" layoutY="120.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Цвет фона приложения">
+      <Button fx:id="colorAppButton" alignment="CENTER" layoutX="177.0" layoutY="98.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Цвет фона приложения">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="standartButton" layoutX="85.0" layoutY="240.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Восстановить стандартные цвета">
+      <Button fx:id="standartButton" layoutX="177.0" layoutY="239.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Восстановить стандартные цвета">
          <font>
             <Font size="20.0" />
          </font>

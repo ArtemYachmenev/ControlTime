@@ -15,13 +15,13 @@ public class CheckingForANewUser {
     public static void CheckingForANewUser() {
 
         if (Files.exists(Path.of(dirProfile +
-                "\\saveConfig_"
+                "\\saveDown_"
                 +LoginOfTheWorkingUser.getUserLogin()+".txt"))==true){
             //грузим его цвета и все данные
           //  Files.isRegularFile()
 
             AllStaticData.getApp().DownloadColorApp();
-            AllStaticData.getApp().downloadConfigAndSetting();
+          //  AllStaticData.getApp().downloadConfigAndSetting();
          //  AllStaticData.getApp().downloadListProgr();
          //   AllStaticData.getApp().downloadAListOfUsedApplications();
             System.out.println("у профиля уже сформирована директория");
@@ -30,12 +30,12 @@ public class CheckingForANewUser {
 
             CreatingAndDeletingADirectory.setDir();
             PaneColorSet.setStandartColor();
-            AllStaticData.getApp().saveStaticDataForANewUser();
-            AllStaticData.getApp().saveListNewProgr();
+         //   AllStaticData.getApp().saveStaticDataForANewUser();
+        //    AllStaticData.getApp().saveListNewProgr();
             AllStaticData.getApp().saveUsedListNewProgr();
-            AllStaticData.getApp().saveNewGeneralListOfPrograms();
+         //   AllStaticData.getApp().saveNewGeneralListOfPrograms();
             GetAllProgrammPC.getAllProgramPowershall();
-            AllStaticData.getApp().downloadConfigAndSetting();
+          //  AllStaticData.getApp().downloadConfigAndSetting();
             //сравниваем списки
             GetAllProgrammPC.comparisonAllProgramPowershall();
             System.out.println("новая директория для нового пользователя");

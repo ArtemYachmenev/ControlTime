@@ -165,30 +165,30 @@ public  class CreatingAndDeletingADirectory {
 
 
     //создаем файл со списком приложений пк+ программами пользователя
-    public static void createGeneralListOfPrograms() {
-
-        generalListOfPrograms = new File((dirProfile +
-                "\\generalListOfPrograms_"
-                +LoginOfTheWorkingUser.getUserLogin()+".txt"));
-
-        try {
-            generalListOfPrograms.createNewFile();
-            AllStaticData.app.saveNewGeneralListOfPrograms();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+//    public static void createGeneralListOfPrograms() {
+//
+//        generalListOfPrograms = new File((dirProfile +
+//                "\\generalListOfPrograms_"
+//                +LoginOfTheWorkingUser.getUserLogin()+".txt"));
+//
+//        try {
+//            generalListOfPrograms.createNewFile();
+//            AllStaticData.app.saveNewGeneralListOfPrograms();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
 
     //перезапись файла со списком приложений пк+ программами пользователя
-    public static void overwritingGeneralListOfPrograms() {
-
-        generalListOfPrograms.delete();
-        createGeneralListOfPrograms();
-
-
-    }
+//    public static void overwritingGeneralListOfPrograms() {
+//
+//        generalListOfPrograms.delete();
+//        createGeneralListOfPrograms();
+//
+//
+//    }
     //перезапись файла со списком приложений пк
     public static void overwritingListOfPrograms() {
 

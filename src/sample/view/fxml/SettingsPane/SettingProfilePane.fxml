@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="416.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneProfile">
+<Pane prefHeight="352.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneProfile">
     <children>
-        <Button fx:id="exitButton" layoutX="85.0" layoutY="94.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" text="Выйти из профиля">
+        <Button fx:id="exitButton" alignment="CENTER" layoutX="177.0" layoutY="97.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Выйти из профиля">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="deleteProfile" layoutX="85.0" layoutY="250.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" text="Удалить профиль">
+      <Button fx:id="deleteProfile" alignment="CENTER" layoutX="177.0" layoutY="245.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="347.0" style="-fx-background-radius: 10;" text="Удалить профиль">
          <font>
             <Font size="20.0" />
          </font>
