@@ -72,7 +72,7 @@ public class WindowSettings {
 
 // загружается первая панель настройка цвета приложения
         try {
-            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingColorPane.fxml"));
+            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestListNoUsersProgram.fxml"));
             stackPane.getChildren().removeAll();
             stackPane.getChildren().setAll(fxml);
         } catch (IOException e) {

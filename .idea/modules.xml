@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ControlTime.iml" filepath="$PROJECT_DIR$/ControlTime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Time Control.iml" filepath="$PROJECT_DIR$/Time Control.iml" />
     </modules>
   </component>
 </project>
