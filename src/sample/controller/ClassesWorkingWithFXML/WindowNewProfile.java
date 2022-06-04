@@ -18,10 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
-import sample.view.animations.Shake;
 
 
 public class WindowNewProfile {
@@ -79,7 +77,7 @@ public class WindowNewProfile {
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+            openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
 
         });
@@ -127,7 +125,7 @@ public class WindowNewProfile {
                 //получаем нового пользователя
                 dbHandler.signUpUser(user);
                 AllStaticData.setUserLoginNewProfile(user.getLogin());
-                openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+                openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
             }
         }
         else {

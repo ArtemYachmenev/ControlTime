@@ -10,19 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-
-
-
 
 public class Main extends Application {
 
@@ -72,7 +59,7 @@ public class Main extends Application {
 
       //  ProcessTracking.trackingProgramm();
         GetAllProgrammPC.getListDiskPC();
-        Parent root = FXMLLoader.load(getClass().getResource("view/fxml/ControlTime.Authorization.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/fxml/TimeControl.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();

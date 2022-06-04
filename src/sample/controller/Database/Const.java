@@ -22,12 +22,10 @@ public class Const {
     public static final String BACKGROUNDCOLOR_COLOR="color";
     public static final String BACKGROUNDCOLOR_CODEUP="codeup";
     public static final String BACKGROUNDCOLOR_CODEDOWN="codedown";
-    //КОНСТАНТЫ ЦВЕТА
     public static int BACKGROUNDCOL=2;
-  //  public static final String BACKGROUNDCOLUP=db.setColor().toString();
-  //  public static final String BACKGROUNDCOLDOWN="codedown";
 
-    //КОНСТАНТЫ ТАБЛИЦЫ workinghours
+
+    //КОНСТАНТЫ ТАБЛИЦЫ WORKINGHOURS
     public static final String WORKINGHOURS_TABLE="WORKINGHOURS";
     public static final String WORKINGHOURS_ID="ID";
     public static final String WORKINGHOURS_DATE_OF_WORK="DATE_OF_WORK";

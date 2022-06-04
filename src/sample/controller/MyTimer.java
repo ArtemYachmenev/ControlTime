@@ -243,7 +243,7 @@ if (keyMouse==true) {
 
         WorkingHours workingHours=new WorkingHours(sqlStartDate,res,s,getDurationBreakdown(elapsedTime));
         DatabaseHandler handler=new DatabaseHandler();
-        handler.saveWORKINGHOURS(workingHours, login);
+        handler.saveWorkingHours(workingHours, login);
 executorService.shutdown();
     //    System.out.println(currentDate.toString()+"fdaaaaaaaaaaaaaaaa");
       //  System.out.println(getDurationBreakdown(elapsedTime)+"ffffffffffffffffffffffffffffff");

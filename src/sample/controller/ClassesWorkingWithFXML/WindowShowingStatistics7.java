@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 
 public class WindowShowingStatistics7 {
     @FXML
@@ -42,7 +41,7 @@ public class WindowShowingStatistics7 {
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");
+            openStat("/sample/view/fxml/TimeControl.ShowingStatistics.fxml");
 
         });
 

@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.*;
@@ -117,17 +116,17 @@ public class WindowMenu {
         SettingsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка настроек");
             SettingsButton.getScene().getWindow().hide();
-            openSett("/sample/view/fxml/ControlTime.Settings.fxml");
+            openSett("/sample/view/fxml/TimeControl.Settings.fxml");
 
         });
         StatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики");
-            openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");
+            openStat("/sample/view/fxml/TimeControl.ShowingStatistics.fxml");
         });
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+            openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
 
         });

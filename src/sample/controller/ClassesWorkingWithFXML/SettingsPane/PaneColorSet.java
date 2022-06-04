@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 import sample.controller.AllStaticData;
 import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
-import sample.controller.Database.User;
 
 import static sample.controller.Database.Const.BACKGROUNDCOL;
 
@@ -43,14 +41,14 @@ public class PaneColorSet {
             System.out.println("нажата кнопка смены фона приложения");
             //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
             setNewColor();
-            setNewScene("/sample/view/fxml/ControlTime.Settings.fxml");
+            setNewScene("/sample/view/fxml/TimeControl.Settings.fxml");
 
         });
         standartButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка смены фона приложения на стандартный");
             //  setColor("/sample/view/fxml/ControlTime.Menu.fxml");
             setStandartColor();
-            setNewScene("/sample/view/fxml/ControlTime.Settings.fxml");
+            setNewScene("/sample/view/fxml/TimeControl.Settings.fxml");
 
 
         });

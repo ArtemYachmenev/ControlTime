@@ -25,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.WorkingHours;
 
@@ -251,7 +250,7 @@ String date2=textDay1.getText()+"."+textMoth1.getText()+"."+textYear1.getText();
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");
+            openStat("/sample/view/fxml/TimeControl.ShowingStatistics.fxml");
 
         });
 

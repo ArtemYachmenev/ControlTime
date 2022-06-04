@@ -17,11 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
-import sample.view.animations.Shake;
-
 
 
 public class WindowPasswordRecovery {
@@ -63,7 +60,7 @@ public class WindowPasswordRecovery {
                 //открытие следующего окна восстановления
                 int res=CheckLoginUser(login);
                 if (res>=1){
-                    openNewSceneRecovery2("/sample/view/fxml/ControlTime.PasswordRecovery2.fxml");
+                    openNewSceneRecovery2("/sample/view/fxml/TimeControl.PasswordRecovery2.fxml");
 
                 }
             }
@@ -72,7 +69,7 @@ public class WindowPasswordRecovery {
         });
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+            openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
 
         });

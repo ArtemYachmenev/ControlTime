@@ -2,8 +2,6 @@ package sample.controller.ClassesWorkingWithFXML;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
@@ -18,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 
@@ -61,7 +58,7 @@ public class WindowPasswordRecovery3 {
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openPR2("/sample/view/fxml/ControlTime.PasswordRecovery2.fxml");
+            openPR2("/sample/view/fxml/TimeControl.PasswordRecovery2.fxml");
 
 
         });
@@ -79,7 +76,7 @@ public class WindowPasswordRecovery3 {
         passUser.setLogin(login);
         dbHandler.newPass(passUser);
 
-        openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+        openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
 
 
 

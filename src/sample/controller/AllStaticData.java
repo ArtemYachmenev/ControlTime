@@ -42,7 +42,7 @@ public class AllStaticData {
     //файл со всеми дисками
     public static File diskPC;
     //файл со всеми программами+листом с программами пользовтаеля
-    public static File generalListOfPrograms;
+  //  public static File generalListOfPrograms;
     //файл со всеми программами пк и директориями
     public static File listDir;
     //файл со всеми программами пк и директориями новый для сравнения
@@ -68,7 +68,7 @@ public static Color b;
 
     //public static int countLinesListProgr=0;
     //держит в себе названия программ, если пользоваетль не выбрал программы то сохр старые из загрузовчного списка
-    public static StringBuilder ListAllProgr=new StringBuilder();
+  //  public static StringBuilder ListAllProgr=new StringBuilder();
     //держит в себе названия программ, если пользоваетль выбрал программы то сохр старые из загрузовчного списка
     public static StringBuilder ListUsedProgr=new StringBuilder();
     //держит в себе названия программ из пк и программ пользователя

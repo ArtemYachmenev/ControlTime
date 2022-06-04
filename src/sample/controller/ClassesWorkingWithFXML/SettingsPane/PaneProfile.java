@@ -2,11 +2,9 @@ package sample.controller.ClassesWorkingWithFXML.SettingsPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,22 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ClassesWorkingWithFXML.WindowAuthorization;
-import sample.controller.ClassesWorkingWithFXML.WindowMenu;
-import sample.controller.ClassesWorkingWithFXML.WindowPasswordRecovery;
 import sample.controller.CreatingAndDeletingADirectory;
 import sample.controller.Database.DatabaseHandler;
-import sample.controller.Database.User;
 import sample.controller.LoginOfTheWorkingUser;
 import static sample.controller.AllStaticData.*;
-import javax.swing.*;
 
 public class PaneProfile {
 
@@ -56,7 +45,7 @@ public class PaneProfile {
             }
             AllStaticData.OnOrOffAppButtonMenu=false;
            // AllStaticData.b=null;
-            exit("/sample/view/fxml/ControlTime.Authorization.fxml");
+            exit("/sample/view/fxml/TimeControl.Authorization.fxml");
 
         });
 
@@ -95,7 +84,7 @@ public class PaneProfile {
         dbHandler.deleteUser(LoginOfTheWorkingUser.getUserLogin());
         //удаляем директорию
         CreatingAndDeletingADirectory.deleteDir(dirProfile);
-        openAut("/sample/view/fxml/ControlTime.Authorization.fxml");
+        openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
     }
 
     //открытие окно меню

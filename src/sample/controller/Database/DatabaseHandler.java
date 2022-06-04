@@ -209,7 +209,7 @@ public class DatabaseHandler extends Configs{
 
 
     //    сохранение времени пользотваеля
-    public void saveWORKINGHOURS(WorkingHours hours, String userLogin){
+    public void saveWorkingHours(WorkingHours hours, String userLogin){
         //сначала нужно достать id
         ResultSet resultSet=null;
         int k = 0;

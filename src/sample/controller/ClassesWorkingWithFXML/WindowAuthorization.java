@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,14 +16,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 import sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneColorSet;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
-import sample.view.animations.Shake;
 
 public class WindowAuthorization {
 
@@ -73,7 +68,7 @@ public class WindowAuthorization {
         CreateNewProfileButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка создания нового профиля");
-            openNewSceneNewProfile("/sample/view/fxml/ControlTime.NewProfile.fxml");
+            openNewSceneNewProfile("/sample/view/fxml/TimeControl.NewProfile.fxml");
 
         });
 
@@ -81,7 +76,7 @@ public class WindowAuthorization {
         PasswordRecoveryButton.setOnAction(actionEvent ->
         {
             System.out.println("нажата кнопка восстановления пароля");
-            openNewScenePasswordRecovery("/sample/view/fxml/ControlTime.PasswordRecovery.fxml");
+            openNewScenePasswordRecovery("/sample/view/fxml/TimeControl.PasswordRecovery.fxml");
 
         });
 
@@ -131,7 +126,7 @@ public class WindowAuthorization {
             AllStaticData.setUserLoginAut(user.getLogin());
             System.out.println(AllStaticData.getUserLoginAut());
 
-            openNewSceneMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+            openNewSceneMenu("/sample/view/fxml/TimeControl.Menu.fxml");
 
         }
         else {

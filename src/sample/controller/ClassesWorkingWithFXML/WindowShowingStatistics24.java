@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -24,15 +23,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.layout.AnchorPane;
 import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.WorkingHours;
 
@@ -127,7 +120,7 @@ String t=check.getString("TIME");
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openStat("/sample/view/fxml/ControlTime.ShowingStatistics.fxml");
+            openStat("/sample/view/fxml/TimeControl.ShowingStatistics.fxml");
 
         });
 

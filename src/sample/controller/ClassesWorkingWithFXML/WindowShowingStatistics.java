@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 
 public class WindowShowingStatistics {
 
@@ -49,28 +48,28 @@ public class WindowShowingStatistics {
 
         RecentStatisticsButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистика за сегодня");
-            openStat24("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatistics24.fxml");
+            openStat24("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatistics24.fxml");
 
 
         } );
 
-        StatisticsForTheWeekButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка статистики за неделю");
-            openStat7("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatistics7.fxml");
-
-
-        });
+//        StatisticsForTheWeekButton.setOnAction(ActionEvent -> {
+//            System.out.println("нажата кнопка статистики за неделю");
+//            openStat7("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatistics7.fxml");
+//
+//
+//        });
 
         StatisticsForTheSelectedTimeButton.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка статистики за выбранное времея");
-            openStatSelectTime("/sample/view/fxml/StaticsicsScene/ControlTime.ShowingStatisticsSelectTime.fxml");
+            openStatSelectTime("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatisticsSelectTime.fxml");
 
 
         });
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+            openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
 
 
         });

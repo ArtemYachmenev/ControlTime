@@ -72,7 +72,7 @@ public class WindowSettings {
 
 // загружается первая панель настройка цвета приложения
         try {
-            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestListNoUsersProgram.fxml"));
+            Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/SettingColorPane.fxml"));
             stackPane.getChildren().removeAll();
             stackPane.getChildren().setAll(fxml);
         } catch (IOException e) {
@@ -82,7 +82,7 @@ public class WindowSettings {
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-           openMenu("/sample/view/fxml/ControlTime.Menu.fxml");
+           openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
 
 
         });

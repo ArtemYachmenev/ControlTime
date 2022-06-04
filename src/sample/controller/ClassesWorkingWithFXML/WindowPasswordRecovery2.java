@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import sample.controller.AllStaticData;
-import sample.controller.ChangingTheAppColor;
 
 public class WindowPasswordRecovery2 {
 
@@ -58,7 +57,7 @@ public class WindowPasswordRecovery2 {
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
-            openPR("/sample/view/fxml/ControlTime.PasswordRecovery.fxml");
+            openPR("/sample/view/fxml/TimeControl.PasswordRecovery.fxml");
 
 
         });
@@ -95,7 +94,7 @@ public class WindowPasswordRecovery2 {
        String answer=AllStaticData.getUserAnswerRecovery();
 
         if (Objects.equals(answer,userAnswer)) {
-            openNewSceneRecovery3("/sample/view/fxml/ControlTime.PasswordRecovery3.fxml");
+            openNewSceneRecovery3("/sample/view/fxml/TimeControl.PasswordRecovery3.fxml");
         }
         else {
             System.out.println("ответ не введен или не верен");
