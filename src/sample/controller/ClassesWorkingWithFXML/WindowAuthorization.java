@@ -23,39 +23,24 @@ import sample.controller.Database.DatabaseHandler;
 import sample.controller.Database.User;
 
 public class WindowAuthorization {
-
-
     @FXML
     private AnchorPane colorDown;
-
     @FXML
     private AnchorPane colorUp;
-
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button CreateNewProfileButton;
-
     @FXML
     private TextField LoginField;
-
     @FXML
     private Button PasswordRecoveryButton;
-
     @FXML
     private PasswordField PssswordField;
-
     @FXML
     private Button EntranceButton;
-
-
-
-
 
     @FXML
     void initialize() {
@@ -67,7 +52,7 @@ public class WindowAuthorization {
 
         CreateNewProfileButton.setOnAction(actionEvent ->
         {
-            System.out.println("нажата кнопка создания нового профиля");
+
             openNewSceneNewProfile("/sample/view/fxml/TimeControl.NewProfile.fxml");
 
         });
@@ -75,7 +60,7 @@ public class WindowAuthorization {
 
         PasswordRecoveryButton.setOnAction(actionEvent ->
         {
-            System.out.println("нажата кнопка восстановления пароля");
+
             openNewScenePasswordRecovery("/sample/view/fxml/TimeControl.PasswordRecovery.fxml");
 
         });
@@ -83,12 +68,9 @@ public class WindowAuthorization {
 
         EntranceButton.setOnAction(actionEvent ->
         {
-            System.out.println("нажата кнопка входа");
+
             String loginText= LoginField.getText().trim();
            String loginPassword= PssswordField.getText().trim();
-
-//            String loginText= "a";
-//            String loginPassword= "a";
             if (!loginText.equals("") && !loginPassword.equals("")){
                 try {
                     loginUser(loginText,loginPassword);
@@ -96,10 +78,9 @@ public class WindowAuthorization {
                     e.printStackTrace();
                 }
             }
-            else
-                System.out.println("login and password is empty");
         });
     }
+
 
     //проверка на существующего юзера
     private void loginUser(String loginText,String loginPassword) throws SQLException {

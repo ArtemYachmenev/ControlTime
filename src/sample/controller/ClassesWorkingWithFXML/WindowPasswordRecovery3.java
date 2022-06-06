@@ -50,16 +50,14 @@ public class WindowPasswordRecovery3 {
         colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         SavePasswordButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка сохранения нового пароля");
+
             String newPass=NewPassword.getText().trim();
             changingThePassword(newPass);
 
         });
 
         Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
             openPR2("/sample/view/fxml/TimeControl.PasswordRecovery2.fxml");
-
 
         });
 

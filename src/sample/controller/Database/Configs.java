@@ -6,6 +6,5 @@ public class Configs {
     protected String dbUser="TimeControlAdministrator";
     protected String dbPass="pass12345";
     protected String dbName="dataControlTime";
-    protected String dbBACKGROUNDCOLOR="BACKGROUNDCOLOR";
-    protected String dbWORKINGHOURS="WORKINGHOURS";
+
 }

@@ -15,60 +15,44 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class PaneListProgrNoUserProgram {
+public class PaneListProgr {
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button addBtn;
-
     @FXML
     private Button deleteBtn;
-
     @FXML
     private Pane pane;
-
     @FXML
     private ListView<String> langsListView1;
-
     @FXML
     private ListView<String> selectProgr;
-
     @FXML
     private Button selectBth;
-
-
     @FXML
     private Button deleteUsedBth;
-
     @FXML
     private Button selectUsedBth;
-
-    //  @FXML
-    //   private Label selectedLbl;
-
     @FXML
     private TextField textField;
-
     @FXML
     void initialize() {
         StringBuilder builder = new StringBuilder();
         StringBuilder usedListBuilder = new StringBuilder();
 
-        // создаем список объектов
-        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr3());
-        //список объектов которые пользователь использует
+
+        ObservableList<String> langs = FXCollections.observableArrayList(AllStaticData.getApp().downloadListProgr());
+
         ObservableList<String> usedLangs = FXCollections.observableArrayList(AllStaticData.getApp().downloadAListOfUsedApplications());
 
-//строка перехватывает данные и мешает, разобраться позже почтему
-        //    langsListView1 = new ListView<String>(langs);
 
 
-//в листы просмотров вставляем сохраненные данные
+
+
         langsListView1.setItems(langs);
         selectProgr.setItems(usedLangs);
 
@@ -495,97 +479,10 @@ public class PaneListProgrNoUserProgram {
 
         //удаляем строки из листа где лежат используемые приложения
         deleteUsedBth.setOnAction(actionEvent -> {
-            //закоменченный код удаляет только строки пользователя
-//            //делает удаление из статического листа используемых приложений
-//            StringBuilder builder1 = new StringBuilder();
-//            //принимает в себя не пустые слова и вставляет дополнительные строки
-//            StringBuilder builder2 = new StringBuilder();
-//
-//
-            //   смотрим чтобы поле было не пустым
-            if (!textField.getText().trim().equals(null) && !textField.getText().trim().equals("") && !textField.getText().trim().equals(" ")) {
-//                usedLangs.remove(textField.getText());
-//
-//
-//                //хранит текст из поля
-//                String s = textField.getText();
-//                //берет индекс первого символа искомого слова
-//                int i = AllStaticData.ListUsedProgr.indexOf(s);
-//                if (i < 0) {
-//                    return;
-//                }
-//                //оставляет вместо удаленного текста пустую строку
-//                builder1 = AllStaticData.ListUsedProgr.delete(i, i + s.length());
-//                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-//                String[] lines = builder1.toString().split("\\n");
-//                for (String l : lines) {
-//                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
-//                    //если в строке есть данные то вписываем в билдер2 в строку
-//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-//                        builder2.append(l + "\n");
-//                    }
-//                }
-//                AllStaticData.getApp().saveAListOfUsedApplications(builder2);
-
-
-            //делает удаление из статического листа приложений
-            StringBuilder builder1 = new StringBuilder();
-            //принимает в себя не пустые слова и вставляет дополнительные строки
-            StringBuilder builder2 = new StringBuilder();
-
-            //хранит текст из поля
-            String s = textField.getText();
-            //берет индекс первого символа искомого слова
-            int i = AllStaticData.ListUsedProgr.indexOf(s);
-            if (i < 0) {
-                return;
-            }
-            //оставляет вместо удаленного текста пустую строку
-            builder1 = AllStaticData.ListUsedProgr.delete(i, i + s.length());
-            usedLangs.remove(textField.getText());
-            //тут в дальнейшем можно реализовать удаление приложений пк, но пока безполезно тк список автоматически обновляется
-//                if (i < 0) {
-//                    return;
-//                }
-
-            //      builder3 = AllStaticData.GeneralListOfPrograms.delete(i, i + s.length());
 
 
 
 
-
-            //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-            String[] lines = builder1.toString().split("\\n");
-            for (String l : lines) {
-                //   System.out.println(l+" fffffffffffffffffffffffffffffff");
-                //если в строке есть данные то вписываем в билдер2 в строку
-                if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-                    builder2.append(l + "\n");
-                }
-            }
-// массив с дополнительными разделениями приложений пк на строки, можно доработать (обойтись без дополнительного разделения на строки)
-//                String[] lines2 = builder3.toString().split("\\n");
-//                for (String l : lines2) {
-//                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
-//                    //если в строке есть данные то вписываем в билдер2 в строку
-//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-//                        builder4.append(l + "\n");
-//                    }
-//                }
-            AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder2);
-                AllStaticData.ListUsedProgr=builder2;
-            // метод сохранения масива с удаленными приложениями
-            //   AllStaticData.getApp().saveGeneralListOfPrograms(builder4);
-            //перезаписываем файл с приложениями юзера и пк
-         //   AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
-
-
-
-
-            } else{
-
-
-//для сохранения не удаленных строк
 StringBuilder builderSave=new StringBuilder();
                 builderSave.append("\n");
 
@@ -593,7 +490,7 @@ StringBuilder builderSave=new StringBuilder();
                 List<String> list = new ArrayList<>();
                 //берет в себя строки из usedListBuilder
                 List<String> list2 = new ArrayList<>();
-                //дублирует первый лист для беопасного удаления совпадающех строк
+                //дублирует первый лист для беозпасного удаления совпадающех строк
                 List<String> list3 = list;
                 //копирует третий лискт без пробелов и прочего
                 List<String> list4 = new ArrayList<>();
@@ -675,127 +572,14 @@ StringBuilder builderSave=new StringBuilder();
                 list3.clear();
 
 
-            }
+
 
         });
 
         //перевод программы из общего списка в список используемых приложений
         selectBth.setOnAction(actionEvent -> {
-            //первый билдер работает в первом уловий второй во втором они присваивают значения из циклов в уловиях
             StringBuilder builder1 = new StringBuilder();
             StringBuilder builder2=new StringBuilder();
-
-
-            //   смотрим чтобы поле было не пустым
-            if (!textField.getText().trim().equals(null) && !textField.getText().trim().equals("") && !textField.getText().trim().equals(" ")) {
-                //старый код без проверки похожих столбцов
-//                usedLangs.add(textField.getText());
-//                //добаляем слово из строки в массив
-//                AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
-//
-//
-//
-//                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-//                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
-//                for (String l : lines) {
-//                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
-//
-//
-//
-//
-//
-//                    //если в строке есть данные то вписываем в билдер2 в строку
-//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-//                        builder1.append(l + "\n");
-//                    }
-//                }
-
-
-
-                //берет в себя строки из AllStaticData.ListUsedProgr
-
-                List<String> list = new ArrayList<>();
-
-
-
-                //создаем массивы
-                // держит в себе билдер с выбранными приложениями
-                String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
-                // держит в себе строку
-                String word = textField.getText();
-
-
-                //присваиваем листам значения массивов
-                for (String l : lines) {
-                    list.add(l);
-                    //  System.out.println(list+" лист использования");
-                }
-
-                //счетчик
-                int count=0;
-                for (int i=0;i<list.size();i++){
-                    if (!list.get(i).equals(word)) {
-                        count++;
-                    }
-
-                }
-
-
-                //если счетчик равен количеству строк то добавляем слово, тк его там нет
-                if (count==list.size()){
-                    usedLangs.add(textField.getText());
-                    //добаляем слово из строки в массив
-                    AllStaticData.ListUsedProgr.append(textField.getText()).append("\n");
-
-                }
-
-
-                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-                String[] lines2 = AllStaticData.ListUsedProgr.toString().split("\\n");
-                for (String l : lines2) {
-                    //   System.out.println(l+" fffffffffffffffffffffffffffffff");
-                    //если в строке есть данные то вписываем в билдер2 в строку
-                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-                        builder1.append(l + "\n");
-                    }
-                }
-                AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder1);
-
-
-             //   AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder1);
-            } else{
-
-
-                //добавляем в статик переменные из билдера который держит выделенные данные из первого листа
-           //     AllStaticData.ListUsedProgr.append(builder);
-                //созадем массив с дополнительными разделениями на строки, можно доработать (обойтись без дополнительного разделения на строки)
-               // String[] lines = AllStaticData.ListUsedProgr.toString().split("\\n");
-//                String[] lines2 = builder.toString().split("\\n");
-//
-//
-//                //присваиваем значения билдеру
-//                for (String l : lines) {
-//
-//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-//                        builder2.append(l + "\n");
-//
-//                    }
-//                }
-//
-//
-//                //присваиваем значение массиву строк вытянутых из сохраненного файла где хранятся используемые программы
-//                for (String l : lines2) {
-//                    if (!l.equals(null) && !l.equals("") && !l.equals(" ")) {
-//                        usedLangs.add(l + "\n");
-//                    }
-//                }
-//
-//                AllStaticData.getApp().saveAListOfUsedApplicationsOverwriting(builder2);
-//                //если не обнулять то странно сохраняет строки
-//                builder.setLength(0);
-
-
-
 
 
 
@@ -821,12 +605,10 @@ StringBuilder builderSave=new StringBuilder();
                 //присваиваем листам значения массивов
                 for (String l : lines) {
                     list.add(l);
-                    //  System.out.println(list+" лист использования");
                 }
 
                 for (String l : lines2) {
                     list2.add(l);
-                    //  System.out.println(list2+" лист использования");
                 }
 
 
@@ -859,7 +641,7 @@ StringBuilder builderSave=new StringBuilder();
 
 
 
-            }
+
 
         });
 

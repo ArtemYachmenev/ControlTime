@@ -47,34 +47,16 @@ public class WindowShowingStatistics {
         colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         RecentStatisticsButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка статистика за сегодня");
             openStat24("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatistics24.fxml");
-
-
         } );
 
-//        StatisticsForTheWeekButton.setOnAction(ActionEvent -> {
-//            System.out.println("нажата кнопка статистики за неделю");
-//            openStat7("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatistics7.fxml");
-//
-//
-//        });
-
         StatisticsForTheSelectedTimeButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка статистики за выбранное времея");
             openStatSelectTime("/sample/view/fxml/StaticsicsScene/TimeControl.ShowingStatisticsSelectTime.fxml");
-
-
         });
 
         Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
             openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
-
-
         });
-
-
     }
 
     //открывает меню приложения

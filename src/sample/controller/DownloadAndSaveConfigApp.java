@@ -526,7 +526,7 @@ fs.flush();
 
     }
 
-    //сохранение списка программ пк
+    //сохранение списка директорий программ пк
     public void saveDirProgrammPC(StringBuilder listDirProgramPC){
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
@@ -594,7 +594,7 @@ return builder;
 //
 //    }
 
-    //сохранение нового списка программ пк
+    //сохранение нового списка директорий программ пк
     public void saveNewAListDirProg(){
         // CreatingAndDeletingADirectory.overwritingListProgramsPowershell();
 
@@ -1036,7 +1036,7 @@ return builder;
 //        return  progr;
 //    }
 //грузим лист програм пк для их отображения в настройках
-    public ObservableList<String> downloadListProgr3() {
+    public ObservableList<String> downloadListProgr() {
         String list="";
         ObservableList<String> progr = FXCollections.observableArrayList();
 

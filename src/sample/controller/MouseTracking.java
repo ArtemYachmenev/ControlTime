@@ -12,40 +12,11 @@ import static sample.controller.AllStaticData.*;
 public class MouseTracking  implements MouseListener, MouseMotionListener, Runnable {
 
 
-//тут для отслеживания координат
     double mouseX=1.0;
     double mouseY=1.0;
     double resultX=0;
     double resultY=0;
-    //ключ для работы метода
-boolean keyRun=true;
 
-
-//это для второго варианты берет размер экрана винды
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Dimension screenSize = toolkit.getScreenSize();
-    int width = screenSize.width;
-    int height = screenSize.height;
-
-
-    //для отслеживания координат
-    public void mouseMove(){
-
-      //  while (mouseX!=0 || mouseY!=0){
-       // while (keyRun==true){
-        while (!executorServiceStartTrackingTheWorkOfPrograms.isShutdown()){
-            mouseX=MouseInfo.getPointerInfo().getLocation().getX();
-            mouseY=MouseInfo.getPointerInfo().getLocation().getY();
-            if (Objects.equals(mouseX,resultX)&&Objects.equals(mouseY,resultY)){
-                //чтобы поток записывающий время спал
-            }
-            resultX=mouseX;
-            resultY=mouseY;
-
-            System.out.println(mouseX+" "+mouseY);
-        }
-
-    }
 
     @Override
     public void run() {
@@ -53,14 +24,11 @@ boolean keyRun=true;
             mouseX=MouseInfo.getPointerInfo().getLocation().getX();
             mouseY=MouseInfo.getPointerInfo().getLocation().getY();
             if (Objects.equals(mouseX,resultX)==true&&Objects.equals(mouseY,resultY)==true){
-                //чтобы поток записывающий время спал
+
                 AllStaticData.workMouse=false;
 
-
-            //    System.out.println("нет движения");
             }
             else   {
-             //   System.out.println(Objects.equals(mouseX,resultX)&&Objects.equals(mouseY,resultY));
                 AllStaticData.workMouse=true;
             }
             resultX=mouseX;
@@ -70,7 +38,6 @@ boolean keyRun=true;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        //    System.out.println(mouseX+" "+mouseY);
         }
 
     }

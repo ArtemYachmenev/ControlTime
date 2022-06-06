@@ -31,49 +31,34 @@ import sample.controller.Database.WorkingHours;
 public class WindowShowingStatisticsSelectTime {
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button Exit;
-
     @FXML
     private Button StatisticsForTheSelectedTimeButton;
-
     @FXML
     private AnchorPane colorDown;
-
     @FXML
     private AnchorPane colorUp;
-
     @FXML
     private TableColumn<WorkingHours, Date> date;
-
     @FXML
     private TableColumn<WorkingHours, String > program;
-
     @FXML
     private TableView<WorkingHours> table;
-
     @FXML
     private TextField textDay;
-
     @FXML
     private TextField textDay1;
-
     @FXML
     private TextField textMoth;
-
     @FXML
     private TextField textMoth1;
-
     @FXML
     private TextField textYear;
-
     @FXML
     private TextField textYear1;
-
     @FXML
     private TableColumn<WorkingHours, String> time;
     @FXML
@@ -95,8 +80,10 @@ public class WindowShowingStatisticsSelectTime {
         StatisticsForTheSelectedTimeButton.setOnAction(actionEvent ->
                 {
                     //метод когда введены две даты
-                    if (!textDay.getText().equals("")&& !textDay.getText().equals(null) && !textMoth.getText().equals("")&& !textMoth.getText().equals(null)&&!textYear.getText().equals("")&&!textYear.getText().equals(null)
-                            &&!textDay1.getText().equals("")&&!textDay1.getText().equals(null) && !textMoth1.getText().equals("")&&!textMoth1.getText().equals(null)&&!textYear1.getText().equals("")&&!textYear1.getText().equals(null)) {
+                    if (!textDay.getText().equals("")&& !textDay.getText().equals(null) && !textMoth.getText().equals("")&&
+                            !textMoth.getText().equals(null)&&!textYear.getText().equals("")&&!textYear.getText().equals(null)
+                            &&!textDay1.getText().equals("")&&!textDay1.getText().equals(null)
+                            && !textMoth1.getText().equals("")&&!textMoth1.getText().equals(null)&&!textYear1.getText().equals("")&&!textYear1.getText().equals(null)) {
                         list.clear();
 String date1=textDay.getText()+"."+textMoth.getText()+"."+textYear.getText();
 String date2=textDay1.getText()+"."+textMoth1.getText()+"."+textYear1.getText();

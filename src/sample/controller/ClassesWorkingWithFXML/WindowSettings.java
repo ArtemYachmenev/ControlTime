@@ -25,46 +25,32 @@ import sample.controller.CreatingAndDeletingADirectory;
 import sample.controller.GetAllProgrammPC;
 
 public class WindowSettings {
-
     @FXML
     private AnchorPane colorDown;
-
     @FXML
     private AnchorPane colorUp;
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Button Exit;
-
     @FXML
     private Label Restoring;
-
     @FXML
     private AnchorPane allPane;
-
     @FXML
     private Button colorAppButton;
-
     @FXML
     private Button infoMessegeButton;
-
     @FXML
     private Button messegeButton;
-
     @FXML
     private Button profileButton;
-
     @FXML
     private StackPane stackPane;
-
     @FXML
     private Button timerButton;
-
     @FXML
     void initialize() {
         colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
@@ -113,22 +99,14 @@ public class WindowSettings {
     }
 
     // загружается  панель  отслеживания программ
+
     @FXML
     public void SettingProgramPane(javafx.event.ActionEvent event) throws IOException {
 
-
-
-
-        //грузим чтобы с статик билдером можно было манипулировать
-     //   AllStaticData.app.downloadListProgr();
-        //объединяем списки программ пк и пользователя
-
-      //  AllStaticData.app.addingPcProgramsToTheListOfUsedPrograms();
-        //вместо первой и  второй третья версия панели без программ пользователя сразу лист с програми
-        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/TestListNoUsersProgram.fxml"));
+        Parent fxml=FXMLLoader.load(getClass().getResource("/sample/view/fxml/SettingsPane/ProgramList.fxml"));
         stackPane.getChildren().removeAll();
         stackPane.getChildren().setAll(fxml);
-        System.out.println("нажата кнопка отслеживания програм");
+
 
 
     }

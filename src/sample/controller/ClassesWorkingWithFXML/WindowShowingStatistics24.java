@@ -59,7 +59,8 @@ public class WindowShowingStatistics24 implements Initializable {
     private TableColumn<WorkingHours, String> time;
     @FXML
     private TableColumn<WorkingHours, String> working_hours;
-//надо считаь данные из бд и вставить в лист
+
+
 
 
    ObservableList<WorkingHours> list = FXCollections.observableArrayList();
@@ -71,52 +72,21 @@ public class WindowShowingStatistics24 implements Initializable {
         DatabaseHandler handler=new DatabaseHandler();
         ResultSet check = handler.get24(AllStaticData.login);
         try {
-            //надо поставить ограничитель на дату
-
-            //пока есть записи выводится все
             while (check.next()){
-//                System.out.println(check.getString("DATE_OF_WORK")+ " dddddddddd");
-//                System.out.println(check.getString("WORKING_HOURS")+ " dddddddddd");
-//
-//                System.out.println(check.getString("PROGRAM")+ " dddddddddd");
-//                System.out.println(check.getString("TIME")+ " dddddddddd");
-//                if (!check.next()){
-//                    list.add(new WorkingHours("нет данных","нет данных","нет данных"));
-//                }
 Date  d=check.getDate("DATE_OF_WORK");
 String h=check.getString("WORKING_HOURS");
 String p=check.getString("PROGRAM");
 String t=check.getString("TIME");
-
-
-             //   System.out.println(h+" eeeeeeeeeeeeeeeeeeeee");
-                SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd.MM.YY ");
-
-
-
-                String res=oldDateFormat.format(d);
-
-               WorkingHours workingHours=   new WorkingHours(d,h,p,t);
-            //    System.out.println(res);
-
                 list.add(new WorkingHours(d,h,p,t));
-
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-
         date.setCellValueFactory(new PropertyValueFactory<WorkingHours,Date>("date"));
         working_hours.setCellValueFactory(new PropertyValueFactory<WorkingHours,String>("working_hours"));
         program.setCellValueFactory(new PropertyValueFactory< WorkingHours,String>("program"));
         time.setCellValueFactory(new PropertyValueFactory< WorkingHours,String>("time"));
-
-     //   System.out.println(date);
         table.setItems(list);
-     //   System.out.println(table==null);
 
         Exit.setOnAction(ActionEvent -> {
             System.out.println("нажата кнопка выхода");
@@ -152,6 +122,5 @@ String t=check.getString("TIME");
         });
     }
 
-    public static class SettingProfilePane {
-    }
+
 }

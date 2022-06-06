@@ -14,11 +14,6 @@ import static sample.controller.AllStaticData.*;
 //отслеживает состояния ехе рпограмм
 public class OperationTimer implements Runnable {
 
-    //нужно чтобы читались состояния ехе приложения и если есть хоть один тру
-    //запускать таймер отсечта времени
-    //надо заного искать имена приложений и их количество ехе
-    //
-    //
 
     //лист который хранит названия приложений и их состояния
     ArrayList<String> prog = new ArrayList<>();
@@ -26,17 +21,15 @@ public class OperationTimer implements Runnable {
     ArrayList<Object> trueOrFalse = new ArrayList<>();
     //хранит в себе имя приложения и общее состояние
     ArrayList<Object> goWork = new ArrayList<>();
-    //проверка на хотя бы один тру программы
-//
+
+
     ExecutorService executorService;
 int count=0;
 
 
-
-    //тут надо из одного листа считать названия приложений и их ехе и наложить их значения в prog
     @Override
     public void run() {
-        //обновляем ключ по созданию потоков и числу программ и листы
+
         countProg=false;
         listRunProg.clear();
         listRunProg2.clear();

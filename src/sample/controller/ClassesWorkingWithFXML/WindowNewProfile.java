@@ -23,60 +23,44 @@ import sample.controller.Database.User;
 
 
 public class WindowNewProfile {
-
     @FXML
     private AnchorPane colorDown;
-
     @FXML
     private AnchorPane colorUp;
-
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private TextField AnswerField;
-
     @FXML
     private TextField LoginField;
-
     @FXML
     private TextField NameField;
-
-    @FXML
-    private TextField PatronymicField;
-
     @FXML
     private PasswordField PasswordField;
-
     @FXML
     private Button RegisterAProfile;
-
     @FXML
     private TextField SecondNameField;
-
     @FXML
     private TextField SecretField;
-
     @FXML
     private Button Exit;
-
     @FXML
     void initialize() {
         colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
         colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
         RegisterAProfile.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка регистрации");
+
             createNewProfile();
 
 
         });
 
         Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
+
             openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
 
@@ -95,16 +79,13 @@ public class WindowNewProfile {
         String secret=SecretField.getText().trim();
         String answer=AnswerField.getText().trim();
         int count = 0;
-
         //ПРОВЕРКА НА ЗАПОЛНЕННЫЕ ПОЛЯ
-        if (!login.equals("") && !password.equals("")&& !name.equals("")&& !secondName.equals("")&& !secret.equals("")&& !answer.equals("")) {
-
+        if (!login.equals("") && !password.equals("")&& !name.equals("")&&
+                !secondName.equals("")&& !secret.equals("")&& !answer.equals("")) {
             //проверка на  существующего пользователя
-
             User CheckUser = new User();
             CheckUser.setLogin(login);
             ResultSet CheckResult = dbHandler.CheckUser(CheckUser);
-
             try {
                 if (CheckResult.next()) {
                     count++;
@@ -112,15 +93,10 @@ public class WindowNewProfile {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
             if (count >= 1) {
-                //почему т строка не возвращается на место
-             //   Shake userLogAnim = new Shake(LoginField);
-              //  userLogAnim.playAnim();
-                System.out.println("логин занят");
 
             } else {
-                System.out.println("success new profile");
+
                 User user = new User(login, password, name, secondName, secret, answer);
                 //получаем нового пользователя
                 dbHandler.signUpUser(user);
@@ -128,10 +104,6 @@ public class WindowNewProfile {
                 openMenu("/sample/view/fxml/TimeControl.Menu.fxml");
             }
         }
-        else {
-            System.out.println("поля не заполнены");
-        }
-
     }
 
 

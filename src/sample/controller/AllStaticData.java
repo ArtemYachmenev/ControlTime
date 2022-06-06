@@ -152,7 +152,7 @@ public static Color b;
     //лист для понятия работают или нет программы
     public volatile static ArrayList<String> workApp=new ArrayList<>();
     //промежуточный лист для переноса программ и их состояний в таймер
-    public  static ArrayList<String> workApp2=new ArrayList<>();
+  //  public  static ArrayList<String> workApp2=new ArrayList<>();
     //лист для хранения назвоний программ и количества их ехе
     public  static ArrayList<String> nameProgCountEXE=new ArrayList<>();
     //хранит в себе имя приложения и общее состояние
@@ -162,9 +162,9 @@ public static Color b;
     //хранит в себе имя приложения для его отслеживания времени
     public volatile static  ArrayList<String> nameProg=new ArrayList<>();
     //хранит состояние таймера его работы
-    public volatile static boolean workTimer=false;
+ //   public volatile static boolean workTimer=false;
     //лист для понятия для работающих exe программ чтобы потом их убить
-    public volatile static ArrayList<String> workAppKill=new ArrayList<>();
+ //   public volatile static ArrayList<String> workAppKill=new ArrayList<>();
 
     //тестовые значения
 //лист который хранит приложения с тру, если тру нет то пишет 0

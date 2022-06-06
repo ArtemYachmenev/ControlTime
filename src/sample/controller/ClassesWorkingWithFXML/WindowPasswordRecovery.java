@@ -31,7 +31,6 @@ public class WindowPasswordRecovery {
     @FXML
     private AnchorPane colorUp;
 
-
     @FXML
     private ResourceBundle resources;
 
@@ -39,10 +38,10 @@ public class WindowPasswordRecovery {
     private URL location;
 
     @FXML
-    private TextField LoginPasswField;
+    private TextField LoginField;
 
     @FXML
-    private Button PasswordRecoveryButton;
+    private Button RecoveryButton;
 
     @FXML
     private Button Exit;
@@ -52,9 +51,9 @@ public class WindowPasswordRecovery {
         colorUp.styleProperty().set(AllStaticData.getPaneUp().getStyle());
         colorDown.styleProperty().set(AllStaticData.getPaneDown().getStyle());
 
-        PasswordRecoveryButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка поиска пользователя");
-            String login=LoginPasswField.getText().trim();
+        RecoveryButton.setOnAction(ActionEvent -> {
+
+            String login=LoginField.getText().trim();
             AllStaticData.setUserLoginRecovery(login);
             if (!login.equals("")){
                 //открытие следующего окна восстановления
@@ -64,11 +63,10 @@ public class WindowPasswordRecovery {
 
                 }
             }
-            else
-                System.out.println("login is empty");
+
         });
         Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
+
             openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
 
@@ -154,7 +152,7 @@ public class WindowPasswordRecovery {
 
     //открытие окна восстановление пароля 2
     public void openNewSceneRecovery2 (String window){
-        PasswordRecoveryButton.getScene().getWindow().hide();
+        RecoveryButton.getScene().getWindow().hide();
         FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         try {

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" prefHeight="352.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneListProgrNoUserProgram">
+<Pane fx:id="pane" prefHeight="352.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ClassesWorkingWithFXML.SettingsPane.PaneListProgr">
    <children>
       <ListView fx:id="langsListView1" layoutX="14.0" layoutY="98.0" prefHeight="240.0" prefWidth="332.0" />
       <TextField fx:id="textField" layoutX="24.0" layoutY="29.0" prefHeight="44.0" prefWidth="607.0" promptText="Название приложения" style="-fx-background-radius: 10;" visible="false">

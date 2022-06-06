@@ -103,66 +103,43 @@ public class WindowMenu {
 
 
         OnButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка включения/выключения");
-            klickButtonOn();
+            сlickButtonOn();
             System.out.println(AllStaticData.getOnOrOffAppButtonMenu());
-
         });
         PersonalizationButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка персонализации");
             openPers("/sample/view/fxml/ControlTime.PersonalConfig.fxml");
-
         });
         SettingsButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка настроек");
             SettingsButton.getScene().getWindow().hide();
             openSett("/sample/view/fxml/TimeControl.Settings.fxml");
-
         });
         StatisticsButton.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка статистики");
             openStat("/sample/view/fxml/TimeControl.ShowingStatistics.fxml");
         });
-
         Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
             openAut("/sample/view/fxml/TimeControl.Authorization.fxml");
 
-
         });
-
-
-
-
 
     }
 
-    //нажатие на кнопку вкл выкл
-    public void klickButtonOn(){
+
+    public void сlickButtonOn(){
 
 
         if (AllStaticData.OnOrOffAppButtonMenu==true){
             AllStaticData.OnOrOffAppButtonMenu=false;
-        //    OnButton.setStyle("");
-         //   AllStaticData.b=null;
+
 executorServiceStartTrackingTheWorkOfPrograms.shutdown();
-            System.out.println("больше не мониторим работающие exe");
+
         }
         else if (AllStaticData.OnOrOffAppButtonMenu==false) {
             AllStaticData.OnOrOffAppButtonMenu = true;
-        //    OnButton.setTextFill(Color.CORAL);
-         //   AllStaticData.b=Color.CORAL;
 
-            //        запускаем мониторинг работы ехе
             StartTrackingTheWorkOfPrograms.runProgramAndWait();
-            System.out.println("мониторим работающие exe");
 
-//            while (true) {
-//                for (int k = 0; k < AllStaticData.workApp.size(); k++) {
-//                    System.out.println("new newenwnenewnew");
-//                    System.out.println(AllStaticData.workApp.get(k));
-//                }
-//            }
+
+
         }
 
 

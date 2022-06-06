@@ -100,7 +100,7 @@ class ApplicationWorkingHours implements Runnable {
 int i=count-1;
     long elapsedTime;
     long elapsedTimeInterrupt;
-    //массовое сохранение времени
+    //полное сохранение времени
     long sumTime=0;
     boolean run;
     //ключ для остановки потока

@@ -17,23 +17,16 @@ public class StartTrackingTheWorkOfPrograms {
 
     public static void runProgramAndWait() {
 
-
-
         //каждый раз обновляем лист
         AllStaticData.nameProgCountEXE=new ArrayList<>();
-
-
         //грузим приложения которые надо отслеживать
         StringBuilder builder = AllStaticData.getApp().downloadAListOfUsedApplicationsTracking();
         String[] lines = builder.toString().split("\\n");
         ArrayList<String> list = new ArrayList<>();
-
         //грузим ехе
         StringBuilder builder2 = AllStaticData.getApp().downloadListOfEXEFilesInDirectories();
         String[] lines2 = builder2.toString().split("\\n");
         ArrayList<String> list2 = new ArrayList<>();
-
-
         //лист для хранения .exe
         ArrayList<String> list3 = new ArrayList<>();
         //лист для хранения .exe без пустых строк
@@ -45,22 +38,11 @@ public class StartTrackingTheWorkOfPrograms {
         int lastIndex = 0;
 
 
-        //далее тут у два раза кладем в массивы и сохраняем проверял как обрезаются пробелы
-        //сделай чтобы совпадения искались и для каждый выбранной программы доставались exe
-        //может даже файл с ехе сделать чтобы ехе сохранялис в строку
-        //переводим в более удобочитаемую форму
-
-
-        //при поиске директорий еще отсеиваются программы без директорий, надо сделать так чтобы программы с директориями записались в файл с программами
 
 
         for (String l : lines) {
-            //   matcher = pattern1.matcher (l.trim());
-
 
             list.add(l.trim());
-
-            //  System.out.println(list.add(l.trim())+" fgffffffffffffffffffffffffffffffffffff");
         }
 
 
@@ -147,7 +129,7 @@ public class StartTrackingTheWorkOfPrograms {
      ////bilo   System.out.println(count);
       //  System.out.println(builder3);
 
-        doesItWorkOrNot(list4,count);
+        doesItWorkOrNot(list4);
 
         // System.out.println(doesItWorkOrNot());
     }
@@ -162,7 +144,7 @@ public class StartTrackingTheWorkOfPrograms {
     // pid каждый раз меняется при запуске программы
 
     //
-    public static void doesItWorkOrNot(ArrayList<String> list, int count) {
+    public static void doesItWorkOrNot(ArrayList<String> list) {
 
         String progName="";
 
@@ -204,49 +186,11 @@ public class StartTrackingTheWorkOfPrograms {
                     }
 
                 }
-                AllStaticData.workAppKill.clear();
-
-//тут можно сдлелать лист с пидами
-                Process  p = null;
-                try {
-                    String line;
-                    for (int i=0;i<listProgEXE.size();i++) {
-                        p = Runtime.getRuntime().exec("tasklist | findstr /i " +listProgEXE.get(i));
-
-                        BufferedReader inputGetPidProg =
-                                new BufferedReader(new InputStreamReader(p.getInputStream()));
-                        while ((line = inputGetPidProg.readLine()) != null) {
-                            String s=line.substring(line.lastIndexOf(".exe"));
-
-                            //    AllStaticData.workAppKill.add();
-                              //  builder4.append(substr+"\n");
-
-                                //пытаюсь найти pid родительских ехе
-                                //     Process getPid=Runtime.getRuntime().exec("wmic process get processid,parentprocessid,executablepath|find "avp.exe"");
-                                break;
-                            }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    p.getOutputStream().close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
 
-
-
-          //      operationTimer.checkingTheApplicationLaunch(AllStaticData.nameProgCountEXE,AllStaticData.workApp);
-           //     sumEXE=0;
-            //    listProgEXE=new ArrayList<>();
             }
         }
-                //просто смотрим что все нормально
-//        for (int j = 0; j < AllStaticData.nameProgCountEXE.size(); j++) {
-//            System.out.println(AllStaticData.nameProgCountEXE.get(j)+" bbbbbbbbbbbb");
-//        }
+
 
         //запускаем поток
         executorServiceStartTrackingTheWorkOfPrograms.execute(new CheckProcess(progName,sumEXE,listProgEXE));
@@ -314,7 +258,7 @@ class CheckProcess implements Runnable {
 
                 //добавляем элементы
                 AllStaticData.workApp.add(nameEXE.get(i) + " " + vmRunning);
-                AllStaticData.workAppKill.add(nameEXE.get(i));
+             //   AllStaticData.workAppKill.add(nameEXE.get(i));
               //  System.out.println(nameEXE.get(i) + " " + vmRunning);
 
 

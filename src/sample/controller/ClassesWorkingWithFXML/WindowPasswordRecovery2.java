@@ -55,12 +55,7 @@ public class WindowPasswordRecovery2 {
     public void downloadSecretAndAnswer(){
         LabelSecret.setText(AllStaticData.getUserSecretRecovery());
 
-        Exit.setOnAction(ActionEvent -> {
-            System.out.println("нажата кнопка выхода");
-            openPR("/sample/view/fxml/TimeControl.PasswordRecovery.fxml");
 
-
-        });
 
 
     }
@@ -76,6 +71,13 @@ public class WindowPasswordRecovery2 {
             System.out.println("нажата кнопка ответа на секретный вопрос");
             String answer=AnswerFieldRecovery2.getText().trim();
             userAnswer(answer);
+        });
+
+        Exit.setOnAction(ActionEvent -> {
+            System.out.println("нажата кнопка выхода");
+            openPR("/sample/view/fxml/TimeControl.PasswordRecovery.fxml");
+
+
         });
 
     }
