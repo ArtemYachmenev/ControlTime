@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="colorUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #909090; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Контроллер.ClassesWorkingWithFXML.WindowSettings">
+    <children>
+        <Label fx:id="Restoring" alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="11.0" prefHeight="51.0" prefWidth="266.0" text="Ваши настройки" textAlignment="CENTER" textOverrun="CLIP">
+            <font>
+                <Font name="Agency FB Bold" size="28.0" />
+            </font>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+        </Label>
+        <AnchorPane fx:id="colorDown" layoutY="84.0" prefHeight="413.0" prefWidth="700.0" style="-fx-background-color: #a5a5a5; -fx-border-color: silver; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="700.0">
+               <children>
+                  <Button fx:id="colorAppButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingColorPane" prefHeight="50.0" prefWidth="233.0" text="Цвета приложения">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="programButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProgramPane" prefHeight="50.0" prefWidth="238.0" text="Отслеживаемые программы">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="profileButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SettingProfilePane" prefHeight="50.0" prefWidth="240.0" text="Управление профилем">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="allPane" layoutX="3.0" layoutY="51.0" prefHeight="352.0" prefWidth="700.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <StackPane fx:id="stackPane" prefHeight="352.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+        </AnchorPane>
+      <Button fx:id="Exit" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-background-radius: 10;" text="Назад">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

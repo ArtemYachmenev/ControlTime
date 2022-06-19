@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import sample.controller.*;
+import sample.Модель.*;
 
 
 public class Main extends Application {
@@ -59,7 +59,7 @@ public class Main extends Application {
 
       //  ProcessTracking.trackingProgramm();
         GetAllProgrammPC.getListDiskPC();
-        Parent root = FXMLLoader.load(getClass().getResource("view/fxml/TimeControl.Authorization.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Вид/fxml/TimeControl.Authorization.fxml"));
         primaryStage.setTitle("TimeControl");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
